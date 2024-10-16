@@ -1,9 +1,24 @@
 import { useEffect, useState } from "react";
+import { IoLanguage } from "react-icons/io5";
 import { Link } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 
 export default function index() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isEnglish, setIsEnglish] = useState(false);
+  const { t, i18n } = useTranslation();
+
+
+  const toggleLanguage = () => {
+    const newLang = isEnglish ? 'fa' : 'en';
+    i18n.changeLanguage(newLang);
+    setIsEnglish(!isEnglish);
+  };
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -25,13 +40,13 @@ export default function index() {
         </div>
         <div className="max-lg:hidden">
           <ul className="flex flex-row-reverse gap-5 ">
-            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>صفحه اصلی</li></Link>
-            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>بلاگ</li></Link>
-            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>رژیم ها</li></Link>
-            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>خواب و روح و روان</li></Link>
+            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>{t("hederMainpage")}</li></Link>
+            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>{t("blog")}</li></Link>
+            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>{t("diets")}</li></Link>
+            <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>{t("sleep_soul_mental")}</li></Link>
             <div className=" group flex relative transition-all  ">
               <Link to={""} className="flex justify-center items-center group ">
-                <li className="hover:text-main transition-all p-2 rounded-md">ورزش ها</li>
+                <li className="hover:text-main transition-all p-2 rounded-md">{t("exercises")}</li>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 group-hover:rotate-0 transition-all	 rotate-180" >
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                 </svg>
@@ -48,14 +63,14 @@ export default function index() {
             </div>
             <div className=" group flex relative transition-all">
               <Link to={""} className="flex justify-center items-center group ">
-                <li className="hover:text-main transition-all p-2 rounded-md">دستور آشپزی</li>
+                <li className="hover:text-main transition-all p-2 rounded-md">{t("cookingInstruction")}</li>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 group-hover:rotate-0 transition-all	 rotate-180" >
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                 </svg>
               </Link>
               <div className="  bg-main w-[650px] rounded-xl absolute top-[100%] hidden text-white  group-hover:flex group-hover:justify-center  ">
                 <div className=" border-r p-2 border-[#00000014]">
-                  <p className="text-end font-bold">صبحانه</p>
+                  <p className="text-end font-bold">{t("breakfast")}</p>
                   <ul className="flex flex-col p-5 gap-2 text-end ">
                     <Link to={""} className=" hover:text-mainHover"> <li>نان و پنیر و گوجه و خیار</li></Link>
                   </ul>
@@ -88,16 +103,16 @@ export default function index() {
             </div>
             <div className=" group flex relative transition-all  ">
               <Link to={""} className="flex justify-center items-center group ">
-                <li className="hover:text-main transition-all p-2 rounded-md">ارتباط با ما</li>
+                <li className="hover:text-main transition-all p-2 rounded-md">{t("constactus")}</li>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4 group-hover:rotate-0 transition-all	 rotate-180" >
                   <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
                 </svg>
               </Link>
               <div className="bg-main w-32 rounded-xl absolute top-[100%] hidden text-white  group-hover:flex  ">
                 <ul className="flex flex-col p-5 gap-2 text-end ">
-                  <Link to={""} className=" hover:text-mainHover"> <li>درباره ما</li></Link>
-                  <Link to={""} className=" hover:text-mainHover"> <li>تماس با ما</li></Link>
-                  <Link to={""} className=" hover:text-mainHover"> <li>همکاری با ما</li></Link>
+                  <Link to={""} className=" hover:text-mainHover"> <li>{t('aboutus')}</li></Link>
+                  <Link to={""} className=" hover:text-mainHover"> <li>{t("constactus")}</li></Link>
+                  <Link to={""} className=" hover:text-mainHover"> <li>{t("workwithus")}</li></Link>
                 </ul>
               </div>
             </div>
@@ -109,19 +124,27 @@ export default function index() {
           </svg>
           <div className="bg-main w-screen rounded-xl absolute top-[100%] -right-10 hidden  text-white  group-hover:flex  ">
             <ul className="flex flex-col p-6 gap-2 text-center w-screen">
-              <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>صفحه اصلی</li></Link>
+              <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>{t("hederMainpage")}</li></Link>
               <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>بلاگ</li></Link>
               <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>رژیم ها</li></Link>
               <Link to={""} className="hover:text-main transition-all p-2 rounded-md"> <li>خواب و روح و روان</li></Link>
-              <Link to={""} className="flex justify-center items-center group "><li className="hover:text-main transition-all p-2 rounded-md">ورزش ها</li></Link>
+              <Link to={""} className="flex justify-center items-center group "><li className="hover:text-main transition-all p-2 rounded-md">{t("exercises")}</li></Link>
               <Link to={""} className="flex justify-center items-center group "><li className="hover:text-main transition-all p-2 rounded-md">دستور آشپزی</li></Link>
               <Link to={""} className="flex justify-center items-center group "><li className="hover:text-main transition-all p-2 rounded-md">ارتباط با ما</li></Link>
             </ul>
           </div>
         </div>
-        <div className="max-lg:hidden">
+        <div className="max-lg:hidden flex items-center justify-center gap-4">
+          <button
+              onClick={() => toggleLanguage()}
+              className="flex items-center justify-center gap-1 bg-white p-2 text-mainHover rounded-xl text-center hover:text-mainHover hover:border-mainHover border border-transparent transition-all">
+            <span>{t('headerlang')}</span>
+            <IoLanguage />
+          </button>
           <Link to={""}>
-            <button className="bg-main p-2 text-white rounded-xl text-center hover:bg-mainHover transition-all  ">ورود به حساب کاربری</button>
+            <button className="bg-main p-2 text-white rounded-xl text-center hover:bg-mainHover transition-all  ">
+              {t('headerlogin')}
+            </button>
           </Link>
         </div>
       </div >
