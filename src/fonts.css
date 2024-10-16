@@ -1,0 +1,7 @@
+@font-face {
+    font-family: Vazirmatn;
+    src: url("./assets/fonts/Vazirmatn-Regular.ttf");
+}
+* {
+    font-family: Vazirmatn !important;
+}
