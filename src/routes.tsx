@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import Diet from "./pages/Diet/Diet";
 import Contacts from "./pages/Contacts/Contacts";
 import About from "./pages/About/About";
+import Cooperate from "./pages/Cooperate/Cooperate";
 const routes = [
   {
     path: "/",
@@ -18,6 +19,10 @@ const routes = [
   {
     path: "/about",
     element: <About />,
+  },
+  {
+    path: "/cooperate",
+    element: <Cooperate />,
   },
 ];
 
