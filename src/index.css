@@ -2,15 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
 }
 
-body{
-  background-color: #FAFAFA;
+body {
+  background-color: #fafafa;
 }
 
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center; 
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}

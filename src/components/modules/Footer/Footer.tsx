@@ -1,28 +1,28 @@
-import React from 'react';
+import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <div>
-      <div className="w-full h-[300px] max-sm:h-[100px] bg-main rounded-se-full rounded-ss-full relative ">
+    <div className="overflow-x-hidden pt-40">
+      <div className="relative h-[300px] w-full rounded-se-full rounded-ss-full bg-main max-sm:h-[100px]">
         <img
           src="Pngtree-food2.png"
           alt=""
-          className="w-[450px] max-sm:w-[150px] absolute left-[35%] max-lg:left-[23%] max-sm:left-[26%] -top-32 max-sm:-top-10"
+          className="absolute -top-32 left-[35%] w-[450px] max-lg:left-[23%] max-sm:-top-10 max-sm:left-[26%] max-sm:w-[150px]"
         />
         <img
           src="spoon.png"
           alt=""
-          className="w-[400px] max-sm:w-[100px]  absolute left-[16%] max-lg:-left-20   max-sm:left-5 -top-32  max-sm:-top-10"
+          className="absolute -top-32 left-[16%] w-[400px] max-lg:-left-20 max-sm:-top-10 max-sm:left-5 max-sm:w-[100px]"
         />
         <img
           src="fork.png"
           alt=""
-          className="w-[400px] max-sm:w-[100px] absolute left-[57%] max-lg:left-[60%]  -top-32  max-sm:-top-10"
+          className="absolute -top-32 left-[57%] w-[400px] max-lg:left-[60%] max-sm:-top-10 max-sm:w-[100px]"
         />
       </div>
       <div className="w-full bg-main">
-        <footer className="text-end text-surface/75   dark:text-white/75 lg:text-lef ">
-          <div className="flex items-center justify-center flex-row-reverse border-b-2 border-neutral-200 p-6  lg:justify-between">
+        <footer className="text-surface/75 lg:text-lef text-end dark:text-white/75">
+          <div className="flex flex-row-reverse items-center justify-center border-b-2 border-neutral-200 p-6 lg:justify-between">
             <div className="me-12 hidden lg:block">
               <span>: در شبکه های اجتماعی با ما در ارتباط باشید</span>
             </div>
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
                   <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
                 </svg>
               </a>
-              <a href="#!" className="me-6 [&>svg]:h-4 [&>svg]:w-4 ">
+              <a href="#!" className="me-6 [&>svg]:h-4 [&>svg]:w-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
