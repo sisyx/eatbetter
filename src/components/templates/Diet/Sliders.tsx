@@ -9,7 +9,9 @@ import Card from "./Card";
 
 const Sliders = () => {
   return (
-    <div className="block sm:!hidden space-y-8 mt-6">
+    <div 
+    data-aos="fade-up"
+    className="block sm:!hidden space-y-8 mt-6">
       <Swiper
         dir="rtl"
         slidesPerView={1}

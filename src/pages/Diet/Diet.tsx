@@ -41,6 +41,7 @@ const Diet = () => {
                 muted
                 loop
                 className="hidden w-40 sm:!block"
+                data-aos="fade-right"
               ></video>
             </div>
             <p>
@@ -73,6 +74,7 @@ const Diet = () => {
           </div>
         </div>
         <main
+          data-aos="fade-up"
           className="mt-5 hidden grid-cols-[1fr,1fr] items-center gap-4 sm:!grid md:!grid-cols-[1fr,1fr,1fr]"
           dir="rtl"
         >
