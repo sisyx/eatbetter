@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import Diet from "./pages/Diet/Diet";
+import Contacts from "./pages/Contacts/Contacts";
 const routes = [
   {
     path: "/",
@@ -8,6 +9,10 @@ const routes = [
   {
     path: "/diet",
     element: <Diet />,
+  },
+  {
+    path: "/contacts",
+    element: <Contacts />,
   },
 ];
 
