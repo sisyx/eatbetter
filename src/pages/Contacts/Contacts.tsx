@@ -33,26 +33,29 @@ const Contacts = () => {
   });
   return (
     <Container>
-      <div className="flex md:!flex-row flex-col items-center px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!px-28">
+      <div className="flex flex-col items-center gap-4 px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 md:!flex-row lg:!px-28">
         <video
-          src="/images/Xw55QrN0QJMO0R25p1.mp4"
+          data-aos="fade-right"
+          src="/images/I2BP070FjVGkC57wp1.mp4"
           loop
           autoPlay
-          className="md:!w-1/2 w-3/4"
+          className="w-[76%] md:!w-1/2"
         ></video>
         <div className="w-full" dir="rtl">
-          <p className="sm:text-xl mb-4">
-            ما اینجا هستیم تا شما را در <span className="text-main">مسیر سلامتی و تناسب اندام</span> همراهی کنیم!
+          <p className="mb-4 sm:text-xl">
+            ما اینجا هستیم تا شما را در{" "}
+            <span className="text-main">مسیر سلامتی و تناسب اندام</span> همراهی
+            کنیم!
           </p>
-          <p className="sm:text-base text-sm">
+          <p className="text-sm sm:text-base">
             اگر سوالی دارید یا به راهنمایی نیاز دارید، لطفاً فرم زیر را با ذکر
             دلیل تماس خود تکمیل کنید. یکی از مشاوران ما در سریع‌ترین زمان ممکن
             با شما تماس خواهد گرفت.
           </p>
           <form
+            data-aos="fade-up"
             onClick={formHandler.handleSubmit}
             className="mt-5 w-full p-4 shadow-md"
-          
           >
             <div className="mb-5">
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">

@@ -5,6 +5,7 @@ import "./fonts.css";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import ScrollToUp from "./utils/ScrollToUp";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -12,7 +13,9 @@ const App: React.FC = () => {
   }, []);
 
   const router = useRoutes(routes);
-  return <>{router}</>;
+  return <>
+  <ScrollToUp /> 
+  {router}</>;
 };
 
 export default App;

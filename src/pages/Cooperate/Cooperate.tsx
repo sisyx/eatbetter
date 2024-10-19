@@ -35,10 +35,11 @@ const Cooperate = () => {
     <Container>
       <div className="flex flex-col items-center px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!flex-row lg:!px-28">
         <video
-          src="/images/Xw55QrN0QJMO0R25p1.mp4"
+          src="/images/Dm22X5QeFw6j8Eq6L8.mp4"
           loop
+          data-aos="fade-right"
           autoPlay
-          className="w-3/4 md:!w-1/2"
+          className="w-[76%] md:!w-1/2"
         ></video>
         <div className="w-full space-y-4" dir="rtl">
           <p className="mb-4 sm:text-xl">
@@ -69,6 +70,7 @@ const Cooperate = () => {
             بهبود سلامت و سبک زندگی موفق باشیم.
           </p>
           <form
+            data-aos="fade-up"
             onClick={formHandler.handleSubmit}
             className="mt-5 w-full p-4 shadow-md"
           >
