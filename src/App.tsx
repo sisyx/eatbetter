@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ScrollToUp from "./utils/ScrollToUp";
+import { Toaster } from "./components/shadcn/ui/toaster";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -13,9 +14,13 @@ const App: React.FC = () => {
   }, []);
 
   const router = useRoutes(routes);
-  return <>
-  <ScrollToUp /> 
-  {router}</>;
+  return (
+    <>
+      <ScrollToUp />
+      {router}
+      <Toaster />;
+    </>
+  );
 };
 
 export default App;
