@@ -7,7 +7,7 @@ type Props = { children: React.ReactNode };
 const AdminLayouts = ({ children }: Props) => {
   return (
     <div dir="rtl" className="flex">
-      <SideBar />
+      <SideBar className="hidden lg:!block" />
       <div className="w-full">
         <TopBar />
         <div className="p-7">{children}</div>

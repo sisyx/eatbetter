@@ -23,7 +23,7 @@ const Profile = () => {
         </div>
       </div>
       <main>
-        <div className="relative bottom-4 mx-auto block w-max">
+        <div className="relative mt-5 xs:!mt-0 mx-auto block w-max">
           <img
             className="h-20 w-20 rounded-full"
             src={
