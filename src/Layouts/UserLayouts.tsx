@@ -10,7 +10,9 @@ const AdminLayouts = ({ children }: Props) => {
       <SideBar className="hidden lg:!block" />
       <div className="w-full">
         <TopBar />
-        <div className="xs:!p-7 py-7 px-4">{children}</div>
+        <div data-aos="fade-up" className="relative px-4 py-7 xs:!p-7">
+          {children}
+        </div>
       </div>
     </div>
   );

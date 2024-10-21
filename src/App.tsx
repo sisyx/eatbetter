@@ -18,7 +18,7 @@ const App: React.FC = () => {
     <>
       <ScrollToUp />
       {router}
-      <Toaster />;
+      <Toaster />
     </>
   );
 };

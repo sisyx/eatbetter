@@ -8,17 +8,21 @@ import {
 import { IoFastFoodOutline } from "react-icons/io5";
 import { FaUserDoctor } from "react-icons/fa6";
 import { CiLogout } from "react-icons/ci";
+import { GiNightSleep } from "react-icons/gi";
 
 const SideBar = ({ className }: { className?: string }) => {
   return (
-    <aside className={`${className ? className : ""} relative h-full min-h-screen min-w-[255px] overflow-hidden bg-main py-3 text-white`}>
+    <aside className={`${className ? className : ""} sticky top-0 bottom-0 h-full min-h-screen min-w-[255px] overflow-hidden bg-main py-3 text-white`}>
       <div className="border-b border-white pb-3">
+      <Link
+          to={"/"}>
         <img
           src="/BLP-b-white.png"
           alt="logo"
           width="80px"
           className="mx-auto"
         />
+        </Link>
       </div>{" "}
       <section>
         <ul className="space-y-8 py-16">
@@ -30,7 +34,7 @@ const SideBar = ({ className }: { className?: string }) => {
             <FaHome className="text-2xl" />
           </Link>
           <Link
-            to={"/"}
+            to={"/userPanel/profile"}
             className="flex flex-row-reverse items-center justify-end gap-3 px-5"
           >
             <li>حساب کاربری</li>
@@ -65,11 +69,11 @@ const SideBar = ({ className }: { className?: string }) => {
             <MdAttachMoney className="text-2xl" />
           </Link>
           <Link
-            to={"/"}
+            to={"/userPanel/sleep"}
             className="flex flex-row-reverse items-center justify-end gap-3 rounded-r-full px-5"
           >
-            <li>صفحه اصلی</li>
-            <FaHome className="text-2xl" />
+            <li>خواب و روان</li>
+            <GiNightSleep className="text-2xl" />
           </Link>
           <svg
             className="absolute bottom-[53px] w-full"

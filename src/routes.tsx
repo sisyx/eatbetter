@@ -6,6 +6,7 @@ import Cooperate from "./pages/Cooperate/Cooperate";
 import Index from "./pages/UserPanel/Index/Index";
 import Profile from "./pages/UserPanel/Profile/Profile";
 import Progress from "./pages/UserPanel/Progress/Progress";
+import Sleep from "./pages/UserPanel/Sleep/Sleep";
 
 const userPanelRoutes = [
   {
@@ -19,6 +20,10 @@ const userPanelRoutes = [
   {
     path: "/userPanel/progress",
     element: <Progress />,
+  },
+  {
+    path: "/userPanel/sleep",
+    element: <Sleep />,
   },
 ];
 
