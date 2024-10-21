@@ -112,7 +112,7 @@ const Sleep = () => {
         </p>
       </div>
       <video
-        data-aos="fade-left"
+        data-aos="fade-up"
         src="/images/3q6IdMG5Xa8BJUYs1z.mp4"
         loop
         autoPlay

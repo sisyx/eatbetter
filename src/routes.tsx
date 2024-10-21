@@ -7,6 +7,7 @@ import Index from "./pages/UserPanel/Index/Index";
 import Profile from "./pages/UserPanel/Profile/Profile";
 import Progress from "./pages/UserPanel/Progress/Progress";
 import Sleep from "./pages/UserPanel/Sleep/Sleep";
+import Notifications from "./pages/UserPanel/Notifications";
 
 const userPanelRoutes = [
   {
@@ -24,6 +25,10 @@ const userPanelRoutes = [
   {
     path: "/userPanel/sleep",
     element: <Sleep />,
+  },
+  {
+    path: "/userPanel/notifications",
+    element: <Notifications />,
   },
 ];
 

@@ -6,17 +6,19 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "../../shadcn/ui/sheet";
-import { useTranslation } from "react-i18next";
-import { IoLanguage } from "react-icons/io5";
 import { Button } from "../../shadcn/ui/button";
 import { Link } from "react-router-dom";
 import { TbMoneybag } from "react-icons/tb";
 import { FaRegChartBar } from "react-icons/fa";
 import SideBar from "./SideBar";
 import { MdMenu } from "react-icons/md";
+import { IoLanguage, IoNotifications } from "react-icons/io5";
+import { GrNotification } from "react-icons/gr";
+import { useTranslation } from "react-i18next";
 
 const TopBar = () => {
   const { t, i18n } = useTranslation();
+
   return (
     <div className="flex w-full justify-between border-b border-main px-3 py-3 xs:px-5">
       <div className="flex">
@@ -63,19 +65,19 @@ const TopBar = () => {
           <FaRegChartBar className="ml-1 xs:!ml-0" />
           <p className="hidden text-sm sm:!block"> نمودار پیشرفت </p>
         </Link>
-        <Link className="text-sm sm:text-base" to={"/"}>
-          <Button
-            className="flex h-8 gap-2 px-2 xs:!h-10 xs:!px-4"
-            variant={"main"}
-          >
-            <TbMoneybag />
-            <p className="hidden text-sm sm:!block">120,000 ه.ت </p>
-          </Button>
-        </Link>
-        <Button className="h-8 px-2 xs:!h-10 xs:!px-4" variant={"default"}>
+        <Button className="h-8 border border-main bg-transparent px-2 text-main hover:bg-main hover:text-white xs:!h-10 xs:!px-4">
           <span>{t("headerlang")}</span>
           <IoLanguage />
         </Button>
+
+        <Link className="text-sm sm:text-base" to={"/userPanel/notifications"}>
+          <Button
+            className="flex h-8 gap-2 px-2 xs:!h-10 xs:!px-4"
+            variant={"default"}
+          >
+            <GrNotification />
+          </Button>
+        </Link>
       </div>
     </div>
   );
