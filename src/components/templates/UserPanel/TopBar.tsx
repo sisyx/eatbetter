@@ -23,8 +23,7 @@ const TopBar = () => {
         <Sheet>
           <SheetTrigger className="text-2xl lg:!hidden">
             <div className="xs:!hidden flex items-center gap-2 rounded-full border-[#0000005c] bg-[#a0a0a054] p-1 pl-2 pr-3 text-2xl outline-none focus-visible:border-0">
-              <MdMenu />
-
+              <MdMenu /> 
               <img
                 alt="avatar"
                 loading="lazy"

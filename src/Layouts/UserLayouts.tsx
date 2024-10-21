@@ -10,7 +10,7 @@ const AdminLayouts = ({ children }: Props) => {
       <SideBar className="hidden lg:!block" />
       <div className="w-full">
         <TopBar />
-        <div className="p-7">{children}</div>
+        <div className="xs:!p-7 py-7 px-4">{children}</div>
       </div>
     </div>
   );
