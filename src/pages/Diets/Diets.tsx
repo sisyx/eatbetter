@@ -3,7 +3,7 @@ import Card from "../../components/templates/Diet/Card";
 import { diets } from "../../utils/data";
 import Sliders from "../../components/templates/Diet/Sliders";
 
-const Diet = () => {
+const Diets = () => {
   return (
     <Container>
       <div className="px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!px-28">
@@ -77,7 +77,7 @@ const Diet = () => {
           dir="rtl"
         >
           {diets.map((data) => (
-            <Card {...data} />
+            <Card data={data} />
           ))}
         </main>
         <Sliders />
@@ -86,4 +86,4 @@ const Diet = () => {
   );
 };
 
-export default Diet;
+export default Diets;

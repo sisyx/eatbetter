@@ -25,7 +25,7 @@ const Sliders = () => {
       >
         {diets.slice(0, 10).map((data) => (
           <SwiperSlide>
-            <Card {...data} />
+            <Card data={data} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -42,7 +42,7 @@ const Sliders = () => {
       >
         {diets.slice(10, 20).map((data) => (
           <SwiperSlide>
-            <Card {...data} />
+            <Card data={data} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -59,7 +59,7 @@ const Sliders = () => {
       >
         {diets.slice(20, 30).map((data) => (
           <SwiperSlide>
-            <Card {...data} />
+            <Card data={data} />
           </SwiperSlide>
         ))}
       </Swiper>
@@ -76,7 +76,7 @@ const Sliders = () => {
       >
         {diets.slice(30, 44).map((data) => (
           <SwiperSlide>
-            <Card {...data} />
+            <Card data={data} />
           </SwiperSlide>
         ))}
       </Swiper>
