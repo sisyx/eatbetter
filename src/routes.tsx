@@ -10,6 +10,8 @@ import Sleep from "./pages/UserPanel/Sleep/Sleep";
 import Notifications from "./pages/UserPanel/Notifications/Notifications";
 import Health from "./pages/UserPanel/Health/Health";
 import Diet from "./pages/UserPanel/Health/Diet/Diet";
+import Challenges from "./pages/UserPanel/Challenges/Challenges";
+import Challenge from "./pages/UserPanel/Challenges/Challenge/Challenge";
 
 const userPanelRoutes = [
   {
@@ -40,6 +42,14 @@ const userPanelRoutes = [
     path: "/userPanel/health/:id",
     element: <Diet />,
   },
+  {
+    path: "/userPanel/challenges",
+    element: <Challenges />,
+  },
+  {
+    path: "/userPanel/challenges/:id",
+    element: <Challenge />,
+  },
 ];
 
 const routes = [
@@ -48,7 +58,7 @@ const routes = [
     element: <Home />,
   },
   {
-    path: "/diet",
+    path: "/diets",
     element: <Diets />,
   },
   {

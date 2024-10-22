@@ -10,6 +10,8 @@ import { FaUserDoctor } from "react-icons/fa6";
 import { CiLogout } from "react-icons/ci";
 import { GiNightSleep } from "react-icons/gi";
 import { Button } from "../../shadcn/ui/button";
+import { PiMedalLight } from "react-icons/pi";
+
 import { TbMoneybag } from "react-icons/tb";
 const SideBar = ({ className }: { className?: string }) => {
   return (
@@ -38,7 +40,7 @@ const SideBar = ({ className }: { className?: string }) => {
         </div>
       </div>{" "}
       <section>
-        <ul className="space-y-8 pt-12 pb-16">
+        <ul className="space-y-7 pt-12 pb-16">
           <Link
             to={"/"}
             className="flex flex-row-reverse items-center justify-end gap-3 rounded-r-full bg-white px-5 py-3 text-main"
@@ -80,6 +82,13 @@ const SideBar = ({ className }: { className?: string }) => {
           >
             <li>امور مالی</li>
             <MdAttachMoney className="text-2xl" />
+          </Link>
+          <Link
+            to={"/userPanel/challengs"}
+            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
+          >
+            <li>چالش ها</li>
+            <PiMedalLight className="text-2xl" />
           </Link>
           <Link
             to={"/userPanel/health"}
