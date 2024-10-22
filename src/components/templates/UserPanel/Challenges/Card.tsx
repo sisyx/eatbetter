@@ -10,14 +10,14 @@ const Card = ({ isActive }: Props) => {
   return (
     <div
       data-aos="fade-up"
-      className={`relative sm:mt-5 rounded-sm bg-white px-3 pb-6 pt-4 sm:pt-6 text-center transition-transform sm:!shadow-md hover:sm:!-translate-y-2`}
+      className={`relative rounded-sm bg-white px-3 pb-6 pt-4 text-center transition-transform sm:mt-5 sm:pt-6 sm:!shadow-md hover:sm:!-translate-y-2`}
     >
       <div className="flex gap-3">
         <div className="text-right">
           <p className="mb-2">
             چالش شماره 1
             {isActive && (
-              <span className="rounded-sm bg-main px-2 mr-2 text-[11px] py-[2px] text-white">
+              <span className="mr-2 rounded-sm bg-main px-2 py-[2px] text-[11px] text-white">
                 فعال
               </span>
             )}

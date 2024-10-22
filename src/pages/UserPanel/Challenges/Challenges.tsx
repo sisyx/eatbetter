@@ -13,7 +13,7 @@ const Challenges = () => {
         alt=""
       />
       <main
-        className="grid grid-cols-[1fr] pb-16 items-center gap-4 md:!grid-cols-[1fr,1fr,1fr] lg:!grid-cols-[1fr,1fr] xl:!grid-cols-[1fr,1fr,1fr]"
+        className="grid grid-cols-[1fr] items-center gap-4 pb-16 md:!grid-cols-[1fr,1fr,1fr] lg:!grid-cols-[1fr,1fr] xl:!grid-cols-[1fr,1fr,1fr]"
         dir="rtl"
       >
         <Card isActive={true} />
