@@ -16,7 +16,7 @@ const SideBar = ({ className }: { className?: string }) => {
     <aside
       className={`${className ? className : ""} sticky bottom-0 top-0 h-full min-h-screen min-w-[255px] overflow-hidden bg-main py-3 text-white`}
     >
-      <div className="border-b border-white pb-3">
+      <div className="border-b border-white pb-[1.3rem]">
         <div className="flex items-center justify-between px-3">
           <Link className="text-sm sm:text-base" to={"/"}>
             <Button
@@ -79,6 +79,13 @@ const SideBar = ({ className }: { className?: string }) => {
             className="flex flex-row-reverse items-center justify-end gap-3 px-5"
           >
             <li>امور مالی</li>
+            <MdAttachMoney className="text-2xl" />
+          </Link>
+          <Link
+            to={"/userPanel/health"}
+            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
+          >
+            <li>کلینیک مدیریت وزن و سلامتی</li>
             <MdAttachMoney className="text-2xl" />
           </Link>
           <Link

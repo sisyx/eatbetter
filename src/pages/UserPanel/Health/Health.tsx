@@ -9,7 +9,7 @@ const Health = () => {
       <Title title="رژیم های شما" />
 
       <main
-        className="mt-8 hidden grid-cols-[1fr,1fr] items-center gap-4 sm:!grid md:!grid-cols-[1fr,1fr,1fr]"
+        className="mt-8 grid-cols-[1fr] items-center gap-4 grid md:!grid-cols-[1fr,1fr,1fr] lg:!grid-cols-[1fr,1fr] xl:!grid-cols-[1fr,1fr,1fr]"
         dir="rtl"
       >
         {diets.map((data,index) => (

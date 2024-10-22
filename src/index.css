@@ -67,3 +67,8 @@ input[type="number"] {
   left: 7px !important;
   right: unset !important;
 }
+
+.rmdp-input { 
+  text-align: center; 
+  padding: 17px 5px;
+}

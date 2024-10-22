@@ -38,7 +38,7 @@ const Card = ({ data, panel, isActive }: Props) => {
           <p className="cursor-pointer text-sm sm:text-base" dir="rtl">
             {data.text.slice(0, 190) + "..."}
           </p>
-          <Link className="mt-4 block" to={""}>
+          <Link className="mt-4 block" to={`/userPanel/health/${data.id}`}>
             <Button variant={"main"}>جزئیات بیشتر</Button>
           </Link>
         </>
