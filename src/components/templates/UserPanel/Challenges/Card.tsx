@@ -10,7 +10,7 @@ const Card = ({ isActive }: Props) => {
   return (
     <div
       data-aos="fade-up"
-      className={`relative sm:mt-9 rounded-sm bg-white px-3 pb-6 pt-4 sm:pt-6 text-center transition-transform sm:!shadow-md hover:sm:!-translate-y-2`}
+      className={`relative sm:mt-5 rounded-sm bg-white px-3 pb-6 pt-4 sm:pt-6 text-center transition-transform sm:!shadow-md hover:sm:!-translate-y-2`}
     >
       <div className="flex gap-3">
         <div className="text-right">

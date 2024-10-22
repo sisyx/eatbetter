@@ -15,7 +15,7 @@ type Props = {};
 const Modal = (props: Props) => {
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const handleSaveDate = () => { 
+  const handleSaveDate = () => {
     console.log("تاریخ ذخیره‌شده:", selectedDate);
   };
   return (
@@ -34,10 +34,10 @@ const Modal = (props: Props) => {
             </div>
           </DialogTitle>
         </DialogHeader>
-        <div dir="rtl" className="flex justify-center gap-3 items-center">
+        <div dir="rtl" className="flex items-center justify-center gap-3">
           <p>تاریخ شروع:</p>
           <DatePicker
-             value={selectedDate}
+            value={selectedDate}
             onChange={setSelectedDate as any}
             calendar={persian}
             locale={persian_fa}

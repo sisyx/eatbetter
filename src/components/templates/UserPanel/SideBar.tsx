@@ -1,5 +1,5 @@
 import { FaHome } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigation, useParams } from "react-router-dom";
 import {
   MdOutlineAccountCircle,
   MdOutlineSportsBaseball,
@@ -14,6 +14,55 @@ import { PiMedalLight } from "react-icons/pi";
 
 import { TbMoneybag } from "react-icons/tb";
 const SideBar = ({ className }: { className?: string }) => {
+  const links = [
+    {
+      title: "داشبورد",
+      href: "/userpanel",
+      icon: <FaHome className="text-2xl" />,
+    },
+    {
+      title: "حساب کاربری",
+      href: "/userpanel/profile",
+      icon: <MdOutlineAccountCircle className="text-2xl" />,
+    },
+    {
+      title: "ورزش ها",
+      href: "/userpanel",
+      icon: <MdOutlineSportsBaseball className="text-2xl" />,
+    },
+    {
+      title: "انواع رژیم ها ",
+      href: "/userpanel",
+      icon: <IoFastFoodOutline className="text-2xl" />,
+    },
+    {
+      title: "متخصص تغذیه",
+      href: "/userpanel",
+      icon: <FaUserDoctor className="text-2xl" />,
+    },
+    {
+      title: "امور مالی ",
+      href: "/userpanel",
+      icon: <FaHome className="text-2xl" />,
+    },
+    {
+      title: "چالش ها",
+      href: "/userpanel/challenges",
+      icon: <PiMedalLight className="text-2xl" />,
+    },
+    {
+      title: "کلینیک مدیریت وزن و سلامتی ",
+      href: "/userpanel/health",
+      icon: <MdAttachMoney className="text-2xl" />,
+    },
+    {
+      title: "خواب و روان",
+      href: "/userpanel/sleep",
+      icon: <GiNightSleep className="text-2xl" />,
+    }, 
+  ];
+  const param = useLocation();
+
   return (
     <aside
       className={`${className ? className : ""} sticky bottom-0 top-0 h-full min-h-screen min-w-[255px] overflow-hidden bg-main py-3 text-white`}
@@ -22,11 +71,11 @@ const SideBar = ({ className }: { className?: string }) => {
         <div className="flex items-center justify-between px-3">
           <Link className="text-sm sm:text-base" to={"/"}>
             <Button
-              className="flex h-8 gap-2 border items-center border-white px-2"
+              className="flex h-8 items-center gap-2 border border-white px-2"
               variant={"main"}
             >
               <TbMoneybag />
-              <p className="text-xs sm:mt-0 mt-1 xs:text-sm">120,000 ه.ت </p>
+              <p className="mt-1 text-xs xs:text-sm sm:mt-0">120,000 ه.ت </p>
             </Button>
           </Link>
           <Link to={"/"}>
@@ -40,72 +89,19 @@ const SideBar = ({ className }: { className?: string }) => {
         </div>
       </div>{" "}
       <section>
-        <ul className="space-y-7 pt-12 pb-16">
-          <Link
-            to={"/"}
-            className="flex flex-row-reverse items-center justify-end gap-3 rounded-r-full bg-white px-5 py-3 text-main"
-          >
-            <li>داشبورد</li>
-            <FaHome className="text-2xl" />
-          </Link>
-          <Link
-            to={"/userPanel/profile"}
-            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
-          >
-            <li>حساب کاربری</li>
-            <MdOutlineAccountCircle className="text-2xl" />
-          </Link>
-          <Link
-            to={"/"}
-            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
-          >
-            <li>ورزش ها</li>
-            <MdOutlineSportsBaseball className="text-2xl" />
-          </Link>
-          <Link
-            to={"/"}
-            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
-          >
-            <li>انواع رژیم ها</li>
-            <IoFastFoodOutline className="text-2xl" />
-          </Link>
-          <Link
-            to={"/"}
-            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
-          >
-            <li>متخصص تغذیه</li>
-            <FaUserDoctor className="text-2xl" />
-          </Link>
-          <Link
-            to={"/"}
-            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
-          >
-            <li>امور مالی</li>
-            <MdAttachMoney className="text-2xl" />
-          </Link>
-          <Link
-            to={"/userPanel/challengs"}
-            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
-          >
-            <li>چالش ها</li>
-            <PiMedalLight className="text-2xl" />
-          </Link>
-          <Link
-            to={"/userPanel/health"}
-            className="flex flex-row-reverse items-center justify-end gap-3 px-5"
-          >
-            <li>کلینیک مدیریت وزن و سلامتی</li>
-            <MdAttachMoney className="text-2xl" />
-          </Link>
-          <Link
-            to={"/userPanel/sleep"}
-            className="flex flex-row-reverse items-center justify-end gap-3 rounded-r-full px-5"
-          >
-            <li>خواب و روان</li>
-            <GiNightSleep className="text-2xl" />
-          </Link>
+        <ul className="space-y-7 pb-16 pt-12 [&>*]:relative [&>*]:z-50">
+          {links.map((link) => (
+            <Link
+              to={link.href}
+              className={`${param.pathname.slice(11) === link.href.slice(11) ? "bg-white py-3 text-main" : ""}  px-5 flex flex-row-reverse items-center justify-end gap-3 rounded-r-full`}
+            >
+              <li>{link.title}</li>
+              {link.icon}
+            </Link>
+          ))}
+
           <svg
-            className="absolute bottom-[53px] w-full"
+            className="!absolute bottom-[53px] !z-10 w-full"
             style={{ transform: "scale(3.5)" }}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1440 320"
@@ -117,7 +113,7 @@ const SideBar = ({ className }: { className?: string }) => {
             ></path>
           </svg>
 
-          <div className="absolute bottom-4 z-50 flex w-full cursor-pointer flex-row-reverse items-center justify-center gap-4 px-5 pt-3 font-bold text-main">
+          <div className="!absolute bottom-4 z-50 flex w-full cursor-pointer flex-row-reverse items-center justify-center gap-4 px-5 pt-3 font-bold text-main">
             <li>خروج</li>
             <CiLogout className="text-2xl" />
           </div>
