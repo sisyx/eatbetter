@@ -160,7 +160,7 @@ const SideBar = ({ className }: { className?: string }) => {
             ></path>
           </svg> */}
 
-          <div className="!absolute bottom-0 pb-3 z-50 flex w-full cursor-pointer flex-row-reverse items-center justify-center gap-4 px-5 pt-3 font-bold text-main bg-white">
+          <div className="!absolute border-l border-main bottom-0 pb-3 z-50 flex w-full cursor-pointer flex-row-reverse items-center justify-center gap-4 px-5 pt-3 font-bold text-main bg-white">
             <li>خروج</li>
             <CiLogout className="text-2xl" />
           </div>
