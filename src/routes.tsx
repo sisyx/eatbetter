@@ -12,6 +12,10 @@ import Health from "./pages/UserPanel/Health/Health";
 import Diet from "./pages/UserPanel/Health/Diet/Diet";
 import Challenges from "./pages/UserPanel/Challenges/Challenges";
 import Challenge from "./pages/UserPanel/Challenges/Challenge/Challenge";
+import Training from "./pages/UserPanel/Training/Training";
+import Introductions from "./pages/UserPanel/Introductions/Introductions";
+import Income from "./pages/UserPanel/Income/Income";
+import Wallet from "./pages/UserPanel/Wallet/Wallet";
 
 const userPanelRoutes = [
   {
@@ -49,6 +53,22 @@ const userPanelRoutes = [
   {
     path: "/userPanel/challenges/:id",
     element: <Challenge />,
+  },
+  {
+    path: "/userPanel/wallet",
+    element: <Wallet />,
+  },
+  {
+    path: "/userPanel/income",
+    element: <Income />,
+  },
+  {
+    path: "/userPanel/introductions",
+    element: <Introductions />,
+  },
+  {
+    path: "/userPanel/training",
+    element: <Training />,
   },
 ];
 

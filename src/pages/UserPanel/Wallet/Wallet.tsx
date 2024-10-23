@@ -1,6 +1,7 @@
+ 
 import Layout from "../../../Layouts/UserLayouts";
 
-const Index = () => {
+const Wallet = () => {
   return (
     <Layout>
       <p>recec</p>
@@ -8,5 +9,5 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Wallet;
  
