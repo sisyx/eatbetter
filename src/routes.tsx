@@ -15,10 +15,9 @@ import Challenge from "./pages/UserPanel/Challenges/Challenge/Challenge";
 import Training from "./pages/UserPanel/Training/Training";
 import Introductions from "./pages/UserPanel/Introductions/Introductions";
 import Income from "./pages/UserPanel/Income/Income";
-import Wallet from "./pages/UserPanel/Wallet/Wallet";
+import Wallet from "./pages/UserPanel/Wallet/Wallet"; 
 import Stock from "./pages/UserPanel/Wallet/Stock/Stock";
 import Withdrawal from "./pages/UserPanel/Wallet/Withdrawal/Withdrawal";
-
 const userPanelRoutes = [
   {
     path: "/userPanel",
