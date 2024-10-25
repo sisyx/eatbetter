@@ -16,6 +16,8 @@ import Training from "./pages/UserPanel/Training/Training";
 import Introductions from "./pages/UserPanel/Introductions/Introductions";
 import Income from "./pages/UserPanel/Income/Income";
 import Wallet from "./pages/UserPanel/Wallet/Wallet";
+import Stock from "./pages/UserPanel/Wallet/Stock/Stock";
+import Withdrawal from "./pages/UserPanel/Wallet/Withdrawal/Withdrawal";
 
 const userPanelRoutes = [
   {
@@ -69,6 +71,14 @@ const userPanelRoutes = [
   {
     path: "/userPanel/training",
     element: <Training />,
+  },
+  {
+    path: "/userPanel/wallet/stock",
+    element: <Stock />,
+  },
+  {
+    path: "/userPanel/wallet/withdrawal",
+    element: <Withdrawal />,
   },
 ];
 

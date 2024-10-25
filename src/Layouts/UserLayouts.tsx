@@ -4,7 +4,7 @@ import TopBar from "../components/templates/UserPanel/TopBar";
 
 type Props = { children: React.ReactNode };
 
-const AdminLayouts = ({ children }: Props) => {
+const UserLayout = ({ children }: Props) => {
   return (
     <div dir="rtl" className="flex">
       <SideBar className="hidden lg:!block" />
@@ -18,4 +18,4 @@ const AdminLayouts = ({ children }: Props) => {
   );
 };
 
-export default AdminLayouts;
+export default UserLayout;
