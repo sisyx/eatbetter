@@ -150,7 +150,7 @@ const Sleep = () => {
         را تعیین می‌کنند.
       </p>
 
-      <div className="mt-10"  data-aos="fade-up">
+      <div className="mt-10 mb-16"  data-aos="fade-up">
         <Title title="زمان خواب و بیدار شدنتون رو تنظیم کنید!" />
         <p>
           تنظیم ساعت خواب و بیداری خودتون رو شروع کنید و با صبح بخیر های گرم و

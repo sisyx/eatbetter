@@ -3,7 +3,6 @@ import Diets from "./pages/Diets/Diets";
 import Contacts from "./pages/Contacts/Contacts";
 import About from "./pages/About/About";
 import Cooperate from "./pages/Cooperate/Cooperate";
-import Index from "./pages/UserPanel/Index/Index";
 import Profile from "./pages/UserPanel/Profile/Profile";
 import Progress from "./pages/UserPanel/Progress/Progress";
 import Sleep from "./pages/UserPanel/Sleep/Sleep";
@@ -12,21 +11,19 @@ import Health from "./pages/UserPanel/Health/Health";
 import Diet from "./pages/UserPanel/Health/Diet/Diet";
 import Challenges from "./pages/UserPanel/Challenges/Challenges";
 import Challenge from "./pages/UserPanel/Challenges/Challenge/Challenge";
-import Training from "./pages/UserPanel/Training/Training";
+import PanelTraining from "./pages/UserPanel/Training/Training";
 import Introductions from "./pages/UserPanel/Introductions/Introductions";
 import Income from "./pages/UserPanel/Income/Income";
-import Wallet from "./pages/UserPanel/Wallet/Wallet"; 
+import Wallet from "./pages/UserPanel/Wallet/Wallet";
 import Stock from "./pages/UserPanel/Wallet/Stock/Stock";
 import Withdrawal from "./pages/UserPanel/Wallet/Withdrawal/Withdrawal";
+import Training from "./pages/Training/Training";
 const userPanelRoutes = [
   {
-    path: "/userPanel",
-    element: <Index />,
-  },
-  {
-    path: "/userPanel/profile",
+    path: "/userpanel/profile",
     element: <Profile />,
   },
+
   {
     path: "/userPanel/progress",
     element: <Progress />,
@@ -69,7 +66,7 @@ const userPanelRoutes = [
   },
   {
     path: "/userPanel/training",
-    element: <Training />,
+    element: <PanelTraining />,
   },
   {
     path: "/userPanel/wallet/stock",
@@ -101,6 +98,10 @@ const routes = [
   {
     path: "/cooperate",
     element: <Cooperate />,
+  },
+  {
+    path: "/cooperate",
+    element: <Training />,
   },
   ...userPanelRoutes,
 ];

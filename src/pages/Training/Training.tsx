@@ -1,10 +1,10 @@
-import Layout from "../../../Layouts/UserLayouts";
-import Title from "../../../components/modules/Title/Title";
-import Card from "../../../components/templates/UserPanel/Training/Card";
+import Container from "../../components/modules/Container/Container";
+import Title from "../../components/modules/Title/Title";
+import Card from "../../components/templates/UserPanel/Training/Card";
 
 const Training = () => {
   return (
-    <Layout>
+    <Container>
       <Title title="متخصص خود شوید (پزشکی)" />
 
       <main className="mt-6 grid grid-cols-[1fr] items-center gap-4 pb-8 lg:!grid-cols-[1fr,1fr]">
@@ -13,7 +13,7 @@ const Training = () => {
         <Card />
         <Card />
       </main>
-    </Layout>
+    </Container>
   );
 };
 

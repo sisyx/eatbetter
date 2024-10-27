@@ -18,5 +18,5 @@ const Progress = () => {
     </Layout>
   );
 };
-
+ 
 export default Progress;

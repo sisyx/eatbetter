@@ -23,20 +23,15 @@ import { TbMoneybag } from "react-icons/tb";
 const SideBar = ({ className }: { className?: string }) => {
   const links = [
     {
-      title: "داشبورد",
-      href: "/userpanel",
+      title: "صفحه اصلی",
+      href: "/",
       icon: <FaHome className="text-2xl" />,
     },
     {
       title: "حساب کاربری",
       href: "/userpanel/profile",
       icon: <MdOutlineAccountCircle className="text-2xl" />,
-    },
-    {
-      title: "ورزش ها",
-      href: "/userpanel",
-      icon: <MdOutlineSportsBaseball className="text-2xl" />,
-    },
+    }, 
     {
       title: "دفتر کار شما",
       subLinks: [
@@ -58,17 +53,7 @@ const SideBar = ({ className }: { className?: string }) => {
         },
       ],
       icon: <IoFastFoodOutline className="text-2xl" />,
-    },
-    // {
-    //   title: "انواع رژیم ها ",
-    //   href: "/userpanel",
-    //   icon: <IoFastFoodOutline className="text-2xl" />,
-    // },
-    {
-      title: "متخصص تغذیه",
-      href: "/userpanel",
-      icon: <FaUserDoctor className="text-2xl" />,
-    }, 
+    },  
     {
       title: "چالش ها",
       href: "/userpanel/challenges",
@@ -85,7 +70,7 @@ const SideBar = ({ className }: { className?: string }) => {
       icon: <GiNightSleep className="text-2xl" />,
     },
   ];
-  const param = useLocation();
+  const param = useLocation(); 
 
   return (
     <aside
@@ -93,7 +78,7 @@ const SideBar = ({ className }: { className?: string }) => {
     >
       <div className="border-b border-white pb-[1.3rem]">
         <div className="flex items-center justify-between px-3">
-          <Link className="text-sm sm:text-base" to={"/"}>
+          <Link className="text-sm sm:text-base" to={"/userPanel/wallet"}>
             <Button
               className="flex h-8 items-center gap-2 border border-white px-2"
               variant={"main"}
@@ -113,7 +98,7 @@ const SideBar = ({ className }: { className?: string }) => {
         </div>
       </div>{" "}
       <section>
-        <ul className="space-y-5 pt-10 [&>*]:relative [&>*]:z-50">
+        <ul className="space-y-7 pt-10 [&>*]:relative [&>*]:z-50">
           {links.map((link) =>
             link.subLinks ? (
               <Accordion type="single" collapsible className="w-full">
