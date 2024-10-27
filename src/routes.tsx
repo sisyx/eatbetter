@@ -5,7 +5,7 @@ import About from "./pages/About/About";
 import Cooperate from "./pages/Cooperate/Cooperate";
 import Profile from "./pages/UserPanel/Profile/Profile";
 import Progress from "./pages/UserPanel/Progress/Progress";
-import Sleep from "./pages/UserPanel/Sleep/Sleep";
+import PanelSleep from "./pages/UserPanel/Sleep/Sleep";
 import Notifications from "./pages/UserPanel/Notifications/Notifications";
 import Health from "./pages/UserPanel/Health/Health";
 import Diet from "./pages/UserPanel/Health/Diet/Diet";
@@ -18,6 +18,8 @@ import Wallet from "./pages/UserPanel/Wallet/Wallet";
 import Stock from "./pages/UserPanel/Wallet/Stock/Stock";
 import Withdrawal from "./pages/UserPanel/Wallet/Withdrawal/Withdrawal";
 import Training from "./pages/Training/Training";
+import Sleep from "./pages/Sleep/Sleep";
+
 const userPanelRoutes = [
   {
     path: "/userpanel/profile",
@@ -30,7 +32,7 @@ const userPanelRoutes = [
   },
   {
     path: "/userPanel/sleep",
-    element: <Sleep />,
+    element: <PanelSleep />,
   },
   {
     path: "/userPanel/notifications",
@@ -100,8 +102,12 @@ const routes = [
     element: <Cooperate />,
   },
   {
-    path: "/cooperate",
+    path: "/training",
     element: <Training />,
+  },
+  {
+    path: "/sleep",
+    element: <Sleep />,
   },
   ...userPanelRoutes,
 ];

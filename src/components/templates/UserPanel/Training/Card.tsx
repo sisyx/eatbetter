@@ -6,7 +6,7 @@ type Props = {};
 
 const Card = (props: Props) => {
   return (
-    <div className="rounded-md p-3 shadow-lg">
+    <div data-aos='fade-up' className="rounded-md p-3 shadow-lg relative bg-white z-10" dir="rtl">
       <img
         className="h-[200px] w-full rounded-md object-cover"
         src="https://media.post.rvohealth.io/wp-content/uploads/2020/09/vegetarian-diet-plan-732x549-thumbnail.jpg"
