@@ -19,6 +19,9 @@ import Stock from "./pages/UserPanel/Wallet/Stock/Stock";
 import Withdrawal from "./pages/UserPanel/Wallet/Withdrawal/Withdrawal";
 import Training from "./pages/Training/Training";
 import Sleep from "./pages/Sleep/Sleep";
+import Cooking from "./pages/Cooking/Cooking";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 const userPanelRoutes = [
   {
@@ -108,6 +111,18 @@ const routes = [
   {
     path: "/sleep",
     element: <Sleep />,
+  },
+  {
+    path: "/cooking",
+    element: <Cooking />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   ...userPanelRoutes,
 ];

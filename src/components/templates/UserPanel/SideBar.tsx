@@ -1,8 +1,7 @@
 import { FaHome } from "react-icons/fa";
-import { Link, useLocation, useNavigation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
-  MdOutlineAccountCircle,
-  MdOutlineSportsBaseball,
+  MdOutlineAccountCircle, 
   MdAttachMoney,
 } from "react-icons/md";
 import {
