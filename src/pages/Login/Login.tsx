@@ -4,14 +4,18 @@ import Title from "../../components/modules/Title/Title";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "../../components/shadcn/ui/button";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { i18n } = useTranslation();
   return (
     <Container>
-      <div className="relative flex flex-col items-start px-12 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:flex-row lg:!px-28">
+      <div className="relative flex flex-col items-start px-12 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:flex-row-reverse lg:!px-28">
         <img
           style={{ transform: "rotateY(181deg) " }}
-          className="absolute -top-8 right-0 hidden h-[600px] w-[50%] object-cover opacity-30 lg:block xl:right-[10%] xl:top-9"
+          className={`${i18n.language === "fa" ? 'right-0 xl:right-[10%]' : 'left-0 xl:left-[10%]'} absolute -top-8  hidden h-[600px] w-[50%] object-cover opacity-30 lg:block xl:top-9`}
           src="/images/blob.svg"
           alt=""
         />

@@ -2,22 +2,19 @@ import { useEffect, useState } from "react";
 import { IoLanguage } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 export default function index() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
-  const [isEnglish, setIsEnglish] = useState(false);
   const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState("fa");
 
-  const toggleLanguage = () => {
-    const newLang = isEnglish ? "fa" : "en";
-    i18n.changeLanguage(newLang);
-    setIsEnglish(!isEnglish);
-  };
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-
+  useEffect(() => {
+    i18n.changeLanguage(language);
+    i18n.language == "en"
+      ? (document.documentElement.dir = "ltr")
+      : (document.documentElement.dir = "rtl");
+  }, [language]);
   useEffect(() => {
     const handleScroll = (): void => {
       setIsScrolled(window.scrollY > 50);
@@ -34,7 +31,7 @@ export default function index() {
     <>
       <div
         style={{ animation: isScrolled ? " slideDown 0.35s ease-out" : "none" }}
-        className={`flex w-full items-center justify-between lg:!px-24 sm:!px-12 px-4 py-5  ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
+        className={`flex w-full items-center justify-between px-4 py-5 sm:!px-12 lg:!px-24 ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
       >
         <div>
           <img src="BLP-b.png" alt="logo" width={"80px"} />
@@ -43,35 +40,35 @@ export default function index() {
           <ul className="flex flex-row-reverse gap-5">
             <Link
               to={""}
-              className="hover:text-main rounded-md p-2 transition-all"
+              className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("hederMainpage")}</li>
             </Link>
             <Link
               to={""}
-              className="hover:text-main rounded-md p-2 transition-all"
+              className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("blog")}</li>
             </Link>
             <Link
               to={""}
-              className="hover:text-main rounded-md p-2 transition-all"
+              className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("diets")}</li>
             </Link>
             <Link
               to={""}
-              className="hover:text-main rounded-md p-2 transition-all"
+              className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("sleep_soul_mental")}</li>
             </Link>
             <div className="group relative flex transition-all">
               <Link to={""} className="group flex items-center justify-center">
-                <li className="hover:text-main rounded-md p-2 transition-all">
+                <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("exercises")}
                 </li>
                 <svg
@@ -89,7 +86,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="bg-main absolute top-[100%] hidden w-32 rounded-xl text-white group-hover:flex">
+              <div className="absolute top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
                 <ul className="flex flex-col gap-2 p-6 text-end">
                   <Link to={""} className="hover:text-mainHover">
                     {" "}
@@ -116,7 +113,7 @@ export default function index() {
             </div>
             <div className="group relative flex transition-all">
               <Link to={""} className="group flex items-center justify-center">
-                <li className="hover:text-main rounded-md p-2 transition-all">
+                <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("cookingInstruction")}
                 </li>
                 <svg
@@ -134,7 +131,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="bg-main absolute top-[100%] hidden w-[650px] rounded-xl text-white group-hover:flex group-hover:justify-center">
+              <div className="absolute top-[100%] hidden w-[650px] rounded-xl bg-main text-white group-hover:flex group-hover:justify-center">
                 <div className="border-r border-[#00000014] p-2">
                   <p className="text-end font-bold">{t("breakfast")}</p>
                   <ul className="flex flex-col gap-2 p-5 text-end">
@@ -182,7 +179,7 @@ export default function index() {
                   <p className="text-end font-bold">سالاد ها</p>
 
                   <ul className="flex flex-col gap-2 p-5 text-end">
-                    <Link to={""} className="hover:text-mainHover text-">
+                    <Link to={""} className="text- hover:text-mainHover">
                       {" "}
                       <li>سالاد</li>
                     </Link>
@@ -196,7 +193,7 @@ export default function index() {
             </div>
             <div className="group relative flex transition-all">
               <Link to={""} className="group flex items-center justify-center">
-                <li className="hover:text-main rounded-md p-2 transition-all">
+                <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("constactus")}
                 </li>
                 <svg
@@ -214,7 +211,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="bg-main absolute top-[100%] hidden w-32 rounded-xl text-white group-hover:flex">
+              <div className="absolute top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
                 <ul className="flex flex-col gap-2 p-5 text-end">
                   <Link to={""} className="hover:text-mainHover">
                     {" "}
@@ -248,48 +245,48 @@ export default function index() {
               d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
-          <div className="bg-main absolute -right-10 top-[100%] hidden w-screen rounded-xl text-white group-hover:flex">
+          <div className="absolute -right-10 top-[100%] hidden w-screen rounded-xl bg-main text-white group-hover:flex">
             <ul className="flex w-screen flex-col gap-2 p-6 text-center">
               <Link
                 to={""}
-                className="hover:text-main rounded-md p-2 transition-all"
+                className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
                 <li>{t("hederMainpage")}</li>
               </Link>
               <Link
                 to={""}
-                className="hover:text-main rounded-md p-2 transition-all"
+                className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
                 <li>بلاگ</li>
               </Link>
               <Link
                 to={""}
-                className="hover:text-main rounded-md p-2 transition-all"
+                className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
                 <li>رژیم ها</li>
               </Link>
               <Link
                 to={""}
-                className="hover:text-main rounded-md p-2 transition-all"
+                className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
                 <li>خواب و روح و روان</li>
               </Link>
               <Link to={""} className="group flex items-center justify-center">
-                <li className="hover:text-main rounded-md p-2 transition-all">
+                <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("exercises")}
                 </li>
               </Link>
               <Link to={""} className="group flex items-center justify-center">
-                <li className="hover:text-main rounded-md p-2 transition-all">
+                <li className="rounded-md p-2 transition-all hover:text-main">
                   دستور آشپزی
                 </li>
               </Link>
               <Link to={""} className="group flex items-center justify-center">
-                <li className="hover:text-main rounded-md p-2 transition-all">
+                <li className="rounded-md p-2 transition-all hover:text-main">
                   ارتباط با ما
                 </li>
               </Link>
@@ -298,14 +295,14 @@ export default function index() {
         </div>
         <div className="flex items-center justify-center gap-4 max-lg:hidden">
           <button
-            onClick={() => toggleLanguage()}
-            className="text-mainHover hover:text-mainHover hover:border-mainHover flex items-center justify-center gap-1 rounded-xl border border-transparent bg-white p-2 text-center transition-all"
+            onClick={() => setLanguage(i18next.language == "en" ? "fa" : "en")}
+            className="flex items-center justify-center gap-1 rounded-xl border border-transparent bg-white p-2 text-center text-mainHover transition-all hover:border-mainHover hover:text-mainHover"
           >
             <span>{t("headerlang")}</span>
             <IoLanguage />
           </button>
           <Link to={""}>
-            <button className="bg-main hover:bg-mainHover rounded-xl p-2 text-center text-white transition-all">
+            <button className="rounded-xl bg-main p-2 text-center text-white transition-all hover:bg-mainHover">
               {t("headerlogin")}
             </button>
           </Link>
