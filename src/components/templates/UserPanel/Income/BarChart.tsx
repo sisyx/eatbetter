@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
-import { Button } from "../../../shadcn/ui/button";
+ import { useTranslation } from "react-i18next";
 
 const BarChart = () => {
+  const { t } = useTranslation();
+
   const [chartData] = useState<any>({
     series: [
       {
-        name: "تعداد افراد",
+        name: t('income.optionTwo'),
         data: [60, 66, 75, 61, 55, 62, 69, 66],
       },
       {
-        name: "درآمد",
+        name:t('income.optionOne'),
         data: [40, 50, 60, 45, 52, 48, 54, 50],
       },
     ],
@@ -43,10 +45,10 @@ const BarChart = () => {
           "آبان",
         ],
       },
-      title: {
-        text: "مقدار درآمد و تعداد دعوت ها",
-        align: "right",
-      },
+      // title: {
+      //   text:t('income.title'),
+      //   align: "right",
+      // },
     },
   });
 

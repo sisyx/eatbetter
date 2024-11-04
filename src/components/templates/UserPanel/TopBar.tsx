@@ -1,24 +1,27 @@
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "../../shadcn/ui/sheet";
 import { Button } from "../../shadcn/ui/button";
 import { Link } from "react-router-dom";
-import { TbMoneybag } from "react-icons/tb";
 import { FaRegChartBar } from "react-icons/fa";
 import SideBar from "./SideBar";
 import { MdMenu } from "react-icons/md";
-import { IoLanguage, IoNotifications } from "react-icons/io5";
+import { IoLanguage } from "react-icons/io5";
 import { GrNotification } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import { useState, useEffect } from "react";
 
 const TopBar = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
+  const [language, setLanguage] = useState(i18next.language);
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
   return (
     <div className="flex w-full justify-between border-b border-main px-3 py-3 xs:px-5">
       <div className="flex">
@@ -52,7 +55,7 @@ const TopBar = () => {
           />
           <div className="text-sm">
             <p> شاهین مشکل گشا</p>
-            <p className="text-main">کاربر عادی</p>
+            <p className="text-main">{t('topbar.role')}</p>
           </div>
         </div>
       </div>
@@ -63,9 +66,12 @@ const TopBar = () => {
           className="flex gap-2 text-main transition-colors hover:text-mainHover"
         >
           <FaRegChartBar className="ml-1 xs:!ml-0" />
-          <p className="hidden text-sm sm:!block"> نمودار پیشرفت </p>
+          <p className="hidden text-sm sm:!block"> {t('topbar.progress')}</p>
         </Link>
-        <Button className="h-8 border border-main bg-transparent px-2 text-main hover:bg-main hover:text-white xs:!h-10 xs:!px-4">
+        <Button
+          onClick={() => setLanguage(i18next.language == "en" ? "fa" : "en")}
+          className="h-8 border border-main bg-transparent px-2 text-main hover:bg-main hover:text-white xs:!h-10 xs:!px-4"
+        >
           <span>{t("headerlang")}</span>
           <IoLanguage />
         </Button>

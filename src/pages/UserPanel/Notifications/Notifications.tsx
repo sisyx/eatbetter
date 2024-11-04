@@ -1,19 +1,22 @@
+import { useTranslation } from "react-i18next";
 import Layout from "../../../Layouts/UserLayouts";
 import Title from "../../../components/modules/Title/Title";
 import DataTable from "react-data-table-component";
 
 const Notifications = () => {
+  const { i18n, t } = useTranslation();
+
   const columns = [
     {
-      name: "پیغام",
+      name: t("notification.sms"),
       selector: (row: { title: string }) => row.title,
     },
     {
-      name: "تاریخ",
+      name: t("notification.date"),
       selector: (row: { date: string }) => row.date,
     },
     {
-      name: "ساعت",
+      name: t("notification.time"),
       selector: (row: { time: string }) => row.time,
     },
   ];
@@ -70,7 +73,7 @@ const Notifications = () => {
   ];
   return (
     <Layout>
-      <Title title="اعلانات" />
+      <Title title={t("notification.title")} />
       <DataTable
         responsive
         progressComponent={".... "}
@@ -78,8 +81,8 @@ const Notifications = () => {
         columns={columns}
         data={data}
       />
-      <p className="mt-5 text-center text-xs xs:text-base sm:mt-0 sm:text-right">
-        بعد از پایان دوره رژیم اعلان های شما حذف خواهند شد.
+      <p className={`${i18n.language === 'fa' ? 'sm:text-right': 'sm:text-left'} mt-5 text-center text-xs xs:text-base sm:mt-0 `}>
+        {t("notification.description")}
       </p>
     </Layout>
   );

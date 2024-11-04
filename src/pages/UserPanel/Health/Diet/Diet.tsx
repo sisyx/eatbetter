@@ -1,24 +1,26 @@
+import { useTranslation } from "react-i18next";
 import Title from "../../../../components/modules/Title/Title";
 import Modal from "../../../../components/templates/UserPanel/Health/Diets/Modal";
 import Layout from "../../../../Layouts/UserLayouts";
 
 const Diet = () => {
+  const { i18n, t } = useTranslation();
   return (
     <Layout>
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
         <Title title="رژیم شماره سوم" />
-        <div className="relative">
+        <div className="relative" dir="rtl">
           <div className="relative z-50 flex gap-3 rounded-full bg-main p-2 px-4 text-white">
             <div className="border-l border-white pl-3 text-center text-xs sm:text-sm">
-              <p>مدت زمان دوره:</p>
+              <p>{t('health.duration')}</p>
               <p>23 روز</p>
             </div>
             <div className="border-l border-white pl-3 text-center text-xs sm:text-sm">
-              <p>تاریخ شروع:</p>
+              <p> {t('health.start')}</p>
               <p>ثبت نشده</p>
             </div>
             <div className="text-center text-xs sm:text-sm">
-              <p>تاریخ پایان:</p>
+              <p>{t('health.end')}</p>
               <p>ثبت نشده</p>
             </div>
           </div>
@@ -27,7 +29,7 @@ const Diet = () => {
           </div>
         </div>
       </div>
-      <main data-aos="fade-up">
+      <main data-aos="fade-up"> 
         <video
           src="/images/5NJy1lvx8cz37xS05B.mp4"
           loop

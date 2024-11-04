@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 
-const phoneRegExp = /((0?9)|(\+?989))\d{9}/g;
-
+const phoneRegExp = /((0?9)|(\+?989))\d{9}/g; 
 let stockSchema = Yup.object().shape({
   bankName: Yup.string()
     .min(10, "اسم بانک شما حداقل باید 10 حرف داشته باشد")

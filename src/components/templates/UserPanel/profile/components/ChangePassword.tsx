@@ -15,6 +15,7 @@ import { useFormik } from "formik";
 import { useState, useEffect } from "react";
 import { LuEye } from "react-icons/lu";
 import { toast } from "../../../../../hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 interface newPasswordData {
   currentPassword: string;
@@ -46,6 +47,8 @@ let changePasswordSchema = Yup.object().shape({
 });
 
 const ChangePassword = () => {
+  const { i18n, t } = useTranslation();
+  
   const successFunc = (data: { statusCode: number }) => {
     if (data.statusCode === 200) {
       formHandler.resetForm();
@@ -99,7 +102,7 @@ const ChangePassword = () => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button size={"sm"} className="my-5 block bg-gray-100 text-black">
-          ﺗﻐﯿﯿﺮ رمزعبور
+        {t("profile.changePassword")}
         </Button>
       </DialogTrigger>
       <DialogContent dir="rtl" className="w-full max-w-full sm:!max-w-[425px]">

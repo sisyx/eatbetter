@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { FaAngleLeft } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
@@ -5,6 +6,8 @@ import { Link } from "react-router-dom";
 type Props = {};
 
 const Card = (props: Props) => {
+  const { i18n, t } = useTranslation();
+
   return (
     <div data-aos='fade-up' className="rounded-md p-3 shadow-lg relative bg-white z-10" dir="rtl">
       <img
@@ -19,7 +22,7 @@ const Card = (props: Props) => {
         commodi iusto.
       </p>
       <Link className="mb-3 items-center w-full flex justify-center text-center text-blue-600" to={"/"}>
-        مشاهده
+      {i18n.language === 'fa' ? "مشاهده" : "show"}
         <FaAngleLeft   />
       </Link>
     </div>

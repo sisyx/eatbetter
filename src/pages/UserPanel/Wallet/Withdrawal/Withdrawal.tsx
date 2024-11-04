@@ -2,10 +2,12 @@ import Layout from "../../../../Layouts/UserLayouts";
 import Title from "../../../../components/modules/Title/Title";
 import { Button } from "../../../../components/shadcn/ui/button";
 import { useFormik } from "formik";
-import { stockSchema } from "../../../../validations/rules";
-import { Link } from "react-router-dom";
+import { stockSchema } from "../../../../validations/rules"; 
+import { useTranslation } from "react-i18next";
 
 const Withdrawal = () => {
+  const { i18n, t } = useTranslation();
+
   const formHandler = useFormik({
     initialValues: { name: "", shabaNumber: "", bankName: "", password: "" },
     onSubmit: (values, { setSubmitting, resetForm }) => {
@@ -17,7 +19,7 @@ const Withdrawal = () => {
   return (
     <Layout>
       <div className="relative mx-auto pt-12 w-max rounded-lg p-8 text-center shadow-xl">
-        <p>موجودی شما:</p>
+        <p> {t("withdrawal.money")}</p>
         <p className="text-main mt-2">120,000 تومان</p>
         {/* <span className="absolute -bottom-0 left-[98px] text-2xl text-main">
           $
@@ -25,17 +27,14 @@ const Withdrawal = () => {
       </div>
 
       <div className="mt-10 sm:mt-6">
-        <Title title=" زمان برداشت:" />
+        <Title title={t("withdrawal.titleOne")}/>
 
         <p>
-          از ۲۵ ام تا ۲۹ ام هر ماه، فرصتی عالی برای برداشت موجودی کیف پولتون و
-          استفاده از موجودی خود در هر مکان و زمانی که مایلید ، در انتظارتونه! 🎉
+        {t("withdrawal.textOne")}
         </p>
-        <Title className="mt-8" title=" شرایط برداشت:" />
+        <Title className="mt-8" title={t("withdrawal.titleTwo")} />
         <p>
-          موجودی کیف پول شما باید حداقل ۱ میلیون تومان باشد. با خیال راحت و بدون
-          هیچ نگرانی ، موجودی خود را به حساب بانکی خود انتقال دهید و از آن
-          استفاده کنید.
+        {t("withdrawal.textTwo")}
         </p>
 
         <form
@@ -46,8 +45,7 @@ const Withdrawal = () => {
           <div className="mb-5">
             <div className="flex flex-row-reverse items-baseline justify-end gap-2">
               <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-                {" "}
-                شماره شبا
+                {" "}{t("withdrawal.shaba")}
               </label>
               <div className="h-2 w-2 rounded-xl bg-main">
                 <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -73,7 +71,7 @@ const Withdrawal = () => {
             <div className="flex flex-row-reverse items-baseline justify-end gap-2">
               <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                 {" "}
-                نام بانک
+                {t("withdrawal.bank")}
               </label>
               <div className="h-2 w-2 rounded-xl bg-main">
                 <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -97,7 +95,7 @@ const Withdrawal = () => {
           <div className="mb-5">
             <div className="flex flex-row-reverse items-baseline justify-end gap-2">
               <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-                نام صاحب کارت
+              {t("withdrawal.cartUserName")}
               </label>
               <div className="h-2 w-2 rounded-xl bg-main">
                 <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -121,7 +119,7 @@ const Withdrawal = () => {
           <div className="mb-5">
             <div className="flex flex-row-reverse items-baseline justify-end gap-2">
               <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-                رمز عبور سایت
+              {t("withdrawal.password")}
               </label>
               <div className="h-2 w-2 rounded-xl bg-main">
                 <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -147,7 +145,7 @@ const Withdrawal = () => {
             variant={"main"}
             className="mx-auto !block h-9 w-full sm:w-1/3 !rounded-md outline-none"
           >
-            برداشت وجه
+        {t("withdrawal.submit")}
           </Button>
         </form>
       </div>

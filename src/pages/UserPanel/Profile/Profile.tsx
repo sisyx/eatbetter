@@ -5,6 +5,7 @@ import TwoStepBox from "../../../components/templates/UserPanel/profile/TwoStepB
 import { Button } from "../../../components/shadcn/ui/button";
 import ChangePassword from "../../../components/templates/UserPanel/profile/components/ChangePassword";
 import { IoReload } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const [userName, setUserName] = useState("شاهین");
@@ -14,16 +15,18 @@ const Profile = () => {
   const [gender, setGender] = useState("آقا");
   const [phoneNumber, setPhoneNumber] = useState("09046417084");
   const [avatar, setAvatar] = useState("");
+  const { i18n, t } = useTranslation();
+
   return (
     <Layout>
       <div className="flex flex-row-reverse items-baseline justify-end gap-2 text-2xl font-bold">
-        <h5 className="mb-2 max-sm:text-xl">حساب کاربری</h5>
+        <h5 className="mb-2 max-sm:text-xl">{t("profile.title")}</h5>
         <div className="h-2 w-2 rounded-xl bg-main">
           <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
         </div>
       </div>
       <main>
-        <div className="relative mt-5 xs:!mt-0 mx-auto block w-max">
+        <div className="relative mx-auto mt-5 block w-max xs:!mt-0">
           <img
             className="h-20 w-20 rounded-full"
             src={
@@ -49,7 +52,7 @@ const Profile = () => {
             type="text"
             multiple={["نام", "نام خانوادگی"]}
             requestBody={["firstName", "lastName"]}
-            title="نام و نام خانوادگی"
+            title={t("profile.name")}
             regex={/^[آ-یپچژگ\s]{3,15}$/}
             errorText="نام و نام خانوادگی باید فارسی، و حداقل 3 و حداکثر 15 حرف داشته باشد"
           />
@@ -57,7 +60,7 @@ const Profile = () => {
             setValue={setPhoneNumber}
             value={phoneNumber}
             type="number"
-            title="شماره موبایل"
+            title={t("profile.phone")}
             requestBody="phone"
             regex={/((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/}
             errorText="شماره موبایل نامعتبر است"
@@ -66,7 +69,7 @@ const Profile = () => {
             setValue={setEmail}
             value={email}
             type="email"
-            title="ایمیل"
+            title={t("profile.email")}
             requestBody="email"
             regex={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/}
             errorText="ایمیل نامعتبر است"
@@ -78,11 +81,11 @@ const Profile = () => {
             multiple={["مرد", "زن"]}
             options={["مرد", "زن"]}
             requestBody="gender"
-            title="جنسیت"
+            title={t("profile.gender")}
           />
           <div>
             <div className="mt-4 flex items-center justify-between">
-              <p>کد معارفه</p>
+              <p>{t("profile.code")}</p>
 
               <IoReload className="cursor-pointer" />
             </div>
@@ -91,7 +94,7 @@ const Profile = () => {
         </div>
         <ChangePassword />
         <Button size={"sm"} variant={"main"}>
-          حذف حساب کاربری
+          {t("profile.deleteAccount")}
         </Button>
       </main>
     </Layout>

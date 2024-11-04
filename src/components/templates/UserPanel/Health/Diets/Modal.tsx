@@ -10,10 +10,12 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { Button } from "../../../../shadcn/ui/button";
+import { useTranslation } from "react-i18next";
 type Props = {};
 
 const Modal = (props: Props) => {
   const [selectedDate, setSelectedDate] = useState(null);
+  const { i18n, t } = useTranslation();
 
   const handleSaveDate = () => {
     console.log("تاریخ ذخیره‌شده:", selectedDate);
@@ -22,7 +24,7 @@ const Modal = (props: Props) => {
     <Dialog>
       <DialogTrigger asChild>
         <p className="cursor-pointer px-3 py-1 text-sm text-white">
-          همین الان دوره رو شروع کنید
+          {t("health.note")}
         </p>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
@@ -34,8 +36,8 @@ const Modal = (props: Props) => {
             </div>
           </DialogTitle>
         </DialogHeader>
-        <div dir="rtl" className="flex items-center justify-center gap-3">
-          <p>تاریخ شروع:</p>
+        <div dir="rtl" className={`${i18n.language === 'fa' ? '' : 'flex-row-reverse'} flex items-center justify-center gap-3 `}>
+          <p> {t("health.start")}</p>
           <DatePicker
             value={selectedDate}
             onChange={setSelectedDate as any}
@@ -48,10 +50,10 @@ const Modal = (props: Props) => {
           />
         </div>
         <p dir="rtl" className="text-center text-xs">
-          تاریخ پایان 23 روز بعد از تاریخ ثبت شروع دوره می باشد.
+          {t("health.noteTwo")}
         </p>
         <Button variant={"main"} onClick={handleSaveDate}>
-          ذخیره تاریخ
+          {t("health.submit")}
         </Button>
       </DialogContent>
     </Dialog>

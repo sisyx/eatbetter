@@ -4,19 +4,22 @@ import DataTable from "react-data-table-component";
 
 import { toast } from "../../../hooks/use-toast";
 import { Button } from "../../../components/shadcn/ui/button";
+import { useTranslation } from "react-i18next";
 
 const Introductions = () => {
+  const { i18n, t } = useTranslation();
+
   const columns = [
     {
-      name: "نام کاربری",
+      name: t("introductions.trOne"),
       selector: (row: { user: string }) => row.user,
     },
     {
-      name: "تاریخ",
+      name: t("introductions.trTwo"),
       selector: (row: { date: string }) => row.date,
     },
     {
-      name: "ایمیل",
+      name: t("introductions.trThree"),
       selector: (row: { email: string }) => row.email,
     },
   ];
@@ -72,19 +75,22 @@ const Introductions = () => {
   ];
   return (
     <Layout>
-      <Title title="کد معرفی" />
+      <Title title={t("introductions.titleOne")} />
       <img
         src="/images/download-removebg-preview.png"
         alt="logo"
-        className="absolute left-1 sm:!left-[118px] top-4 opacity-40"
+        className={`${i18n.language === "fa" ? "left-1 sm:!left-[118px]" : "right-1 sm:!right-[118px]"} absolute top-4 opacity-40`}
       />
-      <div className="flex items-center gap-3 relative z-20">
+      <div className="relative z-20 flex items-center gap-3">
         <p
           onClick={() => {
             navigator.clipboard.writeText("23424").then(() => {
               toast({
                 variant: "success",
-                title: "کد معرفی با موفقیت کپی شد",
+                title:
+                  i18n.language === "fa"
+                    ? "کد معرفی با موفقیت کپی شد"
+                    : "Referral code copied successfully",
               });
             });
           }}
@@ -98,32 +104,27 @@ const Introductions = () => {
             navigator.clipboard.writeText("23424").then(() => {
               toast({
                 variant: "success",
-                title: "کد معرفی با موفقیت کپی شد",
+                title:
+                  i18n.language === "fa"
+                    ? "کد معرفی با موفقیت کپی شد"
+                    : "Referral code copied successfully",
               });
             });
           }}
           className="mt-4"
           variant={"main"}
         >
-          کپی
+          {t("introductions.copy")}
         </Button>
       </div>
-      <div className="mt-10 space-y-4 relative z-20">
-        <p className="text-xl">
-          با دوستانتون به دنیای جدیدی از تخفیف‌ها قدم بذارید!
-        </p>
-        <p>
-          با معرفی "کد معرف" شما به دوستانتون، هم خودتون 50 هزار تومان تخفیف و
-          هم کیف پولتون 50 هزار تومان شارژ میشه.
-        </p>
-        <p>
-          دوستانتون با خرید هر پکیج با کد معرف شما، از این تخفیف ویژه بهره مند
-          میشن و شما هم مبلغ 50 هزار تومان به کیف پولتون اضافه می کنید!
-        </p>
+      <div className="relative z-20 mt-10 space-y-4">
+        <p className="text-xl">{t("introductions.textOne")}</p>
+        <p>{t("introductions.textTwo")}</p>
+        <p>{t("introductions.textThree")}</p>
       </div>
 
       <div className="mt-8">
-        <Title title="دعوت ها" />
+        <Title title={t("introductions.titleTwo")} />
         <DataTable
           responsive
           progressComponent={".... "}

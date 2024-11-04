@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import { Button } from "../../../shadcn/ui/button";
+import { useTranslation } from "react-i18next";
 
 const BarChart = () => {
+  const { i18n, t } = useTranslation();
+
   const [chartData] = useState<any>({
     series: [
       {
@@ -56,7 +59,9 @@ const BarChart = () => {
         />
       </div>
       <div>
-        <p>ثبت کالری دریافتی جدید</p>
+        <p>
+        {i18n.language === 'fa' ? '  ثبت کالری دریافتی جدید': 'Record new calorie intake'}
+        </p>
         <div className="mt-3 xs:!flex-row flex-col flex gap-3">
           <div className="relative">
             <input
@@ -68,7 +73,9 @@ const BarChart = () => {
               Cal
             </span>
           </div>
-          <Button variant={"main"}>ثبت</Button>
+          <Button variant={"main"}>
+          {i18n.language === 'fa' ? 'ثبت ': 'save'}
+          </Button>
         </div>
       </div>
     </div>

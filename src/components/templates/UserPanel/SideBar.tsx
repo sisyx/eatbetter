@@ -11,60 +11,62 @@ import {
   AccordionTrigger,
 } from "../../shadcn/ui/accordion";
 
-import { IoFastFoodOutline } from "react-icons/io5";
-import { FaUserDoctor } from "react-icons/fa6";
+import { IoFastFoodOutline } from "react-icons/io5"; 
 import { CiLogout } from "react-icons/ci";
 import { GiNightSleep } from "react-icons/gi";
 import { Button } from "../../shadcn/ui/button";
 import { PiMedalLight } from "react-icons/pi";
 
 import { TbMoneybag } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
 const SideBar = ({ className }: { className?: string }) => {
+  const { i18n, t } = useTranslation();
+
   const links = [
     {
-      title: "صفحه اصلی",
+      title: t('sideBar.home'),
       href: "/",
       icon: <FaHome className="text-2xl" />,
     },
     {
-      title: "حساب کاربری",
+      title: t('sideBar.profile'),
       href: "/userpanel/profile",
       icon: <MdOutlineAccountCircle className="text-2xl" />,
     }, 
     {
-      title: "دفتر کار شما",
+      title: t('sideBar.work'),
       subLinks: [
         {
-          title: "کیف پول",
+          title: t('sideBar.wallet'),
           href: "/userPanel/wallet",
         },
         {
-          title: "نمودار درآمد ها",
+          title: t('sideBar.income'),
           href: "/userPanel/income",
         },
         {
-          title: "معرفی ها",
+          title: t('sideBar.introductions'),
           href: "/userPanel/introductions",
         },
         {
-          title: "آموزش رایگان",
+          title: t('sideBar.training'),
           href: "/userPanel/training",
         },
       ],
       icon: <IoFastFoodOutline className="text-2xl" />,
     },  
     {
-      title: "چالش ها",
+      title:  t('sideBar.challenges'),
       href: "/userpanel/challenges",
       icon: <PiMedalLight className="text-2xl" />,
     },
     {
-      title: "کلینیک مدیریت وزن و سلامتی ",
+      title: t('sideBar.health'),
       href: "/userpanel/health",
       icon: <MdAttachMoney className="text-2xl" />,
     },
     {
-      title: "خواب و روان",
+      title: t('sideBar.sleep'),
       href: "/userpanel/sleep",
       icon: <GiNightSleep className="text-2xl" />,
     },
@@ -145,7 +147,7 @@ const SideBar = ({ className }: { className?: string }) => {
           </svg> */}
 
           <div className="!absolute border-l border-main bottom-0 pb-3 z-50 flex w-full cursor-pointer flex-row-reverse items-center justify-center gap-4 px-5 pt-3 font-bold text-main bg-white">
-            <li>خروج</li>
+            <li>{t('sideBar.logout')}</li>
             <CiLogout className="text-2xl" />
           </div>
         </ul>

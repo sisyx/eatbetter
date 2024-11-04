@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../shadcn/ui/button";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   isActive?: boolean;
 };
 
 const Card = ({ isActive }: Props) => {
+  const { i18n, t } = useTranslation();
+
   return (
     <div
+    dir={`${i18n.language == 'fa' ? 'rtl' : 'ltr'}`}
       data-aos="fade-up"
       className={`relative rounded-sm bg-white px-3 pb-6 pt-4 text-center transition-transform sm:mt-5 sm:pt-6 sm:!shadow-md hover:sm:!-translate-y-2`}
     >
       <div className="flex gap-3">
-        <div className="text-right">
+        <div className={`${i18n.language == 'fa' ? 'text-right' : 'text-left'}`}>
           <p className="mb-2">
             چالش شماره 1
             {isActive && (

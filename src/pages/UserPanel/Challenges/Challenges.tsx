@@ -1,11 +1,14 @@
+import { useTranslation } from "react-i18next";
 import Layout from "../../../Layouts/UserLayouts";
 import Title from "../../../components/modules/Title/Title";
 import Card from "../../../components/templates/UserPanel/Challenges/Card";
 
 const Challenges = () => {
+  const { i18n, t } = useTranslation();
+
   return (
     <Layout>
-      <Title title="چالش ها" />
+      <Title title={`${i18n.language === 'fa' ? 'چالش ها ' : 'Challenges'} `} />
       <img
         style={{ transform: "rotateY(181deg) " }}
         className="absolute left-16 top-0 hidden h-[600px] w-[50%] object-cover opacity-30 sm:block xl:top-7"

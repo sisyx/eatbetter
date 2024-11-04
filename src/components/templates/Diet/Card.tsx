@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "../../shadcn/ui/button";
 import Modal from "./Modal";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   data: {
@@ -14,6 +15,8 @@ type Props = {
 };
 
 const Card = ({ data, panel, isActive }: Props) => {
+  const { i18n, t } = useTranslation();
+
   return (
     <div
       data-aos="fade-up"
@@ -39,7 +42,7 @@ const Card = ({ data, panel, isActive }: Props) => {
             {data.text.slice(0, 190) + "..."}
           </p>
           <Link className="mt-4 block" to={`/userPanel/health/${data.id}`}>
-            <Button variant={"main"}>جزئیات بیشتر</Button>
+            <Button variant={"main"}>{i18n.language === "fa" ? "جزئیات بیشتر" : "more details"} </Button>
           </Link>
         </>
       ) : (
