@@ -10,10 +10,7 @@ export default function index() {
   const [language, setLanguage] = useState("fa");
 
   useEffect(() => {
-    i18n.changeLanguage(language);
-    i18n.language == "en"
-      ? (document.documentElement.dir = "ltr")
-      : (document.documentElement.dir = "rtl");
+    i18n.changeLanguage(language); 
   }, [language]);
   useEffect(() => {
     const handleScroll = (): void => {
