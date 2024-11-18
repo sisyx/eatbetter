@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 type Props = {};
 
-const Card = (props: Props) => {
-  const { i18n, t } = useTranslation();
+const Card = (_props: Props) => {
+  const { i18n } = useTranslation();
 
   return (
     <div data-aos='fade-up' className="rounded-md p-3 shadow-lg relative bg-white z-10" dir="rtl">

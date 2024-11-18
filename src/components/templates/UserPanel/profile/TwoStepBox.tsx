@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,7 +10,7 @@ import {
 import { MdOutlineEdit } from "react-icons/md";
 import { Button } from "../../../shadcn/ui/button";
 // import usePostData from "@/src/hooks/usePostData";
-import { toast } from "../../../../hooks/use-toast";
+// import { toast } from "../../../../hooks/use-toast";
 import {
   InputOTP,
   InputOTPGroup,
@@ -18,7 +18,7 @@ import {
 } from "../../../shadcn/ui/input-otp";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { FaAngleRight } from "react-icons/fa6";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useQueryClient } from "@tanstack/react-query";
 
 interface BoxProps {
   type: string;
@@ -38,8 +38,7 @@ const TwoStepBox: FC<BoxProps> = ({
   regex,
   value,
   setValue,
-  errorText,
-  requestBody,
+  errorText, 
 }) => {
   const [error, setError] = useState(false);
   const [disabled, setdisabled] = useState(true);
@@ -47,7 +46,7 @@ const TwoStepBox: FC<BoxProps> = ({
   const [timer, setTimer] = useState<number>(0);
   const [step, setStep] = useState(1);
   const [prevValue, setPrevValue] = useState<string | undefined>(undefined);
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
   const [data, setData] = useState<any>();
 
   useEffect(() => {
@@ -74,108 +73,108 @@ const TwoStepBox: FC<BoxProps> = ({
     setValue && setData(value);
   };
 
-  const successFunc = (data: {
-    statusCode: number;
-    RefreshToken: string;
-    accessToken: string;
-  }) => {
-    if (type === "email") {
-      if (step === 1) {
-        if (data.statusCode === 200) {
-          toast({
-            variant: "default",
-            title: "کد ارسال شده به ایمیلتون رو وارد کنید",
-          });
-          setStep(2);
-        } else if (data.statusCode === 400) {
-          toast({
-            variant: "default",
-            title: "لطفا مجدد امتحان کنید",
-          });
-        } else {
-          toast({
-            variant: "default",
-            title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
-          });
-        }
-      } else {
-        if (data.statusCode === 200) {
-          toast({
-            variant: "default",
-            title: "ایمیل با موفقیت ثبت شد",
-          });
-          // queryClient.invalidateQueries({ queryKey: ["auth"] });
-          setStep(1);
-          setOpen(false);
-        } else if (data.statusCode === 400) {
-          toast({
-            variant: "default",
-            title: "کد اشتباه است",
-          });
-        } else if (data.statusCode === 405) {
-          toast({
-            variant: "default",
-            title: "این کد قبلا مورد استفاده قرار گرفته است",
-          });
-        } else if (data.statusCode === 422) {
-          toast({
-            variant: "default",
-            title: "کد وارد شده منسوخ شده است",
-          });
-        } else {
-          toast({
-            variant: "default",
-            title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
-          });
-        }
-      }
-    } else {
-      if (step === 1) {
-        if (data.statusCode === 200) {
-          toast({
-            variant: "default",
-            title: "کد ارسال شده به موبایلتون رو وارد کنید",
-          });
-          setStep(2);
-        } else {
-          toast({
-            variant: "default",
-            title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
-          });
-        }
-      } else {
-        if (data.statusCode === 200) {
-          toast({
-            variant: "default",
-            title: "شماره موبایل با موفقیت تغییر یافت",
-          });
-          queryClient.invalidateQueries({ queryKey: ["auth"] });
-          setStep(1);
-          setOpen(false);
-        } else if (data.statusCode === 400) {
-          toast({
-            variant: "default",
-            title: "کد اشتباه است",
-          });
-        } else if (data.statusCode === 405) {
-          toast({
-            variant: "default",
-            title: "این کد قبلا مورد استفاده قرار گرفته است",
-          });
-        } else if (data.statusCode === 422) {
-          toast({
-            variant: "default",
-            title: "کد وارد شده منسوخ شده است",
-          });
-        } else {
-          toast({
-            variant: "default",
-            title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
-          });
-        }
-      }
-    }
-  };
+  // const successFunc = (data: {
+  //   statusCode: number;
+  //   RefreshToken: string;
+  //   accessToken: string;
+  // }) => {
+  //   if (type === "email") {
+  //     if (step === 1) {
+  //       if (data.statusCode === 200) {
+  //         toast({
+  //           variant: "default",
+  //           title: "کد ارسال شده به ایمیلتون رو وارد کنید",
+  //         });
+  //         setStep(2);
+  //       } else if (data.statusCode === 400) {
+  //         toast({
+  //           variant: "default",
+  //           title: "لطفا مجدد امتحان کنید",
+  //         });
+  //       } else {
+  //         toast({
+  //           variant: "default",
+  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //         });
+  //       }
+  //     } else {
+  //       if (data.statusCode === 200) {
+  //         toast({
+  //           variant: "default",
+  //           title: "ایمیل با موفقیت ثبت شد",
+  //         });
+  //         // queryClient.invalidateQueries({ queryKey: ["auth"] });
+  //         setStep(1);
+  //         setOpen(false);
+  //       } else if (data.statusCode === 400) {
+  //         toast({
+  //           variant: "default",
+  //           title: "کد اشتباه است",
+  //         });
+  //       } else if (data.statusCode === 405) {
+  //         toast({
+  //           variant: "default",
+  //           title: "این کد قبلا مورد استفاده قرار گرفته است",
+  //         });
+  //       } else if (data.statusCode === 422) {
+  //         toast({
+  //           variant: "default",
+  //           title: "کد وارد شده منسوخ شده است",
+  //         });
+  //       } else {
+  //         toast({
+  //           variant: "default",
+  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //         });
+  //       }
+  //     }
+  //   } else {
+  //     if (step === 1) {
+  //       if (data.statusCode === 200) {
+  //         toast({
+  //           variant: "default",
+  //           title: "کد ارسال شده به موبایلتون رو وارد کنید",
+  //         });
+  //         setStep(2);
+  //       } else {
+  //         toast({
+  //           variant: "default",
+  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //         });
+  //       }
+  //     } else {
+  //       if (data.statusCode === 200) {
+  //         toast({
+  //           variant: "default",
+  //           title: "شماره موبایل با موفقیت تغییر یافت",
+  //         });
+  //         queryClient.invalidateQueries({ queryKey: ["auth"] });
+  //         setStep(1);
+  //         setOpen(false);
+  //       } else if (data.statusCode === 400) {
+  //         toast({
+  //           variant: "default",
+  //           title: "کد اشتباه است",
+  //         });
+  //       } else if (data.statusCode === 405) {
+  //         toast({
+  //           variant: "default",
+  //           title: "این کد قبلا مورد استفاده قرار گرفته است",
+  //         });
+  //       } else if (data.statusCode === 422) {
+  //         toast({
+  //           variant: "default",
+  //           title: "کد وارد شده منسوخ شده است",
+  //         });
+  //       } else {
+  //         toast({
+  //           variant: "default",
+  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //         });
+  //       }
+  //     }
+  //   }
+  // };
 
   // const { mutate: mutation, isPending } = usePostData<UserInfoObj>(
   //   type == "email"
@@ -198,9 +197,9 @@ const TwoStepBox: FC<BoxProps> = ({
 
   const submitHandler = () => {
     if (step === 1) {
-      const newData = {
-        [requestBody]: data,
-      };
+      // const newData = {
+      //   [requestBody]: data,
+      // };
       setStep(2);
 
       // mutation(newData as any);
@@ -253,9 +252,9 @@ const TwoStepBox: FC<BoxProps> = ({
       `${type === "email" ? "email" : "phone"}otpResendTimer`,
       (Math.floor(Date.now() / 1000) + 59).toString(),
     );
-    const newData = {
-      [requestBody]: data,
-    };
+    // const newData = {
+    //   [requestBody]: data,
+    // };
     // resendCode(newData as any);
   };
 

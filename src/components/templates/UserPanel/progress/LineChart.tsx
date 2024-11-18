@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Chart from "react-apexcharts";
 import { Button } from "../../../shadcn/ui/button";
 import { useTranslation } from "react-i18next";
 
 const LineChart = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   const [chartData] = useState<any>({
     series: [

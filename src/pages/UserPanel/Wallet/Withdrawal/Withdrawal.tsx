@@ -6,11 +6,11 @@ import { stockSchema } from "../../../../validations/rules";
 import { useTranslation } from "react-i18next";
 
 const Withdrawal = () => {
-  const { i18n, t } = useTranslation();
+  const {  t } = useTranslation();
 
   const formHandler = useFormik({
     initialValues: { name: "", shabaNumber: "", bankName: "", password: "" },
-    onSubmit: (values, { setSubmitting, resetForm }) => {
+    onSubmit: (_values, { resetForm }) => {
       //   mutation(values);
       resetForm();
     },

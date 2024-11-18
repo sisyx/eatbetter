@@ -4,11 +4,11 @@ import { Button } from "../../components/shadcn/ui/button";
 import { contactsSchema } from "../../validations/rules";
 
 const Contacts = () => {
-  const phoneRegExp = /((0?9)|(\+?989))\d{9}/g;
+  // const phoneRegExp = /((0?9)|(\+?989))\d{9}/g;
 
   const formHandler = useFormik({
     initialValues: { name: "", phone: "", message: "" },
-    onSubmit: (values, { setSubmitting, resetForm }) => {
+    onSubmit: (_values, { resetForm }) => {
       //   mutation(values);
       resetForm();
     },

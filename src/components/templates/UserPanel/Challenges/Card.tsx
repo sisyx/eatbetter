@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../shadcn/ui/button";
 import { useTranslation } from "react-i18next";
@@ -8,7 +7,7 @@ type Props = {
 };
 
 const Card = ({ isActive }: Props) => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <div

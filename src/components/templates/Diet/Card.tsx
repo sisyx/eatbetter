@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Card = ({ data, panel, isActive }: Props) => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <div

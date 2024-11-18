@@ -4,17 +4,16 @@ import * as Yup from "yup";
 import { Button } from "../../../../shadcn/ui/button";
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
+  DialogContent, 
   DialogTitle,
   DialogTrigger,
 } from "../../../../shadcn/ui/dialog";
 // import usePostData from "@/src/hooks/usePostData";
 // import { changePasswordSchema } from "@/src/validations/rules";
 import { useFormik } from "formik";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { LuEye } from "react-icons/lu";
-import { toast } from "../../../../../hooks/use-toast";
+// import { toast } from "../../../../../hooks/use-toast";
 import { useTranslation } from "react-i18next";
 
 interface newPasswordData {
@@ -47,28 +46,28 @@ let changePasswordSchema = Yup.object().shape({
 });
 
 const ChangePassword = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   
-  const successFunc = (data: { statusCode: number }) => {
-    if (data.statusCode === 200) {
-      formHandler.resetForm();
-      toast({
-        variant: "default",
-        title: "رمز عبور با موفقیت بروزرسانی شد",
-      });
-      setOpen(false);
-    } else if (data.statusCode === 401) {
-      toast({
-        variant: "default",
-        title: "رمز عبور فعلی شما اشتباه است",
-      });
-    } else if (data.statusCode === 402) {
-      toast({
-        variant: "default",
-        title: "این رمز قبلا ست شده و نیازه یک رمز جدید وارد کنید",
-      });
-    }
-  };
+  // const successFunc = (data: { statusCode: number }) => {
+  //   if (data.statusCode === 200) {
+  //     formHandler.resetForm();
+  //     toast({
+  //       variant: "default",
+  //       title: "رمز عبور با موفقیت بروزرسانی شد",
+  //     });
+  //     setOpen(false);
+  //   } else if (data.statusCode === 401) {
+  //     toast({
+  //       variant: "default",
+  //       title: "رمز عبور فعلی شما اشتباه است",
+  //     });
+  //   } else if (data.statusCode === 402) {
+  //     toast({
+  //       variant: "default",
+  //       title: "این رمز قبلا ست شده و نیازه یک رمز جدید وارد کنید",
+  //     });
+  //   }
+  // };
 
   // const { mutate: mutation, isPending } = usePostData<newPasswordData>(
   //   "/user/changePassword",
@@ -85,7 +84,7 @@ const ChangePassword = () => {
       newPassword: "",
       confirmPassword: "",
     },
-    onSubmit: (values: newPasswordData) => {
+    onSubmit: (_values: newPasswordData) => {
       // mutation({
       //   currentPassword: values.currentPassword,
       //   newPassword: values.newPassword,

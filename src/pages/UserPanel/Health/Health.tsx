@@ -5,7 +5,7 @@ import Card from "../../../components/templates/Diet/Card";
 import { diets } from "../../../utils/data";
 
 const Health = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <Layout>

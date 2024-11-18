@@ -10,12 +10,12 @@ import { useTranslation } from "react-i18next";
 const Profile = () => {
   const [userName, setUserName] = useState("شاهین");
   const [userFamily, setUserFamily] = useState("مشکل گشا");
-  const [about, setAbout] = useState("عاشق طبیعت و کوه و صدای پرندگان");
+  const [_about, _setAbout] = useState("عاشق طبیعت و کوه و صدای پرندگان");
   const [email, setEmail] = useState("kasrakasra924@gmail.com");
   const [gender, setGender] = useState("آقا");
   const [phoneNumber, setPhoneNumber] = useState("09046417084");
-  const [avatar, setAvatar] = useState("");
-  const { i18n, t } = useTranslation();
+  const [avatar, _setAvatar] = useState("");
+  const { t } = useTranslation();
 
   return (
     <Layout>

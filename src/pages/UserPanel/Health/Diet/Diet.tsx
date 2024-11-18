@@ -4,7 +4,7 @@ import Modal from "../../../../components/templates/UserPanel/Health/Diets/Modal
 import Layout from "../../../../Layouts/UserLayouts";
 
 const Diet = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   return (
     <Layout>
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">

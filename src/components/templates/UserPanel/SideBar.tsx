@@ -20,7 +20,7 @@ import { PiMedalLight } from "react-icons/pi";
 import { TbMoneybag } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
 const SideBar = ({ className }: { className?: string }) => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   const links = [
     {

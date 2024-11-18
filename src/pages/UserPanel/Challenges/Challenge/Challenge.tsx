@@ -1,7 +1,7 @@
  
 import Title from "../../../../components/modules/Title/Title";
 import { Button } from "../../../../components/shadcn/ui/button";
-import Modal from "../../../../components/templates/UserPanel/Health/Diets/Modal";
+// import Modal from "../../../../components/templates/UserPanel/Health/Diets/Modal";
 import Layout from "../../../../Layouts/UserLayouts";
 
 const Challenge = () => {

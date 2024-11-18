@@ -4,7 +4,7 @@ import { Button } from "../../../components/shadcn/ui/button";
 import { useTranslation } from "react-i18next";
 
 const Wallet = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Layout>

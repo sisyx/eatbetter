@@ -25,7 +25,7 @@ const Cooperate = () => {
 
   const formHandler = useFormik({
     initialValues: { name: "", phone: "", message: "" },
-    onSubmit: (values, { setSubmitting, resetForm }) => {
+    onSubmit: (_values, { resetForm }) => {
       //   mutation(values);
       resetForm();
     },

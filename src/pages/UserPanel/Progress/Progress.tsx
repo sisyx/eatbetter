@@ -4,7 +4,7 @@ import BarChart from "../../../components/templates/UserPanel/progress/BarChart"
 import LineChart from "../../../components/templates/UserPanel/progress/LineChart";
 
 const Progress = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <Layout>

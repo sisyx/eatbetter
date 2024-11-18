@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../../../shadcn/ui/dialog";
-import React, { useState } from "react";
+import { useState } from "react";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -13,7 +13,7 @@ import { Button } from "../../../../shadcn/ui/button";
 import { useTranslation } from "react-i18next";
 type Props = {};
 
-const Modal = (props: Props) => {
+const Modal = (_props: Props) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const { i18n, t } = useTranslation();
 

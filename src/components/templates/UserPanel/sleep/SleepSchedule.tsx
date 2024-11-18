@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const SleepSchedule = () => {
   const [wakeUpTime, setWakeUpTime] = useState("");
   const [sleepTime, setSleepTime] = useState("");
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="pb-10 sm:pb-0">

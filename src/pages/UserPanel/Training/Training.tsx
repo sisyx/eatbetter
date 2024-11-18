@@ -4,7 +4,7 @@ import Title from "../../../components/modules/Title/Title";
 import Card from "../../../components/templates/UserPanel/Training/Card";
 
 const Training = () => {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <Layout>

@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,8 +10,8 @@ import {
 import { MdOutlineEdit } from "react-icons/md";
 import { Button } from "../../../shadcn/ui/button";
 // import usePostData from "@/src/hooks/usePostData";
-import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "../../../../hooks/use-toast";
+// import { useQueryClient } from "@tanstack/react-query";
+// import { toast } from "../../../../hooks/use-toast";
 // import { ButtonLoader } from "@/src/components/modules/loader/Loader";
 
 interface BoxProps {
@@ -37,12 +37,11 @@ const Box: FC<BoxProps> = ({
   errorText,
   multiple,
   values,
-  setValues,
-  requestBody,
+  setValues, 
   options,
 }) => {
   const [error, setError] = useState(false);
-  const [disabled, setdisabled] = useState(true);
+  const [_disabled, setdisabled] = useState(true);
   const [data, setData] = useState<any>();
   const [secondData, setSecondData] = useState<any>();
   // const queryClient = useQueryClient();
@@ -94,27 +93,27 @@ const Box: FC<BoxProps> = ({
   //   successFunc,
   // );
 
-  const submitHandler = () => {
-    if (values) {
-      const newData = {
-        [requestBody[0]]: data,
-        [requestBody[1]]: secondData,
-      };
-      // mutation(newData as any);
-    } else {
-      if (type === "radio") {
-        const newData = {
-          [requestBody]: data === "مرد" ? "male" : "female",
-        };
-        // mutation(newData as any);
-      } else {
-        const newData = {
-          [requestBody]: data,
-        };
-        // mutation(newData as any);
-      }
-    }
-  };
+  // const submitHandler = () => {
+  //   if (values) {
+  //     const newData = {
+  //       [requestBody[0]]: data,
+  //       [requestBody[1]]: secondData,
+  //     };
+  //     // mutation(newData as any);
+  //   } else {
+  //     if (type === "radio") {
+  //       const newData = {
+  //         [requestBody]: data === "مرد" ? "male" : "female",
+  //       };
+  //       // mutation(newData as any);
+  //     } else {
+  //       const newData = {
+  //         [requestBody]: data,
+  //       };
+  //       // mutation(newData as any);
+  //     }
+  //   }
+  // };
   const [open, setOpen] = useState(false);
 
   return (

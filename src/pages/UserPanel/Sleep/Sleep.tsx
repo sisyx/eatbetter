@@ -23,8 +23,8 @@ const Sleep = () => {
         <Title title={t("sleep.titleThree")} />
         <p>{t("sleep.desThree")}</p>
         <ul className="py-3">
-          {t("sleep.optionsThree", { returnObjects: true }).map(
-            (item:string, index:number) => (
+          {Object.values(t("sleep.optionsThree", { returnObjects: true })).map(
+            (item: string, index: number) => (
               <li key={index} className="flex items-center">
                 <FaAngleLeft className="text-main" />
                 {item}
@@ -44,9 +44,12 @@ const Sleep = () => {
         <Title title={t("sleep.titleFive")} />
         <p>{t("sleep.desFive")}</p>
         <ul className="list-decimal py-4 pr-4">
-          {t("sleep.optionsFive", { returnObjects: true }).map(
-            (item:string, index:number) => (
-              <li key={index}>{item}</li>
+          {Object.values(t("sleep.optionsFive", { returnObjects: true })).map(
+            (item: string, index: number) => (
+              <li key={index} className="flex items-center">
+                <FaAngleLeft className="text-main" />
+                {item}
+              </li>
             ),
           )}
         </ul>
@@ -74,7 +77,7 @@ const Sleep = () => {
       </div>
 
       <img
-        className={`${i18n.language === "fa" ? "-left-6" : " right-0"} absolute top-20 h-[500px] opacity-20`}
+        className={`${i18n.language === "fa" ? "-left-6" : "right-0"} absolute top-20 h-[500px] opacity-20`}
         src="/images/sleep-removebg-preview.png"
         alt=""
       />
