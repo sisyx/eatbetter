@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
 
 const Footer: React.FC = () => {
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+
   return (
     <div className="overflow-x-hidden pt-40">
       <div className="relative h-[300px] w-full rounded-se-full rounded-ss-full bg-main max-sm:h-[100px]">
@@ -21,9 +25,9 @@ const Footer: React.FC = () => {
       </div>
       <div className="w-full bg-main">
         <footer className="text-surface/75 lg:text-lef text-end dark:text-white/75">
-          <div className="flex flex-row-reverse items-center justify-center border-b-2 border-neutral-200 p-6 lg:justify-between">
+          <div className={`flex ${language === "fa" ? "flex-row-reverse " : "flex-row"} items-center justify-center border-b-2 border-neutral-200 p-6 lg:justify-between`}>
             <div className="me-12 hidden lg:block">
-              <span>: در شبکه های اجتماعی با ما در ارتباط باشید</span>
+              <span>{t("footerFindUsOn")}</span>
             </div>
 
             <div className="flex justify-center">
@@ -86,23 +90,11 @@ const Footer: React.FC = () => {
 
           <div className="mx-6 py-10 text-center md:text-left">
             <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              <div>
+              <div className={language === "fa" ? "text-right" : "text-left"} dir={language === "fa" ? "rtl" : "ltr"}>
                 <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                  تماس با ما
+                  {/* تماس با ما */}
+                  {t("footerContactUs")}
                 </h6>
-                {/* <p className="mb-4 flex items-center justify-center md:justify-start">
-                <span className="me-3 [&>svg]:h-5 [&>svg]:w-5">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
-                    <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
-                  </svg>
-                </span>
-                New York, NY 10012, US
-              </p> */}
                 <p className="mb-4 flex items-center justify-center md:justify-start">
                   <span className="me-3 [&>svg]:h-5 [&>svg]:w-5">
                     <svg
@@ -150,39 +142,40 @@ const Footer: React.FC = () => {
                 </p>
               </div>
 
-              <div>
+              <div className={language === "fa" ? "text-right" : "text-left"} dir={language === "fa" ? "rtl" : "ltr"}>
                 <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                  شرکت
+                  {/* شرکت */}
+                  {t("footerCompany.title")}
                 </h6>
                 <p className="mb-4">
-                  <a href="#!">درباره ما</a>
+                  <a href="#!">{t("footerCompany.aboutUs")}</a>
                 </p>
                 <p className="mb-4">
-                  <a href="#!">تماس با ما</a>
+                  <a href="#!">{t("footerCompany.contactUs")}</a>
                 </p>
                 <p className="mb-4">
-                  <a href="#!">همکاری با ما</a>
+                  <a href="#!">{t("footerCompany.corporateWithUs")}</a>
                 </p>
               </div>
 
-              <div className="">
+              <div className={language === "fa" ? "text-right" : "text-left"} dir={language === "fa" ? "rtl" : "ltr"}>
                 <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                  لینک های مفید
+                  {t("footerHelpLink.title")}
                 </h6>
                 <p className="mb-4">
-                  <a href="#!">صفحه اصلی</a>
+                  <a href="#!">{t("footerHelpLink.home")}</a>
                 </p>
                 <p className="mb-4">
-                  <a href="#!">بلاگ</a>
+                  <a href="#!">{t("footerHelpLink.blog")}</a>
                 </p>
                 <p className="mb-4">
-                  <a href="#!">رژیم ها</a>
+                  <a href="#!">{t("footerHelpLink.diets")}</a>
                 </p>
                 <p>
-                  <a href="#!">خواب و روح و روان</a>
+                  <a href="#!">{t("footerHelpLink.sleepSoulMentality")}</a>
                 </p>
               </div>
-              <div className="text-end">
+              <div className="text-end" dir={language === "fa" ? "rtl" : "ltr"}>
                 <h6 className="mb-4 flex items-center justify-end font-semibold uppercase md:justify-start">
                   <span className="me-3 [&>svg]:h-4 [&>svg]:w-4">
                     <svg
@@ -193,13 +186,12 @@ const Footer: React.FC = () => {
                       <path d="M12.378 1.602a.75.75 0 00-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03zM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 00.372-.648V7.93zM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 00.372.648l8.628 5.033z" />
                     </svg>
                   </span>
-                  ALI MONAYED
+                  {t("footerWelcome.title")}
                 </h6>
-                <p>
-                  به دنیای سلامت و زیبایی خوش آمدید <br />
-                  ما اینجا هستیم تا شما را به بهترین نسخه از خودتان تبدیل کنیم،
-                  چه تازه‌کار باشید و چه حرفه‌ای. با برنامه‌های تغذیه‌ای و ورزشی
-                  شخصی‌سازی شده
+                <p className={language === "fa" ? "text-right" : "text-left"}>
+                {t("footerWelcome.text")}
+                <br/>
+                {t("footerWelcome.text2")}
                 </p>
               </div>
             </div>
