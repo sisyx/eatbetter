@@ -29,6 +29,7 @@ const registerFa = {
     confirmPassword: "تکرار رمز عبور",
     submit:'تایید',
     userName: "نام کاربری",
+    phone:"شماره تلفن"
   },
 };
 
@@ -40,7 +41,9 @@ const registerEn = {
     password: "password",
     confirmPassword: "confirm Password",
     submit:'submit',
-    userName: "userName  ",
+    userName: "user Name",
+    phone:"phone Number  "
+
   },
 };
 

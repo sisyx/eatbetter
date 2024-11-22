@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 
-const phoneRegExp = /((0?9)|(\+?989))\d{9}/g; 
+const phoneRegExp = /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g;
+
 let stockSchema = Yup.object().shape({
   bankName: Yup.string()
     .min(10, "اسم بانک شما حداقل باید 10 حرف داشته باشد")
@@ -23,6 +24,51 @@ let stockSchema = Yup.object().shape({
     .required("لطفا رمز عبور خودتون رو وارد کنید"),
 });
 
+let loginSchema = Yup.object().shape({ 
+  userName: Yup.string()
+    .min(3, "اسم شما حداقل باید 10 حرف داشته باشد")
+    .max(10, "اسم شما حداکثر باید 10 حرف داشته باشد")
+    .required("لطفا اسم خودتون رو بنویسید"), 
+    
+  password: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9.@$-_#]{6,}$/,
+      "رمز عبور شما با فرمت صحیحی وارد نشده است",
+    )
+    .required("لطفا رمز عبور خودتون رو وارد کنید"),
+
+});
+
+let registerSchema = Yup.object().shape({
+  phone: Yup.string() 
+    .matches(phoneRegExp, "شماره تماس معتبر نیست")
+    .required("لطفا شماره تماس خودتون رو وارد کنید"),
+
+  userName: Yup.string()
+    .min(3, "اسم شما حداقل باید 10 حرف داشته باشد")
+    .max(10, "اسم شما حداکثر باید 10 حرف داشته باشد")
+    .required("لطفا اسم خودتون رو بنویسید"),
+  email: Yup.string()
+    .email("ایمیل معتبر نیست")
+    .min(10, "ایمیل شما حداقل باید 10 حرف داشته باشد")
+    .max(30, "ایمیل شما حداکثر باید 30 حرف داشته باشد")
+    .required("لطفا ایمیل خودتون رو وارد کنید"),
+
+  password: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9.@$-_#]{6,}$/,
+      "رمز عبور باید شامل حروف بزرگ و کوچک انگلیسی و اعداد باشد و حداقل 6 حرف داشته باشد",
+    )
+    .required("لطفا رمز عبور خودتون رو وارد کنید"),
+
+  confirmPassword: Yup.string()
+    .oneOf(
+      [Yup.ref("password"), null as any],
+      "رمز عبور و تکرار رمز عبور باید مشابه باشند",
+    )
+    .required("لطفا رمز عبور خودتون رو تایید کنید"),
+ 
+});
 let contactsSchema = Yup.object().shape({
   message: Yup.string()
     .min(10, "متن شما حداقل باید 10 حرف داشته باشد")
@@ -30,7 +76,7 @@ let contactsSchema = Yup.object().shape({
     .required("لطفا متنی بنویسید"),
 
   phone: Yup.string()
-    .email("ایمیل معتبر نیست")
+    .email("شماره تماس  معتبر نیست")
     .matches(phoneRegExp, "شماره تماس معتبر نیست")
     .required("لطفا شماره تماس خودتون رو وارد کنید"),
 
@@ -40,4 +86,4 @@ let contactsSchema = Yup.object().shape({
     .required("لطفا اسم خودتون رو وارد کنید"),
 });
 
-export { stockSchema, contactsSchema };
+export { stockSchema, contactsSchema, registerSchema, loginSchema };

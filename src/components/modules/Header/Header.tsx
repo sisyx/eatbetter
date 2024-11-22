@@ -28,13 +28,13 @@ export default function index() {
     <>
       <div
         style={{ animation: isScrolled ? " slideDown 0.35s ease-out" : "none" }}
-        className={`flex w-full items-center justify-between px-4 py-5 sm:!px-12 lg:!px-24 ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
+        className={`flex w-full items-center justify-between px-4 py-5 sm:!px-4 xl:!px-24 ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
       >
         <div>
           <img src="BLP-b.png" alt="logo" width={"80px"} />
         </div>
         <div className="max-lg:hidden">
-          <ul className="flex flex-row-reverse gap-5">
+          <ul className="flex flex-row-reverse gap-5 xl:text-base text-sm">
             <Link
               to={""}
               className="rounded-md p-2 transition-all hover:text-main"
@@ -83,7 +83,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="absolute top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
+              <div className="absolute z-[999] top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
                 <ul className="flex flex-col gap-2 p-6 text-end">
                   <Link to={""} className="hover:text-mainHover">
                     {" "}
@@ -128,7 +128,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="absolute top-[100%] hidden w-[650px] rounded-xl bg-main text-white group-hover:flex group-hover:justify-center">
+              <div className="absolute z-[999] top-[100%] hidden w-[650px] rounded-xl bg-main text-white group-hover:flex group-hover:justify-center">
                 <div className="border-r border-[#00000014] p-2">
                   <p className="text-end font-bold">{t("breakfast")}</p>
                   <ul className="flex flex-col gap-2 p-5 text-end">
@@ -208,7 +208,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="absolute top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
+              <div className="z-[999] absolute top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
                 <ul className="flex flex-col gap-2 p-5 text-end">
                   <Link to={""} className="hover:text-mainHover">
                     {" "}
@@ -299,7 +299,7 @@ export default function index() {
             <IoLanguage />
           </button>
           <Link to={""}>
-            <button className="rounded-xl bg-main p-2 text-center text-white transition-all hover:bg-mainHover">
+            <button className="rounded-xl bg-main p-2 text-center text-white transition-all xl:text-base text-sm hover:bg-mainHover">
               {t("headerlogin")}
             </button>
           </Link>
