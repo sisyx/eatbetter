@@ -25,11 +25,12 @@ let stockSchema = Yup.object().shape({
 });
 
 let loginSchema = Yup.object().shape({ 
-  userName: Yup.string()
-    .min(3, "اسم شما حداقل باید 10 حرف داشته باشد")
-    .max(10, "اسم شما حداکثر باید 10 حرف داشته باشد")
-    .required("لطفا اسم خودتون رو بنویسید"), 
-    
+  email: Yup.string()
+  .email("ایمیل معتبر نیست")
+  .min(10, "ایمیل شما حداقل باید 10 حرف داشته باشد")
+  .max(30, "ایمیل شما حداکثر باید 30 حرف داشته باشد")
+  .required("لطفا ایمیل خودتون رو وارد کنید"),
+
   password: Yup.string()
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9.@$-_#]{6,}$/,

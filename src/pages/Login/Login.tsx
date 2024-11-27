@@ -2,7 +2,7 @@ import { useState } from "react";
 import Container from "../../components/modules/Container/Container";
 import Title from "../../components/modules/Title/Title";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/shadcn/ui/button";
 import { useTranslation } from "react-i18next";
 import { useFormik } from "formik";
@@ -13,43 +13,48 @@ import { ButtonLoader } from "../../components/modules/loader/Loader";
 import usePostData from "../../hooks/usePostData";
 
 interface formValues {
-  userName: string;
+  email: string;
   password: string;
 }
 
-const successFunc = (data: {
-  statusCode: number;
-  RefreshToken: string;
-  accessToken: string;
-}) => {
-  if (data.statusCode === 200) {
-    Cookies.set("eatBetterToken", data.RefreshToken, {
-      expires: 9999999,
-      path: "",
-    });
-    toast({
-      variant: "success",
-      title: "با موفقیت وارد   شدید",
-    });
-    // router.replace("/dashboard");
-  } else if (data.statusCode === 400) {
-    // toast({
-    //   variant: "danger",
-    //   title: "کاربر با این شماره در سایت ثبت نام شده است",
-    // });
-  } else {
-    toast({
-      variant: "danger",
-      title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
-    });
-    // location.reload();
-    // localStorage.clear();
-  }
-};
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { i18n, t } = useTranslation();
+
+  const navigate = useNavigate()
+  const successFunc = (data: {
+    statusCode: number;
+    message: string;
+    token: string; 
+  }) => {
+    if (data.statusCode === 200) {
+      Cookies.set("eatBetterToken", data.token, {
+        expires: 9999999,
+        path: "",
+      });
+      toast({
+        variant: "success",
+        title: "با موفقیت ثبت نام شدید",
+      });
+      setTimeout(() => {
+        navigate("/userPanel/profile");
+      }, 2000);
+    } else if (data.statusCode === 400) {
+      toast({
+        variant: "danger",
+        title: data.message,
+      });
+    } else {
+      toast({
+        variant: "danger",
+        title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+      });
+      // location.reload();
+      // localStorage.clear();
+    }
+  };
 
   const { mutate: mutation, isPending } = usePostData<{ phone: string }>(
     "/api/user/LoginUser",
@@ -60,17 +65,15 @@ const Login = () => {
 
   const formHandler = useFormik({
     initialValues: {
-      userName: "",
+      email: "",
       password: "",
     },
     onSubmit: (values: formValues) => {
       const data = {
-        username: formHandler.values.userName,
+        email: formHandler.values.email,
         password: formHandler.values.password,
-      };
-      console.log(data);
-
-      // mutation(data as any);
+      }; 
+      mutation(data as any);
     },
     validationSchema: loginSchema,
   });
@@ -104,19 +107,19 @@ const Login = () => {
             <span
               className={`${i18n.language === "fa" ? "right-3" : "left-3"} absolute -top-3 bg-white px-3 text-sm`}
             >
-              {t("login.userName")}
+              {t("login.email")}
             </span>
             <input
-              type="text"
-              name="userName"
-              value={formHandler.values.userName}
+              type="email"
+              name="email"
+              value={formHandler.values.email}
               onChange={formHandler.handleChange}
               onBlur={formHandler.handleBlur}
               className="w-full rounded-xl border border-main p-3 pl-4"
             />
-            {formHandler.touched.userName && formHandler.errors.userName && (
+            {formHandler.touched.email && formHandler.errors.email && (
               <span className="mt-2 block w-full text-center text-xs text-red-600">
-                {formHandler.errors.userName}
+                {formHandler.errors.email}
               </span>
             )}
           </div>

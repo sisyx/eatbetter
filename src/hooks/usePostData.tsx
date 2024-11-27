@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { toast } from "./use-toast";
 const apiUrl = import.meta.env.VITE_API_URL;
-  
+   
 
 const usePostData = <T extends object>(
   url: string,
@@ -28,7 +28,7 @@ const usePostData = <T extends object>(
         headers,
         // credentials: "include",
         body: formData ? (data as any) : JSON.stringify(data),
-      }).then((res) => res.json());
+      }).then((res) => res.json())
     },
     onSuccess: (data) => { 
       console.log(data);

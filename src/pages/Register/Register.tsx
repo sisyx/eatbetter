@@ -2,7 +2,7 @@ import { useState } from "react";
 import Container from "../../components/modules/Container/Container";
 import Title from "../../components/modules/Title/Title";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../../components/shadcn/ui/button";
 import { useTranslation } from "react-i18next";
 import usePostData from "../../hooks/usePostData";
@@ -20,48 +20,52 @@ interface formValues {
   phone: string;
 }
 
-const successFunc = (data: {
-  statusCode: number;
-  RefreshToken: string;
-  accessToken: string;
-}) => {
-  if (data.statusCode === 200) {
-    Cookies.set("eatBetterToken", data.RefreshToken, {
-      expires: 9999999,
-      path: "",
-    });
-    toast({
-      variant: "success",
-      title: "با موفقیت ثبت نام شدید",
-    });
-    // router.replace("/dashboard");
-  } else if (data.statusCode === 400) {
-    toast({
-      variant: "danger",
-      title: "کاربر قبلا در سایت ثبت نام شده است",
-    });
-  } else {
-    toast({
-      variant: "danger",
-      title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
-    });
-    // location.reload();
-    // localStorage.clear();
-  }
-};
-
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [country, setCountry] = useState("IR");
   const { i18n, t } = useTranslation();
+  const navigate = useNavigate();
 
-   
+  const successFunc = (data: {
+    statusCode: number;
+    message: string;
+    token: string; 
+  }) => {
+    if (data.statusCode === 200) {
+      Cookies.set("eatBetterToken", data.token, {
+        expires: 9999999,
+        path: "",
+      });
+      toast({
+        variant: "success",
+        title: "با موفقیت ثبت نام شدید",
+      });
+      setTimeout(() => {
+        navigate("/userPanel/profile");
+      }, 2000);
+    } else if (data.statusCode === 400) {
+      toast({
+        variant: "danger",
+        title: data.message,
+      });
+    } else {
+      toast({
+        variant: "danger",
+        title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+      });
+      // location.reload();
+      // localStorage.clear();
+    }
+  };
+
   const { mutate: mutation, isPending } = usePostData<{ phone: string }>(
     "/api/user/RegisterUser",
     null,
     false,
     successFunc,
+    false,
+    "auth",
   );
 
   const formHandler = useFormik({
@@ -81,8 +85,6 @@ const Register = () => {
         email: formHandler.values.email,
         country: country,
       };
-      console.log(data);
-      
       mutation(data as any);
     },
     validationSchema: registerSchema,

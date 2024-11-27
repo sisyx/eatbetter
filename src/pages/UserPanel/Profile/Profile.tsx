@@ -73,16 +73,7 @@ const Profile = () => {
             requestBody="email"
             regex={/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/}
             errorText="ایمیل نامعتبر است"
-          />
-          <Box
-            setValue={setGender}
-            value={gender}
-            type="radio"
-            multiple={["مرد", "زن"]}
-            options={["مرد", "زن"]}
-            requestBody="gender"
-            title={t("profile.gender")}
-          />
+          /> 
           <div>
             <div className="mt-4 flex items-center justify-between">
               <p>{t("profile.code")}</p>

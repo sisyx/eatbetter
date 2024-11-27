@@ -3,6 +3,7 @@ import { IoLanguage } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { authStore } from "../../../stores/auth";
 
 export default function index() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -10,7 +11,7 @@ export default function index() {
   const [language, setLanguage] = useState("fa");
 
   useEffect(() => {
-    i18n.changeLanguage(language); 
+    i18n.changeLanguage(language);
   }, [language]);
   useEffect(() => {
     const handleScroll = (): void => {
@@ -24,6 +25,8 @@ export default function index() {
     };
   }, []);
 
+  const { userData } = authStore((state) => state);
+
   return (
     <>
       <div
@@ -34,7 +37,7 @@ export default function index() {
           <img src="BLP-b.png" alt="logo" width={"80px"} />
         </div>
         <div className="max-lg:hidden">
-          <ul className="flex flex-row-reverse gap-5 xl:text-base text-sm">
+          <ul className="flex flex-row-reverse gap-5 text-sm xl:text-base">
             <Link
               to={""}
               className="rounded-md p-2 transition-all hover:text-main"
@@ -83,7 +86,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="absolute z-[999] top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
+              <div className="absolute top-[100%] z-[999] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
                 <ul className="flex flex-col gap-2 p-6 text-end">
                   <Link to={""} className="hover:text-mainHover">
                     {" "}
@@ -128,7 +131,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="absolute z-[999] top-[100%] hidden w-[650px] rounded-xl bg-main text-white group-hover:flex group-hover:justify-center">
+              <div className="absolute top-[100%] z-[999] hidden w-[650px] rounded-xl bg-main text-white group-hover:flex group-hover:justify-center">
                 <div className="border-r border-[#00000014] p-2">
                   <p className="text-end font-bold">{t("breakfast")}</p>
                   <ul className="flex flex-col gap-2 p-5 text-end">
@@ -208,7 +211,7 @@ export default function index() {
                   />
                 </svg>
               </Link>
-              <div className="z-[999] absolute top-[100%] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
+              <div className="absolute top-[100%] z-[999] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
                 <ul className="flex flex-col gap-2 p-5 text-end">
                   <Link to={""} className="hover:text-mainHover">
                     {" "}
@@ -298,11 +301,19 @@ export default function index() {
             <span>{t("headerlang")}</span>
             <IoLanguage />
           </button>
-          <Link to={""}>
-            <button className="rounded-xl bg-main p-2 text-center text-white transition-all xl:text-base text-sm hover:bg-mainHover">
-              {t("headerlogin")}
-            </button>
-          </Link>
+          {userData ? (
+            <Link to={"/userPanel/profile"}>
+              <button className="rounded-md bg-main  px-3 p-2 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
+                {userData.username}
+              </button>
+            </Link>
+          ) : (
+            <Link to={"/register"}>
+              <button className="rounded-md bg-main  px-3 p-2 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
+                {t("headerlogin")}
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </>

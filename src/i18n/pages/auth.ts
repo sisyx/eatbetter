@@ -5,7 +5,7 @@ const loginFa = {
     forgotPassword: "  فراموشی رمز عبور",
     password: "رمز عبور",
     submit:'تایید',
-    userName: "نام کاربری",
+    email: "ایمیل",
   },
 };
 
@@ -16,7 +16,7 @@ const loginEn = {
     forgotPassword: "Forgot password",
     password: "password",
     submit:'submit',
-    userName: "userName  ",
+    email: "email  ",
   },
 };
 

@@ -6,6 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ScrollToUp from "./utils/ScrollToUp";
 import { Toaster } from "./components/shadcn/ui/toaster";
+import Auth from "./utils/auth";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -16,6 +17,7 @@ const App: React.FC = () => {
   return (
     <>
       <ScrollToUp />
+      <Auth/>
       {router}
       <Toaster />
     </>

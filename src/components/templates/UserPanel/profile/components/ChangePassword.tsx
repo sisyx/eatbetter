@@ -100,7 +100,7 @@ const ChangePassword = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size={"sm"} className="my-5 block bg-gray-100 text-black">
+        <Button size={"sm"} className="mb-5 block mt-10 bg-gray-100 text-black">
         {t("profile.changePassword")}
         </Button>
       </DialogTrigger>
