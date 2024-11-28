@@ -24,7 +24,7 @@ export default Loader;
 export const ButtonLoader = ({ className }: { className?: string }) => {
   return (
     <svg
-      className={`${className ? className : null} h-full w-full`}
+      className={`${className ? className : null} h-6 w-full`}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 200 200"
     >

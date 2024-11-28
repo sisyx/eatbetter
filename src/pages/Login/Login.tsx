@@ -36,7 +36,7 @@ const Login = () => {
       });
       toast({
         variant: "success",
-        title: "با موفقیت ثبت نام شدید",
+        title: "Login Successfully",
       });
       setTimeout(() => {
         navigate("/userPanel/profile");
@@ -49,7 +49,7 @@ const Login = () => {
     } else {
       toast({
         variant: "danger",
-        title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+        title: "Sorry, please go through the steps again.",
       });
       // location.reload();
       // localStorage.clear();

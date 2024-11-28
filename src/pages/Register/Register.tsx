@@ -39,7 +39,7 @@ const Register = () => {
       });
       toast({
         variant: "success",
-        title: "با موفقیت ثبت نام شدید",
+        title: "Register Successfully",
       });
       setTimeout(() => {
         navigate("/userPanel/profile");
@@ -52,7 +52,7 @@ const Register = () => {
     } else {
       toast({
         variant: "danger",
-        title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+        title: "Sorry, please go through the steps again.",
       });
       // location.reload();
       // localStorage.clear();

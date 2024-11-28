@@ -35,7 +35,7 @@ export default Auth;
 // export const useLogoutHandler = () => {
 //   const { setUserData, setLogin } = authStore((state) => state);
 //   const queryClient = useQueryClient();
-//   const router = useRouter();
+//   const navigate = useNavigation();
 
 //   const logoutHandler = () => {
 //     swal({
@@ -45,8 +45,7 @@ export default Auth;
 //     }).then((res) => {
 //       if (res) {
 //         router.push("/");
-//         Cookies.remove("AccessToken");
-//         Cookies.remove("RefreshToken");
+//         Cookies.remove("token"); 
 //         setUserData(null);
 //         setLogin(false);
 //         queryClient.invalidateQueries({ queryKey: ["auth"] });

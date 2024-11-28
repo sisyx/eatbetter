@@ -94,7 +94,7 @@ const TwoStepBox: FC<BoxProps> = ({
   //       } else {
   //         toast({
   //           variant: "default",
-  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //           title: "Sorry, please go through the steps again.",
   //         });
   //       }
   //     } else {
@@ -124,7 +124,7 @@ const TwoStepBox: FC<BoxProps> = ({
   //       } else {
   //         toast({
   //           variant: "default",
-  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //           title: "Sorry, please go through the steps again.",
   //         });
   //       }
   //     }
@@ -139,7 +139,7 @@ const TwoStepBox: FC<BoxProps> = ({
   //       } else {
   //         toast({
   //           variant: "default",
-  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //           title: "Sorry, please go through the steps again.",
   //         });
   //       }
   //     } else {
@@ -169,7 +169,7 @@ const TwoStepBox: FC<BoxProps> = ({
   //       } else {
   //         toast({
   //           variant: "default",
-  //           title: "با عرض پوزش لطفا مجدد مراحل رو طی کنید",
+  //           title: "Sorry, please go through the steps again.",
   //         });
   //       }
   //     }

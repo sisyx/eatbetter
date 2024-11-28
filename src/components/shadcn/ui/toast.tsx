@@ -4,6 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 
 import { cn } from "../../../lib/utils";
+import { dir } from "console";
 
 const ToastProvider = ToastPrimitives.Provider;
 
@@ -17,6 +18,7 @@ const ToastViewport = React.forwardRef<
       "fixed top-0 z-[99999] flex max-h-screen w-full flex-col-reverse px-4 py-4 sm:left-0 sm:top-0 sm:flex-col md:max-w-[420px]",
       className,
     )}
+    dir='rtl'
     {...props}
   />
 ));
@@ -95,6 +97,7 @@ const ToastTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ToastPrimitives.Title
     ref={ref}
+    dir="ltr"
     className={cn("text-sm font-thin text-left pl-5", className)}
     {...props}
   />

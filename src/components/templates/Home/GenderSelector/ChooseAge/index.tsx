@@ -1,12 +1,14 @@
-import  { useState } from 'react'
+import { useState } from "react";
+import { bmiStore } from "../../../../../stores/bmi";
 
 export default function ChooseAge() {
-    const [age, setAge] = useState<number>(0);
-    return (
-        <div className="flex flex-col items-center justify-center gap-3 w-[150px] h-[150px] max-sm:w-[100%] bg-white shadow-xl rounded-lg">
-            <p className="bg-white">سن</p>
-            <div className="flex items-center space-x-4 bg-white">
-                <button
+  const { age, setAge } = bmiStore((state) => state);
+
+  return (
+    <div className="flex h-[130px] w-[150px] flex-col items-center justify-center gap-3 rounded-lg bg-white shadow-xl max-sm:w-[100%]">
+      <p className="bg-white">سن</p>
+      <div className="flex items-center space-x-4 bg-white px-3">
+        {/* <button
                     onClick={() => setAge(age > 1 ? age - 1 : age)}
                     className="p-2 rounded-full text-lg bg-main hover:bg-mainHover  transition-all"
                 >
@@ -18,8 +20,15 @@ export default function ChooseAge() {
                     className="p-2 rounded-full text-lg bg-main hover:bg-mainHover transition-all"
                 >
                     +
-                </button>
-            </div>
-        </div>
-    )
+                </button> */}
+        <input
+          type="number"
+          onChange={(e) => setAge(e.target.value)}
+          className="w-full border-b border-black py-2 outline-none"
+          placeholder="33"
+          value={age}
+        />
+      </div>
+    </div>
+  );
 }
