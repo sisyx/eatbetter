@@ -1,15 +1,32 @@
 import Container from "../../components/modules/Container/Container";
 import { Button } from "../../components/shadcn/ui/button";
- import { useFormik } from "formik";
+import { useFormik } from "formik";
 import { contactsSchema } from "../../validations/rules";
+import usePostData from "../../hooks/usePostData";
+import { useTranslation } from "react-i18next";
+import { ButtonLoader } from "../../components/modules/loader/Loader";
 
 const Contacts = () => {
   // const phoneRegExp = /((0?9)|(\+?989))\d{9}/g;
+  const { i18n } = useTranslation();
+
+  const { mutate: mutation, isPending } = usePostData<any>(
+    "/api/ContactMe/contactus",
+    i18n.language === "fa"
+      ? "پیام با موفقیت ارسال شد"
+      : "Message sent successfully",
+    false,
+  );
 
   const formHandler = useFormik({
-    initialValues: { name: "", phone: "", message: "" },
-    onSubmit: (_values, { resetForm }) => {
-      //   mutation(values);
+    initialValues: { name: "", email: "", message: "" },
+    onSubmit: (values, { resetForm }) => {
+      const data = {
+        message: values.message,
+        email: values.email,
+        fullName: values.name,
+      };
+      mutation(data);
       resetForm();
     },
     validationSchema: contactsSchema,
@@ -52,18 +69,20 @@ const Contacts = () => {
               </div>
 
               <input
-                name="phone"
-                value={formHandler.values.phone}
+                name="email"
+                value={formHandler.values.email}
                 onChange={formHandler.handleChange}
                 onBlur={formHandler.handleBlur}
                 type="text"
-                id="phone"
+                id="email"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="09332423121"
+                placeholder="test@gmail.com"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
-                {formHandler.errors.phone && formHandler.errors.phone}
+                {formHandler.errors.email &&
+                  formHandler.touched.email &&
+                  formHandler.errors.email}
               </span>
             </div>
 
@@ -89,7 +108,9 @@ const Contacts = () => {
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
-                {formHandler.errors.name && formHandler.errors.name}
+                {formHandler.errors.name &&
+                  formHandler.touched.name &&
+                  formHandler.errors.name}
               </span>
             </div>
 
@@ -114,7 +135,9 @@ const Contacts = () => {
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
-                {formHandler.errors.message && formHandler.errors.message}
+                {formHandler.errors.message &&
+                  formHandler.touched.message &&
+                  formHandler.errors.message}
               </span>
             </div>
 
@@ -123,7 +146,7 @@ const Contacts = () => {
               variant={"main"}
               className="mx-auto !block h-9 w-1/3 !rounded-md outline-none"
             >
-              ارسال
+            {isPending ? <ButtonLoader/> : "ارسال"}  
             </Button>
           </form>
         </div>

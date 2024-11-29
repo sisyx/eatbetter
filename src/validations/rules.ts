@@ -2,6 +2,23 @@ import * as Yup from "yup";
 
 const phoneRegExp = /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g;
 
+let cooperateSchema = Yup.object().shape({
+  message: Yup.string()
+    .min(10, "متن شما حداقل باید 10 حرف داشته باشد")
+    .max(200, "متن شما حداکثر باید 200 حرف داشته باشد")
+    .required("لطفا متنی بنویسید"),
+
+  phone: Yup.string()
+    .email("ایمیل معتبر نیست")
+    .matches(phoneRegExp, "شماره تماس معتبر نیست")
+    .required("لطفا شماره تماس خودتون رو وارد کنید"),
+
+  name: Yup.string()
+    .min(3, "اسم شما حداقل باید 3 حرف داشته باشد")
+    .max(12, "اسم شما حداکثر باید 12 حرف داشته باشد")
+    .required("لطفا اسم خودتون رو وارد کنید"),
+});
+
 let stockSchema = Yup.object().shape({
   bankName: Yup.string()
     .min(10, "اسم بانک شما حداقل باید 10 حرف داشته باشد")
@@ -24,12 +41,12 @@ let stockSchema = Yup.object().shape({
     .required("لطفا رمز عبور خودتون رو وارد کنید"),
 });
 
-let loginSchema = Yup.object().shape({ 
+let loginSchema = Yup.object().shape({
   email: Yup.string()
-  .email("ایمیل معتبر نیست")
-  .min(10, "ایمیل شما حداقل باید 10 حرف داشته باشد")
-  .max(30, "ایمیل شما حداکثر باید 30 حرف داشته باشد")
-  .required("لطفا ایمیل خودتون رو وارد کنید"),
+    .email("ایمیل معتبر نیست")
+    .min(10, "ایمیل شما حداقل باید 10 حرف داشته باشد")
+    .max(30, "ایمیل شما حداکثر باید 30 حرف داشته باشد")
+    .required("لطفا ایمیل خودتون رو وارد کنید"),
 
   password: Yup.string()
     .matches(
@@ -37,11 +54,10 @@ let loginSchema = Yup.object().shape({
       "رمز عبور شما با فرمت صحیحی وارد نشده است",
     )
     .required("لطفا رمز عبور خودتون رو وارد کنید"),
-
 });
 
 let registerSchema = Yup.object().shape({
-  phone: Yup.string() 
+  phone: Yup.string()
     .matches(phoneRegExp, "شماره تماس معتبر نیست")
     .required("لطفا شماره تماس خودتون رو وارد کنید"),
 
@@ -68,7 +84,6 @@ let registerSchema = Yup.object().shape({
       "رمز عبور و تکرار رمز عبور باید مشابه باشند",
     )
     .required("لطفا رمز عبور خودتون رو تایید کنید"),
- 
 });
 let contactsSchema = Yup.object().shape({
   message: Yup.string()
@@ -76,10 +91,16 @@ let contactsSchema = Yup.object().shape({
     .max(200, "متن شما حداکثر باید 200 حرف داشته باشد")
     .required("لطفا متنی بنویسید"),
 
-  phone: Yup.string()
-    .email("شماره تماس  معتبر نیست")
-    .matches(phoneRegExp, "شماره تماس معتبر نیست")
-    .required("لطفا شماره تماس خودتون رو وارد کنید"),
+  // phone: Yup.string()
+  //   .email("شماره تماس  معتبر نیست")
+  //   .matches(phoneRegExp, "شماره تماس معتبر نیست")
+  //   .required("لطفا شماره تماس خودتون رو وارد کنید"),
+
+  email: Yup.string()
+    .email("ایمیل معتبر نیست")
+    .min(10, "ایمیل شما حداقل باید 10 حرف داشته باشد")
+    .max(30, "ایمیل شما حداکثر باید 30 حرف داشته باشد")
+    .required("لطفا ایمیل خودتون رو وارد کنید"),
 
   name: Yup.string()
     .min(3, "اسم شما حداقل باید 3 حرف داشته باشد")
@@ -87,4 +108,10 @@ let contactsSchema = Yup.object().shape({
     .required("لطفا اسم خودتون رو وارد کنید"),
 });
 
-export { stockSchema, contactsSchema, registerSchema, loginSchema };
+export {
+  stockSchema,
+  contactsSchema,
+  registerSchema,
+  loginSchema,
+  cooperateSchema,
+};

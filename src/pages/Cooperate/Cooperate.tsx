@@ -1,36 +1,35 @@
 import Container from "../../components/modules/Container/Container";
-import { Button } from "../../components/shadcn/ui/button";
-import * as Yup from "yup";
+import { Button } from "../../components/shadcn/ui/button"; 
 import { useFormik } from "formik";
+import usePostData from "../../hooks/usePostData";
+import { useTranslation } from "react-i18next";
+import { ButtonLoader } from "../../components/modules/loader/Loader";
+import { cooperateSchema } from "../../validations/rules";
 
 const Cooperate = () => {
-  const phoneRegExp = /((0?9)|(\+?989))\d{9}/g;
-
-  let cooperateSchema = Yup.object().shape({
-    message: Yup.string()
-      .min(10, "متن شما حداقل باید 10 حرف داشته باشد")
-      .max(200, "متن شما حداکثر باید 200 حرف داشته باشد")
-      .required("لطفا متنی بنویسید"),
-
-    phone: Yup.string()
-      .email("ایمیل معتبر نیست")
-      .matches(phoneRegExp, "شماره تماس معتبر نیست")
-      .required("لطفا شماره تماس خودتون رو وارد کنید"),
-
-    name: Yup.string()
-      .min(3, "اسم شما حداقل باید 3 حرف داشته باشد")
-      .max(12, "اسم شما حداکثر باید 12 حرف داشته باشد")
-      .required("لطفا اسم خودتون رو وارد کنید"),
-  });
+  const { i18n } = useTranslation();
 
   const formHandler = useFormik({
     initialValues: { name: "", phone: "", message: "" },
-    onSubmit: (_values, { resetForm }) => {
-      //   mutation(values);
+    onSubmit: (values, { resetForm }) => {
+      const data = {
+        message: values.message,
+        phone: values.phone,
+        fullName: values.name,
+      };
+      mutation(data);
       resetForm();
     },
     validationSchema: cooperateSchema,
   });
+
+  const { mutate: mutation, isPending } = usePostData<any>(
+    "/api/WorkMeForm/collaboration",
+    i18n.language === "fa"
+      ? "درخواست با موفقیت ارسال شد"
+      : "Request sent successfully",
+    false,
+  );
   return (
     <Container>
       <div className="flex flex-col items-center px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!flex-row lg:!px-28">
@@ -157,7 +156,7 @@ const Cooperate = () => {
               variant={"main"}
               className="mx-auto !block h-9 w-1/3 !rounded-md outline-none"
             >
-              ارسال
+              {isPending ? <ButtonLoader /> : "ارسال"}
             </Button>
           </form>
         </div>
