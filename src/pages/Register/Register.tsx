@@ -76,7 +76,7 @@ const Register = () => {
       phone: "",
       confirmPassword: "",
     },
-    onSubmit: (values: formValues) => {
+    onSubmit: (_values: formValues) => {
       const data = {
         username: formHandler.values.userName,
         password: formHandler.values.password,

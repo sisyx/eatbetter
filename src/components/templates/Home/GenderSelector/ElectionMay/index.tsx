@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { bmiStore } from "../../../../../stores/bmi";
+ import { bmiStore } from "../../../../../stores/bmi";
 
 
 export default function ElectionMay() { 

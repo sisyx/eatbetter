@@ -17,17 +17,15 @@ interface formValues {
   password: string;
 }
 
-
-
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { i18n, t } = useTranslation();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const successFunc = (data: {
     statusCode: number;
     message: string;
-    token: string; 
+    token: string;
   }) => {
     if (data.statusCode === 200) {
       Cookies.set("eatBetterToken", data.token, {
@@ -68,11 +66,11 @@ const Login = () => {
       email: "",
       password: "",
     },
-    onSubmit: (values: formValues) => {
+    onSubmit: (_values: formValues) => {
       const data = {
         email: formHandler.values.email,
         password: formHandler.values.password,
-      }; 
+      };
       mutation(data as any);
     },
     validationSchema: loginSchema,

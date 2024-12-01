@@ -6,15 +6,13 @@ import ChooseAge from "./ChooseAge";
 import { bmiStore } from "../../../../stores/bmi";
 import { toast } from "../../../../hooks/use-toast";
 import usePostData from "../../../../hooks/usePostData";
-import { ButtonLoader } from "../../../modules/loader/Loader";
-import { useTranslation } from "react-i18next";
+import { ButtonLoader } from "../../../modules/loader/Loader"; 
 import BmiModal from "./Modal";
 
 const GenderSelector = () => {
   const [gender, setGender] = useState<"Masculine" | "Feminine">("Masculine");
   const { height, age, weight } = bmiStore((state) => state);
-  const [showBmiModal, setShowBmiModal] = useState(false);
-  const { i18n } = useTranslation();
+  const [showBmiModal, setShowBmiModal] = useState(false); 
 
   const [bmiData, setBmiData] = useState<
     | {
