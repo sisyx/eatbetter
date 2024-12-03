@@ -19,9 +19,6 @@ const Home: React.FC = () => {
     };
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
   return (
     <Container>
       <div className="px-28 pt-14 max-sm:px-5 max-sm:pt-1">
@@ -222,25 +219,6 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-        <button
-          onClick={scrollToTop}
-          className={`rounded-full bg-mainHover p-4 max-sm:p-3 ${isScrolled ? "fixed bottom-5 right-5 z-50" : ""}`}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-5 text-white"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18"
-            />
-          </svg>
-        </button>
         <button
           className={`rounded-full bg-mainHover p-4 max-sm:p-3 ${isScrolled ? "fixed bottom-4 left-5 z-50" : ""}`}
         >
