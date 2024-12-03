@@ -19,13 +19,17 @@ const Contacts = () => {
   );
 
   const formHandler = useFormik({
-    initialValues: { name: "", email: "", message: "" },
+    initialValues: { name: "", email: "", message: "", subject: "", phone: "" },
     onSubmit: (values, { resetForm }) => {
       const data = {
         message: values.message,
         email: values.email,
         fullName: values.name,
+        subject: values.subject,
+        phoneNumber: values.phone,
       };
+      console.log(data);
+      
       mutation(data);
       resetForm();
     },
@@ -61,6 +65,34 @@ const Contacts = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
+                  نام و نام خانوادگی شما
+                </label>
+                <div className="h-2 w-2 rounded-xl bg-main">
+                  <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
+                </div>
+              </div>
+              <input
+                name="name"
+                value={formHandler.values.name}
+                onChange={formHandler.handleChange}
+                onBlur={formHandler.handleBlur}
+                type="text"
+                id="name"
+                className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
+                placeholder="شاهین"
+                required
+              />
+              <span className="mx-auto mt-2 block text-center text-xs text-red-600">
+                {formHandler.errors.name &&
+                  formHandler.touched.name &&
+                  formHandler.errors.name}
+              </span>
+            </div>
+
+            <div className="mb-5">
+              <div className="flex flex-row-reverse items-baseline justify-end gap-2">
+                <label className="mb-2 block font-medium text-gray-900 dark:text-white">
+                  {" "}
                   ایمیل شما
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
@@ -90,27 +122,54 @@ const Contacts = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
-                  نام شما
+                  شماره تماس
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
                 </div>
               </div>
               <input
-                name="name"
-                value={formHandler.values.name}
+                name="phone"
+                value={formHandler.values.phone}
                 onChange={formHandler.handleChange}
                 onBlur={formHandler.handleBlur}
                 type="text"
-                id="name"
+                id="phone"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="شاهین"
+                placeholder="09046417084"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
-                {formHandler.errors.name &&
-                  formHandler.touched.name &&
-                  formHandler.errors.name}
+                {formHandler.errors.phone &&
+                  formHandler.touched.phone &&
+                  formHandler.errors.phone}
+              </span>
+            </div>
+
+            <div className="mb-5">
+              <div className="flex flex-row-reverse items-baseline justify-end gap-2">
+                <label className="mb-2 block font-medium text-gray-900 dark:text-white">
+                  موضوع
+                </label>
+                <div className="h-2 w-2 rounded-xl bg-main">
+                  <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
+                </div>
+              </div>
+              <input
+                name="subject"
+                value={formHandler.values.subject}
+                onChange={formHandler.handleChange}
+                onBlur={formHandler.handleBlur}
+                type="text"
+                id="text"
+                className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
+                placeholder="مالیات"
+                required
+              />
+              <span className="mx-auto mt-2 block text-center text-xs text-red-600">
+                {formHandler.errors.subject &&
+                  formHandler.touched.subject &&
+                  formHandler.errors.subject}
               </span>
             </div>
 
@@ -144,9 +203,9 @@ const Contacts = () => {
             <Button
               type="submit"
               variant={"main"}
-              className="mx-auto !block h-9 w-1/3 !rounded-md outline-none"
+              className="mx-auto  text-center justify-center !flex h-9 w-1/3 !rounded-md outline-none"
             >
-            {isPending ? <ButtonLoader/> : "ارسال"}  
+              {isPending ? <ButtonLoader /> : "ارسال"}
             </Button>
           </form>
         </div>
@@ -156,3 +215,7 @@ const Contacts = () => {
 };
 
 export default Contacts;
+
+
+
+ 

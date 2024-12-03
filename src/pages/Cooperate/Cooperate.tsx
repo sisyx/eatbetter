@@ -10,14 +10,16 @@ const Cooperate = () => {
   const { i18n } = useTranslation();
 
   const formHandler = useFormik({
-    initialValues: { name: "", phone: "", message: "" },
+    initialValues: { name: "", phone: "",email: "", message: "",workExperience:"" },
     onSubmit: (values, { resetForm }) => {
       const data = {
         message: values.message,
-        phone: values.phone,
+        phoneNumber: values.phone,
+        email: values.email,
         fullName: values.name,
+        workExperience: values.workExperience,
       };
-      mutation(data);
+      mutation(data); 
       resetForm();
     },
     validationSchema: cooperateSchema,
@@ -85,18 +87,18 @@ const Cooperate = () => {
               </div>
 
               <input
-                name="phone"
-                value={formHandler.values.phone}
+                name="email"
+                value={formHandler.values.email}
                 onChange={formHandler.handleChange}
                 onBlur={formHandler.handleBlur}
-                type="text"
-                id="phone"
+                type="email"
+                id="email"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
                 placeholder="09332423121"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
-                {formHandler.errors.phone && formHandler.errors.phone}
+                {formHandler.errors.email && formHandler.errors.email}
               </span>
             </div>
 
@@ -125,7 +127,58 @@ const Cooperate = () => {
                 {formHandler.errors.name && formHandler.errors.name}
               </span>
             </div>
+            <div className="mb-5">
+              <div className="flex flex-row-reverse items-baseline justify-end gap-2">
+                <label className="mb-2 block font-medium text-gray-900 dark:text-white">
+                  {" "}
+                  شماره تماس
+                </label>
+                <div className="h-2 w-2 rounded-xl bg-main">
+                  <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
+                </div>
+              </div>
+              <input
+                name="phone"
+                value={formHandler.values.phone}
+                onChange={formHandler.handleChange}
+                onBlur={formHandler.handleBlur}
+                type="text"
+                id="phone"
+                className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
+                placeholder="09046417084"
+                required
+              />
+              <span className="mx-auto mt-2 block text-center text-xs text-red-600">
+                {formHandler.errors.phone &&
+                  formHandler.touched.phone &&
+                  formHandler.errors.phone}
+              </span>
+            </div>
 
+            <div className="mb-5">
+              <div className="flex flex-row-reverse items-baseline justify-end gap-2">
+                <label className="mb-2 block font-medium text-gray-900 dark:text-white">
+                  میزان تجربه کاری
+                </label>
+                <div className="h-2 w-2 rounded-xl bg-main">
+                  <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
+                </div>
+              </div>
+              <input
+                name="workExperience"
+                value={formHandler.values.workExperience}
+                onChange={formHandler.handleChange}
+                onBlur={formHandler.handleBlur}
+                type="text"
+                id="text"
+                className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
+                placeholder="2 سال"
+                required
+              />
+              <span className="mx-auto mt-2 block text-center text-xs text-red-600">
+                {formHandler.errors.workExperience && formHandler.errors.workExperience}
+              </span>
+            </div>
             <div className="mb-5">
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
@@ -154,7 +207,7 @@ const Cooperate = () => {
             <Button
               type="submit"
               variant={"main"}
-              className="mx-auto !block h-9 w-1/3 !rounded-md outline-none"
+              className="mx-auto !flex justify-center h-9 w-1/3 !rounded-md outline-none"
             >
               {isPending ? <ButtonLoader /> : "ارسال"}
             </Button>
