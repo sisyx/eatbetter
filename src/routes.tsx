@@ -23,6 +23,11 @@ import Cooking from "./pages/Cooking/Cooking";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 
+// admin panel imports
+import Users from './components/templates/AdminPanel/Users/Users';
+import { Packages } from "./components/templates/AdminPanel/Packages/Packages";
+
+
 const userPanelRoutes = [
   {
     path: "/userpanel/profile",
@@ -83,7 +88,18 @@ const userPanelRoutes = [
   },
 ];
 
-const routes = [
+const adminPanelRoutes = [
+  {
+    path: "/adminPanel/users",
+    element: <Users />,
+  },
+  {
+    path: '/adminPanel/packages',
+    element: <Packages />
+  }
+]
+
+const otherRoutes = [
   {
     path: "/",
     element: <Home />,
@@ -124,7 +140,12 @@ const routes = [
     path: "/register",
     element: <Register />,
   },
-  ...userPanelRoutes,
 ];
+
+const routes = [
+  ...adminPanelRoutes,
+  ...userPanelRoutes,
+  ...otherRoutes,
+]
 
 export default routes;
