@@ -26,7 +26,9 @@ import Register from "./pages/Register/Register";
 // admin panel imports
 import Users from './components/templates/AdminPanel/Users/Users';
 import { Packages } from "./components/templates/AdminPanel/Packages/Packages";
-
+import AdminContacts from './components/templates/AdminPanel/ContactUs/Contacts';
+import CooperateCardsList from "./components/templates/AdminPanel/Cooperate/CooperateCardsList";
+import { CharityCardsList } from "./components/templates/AdminPanel/CharityWallet/CharityCardsList";
 
 const userPanelRoutes = [
   {
@@ -96,6 +98,18 @@ const adminPanelRoutes = [
   {
     path: '/adminPanel/packages',
     element: <Packages />
+  },
+  {
+    path: "/adminPanel/contact",
+    element: <AdminContacts />
+  },
+  {
+    path: "/adminPanel/cooperate",
+    element: <CooperateCardsList />
+  },
+  {
+    path: "/adminPanel/charityWallet",
+    element: <CharityCardsList />
   }
 ]
 

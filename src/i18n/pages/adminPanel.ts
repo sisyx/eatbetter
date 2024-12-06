@@ -6,6 +6,9 @@ const adminPanelFa = {
     adminsideBar: {
       users: "کابران سایت",
       packages: "مدیریت پکیج ها",
+      contact: "پیام های مشتریان",
+      cooperate: "همکاری",
+      charity: "حساب خیریه",
       logout: "خروج",
       home: "صفحه اصلی",
       profile: "حساب کاربری",
@@ -18,7 +21,19 @@ const adminPanelFa = {
       health: "کلینیک مدیریت وزن و سلامتی",
       sleep: "خواب و روان",
     },
-  
+    adminPackages: {
+      title: "پکیج ها"
+    },
+    adminContact: {
+      title: "ارتباط با کاربرهای سایت",
+      user: "کاربر"
+    },
+    adminCooperate: {
+      title: "همکاری مشتریان",
+    },
+    adminCharityWallet: {
+      title: "مدیریت حساب خیریه",
+    },
     adminincome: {
       title: "مقدار درآمد و تعداد دعوت ها",
       optionOne: "درامد",
@@ -156,6 +171,9 @@ const adminPanelFa = {
     adminsideBar: {
       users: "users",
       packages: "Packages Management",
+      contact: "Users Messages",
+      cooperate: "Cooperate",
+      charity: "Charity Wallet",
       logout: "logout",
       home: "home",
       profile: "profile",
@@ -168,7 +186,16 @@ const adminPanelFa = {
       health: "weight & health management",
       sleep: "sleep & psyche",
     },
-  
+    adminPackages: {
+      title: "Packages"
+    },
+    adminContact: {
+      title: "Connect to Site Users",
+      user: "user"
+    },
+    adminCooperate: {
+      title: "Users Collaborations",
+    },
     adminincome: {
       title: "Amount of income and number of invitations",
       optionOne: "income",

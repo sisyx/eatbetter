@@ -15,4 +15,11 @@ type PackageProps = {
     reloadFn: Function,
 };
 
-export type { Package, PackageProps}
+type XXXType = {
+    value: "name" | "currency" | "price" | "maxDiet",
+    title: string,
+    placeholder: string,
+    type: "text" | "number",
+}
+
+export type { Package, PackageProps, XXXType}

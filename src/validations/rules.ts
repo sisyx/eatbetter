@@ -134,6 +134,27 @@ let packageSchema = Yup.object().shape({
     .required("لطفا قیمت پکیج مورد نظر رو وارد کنید"),
 })
 
+let CharityCardSchema = Yup.object().shape({
+  accountNumber: Yup.string()
+    .length(16, "لطفا شماره کارت را به درستی وارد کنید")
+    .required("لطفا شماره کارت را وارد کنید"),
+
+  iban: Yup.string()
+    .required("لطفا iban رو وارد کنید"),
+
+    bankName: Yup.string()
+    .required("لطفا نام بانک را وارد کنید"),
+
+  fullName: Yup.string()
+    .min(4, "لطفا نام طولانی تری انتخاب کنید")
+    .max(50, "لطفا نام کوتاه تری انتخاب کنید")
+    .required("لطفا نام خود را وارد کنید"),
+    
+  balance: Yup.number()
+    .min(0)
+    .required("لطفا موجودی خود را وارد کنید"),
+})
+
 export {
   stockSchema,
   contactsSchema,
@@ -141,4 +162,5 @@ export {
   loginSchema,
   cooperateSchema,
   packageSchema,
+  CharityCardSchema,
 };
