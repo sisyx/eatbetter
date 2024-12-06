@@ -118,10 +118,27 @@ let contactsSchema = Yup.object().shape({
     .required("لطفا موضوع خودتون رو وارد کنید"),
 });
 
+let packageSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(4, "عنوان شما حداقل باید 10 حرف داشته باشد")
+    .max(20, "عنوان شما حداکثر باید 200 حرف داشته باشد")
+    .required("لطفا متنی بنویسید"),
+
+  currency: Yup.string()
+    .required("لطفا نرخ ارز رو وارد کنید"),
+
+  maxDiet: Yup.number()
+    .required("لطفا حداکثر رژیم مورد نظر را وارد کنید"),
+
+  price: Yup.number()
+    .required("لطفا قیمت پکیج مورد نظر رو وارد کنید"),
+})
+
 export {
   stockSchema,
   contactsSchema,
   registerSchema,
   loginSchema,
   cooperateSchema,
+  packageSchema,
 };

@@ -1,9 +1,4 @@
-import { GoPackage } from "react-icons/go";
-import { PackageProps } from "./types";
-import { PiCurrencyCircleDollarFill } from "react-icons/pi";
-import { SiIfood } from "react-icons/si";
-import { FaHamburger, FaPen } from "react-icons/fa";
-import { formatNumberWithCommas } from "../../../../utils/numbers";
+import { MdAdd } from "react-icons/md";
 import {
   Dialog,
   DialogContent,
@@ -62,8 +57,8 @@ const xxx: XXXType[] = [
     },
 ]
 
-const CreatePackage = (props: PackageProps) => {
-    const { id, name, currency, maxDiet, price, reloadFn } = props;
+const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
+    const navigate = useNavigate();
 
     const successFunc = (data: any) => {
         console.log(data);
@@ -75,18 +70,18 @@ const CreatePackage = (props: PackageProps) => {
     };
 
     const { mutate: mutation, isPending } = usePostData(
-        `/api/Package/${id}`,
+        "/api/Package",
         null,
-        true,
+        false,
         successFunc,
       );
 
     const formHandler = useFormik({
         initialValues: {
-          name,
-          currency,
-          maxDiet,
-          price,
+          name: "",
+          currency: "",
+          maxDiet: NaN,
+          price: NaN,
         },
         onSubmit: (_values: formValues) => {
           const data = {
@@ -95,6 +90,7 @@ const CreatePackage = (props: PackageProps) => {
             maxDiet: formHandler.values.maxDiet,
             price: formHandler.values.price,
           };
+        //   console.log(data)
           mutation(data as any);
         },
         validationSchema: packageSchema,
@@ -103,45 +99,15 @@ const CreatePackage = (props: PackageProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <div data-aos="fade-up" className="group relative flex flex-col gap-3 items-center justify-center aspect-video rounded-md border-2 bg-main text-white bg-opacity-90 hover:bg-opacity-100 cursor-pointer transition-all duration-100">
-            <span className="absolute bottom-0 translate-y-1/3 rounded-full bg-black p-2 text-3xl">
-                <SiIfood />
-            </span>
-            <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-2xl bg-black opacity-0 group-hover:opacity-60 transition-all duration-150">
-                <FaPen />
-            </span>
-            <span className="flex items-center gap-1 text-2xl font-extrabold">
-                <span className="rounded-full bg-gray-700 text-white p-1">
-                    <GoPackage />
-                </span>
-                {name}
-            </span>
-            <div className="flex flex-col justify-center gap-2">
-                <span className="flex items-center gap-1 text-xl">
-                    <span className="rounded-full bg-white text-gray-700 p-1">
-                        <PiCurrencyCircleDollarFill className="text-gray-700" />
-                    </span>
-                    {currency}
-                </span>
-                <span className="flex items-center gap-1 text-xl">
-                    <span className="rounded-full bg-white text-gray-700 p-1">
-                        <FaHamburger className="text-gray-700" />
-                    </span>
-                    {maxDiet.toString()}
-                </span>
-                <span className="flex items-center gap-1 text-xl">
-                    <span className="rounded-full bg-white text-gray-700 p-1">
-                        <PiCurrencyCircleDollarFill className="text-gray-700" />
-                    </span>
-                    {formatNumberWithCommas(price)}
-                </span>
-            </div>
+        <div className="group relative flex flex-col gap-3 items-center justify-center aspect-video rounded-md border-2 border-main text-main text-2xl font-extrabold hover:text-mainHover hover:border-mainHover cursor-pointer transition-all duration-100">
+            <MdAdd className="text-4xl" />
+            <span>ایجاد پکیج جدید</span>
         </div>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2 py-3">
-            <h5>ویرایش</h5>
+            <h5>ایجاد پکیج جدید</h5>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>

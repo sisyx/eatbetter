@@ -2,37 +2,38 @@ import Layout from '../../../../Layouts/AdminLayout';
 import { Package as PackageType } from "./types";
 import Package from "./Package";
 import { GoPackage } from "react-icons/go";
-
-const tmpPackages: PackageType[] = [
-    {
-        name: "پکیج پایه",
-        currency: "USD",
-        maxDiet: 5000,
-        price: 499000
-    },
-    {
-        name: "پکیج نقره ای",
-        currency: "USD",
-        maxDiet: 10000,
-        price: 990000
-    },
-    {
-        name: "پکیج برنزی",
-        currency: "USD",
-        maxDiet: 150000,
-        price: 1990000
-    },
-    {
-        name: "پکیج طلایی",
-        currency: "USD",
-        maxDiet: 20000,
-        price: 2990000
-    },
-]
-
+import useGetData from '../../../../hooks/useGetData';
+import { useState } from 'react';
+import Cookies from 'js-cookie';
+import { CircleLoader } from '../../../modules/loader/CircleLoader';
+import CreatePackage from './CreatePackage';
+const apiUrl = import.meta.env.VITE_API_URL
 
 export const Packages = () => {
+    const [reload, setReload] = useState<number>(1);
 
+    function reloadFn() {
+        setReload(cur => cur+1);
+    }
+
+    async function getPackages() {
+        const eatBetterToken = Cookies.get("eatBetterToken");
+        try {
+            const req = await fetch(`${apiUrl}/api/Package/GetAll`, {
+                headers: {
+                    Authorization: `Bearer ${eatBetterToken}`,
+                    "Content-Type": "application/json",
+                }
+            });
+            if (!req.ok) throw new Error(req.statusText);
+            const res = await req.json();
+            return res.packages;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const {data: packages, isError: error, isLoading: loading } = useGetData(["packages", reload], getPackages);
 
     return (
         <Layout>
@@ -44,7 +45,14 @@ export const Packages = () => {
                 <hr />
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3 gap-y-8">
                     {
-                        tmpPackages.map((xpackage) => <Package name={xpackage.name} currency={xpackage.currency} price={xpackage.price} maxDiet={xpackage.maxDiet} />)
+                        error ? <div>مشکلی در بارگیری پیش آمده</div>
+                        : loading ? <CircleLoader /> :
+                        packages.length ? 
+                        <>
+                            {packages.map((xpackage: PackageType) => <Package reloadFn={reloadFn} name={xpackage.name} currency={xpackage.currency} price={xpackage.price} maxDiet={xpackage.maxDiet} id={xpackage.id} />) }
+                            <CreatePackage reloadFn={reloadFn} />
+                        </>
+                        : ""
                     }
                 </div>
             </div>
