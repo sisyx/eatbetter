@@ -8,7 +8,7 @@ export default function ElectionMay() {
 
 
     return (
-        <div className="mb-0 w-[315px] ">
+        <div className="mb-0 sm:w-[315px] w-full">
             <p className="mb-2">{t("genderSelector.height")}</p>
             <input
                 type="range"

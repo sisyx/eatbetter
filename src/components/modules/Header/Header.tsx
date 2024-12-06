@@ -41,11 +41,11 @@ export default function index() {
         style={{ animation: isScrolled ? " slideDown 0.35s ease-out" : "none" }}
         className={`flex w-full items-center justify-between px-4 py-5 sm:!px-4 xl:!px-24 ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
       >
-        <div>
+        <div className="w-[140px]">
           <img src="BLP-b.png" alt="logo" width={"80px"} />
         </div>
         <div className="max-lg:hidden">
-          <ul className="flex flex-row-reverse gap-5 text-sm xl:text-base">
+          <ul className="flex flex-row-reverse gap-3 xl:gap-5 text-sm xl:text-base">
             <Link
               to={"/"}
               className="rounded-md p-2 transition-all hover:text-main"
@@ -253,7 +253,7 @@ export default function index() {
         </div>
 
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger className="lg:hidden">
             <svg
               className="relative size-8 lg:hidden"
               xmlns="http://www.w3.org/2000/svg"

@@ -10,7 +10,7 @@ export default function DietsBtn() {
   const { i18n } = useTranslation();
 
   return (
-    <div className="ite mt-48 flex flex-col gap-10" ref={refBtns}>
+    <div className="ite mt-48 sm:px-28 px-4 flex flex-col gap-10" ref={refBtns}>
       <Title
         className={`${i18n.language === "fa" ? "ml-auto" : "mr-auto"} `}
         title={i18n.language === "fa" ? " رژیم ها" : "Diets"}

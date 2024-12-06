@@ -87,30 +87,30 @@ const GenderSelector = () => {
   };
 
   return (
-    <div
-      dir={i18n.language === "fa" ? "ltr" : "rtl"}
-      className="mt-28 flex w-[100%] items-center justify-end gap-40 max-lg:flex-col-reverse"
-    >
-      <div className={`${i18n.language === "fa" ? "-left-[25%] max-sm:-left-[20%]" : "-right-[25%] max-sm:-right-[20%]"} absolute`}>
+    <div className="mt-10 flex w-[100%] items-center justify-between max-lg:flex-col-reverse sm:pl-[18rem] sm:pr-6 xl:mt-28 xl:pr-28">
+      <div
+        className={`"xl:-left-[400px] absolute -left-[320px] hidden max-sm:-left-[20%] sm:block`}
+      >
         <img
           src="Pngtree-food.png"
           alt="pngtree"
-          className="w-[630px] max-lg:w-[350px] max-sm:hidden"
+          className="w-[600px] max-lg:w-[550px]"
         />
       </div>
       <div className="flex flex-col items-center justify-center gap-5">
-        <div className="w-[450px] text-[30px] font-bold max-sm:w-[250px] max-sm:text-[15px]">
+        <div className="w-[450px] py-6 text-center text-[30px] font-bold max-sm:w-[250px] max-sm:text-[15px] sm:py-0">
           <ReactTyped
             strings={[t("genderSelector.typed")]}
             typeSpeed={40}
             backSpeed={40}
             loop
+            className="text-base sm:text-2xl xl:text-3xl"
           />
         </div>
         <div>
           <button
             onClick={bmiCheckHandler}
-            className="w-[300px] rounded-lg bg-main p-3 text-white transition-all hover:bg-mainHover"
+            className="w-[200px] rounded-lg bg-main p-3 text-white transition-all hover:bg-mainHover xl:w-[300px]"
           >
             {isPending ? <ButtonLoader /> : t("genderSelector.calculate")}
           </button>
@@ -147,11 +147,15 @@ const GenderSelector = () => {
                 {i18n.language === "fa" ? "مرد" : "Man"}
               </button>
             </div>
-            <ChooseAge />
+            <ChooseAge className={"hidden xl:flex"} />
+          </div>
+          <div className="flex gap-3 xl:hidden">
+            <ChooseAge className="flex" />
+            <SelectWeight className="flex" />
           </div>
           <div className="flex flex-wrap items-center gap-6">
             <ElectionMay />
-            <SelectWeight />
+            <SelectWeight className={"hidden xl:flex"} />
           </div>
         </div>
       </div>
