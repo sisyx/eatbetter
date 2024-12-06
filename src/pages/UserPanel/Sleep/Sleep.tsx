@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 const Sleep = () => {
   const { i18n, t } = useTranslation();
 
-  return (
+  return ( 
     <Layout>
       <div>
         <Title title={t("sleep.titleOne")} />

@@ -11,6 +11,7 @@ const headerEn = {
   diets: "Diets",
   sleep_soul_mental: "Sleep & Soul",
   exercises: "Exercises",
+  logout:"logout"
 };
 const headerFa = {
   headerlogin: "ورود به حساب",
@@ -25,6 +26,7 @@ const headerFa = {
   diets: "رژیم ها",
   sleep_soul_mental: "خواب و روح و روان",
   exercises: "ورزش ها",
+  logout:"خروج"
 };
 
 export { headerFa, headerEn };

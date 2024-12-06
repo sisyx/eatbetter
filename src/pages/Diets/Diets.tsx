@@ -2,6 +2,7 @@ import Container from "../../components/modules/Container/Container";
 import Card from "../../components/templates/Diet/Card";
 import { diets } from "../../utils/data";
 import Sliders from "../../components/templates/Diet/Sliders";
+import Modal from "../../components/templates/Diet/questionModal";
 
 const Diets = () => {
   return (
@@ -30,7 +31,7 @@ const Diets = () => {
               با زبانی ساده و در عین حال علمی و حرفه‌ای، تمام جزئیات را توضیح
               داده‌ایم تا پس از ۲۱ روز نه تنها به راحتی رژیم را ادامه دهید، بلکه
               بتوانید از منوی متنوع دوره نیز مجدداً استفاده کنید.
-            </p> 
+            </p>
             <img
               className="hidden w-1/2 sm:!block"
               data-aos="fade-right"
@@ -39,13 +40,13 @@ const Diets = () => {
             />
           </div>
 
-          <div className="flex items-center sm:flex-row flex-col">
+          <div className="flex flex-col items-center sm:flex-row">
             <img
               data-aos="fade-right"
               className="w-1/2"
               src="/images/k9d7314g4G4v3TI76G-unscreen.gif"
               alt=""
-            /> 
+            />
             <p className="sm:leading-9">
               تمام مواد غذایی مجاز و غیرمجاز به وضوح ذکر شده‌اند و همچنین مشخص
               کرده‌ایم که این رژیم برای چه افرادی مناسب نیست. به همراه رژیم،
@@ -66,8 +67,26 @@ const Diets = () => {
             </p>
           </div>
         </div>
+
+        <div>
+          <div className="mt-5 flex items-center justify-end gap-2 text-2xl font-bold">
+            <h5 className="max-sm:text-xl"> رژیم اختصاصی خودت رو دریافت کن</h5>
+
+            <div className="h-2 w-2 rounded-xl bg-main">
+              <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
+            </div>
+          </div>
+          <div className="mb-5 mt-8" dir="rtl">
+            <p>
+              در صورتی که پکیج خریداری کرده باشید، به راحتی میتوانید با پر کردن
+              چند فیلد ساده رژیم مخصوص و متناسب با ویژگی های خودتون دریافت کنید.
+            </p>
+            <Modal />
+          </div>
+        </div>
+
         <div className="mt-5 flex items-center justify-end gap-2 text-2xl font-bold">
-          <h5 className="max-sm:text-xl"> انواع رژیم ها </h5>
+          <h5 className="max-sm:text-xl"> انواع رژیم های آماده </h5>
           <div className="h-2 w-2 rounded-xl bg-main">
             <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
           </div>

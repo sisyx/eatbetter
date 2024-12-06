@@ -124,7 +124,7 @@ const userPanelFa = {
     textSeven:
       "تنظیم ساعت خواب و بیداری خودتون رو شروع کنید و با صبح بخیر های گرم و شب بخیر های آرام از سایت ما لذت ببرید!",
     sleepStartHour: "ساعت خواب:",
-    sleepEndHour: "ساعت بیدار شدن:",
+    sleepEndHour: "ساعت بیداری  :",
     submit: "ثبت",
   },
   notification:{

@@ -22,6 +22,7 @@ import Sleep from "./pages/Sleep/Sleep";
 import Cooking from "./pages/Cooking/Cooking";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import Packages from "./pages/Packages/Packages";
 
 const userPanelRoutes = [
   {
@@ -115,6 +116,10 @@ const routes = [
   {
     path: "/cooking",
     element: <Cooking />,
+  },
+  {
+    path: "/packages",
+    element: <Packages />,
   },
   {
     path: "/login",

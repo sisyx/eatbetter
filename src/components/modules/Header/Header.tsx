@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { authStore } from "../../../stores/auth";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../../shadcn/ui/sheet";
 
 export default function index() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -30,6 +37,7 @@ export default function index() {
   return (
     <>
       <div
+        dir={i18n.language === "fa" ? "ltr" : "rtl"}
         style={{ animation: isScrolled ? " slideDown 0.35s ease-out" : "none" }}
         className={`flex w-full items-center justify-between px-4 py-5 sm:!px-4 xl:!px-24 ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
       >
@@ -39,34 +47,41 @@ export default function index() {
         <div className="max-lg:hidden">
           <ul className="flex flex-row-reverse gap-5 text-sm xl:text-base">
             <Link
-              to={""}
+              to={"/"}
               className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("hederMainpage")}</li>
             </Link>
             <Link
-              to={""}
+              to={"/blog"}
               className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("blog")}</li>
             </Link>
             <Link
-              to={""}
+              to={"/diets"}
               className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("diets")}</li>
             </Link>
             <Link
-              to={""}
+              to={"/sleep"}
               className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
               <li>{t("sleep_soul_mental")}</li>
             </Link>
-            <div className="group relative flex transition-all">
+            <Link
+              to={"/training"}
+              className="rounded-md p-2 transition-all hover:text-main"
+            >
+              {" "}
+              <li> {t("exercises")}</li>
+            </Link>
+            {/* <div className="group relative flex transition-all">
               <Link to={""} className="group flex items-center justify-center">
                 <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("exercises")}
@@ -110,9 +125,12 @@ export default function index() {
                   </Link>
                 </ul>
               </div>
-            </div>
+            </div> */}
             <div className="group relative flex transition-all">
-              <Link to={""} className="group flex items-center justify-center">
+              <Link
+                to={"/cooking"}
+                className="group flex items-center justify-center"
+              >
                 <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("cookingInstruction")}
                 </li>
@@ -192,7 +210,10 @@ export default function index() {
               </div>
             </div>
             <div className="group relative flex transition-all">
-              <Link to={""} className="group flex items-center justify-center">
+              <Link
+                to={"/contacts"}
+                className="group flex items-center justify-center"
+              >
                 <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("constactus")}
                 </li>
@@ -213,15 +234,15 @@ export default function index() {
               </Link>
               <div className="absolute top-[100%] z-[999] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
                 <ul className="flex flex-col gap-2 p-5 text-end">
-                  <Link to={""} className="hover:text-mainHover">
+                  <Link to={"/about"} className="hover:text-mainHover">
                     {" "}
                     <li>{t("aboutus")}</li>
                   </Link>
-                  <Link to={""} className="hover:text-mainHover">
+                  <Link to={"/contacts"} className="hover:text-mainHover">
                     {" "}
                     <li>{t("constactus")}</li>
                   </Link>
-                  <Link to={""} className="hover:text-mainHover">
+                  <Link to={"/cooperate"} className="hover:text-mainHover">
                     {" "}
                     <li>{t("workwithus")}</li>
                   </Link>
@@ -230,69 +251,132 @@ export default function index() {
             </div>
           </ul>
         </div>
-        <div className="relative lg:hidden">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="group size-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-          <div className="absolute -right-10 top-[100%] hidden w-screen rounded-xl bg-main text-white group-hover:flex">
-            <ul className="flex w-screen flex-col gap-2 p-6 text-center">
+
+        <Sheet>
+          <SheetTrigger>
+            <svg
+              className="relative size-8 lg:hidden"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </SheetTrigger>
+          <SheetContent className="!pt-4">
+            <SheetHeader
+            className="py-0 border-b border-b-main pb-3"
+             dir={i18n.language === "fa" ? "ltr" : "rtl"}>
+              <SheetTitle className="py-0">
+                <div className="flex items-center justify-between lg:hidden">
+                  <button
+                    onClick={() =>
+                      setLanguage(i18next.language == "en" ? "fa" : "en")
+                    }
+                    className="flex items-center justify-center gap-1 rounded-xl border border-transparent bg-white p-2 text-center text-base text-mainHover transition-all hover:border-mainHover hover:text-mainHover"
+                  >
+                    <span>{t("headerlang")}</span>
+                    <IoLanguage />
+                  </button>
+                  {userData ? (
+                    <Link to={"/userPanel/profile"}>
+                      <button className="rounded-md bg-main p-2 px-3 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
+                        {userData.username}
+                      </button>
+                    </Link>
+                  ) : (
+                    <Link to={"/register"}>
+                      <button className="rounded-md bg-main p-2 px-3 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
+                        {t("headerlogin")}
+                      </button>
+                    </Link>
+                  )}
+                </div>
+              </SheetTitle>
+            </SheetHeader>
+            <ul className="flex flex-col gap-2 p-6 text-center">
               <Link
-                to={""}
+                to={"/"}
                 className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
                 <li>{t("hederMainpage")}</li>
               </Link>
               <Link
-                to={""}
+                to={"/blog"}
                 className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
-                <li>بلاگ</li>
+                <li>{t("blog")}</li>
               </Link>
               <Link
-                to={""}
+                to={"/diets"}
                 className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
-                <li>رژیم ها</li>
+                <li>{t("diets")}</li>
               </Link>
               <Link
-                to={""}
+                to={"/sleep"}
                 className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
-                <li>خواب و روح و روان</li>
+                <li>{t("sleep_soul_mental")}</li>
               </Link>
-              <Link to={""} className="group flex items-center justify-center">
+              <Link
+                to={"/training"}
+                className="group flex items-center justify-center"
+              >
                 <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("exercises")}
                 </li>
               </Link>
-              <Link to={""} className="group flex items-center justify-center">
+              <Link
+                to={"/cooking"}
+                className="group flex items-center justify-center"
+              >
                 <li className="rounded-md p-2 transition-all hover:text-main">
-                  دستور آشپزی
+                  {t("cookingInstruction")}
                 </li>
               </Link>
-              <Link to={""} className="group flex items-center justify-center">
+              <Link
+                to={"/contacts"}
+                className="group flex items-center justify-center"
+              >
                 <li className="rounded-md p-2 transition-all hover:text-main">
-                  ارتباط با ما
+                  {t("constactus")}
+                </li>
+              </Link>
+              <Link
+                to={"/about"}
+                className="group flex items-center justify-center"
+              >
+                <li className="rounded-md p-2 transition-all hover:text-main">
+                  {t("aboutus")}
+                </li>
+              </Link>
+              <Link
+                to={"/cooperate"}
+                className="group flex items-center justify-center"
+              >
+                <li className="rounded-md p-2 transition-all hover:text-main">
+                  {t("workwithus")}
                 </li>
               </Link>
             </ul>
-          </div>
-        </div>
+
+            <div className="border-t-main border p-3 absolute w-full text-center bottom-0 right-0">
+              <p>{t("logout")}</p>
+            </div>
+          </SheetContent>
+        </Sheet>
+
         <div className="flex items-center justify-center gap-4 max-lg:hidden">
           <button
             onClick={() => setLanguage(i18next.language == "en" ? "fa" : "en")}
@@ -303,13 +387,13 @@ export default function index() {
           </button>
           {userData ? (
             <Link to={"/userPanel/profile"}>
-              <button className="rounded-md bg-main  px-3 p-2 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
+              <button className="rounded-md bg-main p-2 px-3 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
                 {userData.username}
               </button>
             </Link>
           ) : (
             <Link to={"/register"}>
-              <button className="rounded-md bg-main  px-3 p-2 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
+              <button className="rounded-md bg-main p-2 px-3 text-center text-sm text-white transition-all hover:bg-mainHover xl:text-base">
                 {t("headerlogin")}
               </button>
             </Link>

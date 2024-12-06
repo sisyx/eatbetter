@@ -20,7 +20,7 @@ const Card = ({ data, panel, isActive }: Props) => {
   return (
     <div
       data-aos="fade-up"
-      className={`${panel ? "pb-6" : "pb-12"} relative mt-9 rounded-sm bg-white px-3 pt-8 text-center transition-transform sm:!shadow-md hover:sm:!-translate-y-2`}
+      className={`${panel ? "pb-6" : "pb-7"} relative mt-9 rounded-sm bg-white px-3 pt-8 text-center transition-transform sm:!shadow-md hover:sm:!-translate-y-2`}
     >
       {isActive && (
         <span
@@ -42,11 +42,16 @@ const Card = ({ data, panel, isActive }: Props) => {
             {data.text.slice(0, 190) + "..."}
           </p>
           <Link className="mt-4 block" to={`/userPanel/health/${data.id}`}>
-            <Button variant={"main"}>{i18n.language === "fa" ? "جزئیات بیشتر" : "more details"} </Button>
+            <Button variant={"main"}>
+              {i18n.language === "fa" ? "جزئیات بیشتر" : "more details"}{" "}
+            </Button>
           </Link>
         </>
       ) : (
-        <Modal {...data} />
+        <>
+          <Modal {...data} />
+          <Button className="w-full mt-5" variant={"main"}>دریافت رژیم</Button>
+        </>
       )}
     </div>
   );

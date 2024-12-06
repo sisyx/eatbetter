@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AnimatedBackground2 from "../../components/templates/Home/AnimatedBackground2";
 import GenderSelector from "../../components/templates/Home/GenderSelector";
 import DietsBtn from "../../components/templates/Home/DietsBtn";
-import Container from "../../components/modules/Container/Container";
+import Container from "../../components/modules/Container/Container"; 
 
 const Home: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -22,6 +22,8 @@ const Home: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+
   return (
     <Container>
       <div className="px-28 pt-14 max-sm:px-5 max-sm:pt-1">

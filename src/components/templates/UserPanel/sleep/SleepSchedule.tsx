@@ -21,9 +21,9 @@ const SleepSchedule = () => {
             }}
           />
         </div>
-
+ 
         <div className="flex justify-center">
-          <label>{t("sleep.sleepEndHour")}</label>
+          <label  className="w-[113px] text-center">{t("sleep.sleepEndHour")}</label>
           <input
             type="time"
             className="outline-none"
@@ -37,6 +37,7 @@ const SleepSchedule = () => {
       <Button
         className="mx-auto mt-4 block w-full px-9 sm:w-auto"
         variant={"main"}
+        disabled={!wakeUpTime && !sleepTime}
       >
         {t("sleep.submit")}
       </Button>
