@@ -1,3 +1,4 @@
+import { adminPanelEn } from "./pages/adminPanel";
 import { loginEn, registerEn } from "./pages/auth";
 import { footerEn } from "./pages/home";
 import { headerEn } from "./pages/modules";
@@ -9,6 +10,7 @@ const en = {
   ...loginEn,
   ...registerEn,
   ...userPanelEn,
+  ...adminPanelEn,
 };
 
 export default en;

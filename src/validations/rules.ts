@@ -118,10 +118,49 @@ let contactsSchema = Yup.object().shape({
     .required("لطفا موضوع خودتون رو وارد کنید"),
 });
 
+let packageSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(4, "عنوان شما حداقل باید 10 حرف داشته باشد")
+    .max(20, "عنوان شما حداکثر باید 200 حرف داشته باشد")
+    .required("لطفا متنی بنویسید"),
+
+  currency: Yup.string()
+    .required("لطفا نرخ ارز رو وارد کنید"),
+
+  maxDiet: Yup.number()
+    .required("لطفا حداکثر رژیم مورد نظر را وارد کنید"),
+
+  price: Yup.number()
+    .required("لطفا قیمت پکیج مورد نظر رو وارد کنید"),
+})
+
+let CharityCardSchema = Yup.object().shape({
+  accountNumber: Yup.string()
+    .length(16, "لطفا شماره کارت را به درستی وارد کنید")
+    .required("لطفا شماره کارت را وارد کنید"),
+
+  iban: Yup.string()
+    .required("لطفا iban رو وارد کنید"),
+
+    bankName: Yup.string()
+    .required("لطفا نام بانک را وارد کنید"),
+
+  fullName: Yup.string()
+    .min(4, "لطفا نام طولانی تری انتخاب کنید")
+    .max(50, "لطفا نام کوتاه تری انتخاب کنید")
+    .required("لطفا نام خود را وارد کنید"),
+    
+  balance: Yup.number()
+    .min(0)
+    .required("لطفا موجودی خود را وارد کنید"),
+})
+
 export {
   stockSchema,
   contactsSchema,
   registerSchema,
   loginSchema,
   cooperateSchema,
+  packageSchema,
+  CharityCardSchema,
 };

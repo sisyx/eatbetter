@@ -24,6 +24,13 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Packages from "./pages/Packages/Packages";
 
+// admin panel imports
+import Users from './components/templates/AdminPanel/Users/Users';
+import { Packages as ApPackages } from "./components/templates/AdminPanel/Packages/Packages";
+import AdminContacts from './components/templates/AdminPanel/ContactUs/Contacts';
+import CooperateCardsList from "./components/templates/AdminPanel/Cooperate/CooperateCardsList";
+import { CharityCardsList } from "./components/templates/AdminPanel/CharityWallet/CharityCardsList";
+
 const userPanelRoutes = [
   {
     path: "/userpanel/profile",
@@ -84,7 +91,30 @@ const userPanelRoutes = [
   },
 ];
 
-const routes = [
+const adminPanelRoutes = [
+  {
+    path: "/adminPanel/users",
+    element: <Users />,
+  },
+  {
+    path: '/adminPanel/packages',
+    element: <ApPackages />
+  },
+  {
+    path: "/adminPanel/contact",
+    element: <AdminContacts />
+  },
+  {
+    path: "/adminPanel/cooperate",
+    element: <CooperateCardsList />
+  },
+  {
+    path: "/adminPanel/charityWallet",
+    element: <CharityCardsList />
+  }
+]
+
+const otherRoutes = [
   {
     path: "/",
     element: <Home />,
@@ -129,7 +159,12 @@ const routes = [
     path: "/register",
     element: <Register />,
   },
-  ...userPanelRoutes,
 ];
+
+const routes = [
+  ...adminPanelRoutes,
+  ...userPanelRoutes,
+  ...otherRoutes,
+]
 
 export default routes;
