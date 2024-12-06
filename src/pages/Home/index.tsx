@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import AnimatedBackground2 from "../../components/templates/Home/AnimatedBackground2";
 import GenderSelector from "../../components/templates/Home/GenderSelector";
 import DietsBtn from "../../components/templates/Home/DietsBtn";
-import Container from "../../components/modules/Container/Container"; 
+import Container from "../../components/modules/Container/Container";
+import { useTranslation } from "react-i18next";
 
 const Home: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -19,31 +20,22 @@ const Home: React.FC = () => {
     };
   }, []);
 
- 
-   return (
+  const { t, i18n } = useTranslation();
+
+  return (
     <Container>
       <div className="px-28 pt-14 max-sm:px-5 max-sm:pt-1">
         <AnimatedBackground2 />
         <GenderSelector />
         <DietsBtn />
-        <div className="my-48 flex items-center justify-center gap-10 max-lg:flex-col">
+        <div dir={i18n.language === "fa" ? "ltr" : "rtl"} className="my-48 flex items-center justify-center gap-10 max-lg:flex-col">
           <div className="flex w-[600px] flex-col gap-10 max-sm:w-[280px]">
             <h2 className="text-end text-[30px] font-bold text-main max-sm:text-[15px]">
               {" "}
-              !به دنیای سلامت و زیبایی خوش آمدید
+              {t("homeSectionThreetitle")}
             </h2>
             <p className="text-end text-[20px] leading-8 max-sm:text-[15px]">
-              ما اینجا هستیم تا شما را به بهترین نسخه از خودتان تبدیل کنیم، چه
-              تازه‌کار باشید و چه حرفه‌ای. با برنامه‌های تغذیه‌ای و ورزشی
-              شخصی‌سازی شده، ابزارهای هوشمند و بیش از ۴۰ حرکت ورزشی گام‌به‌گام،
-              شما را در مسیر رسیدن به اهداف سلامتی و تناسب اندام همراهی می‌کنیم.
-              برنامه ۲۱ روزه ما به شما کمک می‌کند عادات سالمی بسازید و از غذاهای
-              خوشمزه و سالم با بیش از ۱۵۰ دستور پخت ایرانی و بین‌المللی لذت
-              ببرید. با محاسبه‌گر هوشمند کالری، میزان مصرف و سوزاندن کالری خود
-              را به‌راحتی پیگیری کنید و با پیام‌های مناسب، خواب و روحیه‌تان را
-              بهبود ببخشید. چالش‌های ۲۱ روزه ما به شما انگیزه‌ای برای تغییرات
-              واقعی و ملموس می‌دهند. به ما بپیوندید و از امکانات منحصربه‌فرد ما
-              بهره‌مند شوید. شما شایسته یک زندگی سالم و شاد هستید!
+              {t("homeSectionThreeDes")}
             </p>
           </div>
           <div className="max-sm:w-[250px]">
@@ -56,20 +48,16 @@ const Home: React.FC = () => {
             ></video>
           </div>
         </div>
-        <div className="my-48 flex flex-row-reverse items-center justify-center gap-10 max-lg:flex-col">
+        <div dir={i18n.language === "fa" ? "ltr" : "rtl"} className="my-48 flex flex-row-reverse items-center justify-center gap-10 max-lg:flex-col">
           <div className="flex w-[50%] flex-col items-end gap-5 max-lg:w-[100%] max-sm:w-[250px]">
             <h5 className="text-[30px] font-bold text-main max-sm:text-[20px]">
-              خودتو , با ما بساز
+              {t("homeSectionFourtitle")}
             </h5>
             <p className="text-end text-[16px] leading-7 text-gray-700">
-              در این مسیر از خودسازی و تغییر، همراه شما هستیم تا با همدیگر به
-              اهداف بزرگ دست پیدا کنیم. ما معتقدیم هر فردی می‌تواند با اراده و
-              تلاش، نسخه بهتری از خودش بسازد. از همین امروز شروع کن، تغییرات
-              کوچکی در زندگی خود ایجاد کن و شاهد نتایج بزرگ باش. با ما همراه شو
-              و این سفر را به سوی موفقیت و رشد آغاز کن.
+              {t("homeSectionFourDes")}
             </p>
             <button className="rounded-lg bg-main px-4 py-2 text-white hover:bg-mainHover">
-              شروع کن
+              {t("startBtn")}
             </button>
           </div>
           <div className="flex w-[50%] flex-wrap gap-5 max-lg:w-[100%] max-sm:w-[250px]">
@@ -90,11 +78,8 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h5> چالش‌های ۲۱ روزه</h5>
-              <p className="text-[14px]">
-                برنامه‌های ساده و کاربردی برای تغییرات واقعی و ملموس جهت سلامت و
-                زیبایی بیشتر شما
-              </p>
+              <h5>{t("homeSectionFourBoxTwoTitle")}</h5>
+              <p className="text-[14px]">{t("homeSectionFourBoxTwoDes")}</p>
             </div>
             <div className="flex h-[200px] w-[270px] flex-col items-center justify-center gap-3 rounded-xl border border-[#00000034] px-2 text-center shadow-xl">
               <div className="rounded-full bg-mainHover p-2 text-white">
@@ -113,10 +98,8 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h5>محاسبه‌گر هوشمند کالری</h5>
-              <p className="text-[14px]">
-                ابزاری قدرتمند برای مدیریت تغذیه شما در هر لحظه.
-              </p>
+              <h5>{t("homeSectionFourBoxOneTitle")}</h5>
+              <p className="text-[14px]">{t("homeSectionFourBoxOneDes")}</p>
             </div>
             <div className="flex h-[200px] w-[270px] flex-col items-center justify-center gap-3 rounded-xl border border-[#00000034] px-2 text-center shadow-xl">
               <div className="rounded-full bg-mainHover p-2 text-white">
@@ -135,10 +118,8 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h5>محتوای آموزشی و جذاب</h5>
-              <p className="text-[14px]">
-                ویدیوهای آموزشی در بخش تلویزیون برای اطلاعات روز و نکات سلامت.
-              </p>
+              <h5>{t("homeSectionFourBoxFourTitle")}</h5>
+              <p className="text-[14px]">{t("homeSectionFourBoxFourDes")}</p>
             </div>
             <div className="flex h-[200px] w-[270px] flex-col items-center justify-center gap-3 rounded-xl border border-[#00000034] px-2 text-center shadow-xl">
               <div className="rounded-full bg-mainHover p-2 text-white">
@@ -157,11 +138,8 @@ const Home: React.FC = () => {
                   />
                 </svg>
               </div>
-              <h5>خواب آرام و روحیه شاد</h5>
-              <p className="text-[14px]">
-                با پیام‌های مناسب در زمان مناسب به تنظیم خواب شما و روحیه شما
-                کمک میکنیم
-              </p>
+              <h5>{t("homeSectionFourBoxThreeTitle")}</h5>
+              <p className="text-[14px]">{t("homeSectionFourBoxThreeDes")}</p>
             </div>
           </div>
         </div>
@@ -171,7 +149,7 @@ const Home: React.FC = () => {
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
             <h2 className="max-sm:w-[180px] max-sm:text-[15px]">
-              فرآیندی که ما دنبال می کنیم
+              {t("homeSectionFiveTitle")}
             </h2>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -180,43 +158,27 @@ const Home: React.FC = () => {
           <div className="flex items-center justify-center gap-5 max-lg:flex-wrap">
             <div className="rounded-xl bg-green-500 p-6 text-center shadow-lg max-sm:w-[300px]">
               <div className="mb-4 text-2xl font-bold text-white">
-                رژیم شخصی‌سازی شده
+                {t("homeSectionFiveBoxFourTitle")}
               </div>
-              <p className="text-white">
-                یک برنامه غذایی ۲۱ روزه که به دقت بر اساس نیازها و اهداف شما
-                طراحی شده است. این برنامه شامل نکات کاربردی برای تغییر سبک زندگی
-                و راهنمایی‌هایی برای نحوه پیاده‌سازی و ادامه آن می‌باشد.
-              </p>
+              <p className="text-white">{t("homeSectionFiveBoxFourDes")}</p>
             </div>
             <div className="2-[900px] rounded-xl bg-purple-500 p-6 text-center shadow-lg">
               <div className="mb-4 text-2xl font-bold text-white">
-                برنامه ورزشی شخصی سازی شده
+                {t("homeSectionFiveBoxThreeTitle")}
               </div>
-              <p className="text-white">
-                حرکات ورزشی اختصاصی روزانه به همراه رژیم غذایی ۲۱ روزه اتان با
-                راهنمایی‌های دقیق برای دستیابی به بهترین نتایج.
-              </p>
+              <p className="text-white">{t("homeSectionFiveBoxThreeDes")}</p>
             </div>
             <div className="rounded-xl bg-blue-500 p-6 text-center shadow-lg">
               <div className="mb-4 text-2xl font-bold text-white">
-                توضیح نحوه انجام‌حرکات ورزشی
+                {t("homeSectionFiveBoxTwoTitle")}
               </div>
-              <p className="text-white">
-                آموزش گام‌به‌گام بیش از ۴۰ حرکت ورزشی متداول، شامل توضیحات دقیق
-                درباره میزان کالری سوزی هر حرکت و تأثیر آن بر زیبایی کدام
-                قسمت‌های بدن است. همچنین، نکات تنفسی مربوط به هر ورزش ارائه شده
-                تا بتوانید تمرینات خود را با حداکثر بهره‌وری و ایمنی انجام دهید.
-              </p>
+              <p className="text-white">{t("homeSectionFiveBoxTwoDes")}</p>
             </div>
             <div className="rounded-xl bg-red-500 p-6 text-center shadow-lg">
               <div className="mb-4 text-2xl font-bold text-white">
-                دستورهای آشپزی متنوع
+                {t("homeSectionFiveBoxOneTitle")}
               </div>
-              <p className="text-white">
-                نحوه پخت بیش از ۱۵۰ غذای ایرانی و بین‌المللی به همراه اطلاعات
-                کامل در مورد کالری، مواد مغذی و برای جه رژیم غذایی ان غذا مناسب
-                است
-              </p>
+              <p className="text-white">{t("homeSectionFiveBoxOneDes")}</p>
             </div>
           </div>
         </div>

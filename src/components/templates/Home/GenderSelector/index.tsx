@@ -6,13 +6,15 @@ import ChooseAge from "./ChooseAge";
 import { bmiStore } from "../../../../stores/bmi";
 import { toast } from "../../../../hooks/use-toast";
 import usePostData from "../../../../hooks/usePostData";
-import { ButtonLoader } from "../../../modules/loader/Loader"; 
+import { ButtonLoader } from "../../../modules/loader/Loader";
 import BmiModal from "./Modal";
+import { useTranslation } from "react-i18next";
 
 const GenderSelector = () => {
   const [gender, setGender] = useState<"Masculine" | "Feminine">("Masculine");
   const { height, age, weight } = bmiStore((state) => state);
-  const [showBmiModal, setShowBmiModal] = useState(false); 
+  const [showBmiModal, setShowBmiModal] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const [bmiData, setBmiData] = useState<
     | {
@@ -85,8 +87,11 @@ const GenderSelector = () => {
   };
 
   return (
-    <div className="mt-28 flex w-[100%] items-center justify-end gap-40 max-lg:flex-col-reverse">
-      <div className="absolute -left-[25%] max-sm:-left-[20%]">
+    <div
+      dir={i18n.language === "fa" ? "ltr" : "rtl"}
+      className="mt-28 flex w-[100%] items-center justify-end gap-40 max-lg:flex-col-reverse"
+    >
+      <div className={`${i18n.language === "fa" ? "-left-[25%] max-sm:-left-[20%]" : "-right-[25%] max-sm:-right-[20%]"} absolute`}>
         <img
           src="Pngtree-food.png"
           alt="pngtree"
@@ -96,7 +101,7 @@ const GenderSelector = () => {
       <div className="flex flex-col items-center justify-center gap-5">
         <div className="w-[450px] text-[30px] font-bold max-sm:w-[250px] max-sm:text-[15px]">
           <ReactTyped
-            strings={["محاسبه شما در اینجا ظاهر می شود"]}
+            strings={[t("genderSelector.typed")]}
             typeSpeed={40}
             backSpeed={40}
             loop
@@ -107,13 +112,13 @@ const GenderSelector = () => {
             onClick={bmiCheckHandler}
             className="w-[300px] rounded-lg bg-main p-3 text-white transition-all hover:bg-mainHover"
           >
-            {isPending ? <ButtonLoader /> : "محاسبه کنید"}
+            {isPending ? <ButtonLoader /> : t("genderSelector.calculate")}
           </button>
         </div>
       </div>
       <div className="flex flex-col gap-5">
         <div className="flex items-center justify-end gap-1 text-[20px] font-bold">
-          <h5>جنسیت خود را انتخاب کنید</h5>
+          <h5>{t("genderSelector.gender")}</h5>
           <div className="h-2 w-2 rounded-xl bg-main">
             <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
           </div>
@@ -129,7 +134,7 @@ const GenderSelector = () => {
                     : "bg-gray-200 text-black"
                 }`}
               >
-                زن
+                {i18n.language === "fa" ? "زن" : "Woman"}
               </button>
               <button
                 onClick={() => setGender("Masculine")}
@@ -139,7 +144,7 @@ const GenderSelector = () => {
                     : "bg-gray-200 text-black"
                 }`}
               >
-                مرد
+                {i18n.language === "fa" ? "مرد" : "Man"}
               </button>
             </div>
             <ChooseAge />
