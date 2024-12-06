@@ -1,15 +1,12 @@
 import { useTranslation } from "react-i18next";
 import Layout from "../../../../Layouts/AdminLayout";
-import { FaCommentAlt, FaUser } from "react-icons/fa";
+import { FaCommentAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import useGetData from "../../../../hooks/useGetData";
 import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import CreateCharityCard from "./CreateCharityCard";
-const apiUrl = import.meta.env.VITE_API_URL;
-import { BiMoneyWithdraw } from "react-icons/bi";
-import { BsBank2, BsCreditCardFill } from "react-icons/bs";
-import { Button } from "../../../shadcn/ui/button";
+const apiUrl = import.meta.env.VITE_API_URL; 
 import { CharityCard } from "./CharityCard";
 
 export const CharityCardsList = () => {

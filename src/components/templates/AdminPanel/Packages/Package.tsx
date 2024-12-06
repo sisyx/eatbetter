@@ -15,11 +15,8 @@ import { Button } from "../../../shadcn/ui/button";
 import { useFormik } from "formik";
 import { packageSchema } from "../../../../validations/rules";
 import usePostData from "../../../../hooks/usePostData";
-import Cookies from "js-cookie";
 import { toast } from "../../../../hooks/use-toast";
-import { useNavigate } from "react-router-dom";
 import { ButtonLoader } from "../../../modules/loader/Loader";
-import { HtmlHTMLAttributes, ReactNode, useRef } from "react";
 
 interface formValues {
     name: string;

@@ -28,7 +28,10 @@ const Home: React.FC = () => {
         <AnimatedBackground2 />
         <GenderSelector />
         <DietsBtn />
-        <div dir={i18n.language === "fa" ? "ltr" : "rtl"} className="my-48 flex items-center justify-center gap-10 max-lg:flex-col">
+        <div
+          dir={i18n.language === "fa" ? "ltr" : "rtl"}
+          className="my-48 flex items-center justify-center gap-10 max-lg:flex-col"
+        >
           <div className="flex w-[600px] flex-col gap-10 max-sm:w-[280px]">
             <h2 className="text-end text-[30px] font-bold text-main max-sm:text-[15px]">
               {" "}
@@ -48,7 +51,10 @@ const Home: React.FC = () => {
             ></video>
           </div>
         </div>
-        <div dir={i18n.language === "fa" ? "ltr" : "rtl"} className="my-48 flex flex-row-reverse items-center justify-center gap-10 max-lg:flex-col">
+        <div
+          dir={i18n.language === "fa" ? "ltr" : "rtl"}
+          className="my-48 flex flex-row-reverse items-center justify-center gap-10 max-lg:flex-col"
+        >
           <div className="flex w-[50%] flex-col items-end gap-5 max-lg:w-[100%] max-sm:w-[250px]">
             <h5 className="text-[30px] font-bold text-main max-sm:text-[20px]">
               {t("homeSectionFourtitle")}

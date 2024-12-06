@@ -10,8 +10,7 @@ import { Button } from "../../../shadcn/ui/button";
 import { useFormik } from "formik";
 import { CharityCardSchema } from "../../../../validations/rules";
 import usePostData from "../../../../hooks/usePostData";
-import { toast } from "../../../../hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+import { toast } from "../../../../hooks/use-toast"; 
 import { ButtonLoader } from "../../../modules/loader/Loader";
 import { useEffect } from "react";
 
@@ -64,7 +63,7 @@ const xxx: XXXType[] = [
 ]
 
 const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const successFunc = (data: any) => {
         console.log(data);

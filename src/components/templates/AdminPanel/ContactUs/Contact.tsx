@@ -3,7 +3,7 @@ import { Button } from "../../../shadcn/ui/button";
 import { ContactProps } from "./types";
 import { useState } from "react";
 import { ButtonLoader } from "../../../modules/loader/Loader";
-const apiUrl = import.meta.env.VITE_API_URL;
+// const apiUrl = import.meta.env.VITE_API_URL;
 import { useTranslation } from "react-i18next";
 
 type DeleteState = {

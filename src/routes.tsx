@@ -91,7 +91,7 @@ const userPanelRoutes = [
   },
 ];
 
-const adminPanelRoutes = [
+const adminPanelRoutes = [ 
   {
     path: "/adminPanel/users",
     element: <Users />,
