@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import { loginSchema } from "../../validations/rules";
 import { ButtonLoader } from "../../components/modules/loader/Loader";
 import usePostData from "../../hooks/usePostData";
+import { tokenName } from "../../config/constants";
 
 interface formValues {
   email: string;
@@ -28,7 +29,7 @@ const Login = () => {
     token: string;
   }) => {
     if (data.statusCode === 200) {
-      Cookies.set("eatBetterToken", data.token, {
+      Cookies.set(tokenName, data.token, {
         expires: 9999999,
         path: "",
       });

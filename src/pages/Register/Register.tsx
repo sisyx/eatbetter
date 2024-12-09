@@ -11,6 +11,7 @@ import { toast } from "../../hooks/use-toast";
 import { useFormik } from "formik";
 import { registerSchema } from "../../validations/rules";
 import { ButtonLoader } from "../../components/modules/loader/Loader";
+import { tokenName } from "../../config/constants";
 
 interface formValues {
   userName: string;
@@ -33,7 +34,7 @@ const Register = () => {
     token: string; 
   }) => {
     if (data.statusCode === 200) {
-      Cookies.set("eatBetterToken", data.token, {
+      Cookies.set(tokenName, data.token, {
         expires: 9999999,
         path: "",
       });
@@ -54,8 +55,6 @@ const Register = () => {
         variant: "danger",
         title: "Sorry, please go through the steps again.",
       });
-      // location.reload();
-      // localStorage.clear();
     }
   };
 

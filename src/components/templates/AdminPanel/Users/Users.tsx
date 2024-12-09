@@ -6,17 +6,20 @@ import { User as UserType } from "./types";
 import { User } from "./User";
 import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import { FaPeopleGroup } from "react-icons/fa6";
+import { tokenName } from "../../../../config/constants";
+import { useTranslation } from "react-i18next";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Users = () => {
   const [reload, setReload] = useState<number>(1);
+  const { t } = useTranslation();
 
   function reloadFn() {
     setReload((cur) => cur + 1);
   }
 
   async function getUsers() {
-    const eatBetterToken = Cookies.get("eatBetterToken");
+    const eatBetterToken = Cookies.get(tokenName);
     try {
       const req = await fetch(`${apiUrl}/api/user/api/users`, {
         headers: {
@@ -43,7 +46,7 @@ const Users = () => {
       <div className="flex h-full w-full flex-col gap-4">
         <div className="flex flex-col items-center gap-2 text-2xl font-bold">
           <FaPeopleGroup className="text-3xl" />
-          <span>کاربران سایت</span>
+          <span>{t("adminUsers.title")}</span>
         </div>
         <hr />
         {error ? (

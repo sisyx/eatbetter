@@ -8,6 +8,7 @@ import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import CreateCharityCard from "./CreateCharityCard";
 const apiUrl = import.meta.env.VITE_API_URL; 
 import { CharityCard } from "./CharityCard";
+import { tokenName } from "../../../../config/constants";
 
 export const CharityCardsList = () => {
     const [reload, setReload] = useState<number>(1);
@@ -18,7 +19,7 @@ export const CharityCardsList = () => {
     }
 
     async function getMessages() {
-        const eatBetterToken = Cookies.get("eatBetterToken");
+        const eatBetterToken = Cookies.get(tokenName);
         try {
             const req = await fetch(`${apiUrl}/api/charityWallet/Get`, {
                 headers: {
