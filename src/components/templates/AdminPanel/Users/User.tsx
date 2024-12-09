@@ -5,12 +5,20 @@ import { Button } from "../../../shadcn/ui/button";
 import { toast } from "../../../../hooks/use-toast";
 import { FaUserLarge } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import { useState } from "react";
+import { ButtonLoader } from "../../../modules/loader/Loader";
 
 export const User = (props: UserProps) => {
+    const [deleteState, setDeleteState] = useState({
+        deleting: false,
+        deleted: false,
+        deleteErr: false,
+    })
     const { username, reloadFn, country, email } = props;
 
     // async functions
     async function deleteUser() {
+        setDeleteState(cur => ({...cur, deleting: true}))
         fetch(`${apiUrl}/api/user/api/users/${username}`, {
             method: "DELETE",
             headers: {
@@ -27,10 +35,13 @@ export const User = (props: UserProps) => {
             // show success message
             const { message } = response
             toast({ title: message })
-
+            setDeleteState(cur => ({...cur, deleting: false, deleted: true}));
             return message
         })
-        .catch(console.error);
+        .catch(error => {
+            console.error(error);
+            setDeleteState(cur => ({...cur, deleted: false, deleteErr: true, deleting: false}))
+        })
     }
 
     return (
@@ -56,7 +67,9 @@ export const User = (props: UserProps) => {
                 </div>
             </div>
             <Button className="bg-gray-700 p-2 md:px-4" onClick={deleteUser}>
-                <ImBin2 />
+                {
+                    deleteState.deleting ? <ButtonLoader /> : <ImBin2 />
+                }
             </Button>
         </div>
     );
