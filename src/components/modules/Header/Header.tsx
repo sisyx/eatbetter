@@ -54,7 +54,7 @@ export default function index() {
               <li>{t("hederMainpage")}</li>
             </Link>
             <Link
-              to={"/blog"}
+              to={"/blogs"}
               className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
@@ -309,7 +309,7 @@ export default function index() {
                 <li>{t("hederMainpage")}</li>
               </Link>
               <Link
-                to={"/blog"}
+                to={"/blogs"}
                 className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
