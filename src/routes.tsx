@@ -24,14 +24,16 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Packages from "./pages/Packages/Packages";
 
+import Blogs from "./pages/Blogs/Blogs";
+import { Blog } from "./pages/Blogs/Blog";
+
 // admin panel imports
 import Users from './components/templates/AdminPanel/Users/Users';
 import { Packages as ApPackages } from "./components/templates/AdminPanel/Packages/Packages";
 import AdminContacts from './components/templates/AdminPanel/ContactUs/Contacts';
 import CooperateCardsList from "./components/templates/AdminPanel/Cooperate/CooperateCardsList";
 import { CharityCardsList } from "./components/templates/AdminPanel/CharityWallet/CharityCardsList";
-import Blogs from "./pages/Blogs/Blogs";
-import { Blog } from "./pages/Blogs/Blog";
+import AdminBlogs from "./components/templates/AdminPanel/Blogs/Blogs";
 
 const userPanelRoutes = [
   {
@@ -113,7 +115,11 @@ const adminPanelRoutes = [
   {
     path: "/adminPanel/charityWallet",
     element: <CharityCardsList />
-  }
+  },
+  {
+    path: "/adminPanel/blogs",
+    element: <AdminBlogs />
+  },
 ]
 
 const otherRoutes = [
