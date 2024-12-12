@@ -12,7 +12,7 @@ const Card = (_props: Props) => {
     <div data-aos='fade-up' className="rounded-md p-3 shadow-lg relative bg-white z-10" dir="rtl">
       <img
         className="h-[200px] w-full rounded-md object-cover"
-        src="https://media.post.rvohealth.io/wp-content/uploads/2020/09/vegetarian-diet-plan-732x549-thumbnail.jpg"
+        src="https://mojekooh.com/wp-content/uploads/2023/05/sports-1.jpg"
         alt=""
       />
       <p className="my-4 text-center">
