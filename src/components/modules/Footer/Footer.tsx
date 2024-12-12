@@ -177,7 +177,7 @@ const Footer: React.FC = () => {
                 </p>
               </div>
               <div className="text-end" dir={language === "fa" ? "rtl" : "ltr"}>
-                <h6 className="mb-4 flex items-center justify-end font-semibold uppercase md:justify-start">
+                <h6 className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
                   <span className="me-3 [&>svg]:h-4 [&>svg]:w-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
