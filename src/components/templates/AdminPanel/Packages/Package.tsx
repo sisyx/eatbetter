@@ -1,5 +1,5 @@
 import { GoPackage } from "react-icons/go";
-import { PackageProps } from "./types";
+import { PackageProps, XXXType } from "./types";
 import { PiCurrencyCircleDollarFill } from "react-icons/pi";
 import { SiIfood } from "react-icons/si";
 import { FaHamburger, FaPen } from "react-icons/fa";
@@ -20,19 +20,19 @@ import { ButtonLoader } from "../../../modules/loader/Loader";
 
 interface formValues {
     name: string;
+    nameFa: string,
     currency: string;
     maxDiet: number;
     price: number;
 }
 
-type XXXType = {
-    value: "name" | "currency" | "price" | "maxDiet",
-    title: string,
-    placeholder: string,
-    type: "text" | "number",
-}
-
 const xxx: XXXType[] = [
+    {
+        value: "nameFa",
+        title: "عنوان فارسی",
+        placeholder: "مثلا: xxx",
+        type: "text",
+    },
     {
         value: "name",
         title: "عنوان",
@@ -60,7 +60,7 @@ const xxx: XXXType[] = [
 ]
 
 const CreatePackage = (props: PackageProps) => {
-    const { id, name, currency, maxDiet, price, reloadFn } = props;
+    const { id, name, nameFa, currency, maxDiet, price, reloadFn } = props;
 
     const successFunc = (data: any) => {
         console.log(data);
@@ -81,6 +81,7 @@ const CreatePackage = (props: PackageProps) => {
     const formHandler = useFormik({
         initialValues: {
           name,
+          nameFa,
           currency,
           maxDiet,
           price,
@@ -88,6 +89,7 @@ const CreatePackage = (props: PackageProps) => {
         onSubmit: (_values: formValues) => {
           const data = {
             name: formHandler.values.name,
+            nameFa: formHandler.values.nameFa,
             currency: formHandler.values.currency,
             maxDiet: formHandler.values.maxDiet,
             price: formHandler.values.price,
@@ -107,11 +109,14 @@ const CreatePackage = (props: PackageProps) => {
             <span className="absolute top-0 left-0 w-full h-full flex items-center justify-center text-2xl bg-black opacity-0 group-hover:opacity-60 transition-all duration-150">
                 <FaPen />
             </span>
-            <span className="flex items-center gap-1 text-2xl font-extrabold">
+            <span className="flex items-center gap-2 p-4 text-2xl font-extrabold">
                 <span className="rounded-full bg-gray-700 text-white p-1">
                     <GoPackage />
                 </span>
-                {name}
+                <div className="flex flex-col items-start">
+                    <span>{name}</span>
+                    <span>{nameFa}</span>
+                </div>
             </span>
             <div className="flex flex-col justify-center gap-2">
                 <span className="flex items-center gap-1 text-xl">

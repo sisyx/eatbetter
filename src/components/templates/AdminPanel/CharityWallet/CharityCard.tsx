@@ -3,9 +3,12 @@ import { BsBank2, BsCreditCardFill } from "react-icons/bs";
 import { Button } from "../../../shadcn/ui/button";
 import { FaUser } from "react-icons/fa";
 import { CharityCardProps } from "./types";
+import { useTranslation } from "react-i18next";
 
 export const CharityCard = (props: CharityCardProps) => {
-    const { fullName, accountNumber, bankName, iban, balance } = props
+    const { fullName, accountNumber, bankName, iban, balance } = props;
+    const { t } = useTranslation();
+
     return (
         <div className="flex flex-col items-center">
             <BsCreditCardFill className="text-7xl text-main " />
@@ -13,14 +16,14 @@ export const CharityCard = (props: CharityCardProps) => {
                 <div className="flex flex-col gap-2 items-start">
                     <div className="flex items-center gap-2">
                         <FaUser className="text-xl text-main" />
-                        <span>صاحب کارت</span>
+                        <span>{t("adminCharityWallet.ownerName")}</span>
                     </div>
                     <span className="ps-8 text-2xl font-bold">{fullName}</span>
                 </div>
                 <div className="flex flex-col gap-2 items-start">
                     <div className="flex items-center gap-2">
                         <BsCreditCardFill className="text-xl text-main" />
-                        <span>شماره کارت</span>
+                        <span>{t("adminCharityWallet.cardNumber")}</span>
                     </div>
                     <span className="ps-8 text-2xl font-bold">
                         {accountNumber.slice(0,4)}-
@@ -32,21 +35,21 @@ export const CharityCard = (props: CharityCardProps) => {
                 <div className="flex flex-col gap-2 items-start">
                     <div className="flex items-center gap-2">
                         <BsBank2 className="text-xl text-main" />
-                        <span>نام بانک</span>
+                        <span>{t("adminCharityWallet.bankName")}</span>
                     </div>
                     <span className="ps-8 text-2xl font-bold">{bankName}</span>
                 </div>
                 <div className="flex flex-col gap-2 items-start">
                     <div className="flex items-center gap-2">
                         <BiMoneyWithdraw className="text-xl text-main" />
-                        <span>موجودی</span>
+                        <span>{t("adminCharityWallet.balance")}</span>
                     </div>
                     <span className="ps-8 text-2xl font-bold">{balance}</span>
                 </div>
                 <div className="flex flex-col gap-2 items-start">
                     <div className="flex items-center gap-2">
                         <BiMoneyWithdraw className="text-xl text-main" />
-                        <span>آی بان</span>
+                        <span>{t("adminCharityWallet.iban")}</span>
                     </div>
                     <span className="ps-8 text-2xl font-bold">{iban}</span>
                 </div>

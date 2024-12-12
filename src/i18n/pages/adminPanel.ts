@@ -21,6 +21,9 @@ const adminPanelFa = {
       health: "کلینیک مدیریت وزن و سلامتی",
       sleep: "خواب و روان",
     },
+    adminUsers: {
+      title: "گاربران سایت"
+    },
     adminPackages: {
       title: "پکیج ها"
     },
@@ -32,7 +35,12 @@ const adminPanelFa = {
       title: "همکاری مشتریان",
     },
     adminCharityWallet: {
-      title: "مدیریت حساب خیریه",
+      title: "مدیریت کارت خیریه",
+      ownerName: "صاحب کارت",
+      bankName: "نام بانک",
+      cardNumber: "شماره کارت",
+      balance: "موجودی",
+      iban: "آیبان"
     },
     adminincome: {
       title: "مقدار درآمد و تعداد دعوت ها",
@@ -186,6 +194,9 @@ const adminPanelFa = {
       health: "weight & health management",
       sleep: "sleep & psyche",
     },
+    adminUsers: {
+      title: "Users"
+    },
     adminPackages: {
       title: "Packages"
     },
@@ -195,6 +206,14 @@ const adminPanelFa = {
     },
     adminCooperate: {
       title: "Users Collaborations",
+    },
+    adminCharityWallet: {
+      title: "Charity Wallet",
+      ownerName: "Owner",
+      bankName: "Bank Name",
+      cardNumber: "Card Number",
+      balance: "balance",
+      iban: "IBan"
     },
     adminincome: {
       title: "Amount of income and number of invitations",

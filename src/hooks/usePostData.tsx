@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"; 
 import Cookies from "js-cookie";
 import { toast } from "./use-toast";
+import { tokenName } from "../config/constants";
 const apiUrl = import.meta.env.VITE_API_URL;
    
 
@@ -12,7 +13,7 @@ const usePostData = <T extends object>(
   formData?: boolean,
   queryUpdate?: string | null,
 ) => {
-  const eatBetterToken = Cookies.get("eatBetterToken");
+  const eatBetterToken = Cookies.get(tokenName);
   const queryClient = useQueryClient(); 
   
   const { mutate, isSuccess, isPending, isError } = useMutation({

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import { CircleLoader } from '../../../modules/loader/CircleLoader';
 import CreatePackage from './CreatePackage';
+import { tokenName } from '../../../../config/constants';
 const apiUrl = import.meta.env.VITE_API_URL
 
 export const Packages = () => {
@@ -17,7 +18,7 @@ export const Packages = () => {
     }
 
     async function getPackages() {
-        const eatBetterToken = Cookies.get("eatBetterToken");
+        const eatBetterToken = Cookies.get(tokenName);
         try {
             const req = await fetch(`${apiUrl}/api/Package/GetAll`, {
                 headers: {
@@ -30,6 +31,7 @@ export const Packages = () => {
             return res.packages;
         } catch (error) {
             console.error(error);
+            return []
         }
     }
 
@@ -47,13 +49,10 @@ export const Packages = () => {
                     {
                         error ? <div>مشکلی در بارگیری پیش آمده</div>
                         : loading ? <CircleLoader /> :
-                        packages.length ? 
-                        <>
-                            {packages.map((xpackage: PackageType) => <Package reloadFn={reloadFn} name={xpackage.name} currency={xpackage.currency} price={xpackage.price} maxDiet={xpackage.maxDiet} id={xpackage.id} />) }
-                            <CreatePackage reloadFn={reloadFn} />
-                        </>
+                        packages.length ? packages.map((xpackage: PackageType) => <Package nameFa={xpackage.nameFa} reloadFn={reloadFn} name={xpackage.name} currency={xpackage.currency} price={xpackage.price} maxDiet={xpackage.maxDiet} id={xpackage.id} />)
                         : ""
                     }
+                    <CreatePackage reloadFn={reloadFn} />
                 </div>
             </div>
         </Layout>

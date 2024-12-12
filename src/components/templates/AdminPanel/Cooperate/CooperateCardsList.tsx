@@ -7,6 +7,7 @@ import CoopereateCard from "./CooperateCard";
 import { Cooperate as CooperateType } from './types';
 import { FaCommentAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { tokenName } from "../../../../config/constants";
 const apiUrl = import.meta.env.VITE_API_URL
 
 const CooperateCardsList = () => {
@@ -18,7 +19,7 @@ const CooperateCardsList = () => {
     }
 
     async function getMessages() {
-        const eatBetterToken = Cookies.get("eatBetterToken");
+        const eatBetterToken = Cookies.get(tokenName);
         try {
             const req = await fetch(`${apiUrl}/api/WorkMeForm/GetAll`, {
                 headers: {

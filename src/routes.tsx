@@ -30,6 +30,8 @@ import { Packages as ApPackages } from "./components/templates/AdminPanel/Packag
 import AdminContacts from './components/templates/AdminPanel/ContactUs/Contacts';
 import CooperateCardsList from "./components/templates/AdminPanel/Cooperate/CooperateCardsList";
 import { CharityCardsList } from "./components/templates/AdminPanel/CharityWallet/CharityCardsList";
+import Blogs from "./pages/Blogs/Blogs";
+import { Blog } from "./pages/Blogs/Blog";
 
 const userPanelRoutes = [
   {
@@ -158,6 +160,14 @@ const otherRoutes = [
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/blogs",
+    element: <Blogs />
+  },
+  {
+    path: "/blog",
+    element: <Blog />
   },
 ];
 

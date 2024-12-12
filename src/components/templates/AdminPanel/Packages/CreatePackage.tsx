@@ -17,6 +17,7 @@ import { XXXType } from "./types";
 
 interface formValues {
     name: string;
+    nameFa: string;
     currency: string;
     maxDiet: number;
     price: number;
@@ -29,6 +30,12 @@ const xxx: XXXType[] = [
       placeholder: "مثلا: xxx",
       type: "text",
   },
+  {
+    value: "nameFa",
+    title: "عنوان فارسی",
+    placeholder: "مثلا: پکیج پایه",
+    type: "text",
+},
   {
       value: "currency",
       title: "نرخ ارز",
@@ -53,12 +60,18 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
     // const navigate = useNavigate();
 
     const successFunc = (data: any) => {
-        console.log(data);
+      if (!!data.id) {
         toast({
-            variant: "success",
-            title: "پکیج با موفقیت اضافه شد"
+          variant: "success",
+          title: "پکیج با موفقیت اضافه شد"
         })
         reloadFn();
+      } else {
+        toast({
+          variant: "danger",
+          title: "اضافه کردن پکیج با مشکل مواجه شد"
+        })
+      }
     };
 
     const { mutate: mutation, isPending } = usePostData(
@@ -71,6 +84,7 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
     const formHandler = useFormik({
         initialValues: {
           name: "",
+          nameFa: "",
           currency: "",
           maxDiet: NaN,
           price: NaN,
@@ -78,6 +92,7 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
         onSubmit: (_values: formValues) => {
           const data = {
             name: formHandler.values.name,
+            nameFa: formHandler.values.nameFa,
             currency: formHandler.values.currency,
             maxDiet: formHandler.values.maxDiet,
             price: formHandler.values.price,

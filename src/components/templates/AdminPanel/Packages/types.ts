@@ -1,6 +1,7 @@
 type Package = {
     id: number,
     name: string,
+    nameFa: string,
     currency: string,
     maxDiet: number,
     price: number,
@@ -9,6 +10,7 @@ type Package = {
 type PackageProps = {
     id: number,
     name: string,
+    nameFa: string,
     currency: string,
     maxDiet: number,
     price: number,
@@ -16,7 +18,7 @@ type PackageProps = {
 };
 
 type XXXType = {
-    value: "name" | "currency" | "price" | "maxDiet",
+    value: "name" | "currency" | "price" | "maxDiet" | "nameFa",
     title: string,
     placeholder: string,
     type: "text" | "number",
