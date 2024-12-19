@@ -34,6 +34,8 @@ import AdminContacts from './components/templates/AdminPanel/ContactUs/Contacts'
 import CooperateCardsList from "./components/templates/AdminPanel/Cooperate/CooperateCardsList";
 import { CharityCardsList } from "./components/templates/AdminPanel/CharityWallet/CharityCardsList";
 import AdminBlogs from "./components/templates/AdminPanel/Blogs/Blogs";
+import { SuccessFullPayment } from "./pages/Payment/SuccessfulPayment";
+import { UnsuccessFullPayment } from "./pages/Payment/UnsuccessfulPayment";
 
 const userPanelRoutes = [
   {
@@ -174,6 +176,14 @@ const otherRoutes = [
   {
     path: "/blog",
     element: <Blog />
+  },
+  {
+    path: "/successfunPayment",
+    element: <SuccessFullPayment />
+  },
+  {
+    path: "/unsuccessfunPayment",
+    element: <UnsuccessFullPayment />
   },
 ];
 
