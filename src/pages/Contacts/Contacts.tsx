@@ -8,7 +8,7 @@ import { ButtonLoader } from "../../components/modules/loader/Loader";
 
 const Contacts = () => {
   // const phoneRegExp = /((0?9)|(\+?989))\d{9}/g;
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { mutate: mutation, isPending } = usePostData<any>(
     "/api/ContactMe/contactus",
@@ -29,7 +29,7 @@ const Contacts = () => {
         phoneNumber: values.phone,
       };
       console.log(data);
-      
+
       mutation(data);
       resetForm();
     },
@@ -37,7 +37,10 @@ const Contacts = () => {
   });
   return (
     <Container>
-      <div className="flex flex-col items-center gap-4 px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 md:!flex-row lg:!px-28">
+      <div
+        dir={i18n.language === "fa" ? "ltr" : "rtl"}
+        className="flex flex-col items-center gap-4 px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 md:!flex-row lg:!px-28"
+      >
         <video
           data-aos="fade-right"
           src="/images/I2BP070FjVGkC57wp1.mp4"
@@ -45,17 +48,13 @@ const Contacts = () => {
           autoPlay
           className="w-[76%] md:!w-1/2"
         ></video>
-        <div className="w-full" dir="rtl">
+        <div className="w-full" dir={i18n.language === "fa" ? "rtl" : "ltr"}>
           <p className="mb-4 sm:text-xl">
-            ما اینجا هستیم تا شما را در{" "}
-            <span className="text-main">مسیر سلامتی و تناسب اندام</span> همراهی
-            کنیم!
+            {t("contactsTextOne")}
+            <span className="text-main"> {t("contactsTextTwo")}</span>
+            {t("contactsTextThree")}
           </p>
-          <p className="text-sm sm:text-base">
-            اگر سوالی دارید یا به راهنمایی نیاز دارید، لطفاً فرم زیر را با ذکر
-            دلیل تماس خود تکمیل کنید. یکی از مشاوران ما در سریع‌ترین زمان ممکن
-            با شما تماس خواهد گرفت.
-          </p>
+          <p className="text-sm sm:text-base">{t("contactsTextFour")}</p>
           <form
             data-aos="fade-up"
             onClick={formHandler.handleSubmit}
@@ -65,7 +64,7 @@ const Contacts = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
-                  نام و نام خانوادگی شما
+                  {t("contactsLableOne")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -79,7 +78,6 @@ const Contacts = () => {
                 type="text"
                 id="name"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="شاهین"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -93,7 +91,7 @@ const Contacts = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
-                  ایمیل شما
+                  {t("contactsLableTwo")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -108,7 +106,6 @@ const Contacts = () => {
                 type="text"
                 id="email"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="test@gmail.com"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -122,7 +119,7 @@ const Contacts = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
-                  شماره تماس
+                  {t("contactsLableThree")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -136,7 +133,6 @@ const Contacts = () => {
                 type="text"
                 id="phone"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="09046417084"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -149,7 +145,7 @@ const Contacts = () => {
             <div className="mb-5">
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-                  موضوع
+                  {t("contactsLableFour")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -163,7 +159,6 @@ const Contacts = () => {
                 type="text"
                 id="text"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="مالیات"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -176,7 +171,7 @@ const Contacts = () => {
             <div className="mb-5">
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-                  متن
+                  {t("contactsLableFive")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -190,7 +185,6 @@ const Contacts = () => {
                 type="text"
                 id="text"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="سلام..."
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -203,9 +197,9 @@ const Contacts = () => {
             <Button
               type="submit"
               variant={"main"}
-              className="mx-auto  text-center justify-center !flex h-9 w-1/3 !rounded-md outline-none"
+              className="mx-auto !flex h-9 w-1/3 justify-center !rounded-md text-center outline-none"
             >
-              {isPending ? <ButtonLoader /> : "ارسال"}
+              {isPending ? <ButtonLoader /> : t("contactsSend")}
             </Button>
           </form>
         </div>
@@ -215,7 +209,3 @@ const Contacts = () => {
 };
 
 export default Contacts;
-
-
-
- 

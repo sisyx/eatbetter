@@ -6,11 +6,11 @@ export async function getUser() {
   const token = Cookies.get(tokenName); 
   
   if (token) {
-    const res = await fetch(`${apiUrl}/api/user/GetUserInfoFromToken`, {
+    const res = await fetch(`${apiUrl}/api/user/GetUserDetailsFromToken`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     return res.json();
   }
-}
+} 

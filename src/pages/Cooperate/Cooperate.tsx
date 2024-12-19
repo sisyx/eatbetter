@@ -1,5 +1,5 @@
 import Container from "../../components/modules/Container/Container";
-import { Button } from "../../components/shadcn/ui/button"; 
+import { Button } from "../../components/shadcn/ui/button";
 import { useFormik } from "formik";
 import usePostData from "../../hooks/usePostData";
 import { useTranslation } from "react-i18next";
@@ -7,10 +7,16 @@ import { ButtonLoader } from "../../components/modules/loader/Loader";
 import { cooperateSchema } from "../../validations/rules";
 
 const Cooperate = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const formHandler = useFormik({
-    initialValues: { name: "", phone: "",email: "", message: "",workExperience:"" },
+    initialValues: {
+      name: "",
+      phone: "",
+      email: "",
+      message: "",
+      workExperience: "",
+    },
     onSubmit: (values, { resetForm }) => {
       const data = {
         message: values.message,
@@ -19,7 +25,7 @@ const Cooperate = () => {
         fullName: values.name,
         workExperience: values.workExperience,
       };
-      mutation(data); 
+      mutation(data);
       resetForm();
     },
     validationSchema: cooperateSchema,
@@ -34,7 +40,9 @@ const Cooperate = () => {
   );
   return (
     <Container>
-      <div className="flex flex-col items-center px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!flex-row lg:!px-28">
+      <div 
+        dir={i18n.language === "fa" ? "ltr" : "rtl"}
+        className="flex flex-col items-center px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!flex-row lg:!px-28">
         <video
           src="/images/Dm22X5QeFw6j8Eq6L8.mp4"
           loop
@@ -42,34 +50,18 @@ const Cooperate = () => {
           autoPlay
           className="w-[76%] md:!w-1/2"
         ></video>
-        <div className="w-full space-y-4" dir="rtl">
+        <div className="w-full space-y-4"
+        dir={i18n.language === "fa" ? "rtl" : "ltr"}
+        >
           <p className="mb-4 sm:text-xl">
-            ما از اینکه شما وب‌سایت ما را برای{" "}
-            <span className="text-main">مدیریت وزن و بهبود سلامتی</span> خود
-            انتخاب کرده‌اید، بسیار خوشحالیم.
+            {t("cooperateTextOne")}
+            <span className="text-main"> {t("cooperateTextTwo")}</span>
+            {t("cooperateTextThree")}
           </p>
-          <p className="text-sm sm:text-base">
-            تجربه نشان داده است که مسائل مالی می‌تواند نقش بزرگی در انتخاب سبک
-            زندگی، کیفیت مواد غذایی و سلامت فردی ایفا کند. به همین دلیل، در این
-            وب‌سایت برنامه‌ای را طراحی کرده‌ایم تا در صورت رضایت از خدمات و
-            رژیم‌های ما، بتوانید به دوستان و عزیزان خود ما را معرفی کنید.
-          </p>
+          <p className="text-sm sm:text-base">{t("cooperateTextFour")}</p>
 
-          <p className="text-sm sm:text-base">
-            ما برای قدردانی از حمایت شما، مبلغی به کیف پول فردی که معرفی
-            کرده‌اید اضافه خواهیم کرد و همچنین پاداشی به کیف پول شما واریز
-            می‌شود. این مبلغ را می‌توانید هر ماه برداشت کنید یا برای خرید
-            محصولات دیگر از وب‌سایت ما استفاده نمایید. با این روش، نه تنها به
-            بهبود سلامت و کیفیت زندگی خود و دیگران کمک می‌کنید، بلکه به کاهش
-            استرس مالی و ارتقای سطح تغذیه‌ای خود نیز می‌پردازید.
-          </p>
-          <p className="text-sm sm:text-base">
-            پس از اولین خرید و تمایل به همکاری، تمامی آموزش‌ها و اطلاعات تکمیلی
-            در اختیارتان قرار خواهد گرفت. اگر سوالی دارید یا نیاز به اطلاعات
-            بیشتر دارید، لطفاً فرم زیر را تکمیل کنید و ما در اسرع وقت با شما در
-            ارتباط خواهیم بود.از همراهی شما سپاسگزاریم و امیدواریم با هم در مسیر
-            بهبود سلامت و سبک زندگی موفق باشیم.
-          </p>
+          <p className="text-sm sm:text-base">{t("cooperateTextFive")}</p>
+          <p className="text-sm sm:text-base">{t("cooperateTextSix")}</p>
           <form
             data-aos="fade-up"
             onClick={formHandler.handleSubmit}
@@ -79,7 +71,7 @@ const Cooperate = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
-                  ایمیل شما
+                  {t("cooperateLableOne")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -94,7 +86,6 @@ const Cooperate = () => {
                 type="email"
                 id="email"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="09332423121"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -106,7 +97,7 @@ const Cooperate = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
-                  نام شما
+                  {t("cooperateLableTwo")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -120,7 +111,6 @@ const Cooperate = () => {
                 type="text"
                 id="name"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="شاهین"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -131,7 +121,7 @@ const Cooperate = () => {
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
                   {" "}
-                  شماره تماس
+                  {t("cooperateLableThree")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -145,7 +135,6 @@ const Cooperate = () => {
                 type="text"
                 id="phone"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="09046417084"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -158,7 +147,7 @@ const Cooperate = () => {
             <div className="mb-5">
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-                  میزان تجربه کاری
+                  {t("cooperateLableFour")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -172,17 +161,17 @@ const Cooperate = () => {
                 type="text"
                 id="text"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="2 سال"
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
-                {formHandler.errors.workExperience && formHandler.errors.workExperience}
+                {formHandler.errors.workExperience &&
+                  formHandler.errors.workExperience}
               </span>
             </div>
             <div className="mb-5">
               <div className="flex flex-row-reverse items-baseline justify-end gap-2">
                 <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-                  متن
+                  {t("cooperateLableFive")}
                 </label>
                 <div className="h-2 w-2 rounded-xl bg-main">
                   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -196,7 +185,6 @@ const Cooperate = () => {
                 type="text"
                 id="text"
                 className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-                placeholder="سلام..."
                 required
               />
               <span className="mx-auto mt-2 block text-center text-xs text-red-600">
@@ -207,9 +195,9 @@ const Cooperate = () => {
             <Button
               type="submit"
               variant={"main"}
-              className="mx-auto !flex justify-center h-9 w-1/3 !rounded-md outline-none"
+              className="mx-auto !flex h-9 w-1/3 justify-center !rounded-md outline-none"
             >
-              {isPending ? <ButtonLoader /> : "ارسال"}
+              {isPending ? <ButtonLoader /> : t("cooperateSend")}
             </Button>
           </form>
         </div>

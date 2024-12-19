@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import Container from "../../components/modules/Container/Container";
 import Title from "../../components/modules/Title/Title";
 import {
@@ -7,30 +8,47 @@ import {
   AccordionTrigger,
 } from "../../components/shadcn/ui/accordion";
 const Cooking = () => {
+  const { i18n } = useTranslation();
+
   return (
     <Container>
       <div
-        dir="rtl"
-        className="px-12 relative pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!px-28"
+        dir={i18n.language === "fa" ? "rtl" : "ltr"}
+        className="relative px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!px-28"
       >
-        <Title title="آشپزی برای همه" />
+        <Title
+          title={
+            i18n.language === "fa" ? "آشپزی برای همه" : "Cooking for everyone"
+          }
+        />
         <p className="mt-8">
-          در بخش آشپزی وب‌سایت ما، به بیش از ۱۵۰ دستور غذایی ایرانی و بین‌المللی
+          {i18n.language === "fa"
+            ? ` در بخش آشپزی وب‌سایت ما، به بیش از ۱۵۰ دستور غذایی ایرانی و بین‌المللی
           دسترسی خواهید داشت. هر دستور غذا شامل اطلاعات کامل کالری، مواد مغذی و
           دستور پخت اصلی است. برای خوشمزه‌تر و سالم‌تر شدن غذا، نکات کلیدی و
           حرفه‌ای ارائه می‌شود. همچنین، برای هر غذا مشخص می‌کنیم که مناسب چه
           رژیم‌هایی (کتو، وگان، وجترین و غیره) است و چه افرادی بهتر است از آن
-          خودداری کنند. با ما، طعم سلامتی را در کنار تنوع و لذت تجربه کنید!
+          خودداری کنند. با ما، طعم سلامتی را در کنار تنوع و لذت تجربه کنید!`
+            : "In the cooking section of our website, you will have access to more than 150 Iranian and international recipes. Each recipe includes complete calorie information, nutrients, and the main cooking method. Key and professional tips are provided to make the food tastier and healthier. Also, for each dish, we specify which diets (keto, vegan, vegetarian, etc.) it is suitable for and which people should avoid it. With us, experience the taste of health along with variety and pleasure!"}
         </p>
-        <img src="https://cdn-icons-png.freepik.com/256/9862/9862039.png?semt=ais_hybrid" 
-         className=" absolute lg:left-48 left-20 w-52 md:block hidden lg:w-auto top-14 opacity-20"
-        alt="logo" />
-        <Accordion data-aos='fade-up' type="single" collapsible className="mt-10 w-full">
+        <img
+          src="https://cdn-icons-png.freepik.com/256/9862/9862039.png?semt=ais_hybrid"
+          className={`${i18n.language === "fa" ? "left-20 lg:left-48 " : "right-20 lg:right-48 "} absolute  top-14 hidden w-52 opacity-20 md:block lg:w-auto`}
+          alt="logo"
+        />
+        <Accordion
+          data-aos="fade-up"
+          type="single"
+          collapsible
+          className="mt-10 w-full"
+        >
           <AccordionItem className="border-0" value={`item-1`}>
             <AccordionTrigger className="flex border-b px-5 py-0 !pb-4 outline-none hover:!no-underline">
-              <div className="flex flex-col justify-start">
-                <p className="text-right"> خورشت قیمه</p>
-                <span className="block text-sm font-thin text-main text-right">
+              <div
+                className={`${i18n.language === "fa" ? "justify-start" : "justify-end"} flex flex-col justify-start`}
+              >
+                <p className={`${i18n.language === "fa" ? "text-right" : "text-left"}`}> خورشت قیمه</p>
+                <span className="block text-right text-sm font-thin text-main">
                   عطر و طعمی که از گذشته‌های دور به سفره‌های امروز آمده!
                 </span>
               </div>
@@ -97,9 +115,11 @@ const Cooking = () => {
 
           <AccordionItem className="mt-5 border-0" value={`item-2`}>
             <AccordionTrigger className="flex border-b px-5 py-0 !pb-4 outline-none hover:!no-underline">
-              <div className="flex flex-col justify-start">
-                <p className="text-right"> خورش قورمه سبزی </p>
-                <span className="block text-sm font-thin text-main text-right">
+              <div
+                className={`${i18n.language === "fa" ? "justify-start" : "justify-end"} flex flex-col justify-start`}
+              >
+                <p className={`${i18n.language === "fa" ? "text-right" : "text-left"}`}> خورش قورمه سبزی </p>
+                <span className="block text-right text-sm font-thin text-main">
                   غذایی اصیل، سرشار از عطر و طعم، میراثی از سفره‌های ایرانی!
                 </span>
               </div>
@@ -166,9 +186,11 @@ const Cooking = () => {
 
           <AccordionItem className="mt-5 border-0" value={`item-3`}>
             <AccordionTrigger className="flex border-b px-5 py-0 !pb-4 outline-none hover:!no-underline">
-              <div className="flex flex-col justify-start">
-                <p className="text-right"> کباب دیگی </p>
-                <span className="block text-sm font-thin text-main text-right">
+              <div
+                className={`${i18n.language === "fa" ? "justify-start" : "justify-end"} flex flex-col justify-start`}
+              >
+                <p className={`${i18n.language === "fa" ? "text-right" : "text-left"}`}> کباب دیگی </p>
+                <span className="block text-right text-sm font-thin text-main">
                   طعم و عطر کباب در هر لقمه، لذتی بی‌نظیر برای سفره‌های ایرانی!
                 </span>
               </div>
@@ -231,9 +253,11 @@ const Cooking = () => {
 
           <AccordionItem className="mt-5 border-0" value={`item-4`}>
             <AccordionTrigger className="flex border-b px-5 py-0 !pb-4 outline-none hover:!no-underline">
-              <div className="flex flex-col justify-start">
-                <p className="text-right"> آش رشته </p>
-                <span className="block text-sm font-thin text-main text-right">
+              <div
+                className={`${i18n.language === "fa" ? "justify-start" : "justify-end"} flex flex-col justify-start`}
+              >
+                <p className={`${i18n.language === "fa" ? "text-right" : "text-left"}`}> آش رشته </p>
+                <span className="block text-right text-sm font-thin text-main">
                   لذتی از سنت و سلامتی در هر قاشق
                 </span>
               </div>
@@ -301,8 +325,6 @@ const Cooking = () => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-
-   
       </div>
     </Container>
   );
