@@ -6,6 +6,7 @@ import { adminPanelFa } from "./pages/adminPanel";
 import { aboutFa } from "./pages/about";
 import { contactsFa } from "./pages/contacts";
 import { cooperateFa } from "./pages/cooperate";
+import { dietsFa } from "./pages/Diets";
 
 const fa = {
   ...headerFa,
@@ -16,6 +17,7 @@ const fa = {
   ...contactsFa,
   ...cooperateFa,
   ...registerFa,
+  ...dietsFa,
   ...userPanelFa,
   ...adminPanelFa,
 };
