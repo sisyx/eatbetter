@@ -8,6 +8,8 @@ import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { tokenName } from "../../../../config/constants";
 import { useTranslation } from "react-i18next";
+import Loader from "../../../modules/loader/Loader";
+import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Users = () => {
@@ -52,7 +54,7 @@ const Users = () => {
         {error ? (
           <h1>Error Loading Users</h1>
         ) : loading ? (
-          <CircleLoader />
+          <ThreeDotsLoader dotSize={20} />
         ) : (
           <div className="flex flex-col gap-2 pb-12">
             {users?.map((user: UserType) => (
