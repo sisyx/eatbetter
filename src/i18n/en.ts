@@ -1,3 +1,4 @@
+import { dietsEn } from "./pages/Diets";
 import { aboutEn } from "./pages/about";
 import { adminPanelEn } from "./pages/adminPanel";
 import { loginEn, registerEn } from "./pages/auth";
@@ -17,6 +18,7 @@ const en = {
   ...contactsEn,
   ...cooperateEn,
   ...registerEn,
+  ...dietsEn,
   ...userPanelEn,
   ...adminPanelEn,
   ...blogsEn,

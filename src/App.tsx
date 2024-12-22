@@ -17,7 +17,7 @@ const App: React.FC = () => {
   return (
     <>
       <ScrollToUp />
-      {/* <Auth/> */}
+      <Auth/>
       {router}
       <Toaster />
     </>
