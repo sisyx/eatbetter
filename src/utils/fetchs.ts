@@ -1,6 +1,5 @@
 import Cookies from "js-cookie";
-import { tokenName } from "../config/constants";
-import { useTranslation } from "react-i18next";
+import { tokenName } from "../config/constants"; 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export async function getUser() {
@@ -15,9 +14,7 @@ export async function getUser() {
     return res.json();
   }
 }
-export async function getAllDiets(language:string) {
-  console.log(language);
-  
+export async function getAllDiets(language:string) {  
   const res = await fetch(
     `${apiUrl}/api/Diet/GetAllDiets?lang=${language}`,
   );

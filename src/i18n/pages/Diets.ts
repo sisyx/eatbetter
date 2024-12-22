@@ -5,7 +5,7 @@ const dietsEn = {
   dietsTextTwo:
     " health and fitness!All allowed and prohibited foods are clearly listed, and we have also specified who this diet is not suitable for. Along with the diet, practical advice and side tips are also provided to accompany you on the path to achieving your goals. Accompanying the diet with a personalized 21-day exercise program To achieve an ideal body and weight, combining diet with exercise is an effective and essential solution. For this reason, we offer you a fully personalized exercise program in addition to a dedicated diet. This 21-day program with daily exercises is designed precisely based on your level of physical fitness and includes exercise movements, how to perform them correctly and the timing of each exercise. By following this program, which complements your diet, you can see significant changes in your fitness and health.",
 
-  dietsTitleTwo: "Get your own personalized diet. ",
+  dietsTitleTwo: "Get your own personalized diet",
   dietsTextThree:
     "If you have purchased a package, you can easily receive a special diet tailored to your characteristics by filling out a few simple fields. ",
 
@@ -13,6 +13,7 @@ const dietsEn = {
 
   dietsTitleThree: "Types of ready-made diets",
   modalTitle: "Please complete the fields below.",
+modalStep2Title:"Please select the type of diet you want"
 };
 
 const dietsFa = {
@@ -28,6 +29,7 @@ const dietsFa = {
   dietsButtonOne: "  رژیم اختصاصی من",
   dietsTitleThree: `انواع رژیم های آماده`,
   modalTitle: "لطفا فیلد های زیر را تکمیل کنید",
+modalStep2Title:" لطفا نوع رژیم مد نظرتون رو انتخاب کنید"
 };
 
 export { dietsFa, dietsEn };
