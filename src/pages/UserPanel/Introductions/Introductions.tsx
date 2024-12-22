@@ -9,77 +9,77 @@ import { useTranslation } from "react-i18next";
 const Introductions = () => {
   const { i18n, t } = useTranslation();
 
-  const columns = [
-    {
-      name: t("introductions.trOne"),
-      selector: (row: { user: string }) => row.user,
-    },
-    {
-      name: t("introductions.trTwo"),
-      selector: (row: { date: string }) => row.date,
-    },
-    {
-      name: t("introductions.trThree"),
-      selector: (row: { email: string }) => row.email,
-    },
-  ];
-  const data = [
-    {
-      id: 1,
-      user: "شاهین مشکل گشا",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-    {
-      id: 2,
-      user: "شب بخیر جون دل",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-    {
-      id: 3,
-      user: "شاهین مشکل گشا",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-    {
-      id: 4,
-      user: "شب بخیر جون دل",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-    {
-      id: 5,
-      user: "شاهین مشکل گشا",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-    {
-      id: 6,
-      user: "شب بخیر جون دل",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-    {
-      id: 7,
-      user: "شاهین مشکل گشا",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-    {
-      id: 8,
-      user: "شب بخیر جون دل",
-      date: "1403/05/01",
-      email: "kasra@gmail.com",
-    },
-  ];
+  // const columns = [
+  //   {
+  //     name: t("introductions.trOne"),
+  //     selector: (row: { user: string }) => row.user,
+  //   },
+  //   {
+  //     name: t("introductions.trTwo"),
+  //     selector: (row: { date: string }) => row.date,
+  //   },
+  //   {
+  //     name: t("introductions.trThree"),
+  //     selector: (row: { email: string }) => row.email,
+  //   },
+  // ];
+  // const data = [
+  //   {
+  //     id: 1,
+  //     user: "شاهین مشکل گشا",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  //   {
+  //     id: 2,
+  //     user: "شب بخیر جون دل",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  //   {
+  //     id: 3,
+  //     user: "شاهین مشکل گشا",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  //   {
+  //     id: 4,
+  //     user: "شب بخیر جون دل",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  //   {
+  //     id: 5,
+  //     user: "شاهین مشکل گشا",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  //   {
+  //     id: 6,
+  //     user: "شب بخیر جون دل",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  //   {
+  //     id: 7,
+  //     user: "شاهین مشکل گشا",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  //   {
+  //     id: 8,
+  //     user: "شب بخیر جون دل",
+  //     date: "1403/05/01",
+  //     email: "kasra@gmail.com",
+  //   },
+  // ];
   return (
     <Layout>
-      <Title title={t("introductions.titleOne")} />
+      <Title title={t("introductions.titleOne")} className="mt-20"/>
       <img
         src="/images/download-removebg-preview.png"
         alt="logo"
-        className={`${i18n.language === "fa" ? "left-1 sm:!left-[118px]" : "right-1 sm:!right-[118px]"} absolute top-4 opacity-40`}
+        className={`${i18n.language === "fa" ? "left-1 sm:!left-[118px]" : "right-1 sm:!right-[118px]"} absolute top-28 opacity-40`}
       />
       <div className="relative z-20 flex items-center gap-3">
         <p
@@ -123,7 +123,7 @@ const Introductions = () => {
         <p>{t("introductions.textThree")}</p>
       </div>
 
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <Title title={t("introductions.titleTwo")} />
         <DataTable
           responsive
@@ -132,7 +132,7 @@ const Introductions = () => {
           columns={columns}
           data={data}
         />
-      </div>
+      </div> */}
     </Layout>
   );
 };
