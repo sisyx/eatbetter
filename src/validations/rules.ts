@@ -160,6 +160,18 @@ let CharityCardSchema = Yup.object().shape({
     .required("لطفا موجودی خود را وارد کنید"),
 })
 
+const BlogSchema = Yup.object().shape({
+  title: Yup.string()
+  .min(4, "لطفا عنوان طولانی تری انتخاب کنید")
+  .max(70, "لطفا عنوان کوتاه تری انتخاب کنید")
+  .required("لطفا عنوان وبلاگ را وارد کنید"),
+
+  content: Yup.string()
+    .min(100, "لطفا متن طولانی تری بنویسید")
+    .max(10000, "لطفا متن کوتاه تری انتخاب کنید")
+    .required("لطفا متن وبلاگ را وارد کنید")
+})
+
 export {
   stockSchema,
   contactsSchema,
@@ -168,4 +180,5 @@ export {
   cooperateSchema,
   packageSchema,
   CharityCardSchema,
+  BlogSchema,
 };
