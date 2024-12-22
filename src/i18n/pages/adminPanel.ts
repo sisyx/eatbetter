@@ -10,6 +10,7 @@ const adminPanelFa = {
       cooperate: "همکاری",
       charity: "حساب خیریه",
       blogs: "بلاگ ها",
+      withdrawal: "برداشت ها",
       logout: "خروج",
       home: "صفحه اصلی",
       profile: "حساب کاربری",
@@ -81,23 +82,23 @@ const adminPanelFa = {
       linkTwo: "برداشت وجه",
       money: "موجودی شما:",
     },
-    adminwithdrawal: {
-      titleOne: "زمان برداشت:",
-      textOne:
-        "از ۲۵ ام تا ۲۹ ام هر ماه، فرصتی عالی برای برداشت موجودی کیف پولتون و استفاده از موجودی خود در هر مکان و زمانی که مایلید ، در انتظارتونه! 🎉",
-      titleTwo: "شرایط برداشت:",
-      textTwo:
-        "موجودی کیف پول شما باید حداقل ۱ میلیون تومان باشد. با خیال راحت و بدون هیچ نگرانی ، موجودی خود را به حساب بانکی خود انتقال دهید و از آن استفاده کنید.",
-      money: "موجودی شما:",
-      shaba: "شماره شبا",
-      shabaError: "لطفا شماره شبا خودتون رو وارد کنید  ",
-      bank: "نام بانک",
-      bankError: "لطفا اسم بانک را بنویسید",
-      cartUserName: "نام صاحب کارت",
-      cartUserNameError: "لطفا اسم خودتون رو وارد کنید",
-      password: "رمز عبور سایت",
-      passwordError: "لطفا رمز عبور خودتون رو وارد کنید",
-      submit: "برداشت وجه",
+    adminWithdrawal: {
+      title: "مدیریت و تاریخچه ی برداشت ها",
+      pendingsTitle: "پرداخت های پذیرفته شده",
+      processingsTitle: "پرداخت های در حال پردازش",
+      completedsTitle: "پرداخت های کامل شده",
+      table: {
+        userId: "آیدی کاربر",
+        amount: "مقدار درخواست",
+        status: "وضعیت",
+        requestedAt: "درخواست شده در",
+        approvedAt: "پذیرفته شده در",
+        changeStatus: "تغییر وضعیت",
+        row: {
+          acceptRequest: "پذیرش درخواست",
+          completeRequest: "کامل کردن درخواست"
+        }
+      }
     },
   
     adminintroductions: {
@@ -197,6 +198,7 @@ const adminPanelFa = {
       cooperate: "Cooperate",
       charity: "Charity Wallet",
       blogs: "Blogs",
+      withdrawal: "Withdrawals",
       logout: "logout",
       home: "home",
       profile: "profile",
@@ -269,24 +271,23 @@ const adminPanelFa = {
       linkTwo: "cash withdrawal",
       money: "Your inventory:",
     },
-    adminwithdrawal: {
-      titleOne: "Harvest time:",
-      textOne:
-        "From the 25th to the 29th of every month, a great opportunity to withdraw your wallet balance and use your balance wherever and whenever you want is waiting for you! 🎉",
-      titleTwo: "Withdrawal conditions:",
-      textTwo:
-        "Your wallet balance must be at least 1 million Tomans. Transfer your balance to your bank account and use it safely and without any worries.",
-      money: "Your inventory:",
-  
-      shaba: "Shaba name  ",
-      shabaError: "Please enter your Shaba number",
-      bank: "Bank name",
-      bankError: "Please write the name of the bank",
-      cartUserName: "Name of the cardholder",
-      cartUserNameError: "Please enter your name.",
-      password: "password",
-      passwordError: "Please enter your password",
-      submit: "cash withdrawal",
+    adminWithdrawal: {
+      title: "Withdrawals Management",
+      pendingsTitle: "Pendnig Withdrawals",
+      processingsTitle: "Processing Withdrawals",
+      completedsTitle: "Completed Withdrawals",
+      table: {
+        userId: "User Id",
+        amount: "Amount",
+        status: "Status",
+        requestedAt: "Requested At",
+        approvedAt: "Approved At",
+        changeStatus: "Change Status",
+        row: {
+          acceptRequest: "Approve Request",
+          completeRequest: "Complete Request"
+        }
+      }
     },
     adminintroductions: {
       titleOne: "Referral code",

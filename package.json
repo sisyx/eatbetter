@@ -29,6 +29,7 @@
     "framer-motion": "^11.11.8",
     "i18next": "^23.16.0",
     "input-otp": "^1.2.4",
+    "jalali-moment": "^3.3.11",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.452.0",
     "prettier-plugin-tailwindcss": "^0.6.8",

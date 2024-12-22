@@ -36,6 +36,7 @@ import { CharityCardsList } from "./components/templates/AdminPanel/CharityWalle
 import AdminBlogs from "./components/templates/AdminPanel/Blogs/Blogs";
 import { SuccessFullPayment } from "./pages/Payment/SuccessfulPayment";
 import { UnsuccessFullPayment } from "./pages/Payment/UnsuccessfulPayment";
+import Withdrawals from "./components/templates/AdminPanel/Withdrawals/index";
 
 const userPanelRoutes = [
   {
@@ -121,6 +122,10 @@ const adminPanelRoutes = [
   {
     path: "/adminPanel/blogs",
     element: <AdminBlogs />
+  },
+  {
+    path: "/adminPanel/withdrawals",
+    element: <Withdrawals />
   },
 ]
 
