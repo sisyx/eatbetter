@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { tokenName } from "../config/constants"; 
+import { tokenName } from "../config/constants";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export async function getUser() {
@@ -14,9 +14,16 @@ export async function getUser() {
     return res.json();
   }
 }
-export async function getAllDiets(language:string) {  
-  const res = await fetch(
-    `${apiUrl}/api/Diet/GetAllDiets?lang=${language}`,
-  );
+export async function getAllDiets(language: string) {
+  const res = await fetch(`${apiUrl}/api/Diet/GetAllDiets?lang=${language}`);
+  return res.json();
+}
+
+export async function getWeightChartData(userId:number) {
+  const res = await fetch(`${apiUrl}/api/UserWeight/GetWeightHistory?userId=${userId}`);
+  return res.json();
+}
+export async function getIncomeChartData(userId:number) {
+  const res = await fetch(`${apiUrl}/api/Wallet/GetWalletBalanceForLast7Days?userId=${userId}`);
   return res.json();
 }

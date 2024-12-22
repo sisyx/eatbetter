@@ -1,6 +1,6 @@
  
 import Title from "../../../../components/modules/Title/Title";
-import { Button } from "../../../../components/shadcn/ui/button";
+// import { Button } from "../../../../components/shadcn/ui/button";
 // import Modal from "../../../../components/templates/UserPanel/Health/Diets/Modal";
 import Layout from "../../../../Layouts/UserLayouts";
 
@@ -10,8 +10,8 @@ const Challenge = () => {
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
         <Title title="چالش شماره سوم" /> 
           <div className="relative z-50 flex gap-3">
-      <Button variant={'main'}>شروع چالش</Button>
-      <Button disabled variant={"default"}>اتمام چالش</Button>
+      {/* <Button variant={'main'}>شروع چالش</Button>
+      <Button disabled variant={"default"}>اتمام چالش</Button> */}
           </div> 
       </div>
       <main data-aos="fade-up">

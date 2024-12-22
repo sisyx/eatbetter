@@ -16,7 +16,7 @@ const Progress = () => {
       </div>
       <section className="flex md:!flex-row flex-col gap-3 mt-5">
         <LineChart />
-        <BarChart />
+        {/* <BarChart /> */}
       </section>
     </Layout>
   );
