@@ -50,6 +50,17 @@ const adminPanelFa = {
     },
     adminBlogs: {
       title: "مدیریت بلاگ ها",
+      loadBlogsError: "مشکلی در بارگیری بلاگ ها پیش آمده",
+      table: {
+        title: "عنوان",
+        publishDate: "تاریخ انتشار",
+        content: "محتوای بلاگ",
+        edit: "ویرایش",
+        row: {
+          edit: "ویرایش",
+          content: "محتوای وبلاگ",
+        }
+      }
     },
     adminwallet: {
       stockTtile: "موجودی کیف پول خود را مشاهده کنید",
@@ -226,6 +237,17 @@ const adminPanelFa = {
     },
     adminBlogs: {
       title: "Blogs Management",
+      loadBlogsError: "Error Loading Blogs",
+      table: {
+        title: "Title",
+        publishDate: "Publish Date",
+        content: "Blog Content",
+        edit: "Edit",
+        row: {
+          edit: "Edit",
+          content: "Content",
+        }
+      }
     },
     adminwallet: {
       stockTtile: "View your wallet balance",

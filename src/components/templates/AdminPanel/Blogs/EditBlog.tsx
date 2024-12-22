@@ -5,6 +5,7 @@ import { BlogSchema } from "../../../../validations/rules";
 import { toast } from "../../../../hooks/use-toast";
 import usePostData from "../../../../hooks/usePostData";
 import { ButtonLoader } from "../../../modules/loader/Loader";
+import { useTranslation } from "react-i18next";
 
 type formValues = {
     title: string,
@@ -46,6 +47,7 @@ const xxx: XXXType[] = [
 
 export const EditBlog = (props: PropsType) => {
     const { id, title, content, imagePath, publishedDate, reload } = props;
+    const { t } = useTranslation();
 
     const successFunc = (data: any) => {
         console.log(data);
@@ -86,8 +88,8 @@ export const EditBlog = (props: PropsType) => {
         <Dialog>
             <DialogTrigger asChild>
                 <div>
-                    <Button className="hidden md:block">ویرایش</Button>
-                    <span className="text-sm underline md:hidden cursor-pointer">ویرایش</span>
+                    <Button className="hidden md:block">{t("adminBlogs.table.row.edit")}</Button>
+                    <span className="text-sm underline md:hidden cursor-pointer">{t("adminBlogs.table.row.edit")}</span>
                 </div>
             </DialogTrigger>
             <DialogContent className="w-full max-w-full sm:!max-w-[425px]">

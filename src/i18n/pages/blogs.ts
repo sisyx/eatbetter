@@ -3,7 +3,7 @@ const blogsEn = {
         headTitle: "help Youself Improve",
         headText: "To Know More About Your Body And How It Works",
         continue: "continue"
-    },
+    }
 }
 
 const blogsFa = {

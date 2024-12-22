@@ -54,19 +54,19 @@ const Blogs = () => {
                 </div>
                 <hr />
                 {error ? (
-                <h1>Error Loading Blogs</h1>
+                <h1>{t("adminBlogs.loadBlogsError")}</h1>
                 ) : loading ? (
                 <ThreeDotsLoader dotSize={20} />
                 ) : (
                     <div className="w-full overflow-x-scroll">
-                        <table className="w-full" style={{minWidth: "400px"}}>
+                        <table className="w-full" style={{minWidth: "400px"}} dir={language === "fa" ? "rtl" : "ltr"}>
                             <tr>
-                                <th align="right"></th>
-                                <th align="right">عنوان</th>
-                                <th align="right">متن بلاگ</th>
-                                <th align="right">تاریخ انتشار</th>
-                                <th align="right">ویرایش</th>
-                                {/* <th align="right">حذف</th> */} 
+                                <th align={language === "fa" ? "right" : "left"}></th>
+                                <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.title")}</th>
+                                <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.content")}</th>
+                                <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.publishDate")}</th>
+                                <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.edit")}</th>
+                                {/* <th align={language === "fa" ? "right" : "left"}>حذف</th> */} 
                             </tr>
                             {blogs?.map((blog: any) => (
                                 <>

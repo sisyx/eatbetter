@@ -1,5 +1,6 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../../../shadcn/ui/dialog";
 import { Button } from "../../../shadcn/ui/button";
+import { useTranslation } from "react-i18next";
 
 type PropsType = {
     title: string,
@@ -8,13 +9,14 @@ type PropsType = {
 
 export const BlogContent = (props: PropsType) => {
     const { title, content } = props;
+    const { t } = useTranslation();
 
     return (
         <Dialog>
             <DialogTrigger asChild>
                 <div>
-                    <Button className="hidden md:block">محتوای بلاگ</Button>
-                    <span className="text-sm underline md:hidden cursor-pointer">محتوای بلاگ</span>
+                    <Button className="hidden md:block">{t("adminBlogs.table.row.content")}</Button>
+                    <span className="text-sm underline md:hidden cursor-pointer">{t("adminBlogs.table.row.content")}</span>
                 </div>
             </DialogTrigger>
             <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
