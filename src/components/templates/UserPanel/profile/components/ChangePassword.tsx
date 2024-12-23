@@ -1,10 +1,7 @@
-import * as Yup from "yup";
-
-// import Loader, { ButtonLoader } from "@/src/components/modules/loader/Loader";
 import { Button } from "../../../../shadcn/ui/button";
 import {
   Dialog,
-  DialogContent, 
+  DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "../../../../shadcn/ui/dialog";
@@ -15,6 +12,11 @@ import { useState } from "react";
 import { LuEye } from "react-icons/lu";
 // import { toast } from "../../../../../hooks/use-toast";
 import { useTranslation } from "react-i18next";
+import usePostData from "../../../../../hooks/usePostData";
+import { toast } from "../../../../../hooks/use-toast";
+import { ButtonLoader } from "../../../../modules/loader/Loader";
+import { authStore } from "../../../../../stores/auth";
+import { changePasswordSchema } from "../../../../../validations/rules";
 
 interface newPasswordData {
   currentPassword: string;
@@ -22,59 +24,35 @@ interface newPasswordData {
   confirmPassword?: string;
 }
 
-let changePasswordSchema = Yup.object().shape({
-  currentPassword: Yup.string()
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9.@$-_#]{8,}$/,
-      "رمز عبور باید شامل حروف بزرگ و کوچک انگلیسی و اعداد باشد و حداقل 8 حرف داشته باشد",
-    )
-    .required("لطفا رمز عبور فعلی خودتون رو وارد کنید"),
-
-  newPassword: Yup.string()
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9.@$-_#]{8,}$/,
-      "رمز عبور باید شامل حروف بزرگ و کوچک انگلیسی و اعداد باشد و حداقل 8 حرف داشته باشد",
-    )
-    .required("لطفا رمز عبور جدید رو وارد کنید"),
-
-  confirmPassword: Yup.string()
-    .oneOf(
-      [Yup.ref("newPassword"), null as any],
-      "رمز عبور جدید و تکرار رمز عبور جدید باید مشابه باشند",
-    )
-    .required("لطفا رمز عبور جدید خودتون رو تایید کنید"),
-});
-
 const ChangePassword = () => {
-  const { t } = useTranslation();
-  
-  // const successFunc = (data: { statusCode: number }) => {
-  //   if (data.statusCode === 200) {
-  //     formHandler.resetForm();
-  //     toast({
-  //       variant: "default",
-  //       title: "رمز عبور با موفقیت بروزرسانی شد",
-  //     });
-  //     setOpen(false);
-  //   } else if (data.statusCode === 401) {
-  //     toast({
-  //       variant: "default",
-  //       title: "رمز عبور فعلی شما اشتباه است",
-  //     });
-  //   } else if (data.statusCode === 402) {
-  //     toast({
-  //       variant: "default",
-  //       title: "این رمز قبلا ست شده و نیازه یک رمز جدید وارد کنید",
-  //     });
-  //   }
-  // };
+  const { t, i18n } = useTranslation();
+  const { userData } = authStore((state) => state);
 
-  // const { mutate: mutation, isPending } = usePostData<newPasswordData>(
-  //   "/user/changePassword",
-  //   null,
-  //   true,
-  //   successFunc,
-  // );
+  const successFunc = (data: { statusCode: number; message: string }) => {
+    if (data.statusCode === 200) {
+      formHandler.resetForm();
+      toast({
+        variant: "success",
+        title:
+          i18n.language === "fa"
+            ? "رمز عبور با موفقیت بروزرسانی شد"
+            : "Password updated successfully.",
+      });
+      setOpen(false);
+    } else {
+      toast({
+        variant: "danger",
+        title: data.message,
+      });
+    }
+  };
+
+  const { mutate: mutation, isPending } = usePostData<any>(
+    "/api/user/ChangePassword",
+    null,
+    true,
+    successFunc,
+  );
   const [showNewPass, setShowNewPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
@@ -84,11 +62,13 @@ const ChangePassword = () => {
       newPassword: "",
       confirmPassword: "",
     },
-    onSubmit: (_values: newPasswordData) => {
-      // mutation({
-      //   currentPassword: values.currentPassword,
-      //   newPassword: values.newPassword,
-      // });
+    onSubmit: (values: newPasswordData) => {
+      mutation({
+        userId: userData?.id,
+        oldPassword: values.currentPassword,
+        newPassword: values.newPassword,
+        confirmNewPassword: values.confirmPassword,
+      });
     },
     validationSchema: changePasswordSchema,
   });
@@ -100,14 +80,22 @@ const ChangePassword = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size={"sm"} className="mb-5 block mt-10 bg-gray-100 text-black">
-        {t("profile.changePassword")}
+        <Button
+          size={"sm"}
+          className="mb-5 mt-10 block bg-gray-100 text-black hover:!text-white"
+        >
+          {t("profile.changePassword")}
         </Button>
       </DialogTrigger>
-      <DialogContent dir="rtl" className="w-full max-w-full sm:!max-w-[425px]">
+      <DialogContent
+        dir={i18n.language === "fa" ? "rtl" : "ltr"}
+        className="w-full max-w-full sm:!max-w-[425px]"
+      >
         <div>
           <DialogTitle>
-            <p className="text-center font-thin">رمز عبور فعلی</p>
+            <p className="text-center font-thin">
+              {i18n.language === "fa" ? "رمز عبور فعلی" : "Current password"}
+            </p>
           </DialogTitle>
 
           <input
@@ -126,7 +114,9 @@ const ChangePassword = () => {
             )}
         </div>
         <div>
-          <p className="text-center font-thin">رمز عبور جدید</p>
+          <p className="text-center font-thin">
+            {i18n.language === "fa" ? " رمز عبور جدید" : "New password"}
+          </p>
           <div className="relative">
             <input
               className="w-full border-b border-solid px-3 py-2 outline-none"
@@ -138,7 +128,7 @@ const ChangePassword = () => {
             />
             <LuEye
               onClick={() => setShowNewPass((prev) => !prev)}
-              className="absolute left-3 top-[15px] cursor-pointer"
+              className={`absolute ${i18n.language === "fa" ? "left-3" : "right-3"} top-[15px] cursor-pointer`}
             />
           </div>
           {formHandler.touched.newPassword &&
@@ -149,7 +139,11 @@ const ChangePassword = () => {
             )}
         </div>
         <div>
-          <p className="text-center font-thin">تکرار رمز عبور جدید</p>
+          <p className="text-center font-thin">
+            {i18n.language === "fa"
+              ? "تکرار رمز عبور جدید"
+              : "Confirm Password"}
+          </p>
           <div className="relative">
             <input
               className="w-full border-b border-solid px-3 py-2 outline-none"
@@ -161,7 +155,7 @@ const ChangePassword = () => {
             />
             <LuEye
               onClick={() => setShowConfirmPass((prev) => !prev)}
-              className="absolute left-3 top-[15px] cursor-pointer"
+              className={`absolute ${i18n.language === "fa" ? "left-3" : "right-3"} top-[15px] cursor-pointer`}
             />
           </div>
           {formHandler.touched.confirmPassword &&
@@ -177,8 +171,13 @@ const ChangePassword = () => {
           variant={"main"}
           className="mx-auto my-3 block h-9 text-center"
         >
-          ﺗﻐﯿﯿﺮ رمزعبور
-          {/* {isPending ? <ButtonLoader /> : "ﺗﻐﯿﯿﺮ رمزعبور"} */}
+          {isPending ? (
+            <ButtonLoader />
+          ) : i18n.language === "fa" ? (
+            "ﺗﻐﯿﯿﺮ رمزعبور"
+          ) : (
+            "Change Password"
+          )}
         </Button>
       </DialogContent>
     </Dialog>

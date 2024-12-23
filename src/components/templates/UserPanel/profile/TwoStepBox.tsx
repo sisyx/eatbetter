@@ -18,6 +18,7 @@ import {
 } from "../../../shadcn/ui/input-otp";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { FaAngleRight } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 // import { useQueryClient } from "@tanstack/react-query";
 
 interface BoxProps {
@@ -48,6 +49,7 @@ const TwoStepBox: FC<BoxProps> = ({
   const [prevValue, setPrevValue] = useState<string | undefined>(undefined);
   // const queryClient = useQueryClient();
   const [data, setData] = useState<any>();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if (type === "email" && !prevValue && value?.includes("@")) {
@@ -272,7 +274,7 @@ const TwoStepBox: FC<BoxProps> = ({
               <DialogHeader>
                 <DialogTitle className="py-3 text-center">
                   {step === 1 ? (
-                    ` ویرایش ${title}`
+                    ` ${i18n.language === 'fa' ? "ویرایش" : "edit"} ${title}`
                   ) : (
                     <div
                       className="flex justify-between text-sm font-thin"

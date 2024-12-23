@@ -1,9 +1,6 @@
 import { FaHome } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import {
-  MdOutlineAccountCircle, 
-  MdAttachMoney,
-} from "react-icons/md";
+import { MdOutlineAccountCircle, MdAttachMoney } from "react-icons/md";
 import {
   Accordion,
   AccordionContent,
@@ -11,7 +8,7 @@ import {
   AccordionTrigger,
 } from "../../shadcn/ui/accordion";
 
-import { IoFastFoodOutline } from "react-icons/io5"; 
+import { IoFastFoodOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { GiNightSleep } from "react-icons/gi";
 import { Button } from "../../shadcn/ui/button";
@@ -19,60 +16,89 @@ import { PiMedalLight } from "react-icons/pi";
 
 import { TbMoneybag } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
-const SideBar = ({ className }: { className?: string }) => {
-  const { t } = useTranslation();
+import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useQueryClient } from "@tanstack/react-query";
+import { authStore } from "../../../stores/auth";
 
+const SideBar = ({ className }: { className?: string }) => {
+  const { t, i18n } = useTranslation();
+  const { setUserData, setLogin } = authStore((state) => state);
+
+  const navigate = useNavigate();
   const links = [
     {
-      title: t('sideBar.home'),
+      title: t("sideBar.home"),
       href: "/",
       icon: <FaHome className="text-2xl" />,
     },
     {
-      title: t('sideBar.profile'),
+      title: t("sideBar.profile"),
       href: "/userpanel/profile",
       icon: <MdOutlineAccountCircle className="text-2xl" />,
-    }, 
+    },
     {
-      title: t('sideBar.work'),
+      title: t("sideBar.work"),
       subLinks: [
         {
-          title: t('sideBar.wallet'),
+          title: t("sideBar.wallet"),
           href: "/userPanel/wallet",
         },
         {
-          title: t('sideBar.income'),
+          title: t("sideBar.income"),
           href: "/userPanel/income",
         },
         {
-          title: t('sideBar.introductions'),
+          title: t("sideBar.introductions"),
           href: "/userPanel/introductions",
         },
         {
-          title: t('sideBar.training'),
+          title: t("sideBar.training"),
           href: "/userPanel/training",
         },
       ],
       icon: <IoFastFoodOutline className="text-2xl" />,
-    },  
+    },
     {
-      title:  t('sideBar.challenges'),
+      title: t("sideBar.challenges"),
       href: "/userpanel/challenges",
       icon: <PiMedalLight className="text-2xl" />,
     },
     {
-      title: t('sideBar.health'),
+      title: t("sideBar.health"),
       href: "/userpanel/health",
       icon: <MdAttachMoney className="text-2xl" />,
     },
     {
-      title: t('sideBar.sleep'),
+      title: t("sideBar.sleep"),
       href: "/userpanel/sleep",
       icon: <GiNightSleep className="text-2xl" />,
     },
   ];
-  const param = useLocation(); 
-
+  const param = useLocation();
+  const queryClient = useQueryClient();
+  const logoutHandler = () => {
+    swal({
+      title:
+        i18n.language === "fa"
+          ? "آیا از خروج اطمینان دارید؟"
+          : "Are you sure you want logout?",
+      icon: "warning",
+      buttons: [
+        i18n.language === "fa" ? "نه" : "no",
+        i18n.language === "fa" ? "آره" : "yes",
+      ],
+    }).then((res) => {
+      if (res) {
+        navigate("/");
+        Cookies.remove("eatBetterToken");
+        queryClient.invalidateQueries({ queryKey: ["auth"] });
+        setUserData(null as any);
+        setLogin(false);
+      }
+    });
+  };
   return (
     <aside
       className={`${className ? className : ""} sticky bottom-0 top-0 h-full min-h-screen min-w-[255px] overflow-hidden bg-main py-3 text-white`}
@@ -146,8 +172,11 @@ const SideBar = ({ className }: { className?: string }) => {
             ></path>
           </svg> */}
 
-          <div className="!absolute border-l border-main bottom-0 pb-3 z-50 flex w-full cursor-pointer flex-row-reverse items-center justify-center gap-4 px-5 pt-3 font-bold text-main bg-white">
-            <li>{t('sideBar.logout')}</li>
+          <div
+            onClick={logoutHandler}
+            className="!absolute bottom-0 z-50 flex w-full cursor-pointer flex-row-reverse items-center justify-center gap-4 border-l border-main bg-white px-5 pb-3 pt-3 font-bold text-main"
+          >
+            <li>{t("sideBar.logout")}</li>
             <CiLogout className="text-2xl" />
           </div>
         </ul>

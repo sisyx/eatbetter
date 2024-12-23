@@ -4,9 +4,11 @@ import { Button } from "../../../../components/shadcn/ui/button";
 import { useFormik } from "formik";
 import { stockSchema } from "../../../../validations/rules"; 
 import { useTranslation } from "react-i18next";
+import { authStore } from "../../../../stores/auth";
 
 const Withdrawal = () => {
   const {  t } = useTranslation();
+  const { userData } = authStore((state) => state);
 
   const formHandler = useFormik({
     initialValues: { name: "", shabaNumber: "", bankName: "", password: "" },
@@ -19,11 +21,12 @@ const Withdrawal = () => {
   return (
     <Layout>
       <div className="relative mx-auto pt-12 w-max rounded-lg p-8 text-center shadow-xl">
-        <p> {t("withdrawal.money")}</p>
-        <p className="text-main mt-2">120,000 تومان</p>
+        <p> {t("withdrawal.money")}</p> 
         {/* <span className="absolute -bottom-0 left-[98px] text-2xl text-main">
           $
         </span> */}
+        <p className="mt-2 text-main">{userData?.walletBalance} تومان</p>
+
       </div>
 
       <div className="mt-10 sm:mt-6">

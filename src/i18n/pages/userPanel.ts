@@ -291,7 +291,7 @@ const userPanelEn = {
 
   profile: {
     title: "Account",
-    name: "UserName & lastName",
+    name: "UserName",
     phone: "phoneNumber",
     email: "email",
     gender: "gender",
