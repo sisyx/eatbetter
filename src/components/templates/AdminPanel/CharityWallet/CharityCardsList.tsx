@@ -63,7 +63,9 @@ export const CharityCardsList = () => {
                             <CharityCard {...data} />
                         : <span>هیچ کارتی یافت نشد</span>
                     }
-                    <CreateCharityCard reloadFn={reloadFn} />
+                    {
+                        !loading && <CreateCharityCard reloadFn={reloadFn} />
+                    }
                 </div>
             </div>
         </Layout>

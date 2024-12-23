@@ -9,6 +9,7 @@ const adminPanelFa = {
       contact: "پیام های مشتریان",
       cooperate: "همکاری",
       charity: "حساب خیریه",
+      blogs: "بلاگ ها",
       logout: "خروج",
       home: "صفحه اصلی",
       profile: "حساب کاربری",
@@ -47,7 +48,20 @@ const adminPanelFa = {
       optionOne: "درامد",
       optionTwo: "تعداد افراد",
     },
-  
+    adminBlogs: {
+      title: "مدیریت بلاگ ها",
+      loadBlogsError: "مشکلی در بارگیری بلاگ ها پیش آمده",
+      table: {
+        title: "عنوان",
+        publishDate: "تاریخ انتشار",
+        content: "محتوای بلاگ",
+        edit: "ویرایش",
+        row: {
+          edit: "ویرایش",
+          content: "محتوای وبلاگ",
+        }
+      }
+    },
     adminwallet: {
       stockTtile: "موجودی کیف پول خود را مشاهده کنید",
       stockText:
@@ -182,6 +196,7 @@ const adminPanelFa = {
       contact: "Users Messages",
       cooperate: "Cooperate",
       charity: "Charity Wallet",
+      blogs: "Blogs",
       logout: "logout",
       home: "home",
       profile: "profile",
@@ -220,7 +235,20 @@ const adminPanelFa = {
       optionOne: "income",
       optionTwo: "invitations  ",
     },
-  
+    adminBlogs: {
+      title: "Blogs Management",
+      loadBlogsError: "Error Loading Blogs",
+      table: {
+        title: "Title",
+        publishDate: "Publish Date",
+        content: "Blog Content",
+        edit: "Edit",
+        row: {
+          edit: "Edit",
+          content: "Content",
+        }
+      }
+    },
     adminwallet: {
       stockTtile: "View your wallet balance",
       stockText:

@@ -2,6 +2,7 @@ import { dietsEn } from "./pages/Diets";
 import { aboutEn } from "./pages/about";
 import { adminPanelEn } from "./pages/adminPanel";
 import { loginEn, registerEn } from "./pages/auth";
+import { blogsEn } from "./pages/blogs";
 import { contactsEn } from "./pages/contacts";
 import { cooperateEn } from "./pages/cooperate";
 import { homeEn } from "./pages/home";
@@ -20,6 +21,7 @@ const en = {
   ...dietsEn,
   ...userPanelEn,
   ...adminPanelEn,
+  ...blogsEn,
 };
 
 export default en;

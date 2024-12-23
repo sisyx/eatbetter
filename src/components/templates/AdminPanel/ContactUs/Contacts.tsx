@@ -8,6 +8,7 @@ import { Contact as ContactType } from './types';
 import { FaCommentAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { tokenName } from "../../../../config/constants";
+import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
 const apiUrl = import.meta.env.VITE_API_URL
 
 const Contacts = () => {
@@ -53,7 +54,7 @@ const Contacts = () => {
                 <hr />
                 {
                     error ? <code>Error</code>
-                    : loading ? <CircleLoader />
+                    : loading ? <ThreeDotsLoader dotSize={20} />
                     : messages.length ? 
                     <div className="flex flex-col gap-8">
                         {

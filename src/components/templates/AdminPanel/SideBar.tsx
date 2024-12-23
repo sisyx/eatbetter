@@ -6,6 +6,7 @@ import { LuMessagesSquare } from "react-icons/lu";
 import { IoMdSettings } from "react-icons/io";
 import { RiShakeHandsFill } from "react-icons/ri";
 import { PiBankFill } from "react-icons/pi";
+import { GiNightSleep } from "react-icons/gi";
 
 const SideBar = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
@@ -42,6 +43,11 @@ const SideBar = ({ className }: { className?: string }) => {
       href: "/adminPanel/charityWallet",
       icon: <PiBankFill className="text-2xl" />,
     },
+    {
+      title: t("adminsideBar.blogs"),
+      href: "/adminPanel/blogs",
+      icon: <GiNightSleep className="text-2xl" />,
+    }
   ];
   const param = useLocation(); 
 

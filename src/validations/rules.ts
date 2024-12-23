@@ -527,6 +527,7 @@ let changePasswordSchema = Yup.object().shape({
         : "Please write your password",
     ),
 
+ 
   confirmPassword: Yup.string()
     .oneOf(
       [Yup.ref("newPassword"), null as any],
@@ -540,6 +541,19 @@ let changePasswordSchema = Yup.object().shape({
         : "Please confirm your new password",
     ),
 });
+ 
+const BlogSchema = Yup.object().shape({
+  title: Yup.string()
+  .min(4, "لطفا عنوان طولانی تری انتخاب کنید")
+  .max(70, "لطفا عنوان کوتاه تری انتخاب کنید")
+  .required("لطفا عنوان وبلاگ را وارد کنید"),
+
+  content: Yup.string()
+    .min(100, "لطفا متن طولانی تری بنویسید")
+    .max(10000, "لطفا متن کوتاه تری انتخاب کنید")
+    .required("لطفا متن وبلاگ را وارد کنید")
+})
+ 
 export {
   stockSchema,
   contactsSchema,
@@ -547,6 +561,7 @@ export {
   loginSchema,
   cooperateSchema,
   packageSchema,
-  CharityCardSchema,
-  changePasswordSchema,
+  CharityCardSchema, 
+  changePasswordSchema, 
+  BlogSchema, 
 };
