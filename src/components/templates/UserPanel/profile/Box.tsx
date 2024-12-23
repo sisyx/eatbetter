@@ -9,6 +9,10 @@ import {
 } from "../../../shadcn/ui/dialog";
 import { MdOutlineEdit } from "react-icons/md";
 import { Button } from "../../../shadcn/ui/button";
+import { useTranslation } from "react-i18next";
+import { ButtonLoader } from "../../../modules/loader/Loader";
+import usePostData from "../../../../hooks/usePostData";
+import { authStore } from "../../../../stores/auth";
 // import usePostData from "@/src/hooks/usePostData";
 // import { useQueryClient } from "@tanstack/react-query";
 // import { toast } from "../../../../hooks/use-toast";
@@ -21,52 +25,30 @@ interface BoxProps {
   value?: string;
   setValue?: (data: any) => void;
   errorText?: string;
-  multiple?: string[];
-  values?: any[];
-  setValues?: any[];
   requestBody?: any;
-  options?: string[];
 }
 
 const Box: FC<BoxProps> = ({
-  type,
   title,
+  type,
   regex,
   value,
   setValue,
   errorText,
-  multiple,
-  values,
-  setValues, 
-  options,
+  requestBody,
 }) => {
   const [error, setError] = useState(false);
-  const [_disabled, setdisabled] = useState(true);
+  const [disabled, setdisabled] = useState(true);
   const [data, setData] = useState<any>();
-  const [secondData, setSecondData] = useState<any>();
-  // const queryClient = useQueryClient();
+  const { i18n } = useTranslation();
+  const { userData } = authStore((state) => state);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (value) {
       setData(value);
-    } else {
-      if (values) {
-        setData(values[0]);
-        setSecondData(values[1]);
-      }
     }
-  }, [value, values]);
-
-  // const successFunc = (data: { statusCode: number }) => {
-  //   if (data.statusCode === 200) {
-  //     toast({
-  //       variant: "success",
-  //       title: "اطلاعات با موفقیت بروزرسانی شد",
-  //     });
-  //     setOpen(false);
-  //     queryClient.invalidateQueries({ queryKey: ["auth"] });
-  //   }
-  // };
+  }, [value]);
 
   const inputChangeHandler = (value: string, setHandler: any) => {
     setdisabled(false);
@@ -76,45 +58,35 @@ const Box: FC<BoxProps> = ({
       } else {
         setError(false);
       }
-      if (values) {
-        setHandler(value);
-      } else {
-        setValue && setData(value);
-      }
+      setValue && setData(value);
     } else {
       setHandler(value);
     }
   };
 
-  // const { mutate: mutation, isPending } = usePostData<UserInfoObj>(
-  //   "/user/edit",
-  //   null,
-  //   true,
-  //   successFunc,
-  // );
+  const { mutate: mutation, isPending } = usePostData<any>(
+    `/api/user/api/users/profile/${userData?.id}`,
+    i18n.language === "fa"
+      ? "اطلاعات با موفقیت بروزرسانی شد"
+      : "Information updated successfully",
+    true,
+    (data) => {
+      if (data.statusCode === 200) {
+        setOpen(false);
+      }
+    },
+    false,
+    "auth",
+  );
 
-  // const submitHandler = () => {
-  //   if (values) {
-  //     const newData = {
-  //       [requestBody[0]]: data,
-  //       [requestBody[1]]: secondData,
-  //     };
-  //     // mutation(newData as any);
-  //   } else {
-  //     if (type === "radio") {
-  //       const newData = {
-  //         [requestBody]: data === "مرد" ? "male" : "female",
-  //       };
-  //       // mutation(newData as any);
-  //     } else {
-  //       const newData = {
-  //         [requestBody]: data,
-  //       };
-  //       // mutation(newData as any);
-  //     }
-  //   }
-  // };
-  const [open, setOpen] = useState(false);
+  const submitHandler = () => {
+    const newData = {
+      [requestBody]: data,
+    };
+    console.log(newData);
+
+    mutation(newData as any);
+  };
 
   return (
     <>
@@ -128,69 +100,24 @@ const Box: FC<BoxProps> = ({
             <DialogContent className="sm:max-w-[525px]">
               <DialogHeader>
                 <DialogTitle className="py-3 text-center">
-                  ویرایش {title}
+                  {i18n.language === "fa" ? "ویرایش" : "Edit"} {title}
                 </DialogTitle>
               </DialogHeader>
 
-              {multiple ? (
-                <div
-                  dir="rtl"
-                  className="flex flex-col items-center justify-between gap-3"
-                >
-                  {multiple.map((title, index) => (
-                    <div
-                      key={index}
-                      className={`${type == "radio" ? "gap-0" : "justify-between gap-8"} flex w-full items-center`}
-                    >
-                      <p
-                        className={`${type == "radio" ? "min-w-7" : "min-w-20"} whitespace-nowrap`}
-                      >
-                        {title}
-                      </p>
-                      <input
-                        onChange={(event) => {
-                          inputChangeHandler(
-                            event.target.value,
-                            setValues
-                              ? index === 0
-                                ? setData
-                                : setSecondData
-                              : setData,
-                          );
-                        }}
-                        name={type == "radio" ? "radio" : title}
-                        className={`${type == "radio" ? "mt-1 w-max" : "w-full"} rounded-md border border-gray-300 p-2 text-sm font-thin outline-0`}
-                        type={type}
-                        checked={
-                          options && data === options[index] ? true : false
-                        }
-                        value={
-                          values
-                            ? index === 0
-                              ? data && data
-                              : secondData
-                            : options && options[index]
-                        }
-                      />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div
-                  dir="rtl"
-                  className="flex items-center justify-between gap-8"
-                >
-                  <p className="whitespace-nowrap">{title}</p>
-                  <input
-                    onChange={(event) =>
-                      inputChangeHandler(event.target.value, null)
-                    }
-                    className="w-full rounded-md border border-gray-300 p-2 text-sm font-thin"
-                    type={type}
-                    value={data}
-                  />
-                </div>
-              )}
+              <div
+                dir={i18n.language === "fa" ? "rtl" : "ltr"}
+                className="flex items-center justify-between gap-8"
+              >
+                <p className="whitespace-nowrap">{title}</p>
+                <input
+                  onChange={(event) =>
+                    inputChangeHandler(event.target.value, null)
+                  }
+                  className="w-full rounded-md border border-gray-300 p-2 text-sm font-thin"
+                  type={type}
+                  value={data}
+                />
+              </div>
 
               {error && (
                 <span className="mt-2 text-center text-xs text-red-600">
@@ -201,17 +128,22 @@ const Box: FC<BoxProps> = ({
               <Button
                 className="mt-4 h-[36px] w-full justify-center"
                 variant="main"
+                disabled={error || disabled}
+                onClick={submitHandler}
               >
-                ذخیره
-                {/* {isPending ? <ButtonLoader /> : "ذخیره"} */}
+                {isPending ? (
+                  <ButtonLoader />
+                ) : i18n.language === "fa" ? (
+                  "ذخیره"
+                ) : (
+                  "Save"
+                )}
               </Button>
             </DialogContent>
           </Dialog>
         </div>
 
-        <p className="mt-4 text-sm text-gray-500">
-          {values ? values[0] + " " + values[1] : value}
-        </p>
+        <p className="mt-4 text-sm text-gray-500">{value}</p>
       </section>
     </>
   );

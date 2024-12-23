@@ -73,3 +73,7 @@ input[type="number"] {
   text-align: center; 
   padding: 17px 5px;
 }
+
+.swal-footer{
+  text-align: center;
+}

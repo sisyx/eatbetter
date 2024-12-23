@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Layout from "../../../Layouts/UserLayouts";
-import BarChart from "../../../components/templates/UserPanel/progress/BarChart";
+// import BarChart from "../../../components/templates/UserPanel/progress/BarChart";
 import LineChart from "../../../components/templates/UserPanel/progress/LineChart";
 
 const Progress = () => {

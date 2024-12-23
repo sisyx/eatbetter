@@ -12,16 +12,17 @@ import { loginSchema } from "../../validations/rules";
 import { ButtonLoader } from "../../components/modules/loader/Loader";
 import usePostData from "../../hooks/usePostData";
 import { tokenName } from "../../config/constants";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface formValues {
   email: string;
   password: string;
 }
- 
+  
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { i18n, t } = useTranslation();
-
+const queryClient = useQueryClient()
   const navigate = useNavigate();
   const successFunc = (data: {
     statusCode: number;
@@ -33,6 +34,7 @@ const Login = () => {
         expires: 9999999,
         path: "",
       });
+      queryClient.invalidateQueries({ queryKey: ["auth"] })
       toast({
         variant: "success",
         title: "Login Successfully",

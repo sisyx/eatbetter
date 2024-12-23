@@ -4,9 +4,12 @@ import GenderSelector from "../../components/templates/Home/GenderSelector";
 import DietsBtn from "../../components/templates/Home/DietsBtn";
 import Container from "../../components/modules/Container/Container";
 import { useTranslation } from "react-i18next";
+import { authStore } from "../../stores/auth";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const { userData } = authStore((state) => state);
 
   useEffect(() => {
     const handleScroll = (): void => {
@@ -64,9 +67,11 @@ const Home: React.FC = () => {
               <p className="text-end text-[16px] leading-7 text-gray-700">
                 {t("homeSectionFourDes")}
               </p>
-              <button className="rounded-lg bg-main px-4 py-2 text-white hover:bg-mainHover">
+             <Link to={userData ? '/diets' : '/login'}>
+             <button className="rounded-lg bg-main px-4 py-2 text-white hover:bg-mainHover">
                 {t("startBtn")}
               </button>
+             </Link>
             </div>
             <div className="flex w-[50%] flex-wrap gap-5 max-lg:w-[100%] max-sm:w-[250px]">
               <div className="flex h-[200px] w-[270px] flex-col items-center justify-center gap-3 rounded-xl border border-[#00000034] px-2 text-center shadow-xl">

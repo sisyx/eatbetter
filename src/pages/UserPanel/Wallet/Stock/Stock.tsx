@@ -3,15 +3,17 @@ import Layout from "../../../../Layouts/UserLayouts";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import Title from "../../../../components/modules/Title/Title";
 import { useTranslation } from "react-i18next";
+import { authStore } from "../../../../stores/auth";
 
 const Stock = () => {
   const { i18n, t } = useTranslation();
+  const { userData } = authStore((state) => state);
 
   return (
     <Layout>
       <div className="relative mx-auto w-max rounded-lg p-8 pt-12 text-center shadow-xl">
         <p>{t("stock.money")}</p>
-        <p className="mt-2 text-main">120,000 تومان</p>
+        <p className="mt-2 text-main">{userData?.walletBalance} تومان</p>
       </div>
       <div className="relative z-20 mt-10 space-y-4">
         <Title title={t("stock.title")} />
