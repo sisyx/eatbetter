@@ -2,13 +2,21 @@ import { useTranslation } from "react-i18next";
 import Layout from "../../../Layouts/UserLayouts";
 import Title from "../../../components/modules/Title/Title";
 import Card from "../../../components/templates/UserPanel/Challenges/Card";
+import useGetData from "../../../hooks/useGetData";
+import { getChallengs } from "../../../utils/fetchs";
+import Loader from "../../../components/modules/loader/Loader";
 
 const Challenges = () => {
   const { i18n } = useTranslation();
-
+  const { data, isLoading } = useGetData<any>(
+    ["allChallengs"],
+    getChallengs
+  );
+  console.log(data);
+  
   return (
     <Layout>
-      <Title title={`${i18n.language === 'fa' ? 'چالش ها ' : 'Challenges'} `} />
+      <Title title={`${i18n.language === "fa" ? "چالش ها " : "Challenges"} `} />
       <img
         style={{ transform: "rotateY(181deg) " }}
         className="absolute left-16 top-0 hidden h-[600px] w-[50%] object-cover opacity-30 sm:block xl:top-7"
@@ -29,6 +37,7 @@ const Challenges = () => {
         <Card />
         <Card />
       </main>
+      {isLoading && <Loader/>}
     </Layout>
   );
 };

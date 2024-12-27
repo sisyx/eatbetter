@@ -59,6 +59,8 @@ const userPanelFa = {
     password: "رمز عبور سایت",
     passwordError: "لطفا رمز عبور خودتون رو وارد کنید",
     submit: "برداشت وجه",
+    cartNumber:'شماره کارت'
+
   },
 
   introductions: {
@@ -209,6 +211,7 @@ const userPanelEn = {
     password: "password",
     passwordError: "Please enter your password",
     submit: "cash withdrawal",
+    cartNumber:'cart number'
   },
   introductions: {
     titleOne: "Referral code",

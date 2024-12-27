@@ -1,9 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"; 
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { toast } from "./use-toast";
 import { tokenName } from "../config/constants";
 const apiUrl = import.meta.env.VITE_API_URL;
-   
 
 const usePostData = <T extends object>(
   url: string,
@@ -14,8 +13,8 @@ const usePostData = <T extends object>(
   queryUpdate?: string | null,
 ) => {
   const eatBetterToken = Cookies.get(tokenName);
-  const queryClient = useQueryClient(); 
-  
+  const queryClient = useQueryClient();
+
   const { mutate, isSuccess, isPending, isError } = useMutation({
     mutationFn: async (data: T) => {
       const headers: HeadersInit = {
@@ -29,11 +28,11 @@ const usePostData = <T extends object>(
         headers,
         // credentials: "include",
         body: formData ? (data as any) : JSON.stringify(data),
-      }).then((res) => res.json())
+      }).then((res) => res.json());
     },
-    onSuccess: (data) => { 
+    onSuccess: (data) => {
       console.log(data);
-      
+
       if (successFunc) {
         successFunc(data);
       }
@@ -48,8 +47,8 @@ const usePostData = <T extends object>(
         });
       }
     },
-    onError: (data) => {  
-      console.log(data); 
+    onError: (data) => {
+      console.log(data);
       toast({
         variant: "danger",
         title: "خطایی غیر منتظره رخ داد",
