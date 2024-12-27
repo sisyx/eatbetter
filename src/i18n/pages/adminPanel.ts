@@ -61,7 +61,13 @@ const adminPanelFa = {
           edit: "ویرایش",
           content: "محتوای وبلاگ",
         }
-      }
+      },
+      fileUpload: {
+        title: "آپلود فایل",
+      },
+      create: {
+        title: "ایجاد بلاگ جدید",
+      },
     },
     adminwallet: {
       stockTtile: "موجودی کیف پول خود را مشاهده کنید",
@@ -249,7 +255,13 @@ const adminPanelFa = {
           edit: "Edit",
           content: "Content",
         }
-      }
+      }, 
+      fileUpload: {
+        title: "Upload File",
+      },
+      create: {
+        title: "Write New Blog",
+      },
     },
     adminwallet: {
       stockTtile: "View your wallet balance",
