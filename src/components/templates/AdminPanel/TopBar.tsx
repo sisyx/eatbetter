@@ -62,13 +62,6 @@ import SideBar from "./SideBar";
         </div>
   
         <div className="flex items-center gap-2 xs:gap-5">
-          <Link
-            to={"/userPanel/progress"}
-            className="flex gap-2 text-main transition-colors hover:text-mainHover"
-          >
-            <FaRegChartBar className="ml-1 xs:!ml-0" />
-            <p className="hidden text-sm sm:!block"> {t('topbar.progress')}</p>
-          </Link>
           <Button
             onClick={() => setLanguage(i18next.language == "en" ? "fa" : "en")}
             className="h-8 border border-main bg-transparent px-2 text-main hover:bg-main hover:text-white xs:!h-10 xs:!px-4"
@@ -76,15 +69,6 @@ import SideBar from "./SideBar";
             <span>{t("headerlang")}</span>
             <IoLanguage />
           </Button>
-  
-          <Link className="text-sm sm:text-base" to={"/userPanel/notifications"}>
-            <Button
-              className="flex h-8 gap-2 px-2 xs:!h-10 xs:!px-4"
-              variant={"default"}
-            >
-              <GrNotification />
-            </Button>
-          </Link>
         </div>
       </div>
     );

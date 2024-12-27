@@ -63,13 +63,11 @@ const xxx: XXXType[] = [
 ]
 
 const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
-    // const navigate = useNavigate();
-
     const successFunc = (data: any) => {
         console.log(data);
         toast({
             variant: "success",
-            title: "پکیج با موفقیت اضافه شد"
+            title: "کارت جدید با موفقیت اضافه شد"
         })
         reloadFn();
     };

@@ -5,9 +5,9 @@ import { GoPackage } from "react-icons/go";
 import useGetData from '../../../../hooks/useGetData';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-import { CircleLoader } from '../../../modules/loader/CircleLoader';
 import CreatePackage from './CreatePackage';
 import { tokenName } from '../../../../config/constants';
+import { ThreeDotsLoader } from '../../../modules/loader/ThreeDotLoader';
 const apiUrl = import.meta.env.VITE_API_URL
 
 export const Packages = () => {
@@ -48,11 +48,13 @@ export const Packages = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-3 gap-y-8">
                     {
                         error ? <div>مشکلی در بارگیری پیش آمده</div>
-                        : loading ? <CircleLoader /> :
+                        : loading ? <ThreeDotsLoader dotSize={20} /> :
                         packages.length ? packages.map((xpackage: PackageType) => <Package nameFa={xpackage.nameFa} reloadFn={reloadFn} name={xpackage.name} currency={xpackage.currency} price={xpackage.price} maxDiet={xpackage.maxDiet} id={xpackage.id} />)
                         : ""
                     }
-                    <CreatePackage reloadFn={reloadFn} />
+                    {
+                        !loading && <CreatePackage reloadFn={reloadFn} />
+                    }
                 </div>
             </div>
         </Layout>

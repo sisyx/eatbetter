@@ -9,6 +9,7 @@ import CreateCharityCard from "./CreateCharityCard";
 const apiUrl = import.meta.env.VITE_API_URL; 
 import { CharityCard } from "./CharityCard";
 import { tokenName } from "../../../../config/constants";
+import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
 
 export const CharityCardsList = () => {
     const [reload, setReload] = useState<number>(1);
@@ -58,12 +59,14 @@ export const CharityCardsList = () => {
                 <div className="flex flex-col gap-8">
                     {
                         error ? <code>Error</code>
-                        : loading ? <CircleLoader />
+                        : loading ? <ThreeDotsLoader dotSize={40} />
                         : data.accountNumber ? 
                             <CharityCard {...data} />
                         : <span>هیچ کارتی یافت نشد</span>
                     }
-                    <CreateCharityCard reloadFn={reloadFn} />
+                    {
+                        !loading && <CreateCharityCard reloadFn={reloadFn} />
+                    }
                 </div>
             </div>
         </Layout>
