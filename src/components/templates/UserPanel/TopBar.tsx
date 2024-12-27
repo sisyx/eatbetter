@@ -10,7 +10,7 @@ import { FaRegChartBar } from "react-icons/fa";
 import SideBar from "./SideBar";
 import { MdMenu } from "react-icons/md";
 import { IoLanguage } from "react-icons/io5";
-import { GrNotification } from "react-icons/gr";
+// import { GrNotification } from "react-icons/gr";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { useState, useEffect } from "react";
@@ -76,14 +76,14 @@ const TopBar = () => {
           <IoLanguage />
         </Button>
 
-        <Link className="text-sm sm:text-base" to={"/userPanel/notifications"}>
+        {/* <Link className="text-sm sm:text-base" to={"/userPanel/notifications"}>
           <Button
             className="flex h-8 gap-2 px-2 xs:!h-10 xs:!px-4"
             variant={"default"}
           >
             <GrNotification />
           </Button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

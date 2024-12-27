@@ -1,6 +1,5 @@
 import Container from "../../components/modules/Container/Container";
 import Card from "../../components/templates/Diet/Card";
-import { diets } from "../../utils/data";
 import Sliders from "../../components/templates/Diet/Sliders";
 import Modal from "../../components/templates/Diet/questionModal";
 import { useTranslation } from "react-i18next";

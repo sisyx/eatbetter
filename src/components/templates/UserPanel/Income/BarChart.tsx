@@ -1,19 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
- import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import useGetData from "../../../../hooks/useGetData";
+import { getIncomeChartData } from "../../../../utils/fetchs";
+import { authStore } from "../../../../stores/auth";
+import Loader from "../../../modules/loader/Loader";
 
 const BarChart = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { userData } = authStore((state) => state);
+  const [userWallet, setUserWallet] = useState([]);
+  const [userDates, setuserDates] = useState([]);
 
-  const [chartData] = useState<any>({
+  const { data, isLoading, refetch } = useGetData<any>(
+    ["progressChart", i18n.language],
+    () => getIncomeChartData(userData?.id as any),
+  );
+  useEffect(() => {
+    if (userData?.id) {
+      refetch();
+    }
+  }, [userData?.id]);
+
+  console.log(data);
+
+  const [chartData, setChartData] = useState<any>({
     series: [
       {
-        name: t('income.optionTwo'),
-        data: [60, 66, 75, 61, 55, 62, 69, 66],
-      },
-      {
-        name:t('income.optionOne'),
-        data: [40, 50, 60, 45, 52, 48, 54, 50],
+        name: t("income.optionTwo"),
+        data: [],
       },
     ],
     options: {
@@ -34,16 +49,7 @@ const BarChart = () => {
         enabled: false,
       },
       xaxis: {
-        categories: [
-          "فروردین",
-          "اردیبهشت",
-          "خرداد",
-          "تیر",
-          "مرداد",
-          "شهریور",
-          "مهر",
-          "آبان",
-        ],
+        categories: [],
       },
       // title: {
       //   text:t('income.title'),
@@ -52,16 +58,39 @@ const BarChart = () => {
     },
   });
 
+  useEffect(() => {
+    if (data && data.data) {
+      const allBalanceData = data.data.map((val: any) => val.balance);
+      const allDateData = data.data.map((val: any) => val.date);
+      setUserWallet(allBalanceData);
+      setuserDates(allDateData);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (userWallet.length && userDates.length) {
+      setChartData((prev: any) => ({
+        ...prev,
+        series: [{ name: "Data 1", data: userWallet }],
+        options: {
+          ...prev.options,
+          xaxis: { categories: userDates },
+        },
+      }));
+    }
+  }, [userWallet, userDates]);
+
   return (
     <div className="mt-8 w-full border-t border-gray-300 pt-8 md:!mt-0 md:!pt-0">
-      <div className="bar-chart h-80 sm:h-[500px] overflow-hidden">
+      <div className="bar-chart h-80 overflow-hidden sm:h-[500px]">
         <Chart
           options={chartData.options}
           series={chartData.series}
-          type="bar"  
-          height={'100%'}
+          type="bar"
+          height={"100%"}
         />
-      </div> 
+      </div>
+      {isLoading && <Loader />}
     </div>
   );
 };
