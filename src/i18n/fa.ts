@@ -8,6 +8,8 @@ import { contactsFa } from "./pages/contacts";
 import { cooperateFa } from "./pages/cooperate";
 import { blogsFa } from "./pages/blogs";
 import { dietsFa } from "./pages/Diets";
+import { cookingsFa } from "./pages/cookings";
+import { trainigFa } from "./pages/trainings";
 
 const fa = {
   ...headerFa,
@@ -22,6 +24,8 @@ const fa = {
   ...userPanelFa,
   ...adminPanelFa,
   ...blogsFa,
+  ...cookingsFa,
+  ...trainigFa,
 };
 
 export default fa;

@@ -4,10 +4,14 @@ import { useTranslation } from "react-i18next";
 
 type Props = {
   isActive?: boolean;
+  exercise:string,
+  challengeType: string,
+  id: number,
 };
 
-const Card = ({ isActive }: Props) => {
+const Card = ({ isActive, exercise, id, challengeType }: Props) => {
   const { i18n } = useTranslation();
+  const { language } = i18n
 
   return (
     <div
@@ -16,18 +20,22 @@ const Card = ({ isActive }: Props) => {
       className={`relative rounded-sm bg-white px-3 pb-6 pt-4 text-center transition-transform sm:mt-5 sm:pt-6 sm:!shadow-md hover:sm:!-translate-y-2`}
     >
       <div className="flex gap-3">
-        <div className={`${i18n.language == 'fa' ? 'text-right' : 'text-left'}`}>
+        <div className={`${i18n.language == 'fa' ? 'text-right' : 'text-left'} flex-1`}>
           <p className="mb-2">
-            چالش شماره 1
+            {
+              language === "en" ? `Challenge Number ${id}` : `چالش شماره ${id}`
+            }
             {isActive && (
               <span className="mr-2 rounded-sm bg-main px-2 py-[2px] text-[11px] text-white">
                 فعال
+                {
+                  language === "en" ? "Active" : "فعال"
+                }
               </span>
             )}
           </p>
           <p className="text-sm">
-            توضیحات چالش شماره یک رو در صفحه مربوطه و اره این حرفا و دیگه
-            نمیدونم ....
+            {exercise}
           </p>
         </div>
         <img
@@ -36,7 +44,7 @@ const Card = ({ isActive }: Props) => {
           alt="cover"
         />
       </div>
-      <Link className="mt-4 block w-full" to={`/userPanel/challenges/2323`}>
+      <Link className="mt-4 block w-full" to={`/userPanel/challenges/${id}?type=${challengeType}`}>
         <Button className="w-full" variant={"main"}>
           جزئیات بیشتر
         </Button>

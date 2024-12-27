@@ -7,6 +7,7 @@ import { IoMdSettings } from "react-icons/io";
 import { RiShakeHandsFill } from "react-icons/ri";
 import { PiBankFill } from "react-icons/pi";
 import { GiNightSleep } from "react-icons/gi";
+import { BiMoneyWithdraw } from "react-icons/bi";
 
 const SideBar = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
@@ -17,6 +18,11 @@ const SideBar = ({ className }: { className?: string }) => {
       href: "/",
       icon: <FaHome className="text-2xl" />,
       subLinks: undefined
+    },
+    {
+      title: t('adminsideBar.withdrawal'),
+      href: "/adminPanel/withdrawals",
+      icon: <BiMoneyWithdraw />
     },
     {
       title: t('adminsideBar.users'),
