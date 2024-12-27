@@ -21,8 +21,7 @@ const BarChart = () => {
       refetch();
     }
   }, [userData?.id]);
-
-  console.log(data);
+ 
 
   const [chartData, setChartData] = useState<any>({
     series: [

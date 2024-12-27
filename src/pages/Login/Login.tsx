@@ -18,26 +18,27 @@ interface formValues {
   email: string;
   password: string;
 }
-  
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { i18n, t } = useTranslation();
-const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const successFunc = (data: {
     statusCode: number;
     message: string;
-    token: string;
+    token: string; 
   }) => {
     if (data.statusCode === 200) {
       Cookies.set(tokenName, data.token, {
         expires: 9999999,
         path: "",
       });
-      queryClient.invalidateQueries({ queryKey: ["auth"] })
+      queryClient.invalidateQueries({ queryKey: ["auth"] });
       toast({
         variant: "success",
-        title: "Login Successfully",
+        title:
+          i18n.language === "fa" ? "با موفقیت وارد شدید" : "Login Successfully",
       });
       setTimeout(() => {
         navigate("/userPanel/profile");

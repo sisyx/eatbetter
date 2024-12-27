@@ -23,7 +23,15 @@ export async function getWeightChartData(userId:number) {
   const res = await fetch(`${apiUrl}/api/UserWeight/GetWeightHistory?userId=${userId}`);
   return res.json();
 }
+export async function getPackages(userId:number) {
+  const res = await fetch(`${apiUrl}/api/Package/GetPageByCountryUser/${userId}`);
+  return res.json();
+}
 export async function getIncomeChartData(userId:number) {
   const res = await fetch(`${apiUrl}/api/Wallet/GetWalletBalanceForLast7Days?userId=${userId}`);
+  return res.json();
+}
+export async function getChallengs() {
+  const res = await fetch(`${apiUrl}/api/Chalange/GetAllChallenges`);
   return res.json();
 }

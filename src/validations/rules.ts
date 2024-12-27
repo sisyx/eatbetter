@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import i18n from "../i18n/i18n";
 
-const phoneRegExp = /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g; 
+const phoneRegExp = /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g;
 
 let cooperateSchema = Yup.object().shape({
   message: Yup.string()
@@ -30,7 +30,7 @@ let cooperateSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا شماره تماس خودتون رو وارد کنید"
+        ? "لطفا شماره تماس خودتون را وارد کنید"
         : "Please write your phone number",
     ),
   email: Yup.string()
@@ -51,7 +51,7 @@ let cooperateSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا ایمیل خودتون رو وارد کنید"
+        ? "لطفا ایمیل خودتون را وارد کنید"
         : "Please write your email",
     ),
 
@@ -70,13 +70,13 @@ let cooperateSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا اسم خودتون رو وارد کنید"
+        ? "لطفا اسم خودتون را وارد کنید"
         : "Please write your name",
     ),
 
   workExperience: Yup.string().required(
     i18n.language === "fa"
-      ? "لطفا میزان تجربه کاریتون رو وارد کنید"
+      ? "لطفا میزان تجربه کاریتون را وارد کنید"
       : "Please enter your level of work experience",
   ),
 });
@@ -116,27 +116,45 @@ let stockSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا شماره شبا خودتون رو وارد کنید"
+        ? "لطفا شماره شبا خودتون را وارد کنید"
         : "Please enter your Sheba number",
+    ),
+  cartNumber: Yup.string()
+    .min(
+      16,
+      i18n.language === "fa"
+        ? "شماره کارت شما حداقل باید 16 حرف داشته باشد"
+        : "Your night number must have at least 16 characters",
+    )
+    .max(
+      16,
+      i18n.language === "fa"
+        ? "شماره کارت شما حداکثر باید 16 حرف داشته باشد"
+        : "Your night number must be a maximum of 16 characters",
+    )
+    .required(
+      i18n.language === "fa"
+        ? "لطفا شماره کارت خودتون را وارد کنید"
+        : "Please enter your cart number",
     ),
 
   name: Yup.string()
     .min(
       3,
       i18n.language === "fa"
-        ? "اسم شما حداقل باید 3 حرف داشته باشد"
-        : "Your name must have at least 3 letters",
+        ? "نام و نام خانوادگی صاحب کارت حداقل باید 3 حرف داشته باشد"
+        : "Your cart name must have at least 3 letters",
     )
     .max(
       12,
       i18n.language === "fa"
-        ? "اسم شما حداکثر باید 18 حرف داشته باشد"
-        : "Your name must be a maximum of 12 letters",
+        ? "نام و نام خانوادگی صاحب کارت حداکثر باید 18 حرف داشته باشد"
+        : "Your cart name must be a maximum of 12 letters",
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا اسم خودتون رو وارد کنید"
-        : "Please write your name",
+        ? "لطفا نام و نام خانوادگی صاحب کارت را وارد کنید"
+        : "Please write your cart name",
     ),
 
   password: Yup.string()
@@ -154,7 +172,7 @@ let stockSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا رمز عبور خودتون رو وارد کنید"
+        ? "لطفا رمز عبور خودتون را وارد کنید"
         : "Please write your password",
     ),
 });
@@ -178,7 +196,7 @@ let loginSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا ایمیل خودتون رو وارد کنید"
+        ? "لطفا ایمیل خودتون را وارد کنید"
         : "Please write your email",
     ),
 
@@ -197,7 +215,7 @@ let loginSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا رمز عبور خودتون رو وارد کنید"
+        ? "لطفا رمز عبور خودتون را وارد کنید"
         : "Please write your password",
     ),
 });
@@ -212,7 +230,7 @@ let registerSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا شماره تماس خودتون رو وارد کنید"
+        ? "لطفا شماره تماس خودتون را وارد کنید"
         : "Please write your phone number",
     ),
 
@@ -231,7 +249,7 @@ let registerSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا اسم خودتون رو وارد کنید"
+        ? "لطفا اسم خودتون را وارد کنید"
         : "Please write your name",
     ),
 
@@ -253,7 +271,7 @@ let registerSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا ایمیل خودتون رو وارد کنید"
+        ? "لطفا ایمیل خودتون را وارد کنید"
         : "Please write your email",
     ),
 
@@ -272,7 +290,7 @@ let registerSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا رمز عبور خودتون رو وارد کنید"
+        ? "لطفا رمز عبور خودتون را وارد کنید"
         : "Please write your password",
     ),
 
@@ -285,7 +303,7 @@ let registerSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا رمز عبور خودتون رو تایید کنید"
+        ? "لطفا رمز عبور خودتون را تایید کنید"
         : "Please confirm your password",
     ),
 });
@@ -316,7 +334,7 @@ let contactsSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا شماره تماس خودتون رو وارد کنید"
+        ? "لطفا شماره تماس خودتون را وارد کنید"
         : "Please write your phone number",
     ),
 
@@ -338,7 +356,7 @@ let contactsSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا ایمیل خودتون رو وارد کنید"
+        ? "لطفا ایمیل خودتون را وارد کنید"
         : "Please write your email",
     ),
 
@@ -357,7 +375,7 @@ let contactsSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا نام و نام خانوادگی خودتون رو وارد کنید"
+        ? "لطفا نام و نام خانوادگی خودتون را وارد کنید"
         : "Please write your first name and last name",
     ),
 
@@ -376,7 +394,7 @@ let contactsSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا موضوع خودتون رو وارد کنید"
+        ? "لطفا موضوع خودتون را وارد کنید"
         : "Please write your subject",
     ),
 });
@@ -419,7 +437,7 @@ let packageSchema = Yup.object().shape({
 
   currency: Yup.string().required(
     i18n.language === "fa"
-      ? "لطفا نرخ ارز رو وارد کنید"
+      ? "لطفا نرخ ارز را وارد کنید"
       : "Please enter the exchange rate",
   ),
 
@@ -431,7 +449,7 @@ let packageSchema = Yup.object().shape({
 
   price: Yup.number().required(
     i18n.language === "fa"
-      ? "لطفا قیمت پکیج مورد نظر رو وارد کنید"
+      ? "لطفا قیمت پکیج مورد نظر را وارد کنید"
       : "Please enter the price of the desired package",
   ),
 });
@@ -451,7 +469,7 @@ let CharityCardSchema = Yup.object().shape({
     ),
 
   iban: Yup.string().required(
-    i18n.language === "fa" ? "لطفا iban رو وارد کنید" : "Please enter iban",
+    i18n.language === "fa" ? "لطفا iban را وارد کنید" : "Please enter iban",
   ),
 
   bankName: Yup.string().required(
@@ -504,7 +522,7 @@ let changePasswordSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا رمز عبور خودتون رو وارد کنید"
+        ? "لطفا رمز عبور خودتون را وارد کنید"
         : "Please write your password",
     ),
 
@@ -523,7 +541,7 @@ let changePasswordSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا رمز عبور خودتون رو وارد کنید"
+        ? "لطفا رمز عبور خودتون را وارد کنید"
         : "Please write your password",
     ),
 
@@ -537,7 +555,7 @@ let changePasswordSchema = Yup.object().shape({
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا رمز عبور جدید خودتون رو تایید کنید"
+        ? "لطفا رمز عبور جدید خودتون را تایید کنید"
         : "Please confirm your new password",
     ),
 });

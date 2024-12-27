@@ -30,8 +30,10 @@ const Profile = () => {
 
   const { mutate: mutation } = useDeleteData(
     `/api/user/api/users/${userData?.id}`,
-    "کاربر با موفقیت حذف شد",
-    "auth",
+    i18n.language === "fa"
+      ? "کاربر با موفقیت حذف شد"
+      : "User delete successfuly",
+    "auth", 
     (data) => {
       if (data.statusCode === 200) {
         navigate("/");
