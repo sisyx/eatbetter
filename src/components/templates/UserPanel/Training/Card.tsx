@@ -1,7 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { FaAngleLeft } from "react-icons/fa";
 
-import { Link } from "react-router-dom";
 import { TrainingType } from "../../../../types/trainings";
 import Title from "../../../modules/Title/Title";
 import CardDetail from "./CardDetail";
@@ -9,7 +7,7 @@ import CardDetail from "./CardDetail";
 type Props = TrainingType;
 
 const Card = (props: Props) => {
-  const { activity, musclesBenefited, appearanceBenefits, suitableFor, notSuitableFor, howToDo, caloriesBurned } = props
+  const { activity, howToDo } = props
   const { i18n } = useTranslation();
   const { language } = i18n
 

@@ -3,7 +3,6 @@ import Container from "../../components/modules/Container/Container";
 import Title from "../../components/modules/Title/Title";
 import Card from "../../components/templates/UserPanel/Training/Card";
 import useGetData from "../../hooks/useGetData";
-import { useState } from "react";
 import Cookies from "js-cookie";
 import { tokenName } from "../../config/constants";
 import { toast } from "../../hooks/use-toast";
@@ -14,7 +13,6 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const Training = () => {
   const { i18n, t } = useTranslation();
   const { language } = i18n;
-  const [sliceToShow, setSliceToShow] = useState<number>(10);
 
   const {data: trainings, isError: error, isLoading: loading, } = useGetData(["trainings", language], getCookings);
 
