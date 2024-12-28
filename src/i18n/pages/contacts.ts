@@ -13,8 +13,8 @@ const contactsEn = {
 
 const contactsFa = {
   contactsTextOne: "ما اینجا هستیم تا شما را در",
-  contactsTextTwo: "مسیر سلامتی و تناسب اندام",
-  contactsTextThree: "همراهی کنیم! ",
+  contactsTextTwo: "  مسیر سلامتی و تناسب اندام",
+  contactsTextThree: "  همراهی کنیم!   ",
   contactsTextFour: `اگر سوالی دارید یا به راهنمایی نیاز دارید، لطفاً فرم زیر را با ذکر
   دلیل تماس خود تکمیل کنید. یکی از مشاوران ما در سریع‌ترین زمان ممکن
   با شما تماس خواهد گرفت.`,

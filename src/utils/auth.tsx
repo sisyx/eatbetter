@@ -7,7 +7,7 @@ import useGetData from "../hooks/useGetData";
 import Loader from "../components/modules/loader/Loader";
 // import Cookies from "js-cookie";
 
-const Auth = () => {
+const Auth = () => { 
   const { data, status, isLoading } = useGetData<any>(["auth"], getUser);
   const { setUserData, setLogin, setIsPending } = authStore((state) => state);
 
@@ -25,7 +25,8 @@ const Auth = () => {
     }
     console.log(data); 
 
-  }, [status, data, setUserData]);
+  }, [status, data, 
+  ]);
 
   return isLoading ? <Loader /> : null;
 };

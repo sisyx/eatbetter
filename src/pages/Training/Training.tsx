@@ -8,6 +8,7 @@ import { tokenName } from "../../config/constants";
 import { toast } from "../../hooks/use-toast";
 import { ThreeDotsLoader } from "../../components/modules/loader/ThreeDotLoader";
 import { TrainingType } from "../../types/trainings";
+import Loader from "../../components/modules/loader/Loader";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Training = () => {
@@ -43,7 +44,7 @@ const Training = () => {
       <div dir={i18n.language === 'fa' ? 'ltr' : 'rtl'} className="px-12 pt-14 max-sm:px-5 max-sm:pt-1 sm:!mb-44 lg:!px-28">
         <Title className="!flex-row" title={i18n.language === 'fa' ? "متخصص خود شوید (ورزش)" : "Become your own expert (sports)"} />
           {
-            loading ? <ThreeDotsLoader dotSize={50} /> : ""
+            loading ? <Loader/> : ""
           }
           {
             error ? <div>

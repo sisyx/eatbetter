@@ -1,18 +1,26 @@
- 
+import { useParams } from "react-router-dom";
 import Title from "../../../../components/modules/Title/Title";
+import useGetData from "../../../../hooks/useGetData";
 // import { Button } from "../../../../components/shadcn/ui/button";
 // import Modal from "../../../../components/templates/UserPanel/Health/Diets/Modal";
 import Layout from "../../../../Layouts/UserLayouts";
+import { getChallenge } from "../../../../utils/fetchs";
+import Loader from "../../../../components/modules/loader/Loader";
 
 const Challenge = () => {
+  const { name } = useParams();
+  const { data, isLoading } = useGetData<any>(["oneChallenge"], () =>
+    getChallenge(name as string),
+  );
+
   return (
     <Layout>
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
-        <Title title="چالش شماره سوم" /> 
-          <div className="relative z-50 flex gap-3">
-      {/* <Button variant={'main'}>شروع چالش</Button>
+        <Title title="چالش شماره سوم" />
+        <div className="relative z-50 flex gap-3">
+          {/* <Button variant={'main'}>شروع چالش</Button>
       <Button disabled variant={"default"}>اتمام چالش</Button> */}
-          </div> 
+        </div>
       </div>
       <main data-aos="fade-up">
         <video
@@ -61,6 +69,7 @@ const Challenge = () => {
           نباشد.
         </p>
       </main>
+      {isLoading && <Loader />}
     </Layout>
   );
 };

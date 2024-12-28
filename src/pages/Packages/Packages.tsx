@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 const Packages = () => {
   const { userData } = authStore((state) => state);
 
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
 
   const { data, isLoading, refetch } = useGetData(
     ["allPackages", String(userData?.id)],
@@ -35,7 +35,7 @@ const Packages = () => {
         <Title title={i18n.language === "fa" ? "پکیج ها" : "Packages"} />
 
         <div className="mt-16 grid grid-cols-[1fr] gap-16 sm:grid-cols-[1fr,1fr] sm:gap-10 xl:grid-cols-[1fr,1fr,1fr]">
-          {data?.packages.map((pack: any) => (
+          {data && data?.packages.map((pack: any) => (
             <div className="rounded-md border border-main text-center">
               <p className="bg-main py-5 text-white">
                 {i18n.language === "fa" ? pack.nameFa : pack.name}
