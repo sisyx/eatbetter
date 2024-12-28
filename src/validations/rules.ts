@@ -57,20 +57,20 @@ let cooperateSchema = Yup.object().shape({
 
   name: Yup.string()
     .min(
-      3,
+      5,
       i18n.language === "fa"
-        ? "اسم شما حداقل باید 3 حرف داشته باشد"
-        : "Your name must have at least 3 letters",
+        ? "نام و نام خانوادگی شما حداقل باید 5 حرف داشته باشد"
+        : "Your name must have at least 5 letters",
     )
     .max(
-      12,
+      25,
       i18n.language === "fa"
-        ? "اسم شما حداکثر باید 18 حرف داشته باشد"
-        : "Your name must be a maximum of 12 letters",
+        ? "نام و نام خانوادگی شما حداکثر باید 25 حرف داشته باشد"
+        : "Your name must be a maximum of 25 letters",
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا اسم خودتون را وارد کنید"
+        ? "لطفا نام و نام خانوادگی خودتون را وارد کنید"
         : "Please write your name",
     ),
 
@@ -84,16 +84,16 @@ let cooperateSchema = Yup.object().shape({
 let stockSchema = Yup.object().shape({
   bankName: Yup.string()
     .min(
-      10,
+      3,
       i18n.language === "fa"
-        ? "اسم بانک شما حداقل باید 10 حرف داشته باشد"
-        : "Your bank name must be at least 10 letters long",
+        ? "اسم بانک شما حداقل باید 3 حرف داشته باشد"
+        : "Your bank name must be at least 3 letters long",
     )
     .max(
-      200,
+      20,
       i18n.language === "fa"
-        ? "اسم بانک شما حداکثر باید 200 حرف داشته باشد"
-        : "Your bank name must be a maximum of 200 characters",
+        ? "اسم بانک شما حداکثر باید 20 حرف داشته باشد"
+        : "Your bank name must be a maximum of 20 characters",
     )
     .required(
       i18n.language === "fa"
@@ -103,16 +103,16 @@ let stockSchema = Yup.object().shape({
 
   shabaNumber: Yup.string()
     .min(
-      10,
+      24,
       i18n.language === "fa"
-        ? "شماره شبای   شما حداقل باید 10 حرف داشته باشد"
-        : "Your night number must have at least 10 characters",
+        ? "شماره شبای شما حداقل باید 24 حرف داشته باشد"
+        : "Your night number must have at least 24 characters",
     )
     .max(
-      200,
+      24,
       i18n.language === "fa"
-        ? "شماره شبای   شما حداکثر باید 200 حرف داشته باشد"
-        : "Your night number must be a maximum of 200 characters",
+        ? "شماره شبای شما حداکثر باید 24 حرف داشته باشد"
+        : "Your night number must be a maximum of 24 characters",
     )
     .required(
       i18n.language === "fa"
@@ -140,16 +140,16 @@ let stockSchema = Yup.object().shape({
 
   name: Yup.string()
     .min(
-      3,
+      5,
       i18n.language === "fa"
-        ? "نام و نام خانوادگی صاحب کارت حداقل باید 3 حرف داشته باشد"
-        : "Your cart name must have at least 3 letters",
+        ? "نام و نام خانوادگی صاحب کارت حداقل باید 5 حرف داشته باشد"
+        : "Your cart name must have at least 5 letters",
     )
     .max(
-      12,
+      25,
       i18n.language === "fa"
-        ? "نام و نام خانوادگی صاحب کارت حداکثر باید 18 حرف داشته باشد"
-        : "Your cart name must be a maximum of 12 letters",
+        ? "نام و نام خانوادگی صاحب کارت حداکثر باید 25 حرف داشته باشد"
+        : "Your cart name must be a maximum of 25 letters",
     )
     .required(
       i18n.language === "fa"
@@ -157,24 +157,24 @@ let stockSchema = Yup.object().shape({
         : "Please write your cart name",
     ),
 
-  password: Yup.string()
-    .min(
-      6,
-      i18n.language === "fa"
-        ? "رمز عبور شما حداقل باید 6 حرف داشته باشد"
-        : "Your password must be at least 6 characters long",
-    )
-    .max(
-      18,
-      i18n.language === "fa"
-        ? "رمز عبور شما حداکثر باید 18 حرف داشته باشد"
-        : "Your password must be a maximum of 18 characters",
-    )
-    .required(
-      i18n.language === "fa"
-        ? "لطفا رمز عبور خودتون را وارد کنید"
-        : "Please write your password",
-    ),
+  // password: Yup.string()
+  //   .min(
+  //     6,
+  //     i18n.language === "fa"
+  //       ? "رمز عبور شما حداقل باید 6 حرف داشته باشد"
+  //       : "Your password must be at least 6 characters long",
+  //   )
+  //   .max(
+  //     18,
+  //     i18n.language === "fa"
+  //       ? "رمز عبور شما حداکثر باید 18 حرف داشته باشد"
+  //       : "Your password must be a maximum of 18 characters",
+  //   )
+  //   .required(
+  //     i18n.language === "fa"
+  //       ? "لطفا رمز عبور خودتون را وارد کنید"
+  //       : "Please write your password",
+  //   ),
 });
 
 let loginSchema = Yup.object().shape({
@@ -238,18 +238,18 @@ let registerSchema = Yup.object().shape({
     .min(
       3,
       i18n.language === "fa"
-        ? "اسم شما حداقل باید 3 حرف داشته باشد"
+        ? "نام کاربری شما حداقل باید 3 حرف داشته باشد"
         : "Your name must have at least 3 letters",
     )
     .max(
       12,
       i18n.language === "fa"
-        ? "اسم شما حداکثر باید 18 حرف داشته باشد"
+        ? "نام کاربری شما حداکثر باید 12 حرف داشته باشد"
         : "Your name must be a maximum of 12 letters",
     )
     .required(
       i18n.language === "fa"
-        ? "لطفا اسم خودتون را وارد کنید"
+        ? "لطفا نام کاربری خودتون را وارد کنید"
         : "Please write your name",
     ),
 
@@ -368,10 +368,10 @@ let contactsSchema = Yup.object().shape({
         : "Your first name and last name must have at least 5 letters",
     )
     .max(
-      20,
+      25,
       i18n.language === "fa"
-        ? "نام و نام خانوادگی شما حداکثر باید 20 حرف داشته باشد"
-        : "Your first name and last name must be a maximum of 20 letters",
+        ? "نام و نام خانوادگی شما حداکثر باید 25 حرف داشته باشد"
+        : "Your first name and last name must be a maximum of 25 letters",
     )
     .required(
       i18n.language === "fa"

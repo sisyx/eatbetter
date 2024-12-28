@@ -4,12 +4,20 @@ import { devtools } from "zustand/middleware";
 interface UserProps {
   country: string;
   email: string;
-  id:number;
+  id: number;
   phoneNumber: string;
   referralCode: string;
   timeZone: string;
   username: string;
   walletBalance: string;
+  cartRegister: boolean;
+  wallet: {
+    accountNumber: string;
+    bankName: string;
+    fullName: string;
+    iban: string;
+    walletId: number;
+  };
 }
 export type State = {
   userData: UserProps | null;

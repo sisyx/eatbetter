@@ -42,10 +42,12 @@ export default function index() {
         className={`flex w-full items-center justify-between px-4 py-5 sm:!px-4 xl:!px-24 ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
       >
         <div className="w-[140px]">
-          <img src="BLP-b.png" alt="logo" width={"80px"} />
+          <Link to={"/"}>
+            <img src="BLP-b.png" alt="logo" width={"80px"} />
+          </Link>
         </div>
         <div className="max-lg:hidden">
-          <ul className="flex flex-row-reverse gap-3 xl:gap-5 text-sm xl:text-base">
+          <ul className="flex flex-row-reverse gap-3 text-sm xl:gap-5 xl:text-base">
             <Link
               to={"/"}
               className="rounded-md p-2 transition-all hover:text-main"
@@ -271,8 +273,9 @@ export default function index() {
           </SheetTrigger>
           <SheetContent className="!pt-4">
             <SheetHeader
-            className="py-0 border-b border-b-main pb-3"
-             dir={i18n.language === "fa" ? "ltr" : "rtl"}>
+              className="border-b border-b-main py-0 pb-3"
+              dir={i18n.language === "fa" ? "ltr" : "rtl"}
+            >
               <SheetTitle className="py-0">
                 <div className="flex items-center justify-between lg:hidden">
                   <button
@@ -371,7 +374,7 @@ export default function index() {
               </Link>
             </ul>
 
-            <div className="border-t-main border p-3 absolute w-full text-center bottom-0 right-0">
+            <div className="absolute bottom-0 right-0 w-full border border-t-main p-3 text-center">
               <p>{t("logout")}</p>
             </div>
           </SheetContent>

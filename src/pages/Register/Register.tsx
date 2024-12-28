@@ -40,7 +40,7 @@ const Register = () => {
       });
       toast({
         variant: "success",
-        title: "Register Successfully",
+        title: i18n.language === 'fa' ? "با موفقیت ثبت نام شدید":"Register Successfully",
       });
       setTimeout(() => {
         navigate("/userPanel/profile");

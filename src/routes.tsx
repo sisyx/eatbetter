@@ -70,7 +70,7 @@ const userPanelRoutes = [
     element: <Challenges />,
   },
   {
-    path: "/userPanel/challenges/:id",
+    path: "/userPanel/challenges/:name",
     element: <Challenge />,
   },
   {

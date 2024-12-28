@@ -15,6 +15,7 @@ import { ThreeDotsLoader } from "../../components/modules/loader/ThreeDotLoader"
 import { useState } from "react";
 import { Button } from "../../components/shadcn/ui/button";
 import { t } from "i18next";
+import Loader from "../../components/modules/loader/Loader";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Cooking = () => {
@@ -64,7 +65,7 @@ const Cooking = () => {
           alt="logo"
         />
         {
-          loading ? <ThreeDotsLoader dotSize={50} /> : ""
+          loading ? <Loader/> : ""
         }
         {
           error ? <div>

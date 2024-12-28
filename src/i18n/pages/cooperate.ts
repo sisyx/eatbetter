@@ -7,7 +7,7 @@ const cooperateEn = {
   cooperateTextFive: `To appreciate your support, we will add an amount to the wallet of the person you referred, and a bonus will also be credited to your wallet. You can withdraw this amount every month or use it to purchase other products from our website. In this way, you will not only help improve your and others' health and quality of life, but also reduce financial stress and improve your nutritional level.`,
   cooperateTextSix: `After your first purchase and willingness to cooperate, all training and additional information will be provided to you. If you have any questions or need more information, please fill out the form below and we will be in touch with you as soon as possible. Thank you for your support and we hope to be successful together on the path to improving your health and lifestyle.`,
   cooperateLableOne: "Your email",
-  cooperateLableTwo: "Your name",
+  cooperateLableTwo: "Your first name & last name",
   cooperateLableThree: "Your Phone Number",
   cooperateLableFour: "Amount of work experience",
   cooperateLableFive: "Body",
@@ -34,7 +34,7 @@ const cooperateFa = {
     ارتباط خواهیم بود.از همراهی شما سپاسگزاریم و امیدواریم با هم در مسیر
     بهبود سلامت و سبک زندگی موفق باشیم.`,
   cooperateLableOne: "ایمیل شما  ",
-  cooperateLableTwo: `نام شما`,
+  cooperateLableTwo: `نام و نام خانوادگی شما`,
   cooperateLableThree: "شماره تماس",
   cooperateLableFour: "میزان تجربه کاری",
   cooperateLableFive: "متن",
