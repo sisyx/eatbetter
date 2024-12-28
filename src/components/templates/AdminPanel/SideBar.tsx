@@ -8,6 +8,7 @@ import { RiShakeHandsFill } from "react-icons/ri";
 import { PiBankFill } from "react-icons/pi";
 import { GiNightSleep } from "react-icons/gi";
 import { BiMoneyWithdraw } from "react-icons/bi";
+import { GrTransaction } from "react-icons/gr";
 
 const SideBar = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
@@ -53,6 +54,11 @@ const SideBar = ({ className }: { className?: string }) => {
       title: t("adminsideBar.blogs"),
       href: "/adminPanel/blogs",
       icon: <GiNightSleep className="text-2xl" />,
+    },
+    {
+      title: t("adminsideBar.transactions"),
+      href: "/adminPanel/transactions",
+      icon: <GrTransaction className="text-2xl" />,
     }
   ];
   const param = useLocation(); 
