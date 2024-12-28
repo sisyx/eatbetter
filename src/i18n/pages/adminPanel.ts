@@ -11,6 +11,7 @@ const adminPanelFa = {
       charity: "حساب خیریه",
       blogs: "بلاگ ها",
       withdrawal: "برداشت ها",
+      transactions: "تاریخچه ی انتقالات",
       logout: "خروج",
       home: "صفحه اصلی",
       profile: "حساب کاربری",
@@ -106,7 +107,17 @@ const adminPanelFa = {
         }
       }
     },
-  
+    adminTransactions: {
+      title: "تاریخچه ی تراکنش ها",
+      table: {
+        userId: "آیدی کاربر",
+        amount: "مقدار",
+        status: "وضعیت",
+        createdAt: "ایجاد شده در",
+        approvedAt: "پذیرفته شده در",
+        packageId: "آیدی پکیج",
+      }
+    },
     adminintroductions: {
       titleOne: "کد معرفی",
       titleTwo: "دعوت ها",
@@ -205,6 +216,7 @@ const adminPanelFa = {
       charity: "Charity Wallet",
       blogs: "Blogs",
       withdrawal: "Withdrawals",
+      transactions: "Transactions History",
       logout: "logout",
       home: "home",
       profile: "profile",
@@ -299,6 +311,17 @@ const adminPanelFa = {
           acceptRequest: "Approve Request",
           completeRequest: "Complete Request"
         }
+      }
+    },
+    adminTransactions: {
+      title: "Transactions History",
+      table: {
+        userId: "User Id",
+        amount: "Amount",
+        status: "Status",
+        createdAt: "Created At",
+        approvedAt: "Approved At",
+        packageId: "Package ID",
       }
     },
     adminintroductions: {
