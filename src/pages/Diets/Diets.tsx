@@ -2,8 +2,7 @@ import Container from "../../components/modules/Container/Container";
 import Card from "../../components/templates/Diet/Card";
 import Sliders from "../../components/templates/Diet/Sliders";
 import Modal from "../../components/templates/Diet/questionModal";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useTranslation } from "react-i18next"; 
 import useGetData from "../../hooks/useGetData";
 import { getAllDiets } from "../../utils/fetchs";
 import Loader from "../../components/modules/loader/Loader";
@@ -13,10 +12,7 @@ const Diets = () => {
 
   const { data, isLoading } = useGetData(["dietsPage", i18n.language], () =>
     getAllDiets(i18n.language),
-  );
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  ); 
 
   return (
     <Container>

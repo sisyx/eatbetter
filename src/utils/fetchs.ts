@@ -47,3 +47,9 @@ export async function getChallenge(challengeName: string) {
   );
   return res.json();
 }
+export async function getWithdrawalStatus(id: string) {
+  const res = await fetch(
+    `${apiUrl}/api/UserPanel/withdrawal-status/${id}`,
+  );
+  return res.json();
+} 

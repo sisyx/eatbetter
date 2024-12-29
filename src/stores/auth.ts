@@ -11,6 +11,7 @@ interface UserProps {
   username: string;
   walletBalance: string;
   cartRegister: boolean;
+  questionBox: boolean;
   wallet: {
     accountNumber: string;
     bankName: string;

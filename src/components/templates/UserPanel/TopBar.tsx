@@ -14,9 +14,11 @@ import { IoLanguage } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import { useState, useEffect } from "react";
+import { authStore } from "../../../stores/auth";
 
-const TopBar = () => {
+const TopBar = () => { 
   const { i18n, t } = useTranslation();
+  const { userData } = authStore((state) => state);
 
   const [language, setLanguage] = useState(i18next.language);
   useEffect(() => {
@@ -50,11 +52,11 @@ const TopBar = () => {
         <div className="hidden items-center gap-2 xs:!flex">
           <img
             className="w-12 rounded-full"
-            src="https://avatars.githubusercontent.com/u/127773108?v=4"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
             alt=""
           />
           <div className="text-sm">
-            <p> شاهین مشکل گشا</p>
+            <p>{userData?.username}</p>
             <p className="text-main">{t('topbar.role')}</p>
           </div>
         </div>

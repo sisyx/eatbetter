@@ -8,6 +8,12 @@ import { authStore } from "../../../../stores/auth";
 import usePostData from "../../../../hooks/usePostData";
 import Loader from "../../../../components/modules/loader/Loader";
 import { useEffect, useState } from "react";
+import useGetData from "../../../../hooks/useGetData";
+import { getWithdrawalStatus } from "../../../../utils/fetchs";
+import Cookies from "js-cookie";
+import { convertToJalali } from "../../../../utils/numbers";
+import { Link } from "react-router-dom";
+import { toast } from "../../../../hooks/use-toast";
 
 const Withdrawal = () => {
   const { t } = useTranslation();
@@ -15,6 +21,8 @@ const Withdrawal = () => {
   const [amount, setAmount] = useState("");
   const [highAmount, setHighAmount] = useState(false);
   const [userRegister, setUserRegister] = useState(false);
+  const [withDrawalStatusCheck, setWithDrawalStatusCheck] = useState(false);
+  const withDrawalId = Cookies.get("withDrawalId");
 
   const formHandler = useFormik({
     initialValues: { name: "", shabaNumber: "", bankName: "", cartNumber: "" },
@@ -44,12 +52,22 @@ const Withdrawal = () => {
   );
   const { mutate: withDrawalMutation, isPending: withDrawalReqPending } =
     usePostData(
-      `/api/UserWalletInfo/CreateOrUpdateWallet?userId=${userData?.id}`,
+      `/api/UserPanel/create-withdrawal-request`,
       "درخواست شما برای برداشت با موفقیت ثبت شد و به زودی مبلغ توسط ادمین به کارت شما واریز میشود",
       false,
       (data) => {
         if (data.statusCode === 200) {
           setAmount("");
+          setWithDrawalStatusCheck(true);
+          Cookies.set("withDrawalId", data.withdrawalRequestId, {
+            expires: 9999999,
+            path: "/",
+          });
+        } else {
+          toast({
+            title: data.messages.persian,
+            variant: "danger",
+          });
         }
       },
       false,
@@ -74,14 +92,31 @@ const Withdrawal = () => {
   const withdrawalHandler = () => {
     withDrawalMutation({
       userId: userData?.id,
-      amount: amount,
+      amount: amount.replace(/,/g, ""),
     });
   };
+
+  const { data, isLoading } = useGetData<any>(
+    withDrawalId ? ["withdrawalStatus", withDrawalId] : [],
+    () => getWithdrawalStatus(withDrawalId as string),
+    {
+      enabled: Boolean(withDrawalId),
+    },
+  );
+
+  useEffect(() => {
+    if (data) {
+      setWithDrawalStatusCheck(true);
+    }
+  }, [data]);
+
   return (
     <Layout>
       <div className="relative mx-auto w-max rounded-lg p-8 pt-12 text-center shadow-xl">
         <p> {t("withdrawal.money")}</p>
-        <p className="mt-2 text-main">{userData?.walletBalance} ریال</p>
+        <p className="mt-2 text-main">
+          {userData?.walletBalance.toLocaleString()} ریال
+        </p>
       </div>
 
       <div className="mt-10 sm:mt-6">
@@ -91,7 +126,100 @@ const Withdrawal = () => {
         <Title className="mt-8" title={t("withdrawal.titleTwo")} />
         <p>{t("withdrawal.textTwo")}</p>
 
-        {userData && !userRegister ? (
+        {withDrawalStatusCheck ? (
+          <div className="mt-10 text-center">
+            {data.withdrawalRequest.status === "Pending" ? (
+              <p className="rounded-md bg-orange-500 p-2 text-sm text-white md:text-base">
+                درخواست برداشت شما در وضعیت انتظار برای تایید ادمین می باشد
+              </p>
+            ) : null}
+            {data.withdrawalRequest.status === "Processing" ? (
+              <p className="rounded-md bg-blue-500 p-2 text-sm text-white md:text-base">
+                درخواست برداشت شما توسط ادمین تایید شده است و به زودی مبلغ به
+                حساب شما واریز میشود
+              </p>
+            ) : null}
+            {data.withdrawalRequest.status !== "Completed" ? (
+              <p className="rounded-md bg-green-500 p-2 text-sm text-white md:text-base">
+                درخواست برداشت شما تایید و مبلغ به حساب شما واریز شده است
+              </p>
+            ) : null}
+            {data.withdrawalRequest.status === "Cansel" ? (
+              <>
+                <p className="rounded-md bg-red-500 p-2 text-center text-sm text-white md:text-base">
+                  درخواست برداشت شما توسط ادمین رد شده است
+                </p>
+                <div className="flex flex-col items-center justify-evenly gap-3 text-right text-sm md:flex-row md:gap-0">
+                  <div>
+                    <p className="mt-4">
+                      دلایلی که ممکنه درخواست شما رد شده باشد:
+                    </p>
+                    <ul>
+                      <li>
+                        اطلاعات کارت بانکی شما با یکدیگر مطابقت نداشته باشد
+                      </li>
+                      <li>
+                        حساب بانکی با این مشخصات وارد شده وجود نداشته باشد
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="text-center md:text-right">
+                    <p className="mt-3">
+                      مبلغ: {data.withdrawalRequest.amount.toLocaleString()}
+                    </p>
+                    <p className="mt-3">
+                      شماره کارت:{" "}
+                      {data.withdrawalRequest.walletInfo.accountNumber}
+                    </p>
+                    <p className="mt-3">
+                      تاریخ درخواست شما:{" "}
+                      {convertToJalali(
+                        data.withdrawalRequest.requestedAt.slice(0, 10),
+                      )}
+                    </p>
+                    <Link className="mt-3 block text-blue-600" to={"/contacts"}>
+                      ارتباط با ما
+                    </Link>
+                  </div>
+                </div>{" "}
+              </>
+            ) : null}
+
+            {data.withdrawalRequest.status !== "Cansel" && (
+              <div className="mt-6">
+                <p className="mt-3">
+                  مبلغ: {data.withdrawalRequest.amount.toLocaleString()}
+                </p>
+                <p className="mt-3">
+                  شماره کارت: {data.withdrawalRequest.walletInfo.accountNumber}
+                </p>
+                <p className="mt-3">
+                  تاریخ درخواست شما:{" "}
+                  {convertToJalali(
+                    data.withdrawalRequest.requestedAt.slice(0, 10),
+                  )}
+                </p>
+                <Link className="mt-3 block text-blue-600" to={"/contacts"}>
+                  ارتباط با ما
+                </Link>
+              </div>
+            )}
+
+            {data.withdrawalRequest.status !== "Completed" ? (
+              <Button
+                onClick={() => {
+                  Cookies.remove("withDrawalId");
+                  window.location.reload();
+                }}
+                className="mt-4 border-main"
+                variant={"outline"}
+              >
+                ایجاد درخواست جدید
+              </Button>
+            ) : null}
+          </div>
+        ) : userData && !userRegister ? (
           <form
             data-aos="fade-up"
             onClick={formHandler.handleSubmit}
@@ -198,28 +326,28 @@ const Withdrawal = () => {
             </div>
 
             {/* <div className="mb-5">
-     <div className="flex flex-row-reverse items-baseline justify-end gap-2">
-       <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-         {t("withdrawal.password")}
-       </label>
-       <div className="h-2 w-2 rounded-xl bg-main">
-         <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
-       </div>
-     </div>
-     <input
-       name="password"
-       value={formHandler.values.password}
-       onChange={formHandler.handleChange}
-       onBlur={formHandler.handleBlur}
-       type="password"
-       id="text"
-       className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
-       required
-     />
-     <span className="mx-auto mt-2 block text-center text-xs text-red-600">
-       {formHandler.errors.password && formHandler.errors.password}
-     </span>
-   </div> */}
+<div className="flex flex-row-reverse items-baseline justify-end gap-2">
+ <label className="mb-2 block font-medium text-gray-900 dark:text-white">
+   {t("withdrawal.password")}
+ </label>
+ <div className="h-2 w-2 rounded-xl bg-main">
+   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
+ </div>
+</div>
+<input
+ name="password"
+ value={formHandler.values.password}
+ onChange={formHandler.handleChange}
+ onBlur={formHandler.handleBlur}
+ type="password"
+ id="text"
+ className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
+ required
+/>
+<span className="mx-auto mt-2 block text-center text-xs text-red-600">
+ {formHandler.errors.password && formHandler.errors.password}
+</span>
+</div> */}
 
             <Button
               type="submit"
@@ -259,12 +387,22 @@ const Withdrawal = () => {
                 className="mt-6 block w-[300px] rounded-md border border-gray-500 bg-white px-3 py-2 outline-0"
               />
               <Button
-                disabled={!amount || highAmount || amount === "0"}
+                disabled={
+                  !amount ||
+                  highAmount ||
+                  amount === "0" ||
+                  (userData?.walletBalance as string) < "9000000" ||
+                  Number(amount.replace(/,/g, "")) < 9000000
+                }
                 className="mt-5 w-full"
                 variant={"main"}
                 onClick={withdrawalHandler}
               >
-                تایید
+                {(userData?.walletBalance as string) < "9000000"
+                  ? "موجودی شما کمتر از حداقل برای برداشت است"
+                  : Number(amount.replace(/,/g, "")) < 9000000
+                    ? "حداقل میزان برداشت 9000000 تومان است"
+                    : "تایید"}
               </Button>
               {highAmount ? (
                 <p className="mx-auto mt-3 text-sm text-red-600">
@@ -291,7 +429,7 @@ const Withdrawal = () => {
           </div>
         )}
       </div>
-      {isPending || (withDrawalReqPending && <Loader />)}
+      {isPending || isLoading || (withDrawalReqPending && <Loader />)}
     </Layout>
   );
 };

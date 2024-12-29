@@ -10,3 +10,38 @@ function formatNumberWithCommas(number: Number) {
 }
 
 export { formatNumberWithCommas }
+
+
+
+import jalaali from "jalaali-js";
+
+export function convertToJalali(date: string) {
+    const newDate = new Date(date);
+    const jalaaliDate = jalaali.toJalaali(
+      newDate.getFullYear(),
+      newDate.getMonth() + 1,
+      newDate.getDate(),
+    );
+  
+    const months = [
+      "فروردین",
+      "اردیبهشت",
+      "خرداد",
+      "تیر",
+      "مرداد",
+      "شهریور",
+      "مهر",
+      "آبان",
+      "آذر",
+      "دی",
+      "بهمن",
+      "اسفند",
+    ];
+  
+    const day = jalaaliDate.jd;
+    const month = months[jalaaliDate.jm - 1];
+    const year = jalaaliDate.jy;
+  
+    return `${day} ${month} ${year}`;
+  }
+  
