@@ -7,11 +7,106 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../shadcn/ui/dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import usePostData from "../../../hooks/usePostData";
+import { authStore } from "../../../stores/auth";
+import { ButtonLoader } from "../../modules/loader/Loader";
 
 const Modal = () => {
   const { t, i18n } = useTranslation();
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    gender: "",
+    height: "",
+    weight: "",
+    activityLevel: "",
+    neckCircumference: "",
+    waistCircumference: "",
+    hipCircumference: "",
+    fitnessLevel: "",
+    dietGoal: "",
+    dietaryRestrictions: "",
+    allergies: "",
+    medicalConditions: "",
+    foodPreferences: "",
+    mealPrepTime: "",
+    exerciseProgram: false,
+    exerciseDuration: "",
+    exerciseLimitations: "",
+    supplements: false,
+    supplementTypes: "",
+    sleepDuration: "",
+    stress: "",
+    energyLevel: "",
+    occupation: "",
+    previousDiets: "",
+  });
+  const { userData } = authStore((state) => state);
+
+  const { mutate: mutation, isPending } = usePostData<any>(
+    `/api/UserQuestion?userId=${userData?.id}`,
+    i18n.language === "fa"
+      ? "اطلاعات شما با موفقیت ثبت شد"
+      : "Your Info register successfully",
+    false,
+    (data) => {
+      if (data.statusCode === 201) {
+        setStep(2);
+      }
+    },
+    false,
+    "auth",
+  );
+
+  useEffect(() => {
+    if (userData?.id) {
+      setStep(userData.questionBox ? 2 : 1);
+    }
+  }, [userData]);
+
+  const step1ClickHandler = () => {
+    const data = {
+      name: formData.name,
+      age: formData.age,
+      gender: formData.gender,
+      height: Number(formData.height),
+      weight: Number(formData.weight),
+      activityLevel: formData.activityLevel,
+      neckCircumference: Number(formData.neckCircumference),
+      waistCircumference: Number(formData.waistCircumference),
+      hipCircumference: Number(formData.hipCircumference),
+      fitnessLevel: formData.fitnessLevel,
+      dietGoal: formData.dietGoal,
+      dietaryRestrictions: formData.dietaryRestrictions,
+      allergies: formData.allergies,
+      medicalConditions: formData.medicalConditions,
+      foodPreferences: formData.foodPreferences,
+      mealPrepTime: formData.mealPrepTime,
+      exerciseProgram: formData.exerciseProgram,
+      exerciseDuration: formData.exerciseDuration,
+      exerciseLimitations: formData.exerciseLimitations,
+      supplements: formData.supplements,
+      supplementTypes: formData.supplementTypes,
+      sleepDuration: formData.sleepDuration,
+      stress: formData.stress,
+      energyLevel: formData.energyLevel,
+      occupation: formData.occupation,
+      previousDiets: formData.previousDiets,
+    }; 
+    mutation(data);
+  };
+
+  const handleInputChange = (field: string, value: any) => {
+    console.log(value);
+    console.log(field);
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -39,145 +134,235 @@ const Modal = () => {
                 className="grid grid-cols-[1fr,1fr] gap-3 text-center xs:grid-cols-[1fr,1fr] sm:grid-cols-[1fr,1fr,1fr]"
               >
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "نام" : "Name"}
                   </p>
                   <input
                     type="text"
-                    placeholder="علی"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
+                    {i18n.language === "fa" ? "سن" : "Age"}
+                  </p>
+                  <input
+                    type="number"
+                    value={formData.age}
+                    onChange={(e) => handleInputChange("age", e.target.value)}
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
+                    className="w-full rounded-md border border-main p-2 text-sm outline-none"
+                  />
+                </div>
+
+                <div className="relative mt-3 w-full">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "قد" : "Height"}
                   </p>
                   <input
                     type="number"
-                    placeholder="170"
+                    value={formData.height}
+                    onChange={(e) =>
+                      handleInputChange("height", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "وزن" : "Weight"}
                   </p>
                   <input
                     type="number"
-                    placeholder="75"
+                    value={formData.weight}
+                    onChange={(e) =>
+                      handleInputChange("weight", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "دور گردن" : "Neck circumference"}
                   </p>
                   <input
                     type="number"
-                    placeholder="50"
+                    value={formData.neckCircumference}
+                    onChange={(e) =>
+                      handleInputChange("neckCircumference", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "دور کمر" : "Waist circumference"}
                   </p>
                   <input
                     type="number"
-                    placeholder="50"
+                    value={formData.waistCircumference}
+                    onChange={(e) =>
+                      handleInputChange("waistCircumference", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "دور باسن" : "Hip circumference"}
                   </p>
                   <input
                     type="number"
-                    placeholder="50"
+                    value={formData.hipCircumference}
+                    onChange={(e) =>
+                      handleInputChange("hipCircumference", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "هدف از رژیم غذایی"
                       : "The purpose of the diet"}
                   </p>
                   <input
                     type="text"
-                    placeholder="لاغری"
+                    value={formData.dietGoal}
+                    onChange={(e) =>
+                      handleInputChange("dietGoal", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "محدودیت های غذایی"
                       : "Dietary restrictions"}
                   </p>
                   <input
                     type="text"
-                    placeholder="سبزی"
+                    value={formData.dietaryRestrictions}
+                    onChange={(e) =>
+                      handleInputChange("dietaryRestrictions", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "آلرژی غذایی" : "Food allergies"}
                   </p>
                   <input
                     type="text"
-                    placeholder="سبزی"
+                    value={formData.allergies}
+                    onChange={(e) =>
+                      handleInputChange("allergies", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "شرایط پزشکی"
                       : "Medical conditions"}
                   </p>
                   <input
                     type="text"
-                    placeholder="علی"
+                    value={formData.medicalConditions}
+                    onChange={(e) =>
+                      handleInputChange("medicalConditions", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "ترجیحات غذایی"
                       : "Food preferences"}
                   </p>
                   <input
                     type="text"
-                    placeholder="گوشت"
+                    value={formData.foodPreferences}
+                    onChange={(e) =>
+                      handleInputChange("foodPreferences", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "زمان صرف شده برای آماده سازی غذا"
                       : "Time spent preparing food"}
                   </p>
                   <input
                     type="number"
-                    placeholder="12"
-                    className="w-full rounded-md border border-main p-2 text-sm outline-none"
+                    value={formData.mealPrepTime}
+                    onChange={(e) =>
+                      handleInputChange("mealPrepTime", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
+                    className="w-full rounded-md border border-main p-2 pl-12 text-sm outline-none"
                   />
+                  <p
+                    className={`${i18n.language === "fa" ? "left-2" : "right-2"} absolute top-3 text-xs text-main`}
+                  >
+                    {i18n.language === "fa" ? "ساعت" : "hour"}
+                  </p>
                 </div>
 
                 <div className="relative mt-3 flex w-full items-center justify-center gap-2">
@@ -187,82 +372,134 @@ const Modal = () => {
 
                   <input
                     type="checkbox"
+                    value={formData.exerciseProgram as any}
+                    onChange={(e) =>
+                      handleInputChange("exerciseProgram", e.target.checked)
+                    }
                     className="rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
-                <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                <div
+                  className={`${formData.exerciseProgram ? "" : "pointer-events-none opacity-50"} relative mt-3 w-full`}
+                >
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "مدت زمان ورزش روزانه"
                       : "Daily exercise duration"}
                   </p>
                   <input
                     type="number"
-                    placeholder="12"
-                    className="w-full rounded-md border border-main p-2 text-sm outline-none"
+                    value={formData.exerciseDuration}
+                    onChange={(e) =>
+                      handleInputChange("exerciseDuration", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
+                    className="w-full rounded-md border border-main p-2 pl-12 text-sm outline-none"
                   />
+                  <p
+                    className={`${i18n.language === "fa" ? "left-2" : "right-2"} absolute top-3 text-xs text-main`}
+                  >
+                    {i18n.language === "fa" ? "ساعت" : "hour"}
+                  </p>
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "محدودیت های ورزشی"
                       : "Sports restrictions"}
                   </p>
                   <input
                     type="text"
-                    placeholder="ندارم"
+                    value={formData.exerciseLimitations}
+                    onChange={(e) =>
+                      handleInputChange("exerciseLimitations", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? "انواع مکمل ها"
                       : "Types of supplements"}
                   </p>
                   <input
                     type="text"
-                    placeholder="کراتین"
+                    value={formData.supplementTypes}
+                    onChange={(e) =>
+                      handleInputChange("supplementTypes", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? " مدت زمان خواب"
                       : "Sleep duration"}
                   </p>
                   <input
                     type="number"
-                    placeholder="12"
-                    className="w-full rounded-md border border-main p-2 text-sm outline-none"
+                    value={formData.sleepDuration}
+                    onChange={(e) =>
+                      handleInputChange("sleepDuration", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
+                    className="w-full rounded-md border border-main p-2 pl-12 text-sm outline-none"
                   />
+                  <p
+                    className={`${i18n.language === "fa" ? "left-2" : "right-2"} absolute top-3 text-xs text-main`}
+                  >
+                    {i18n.language === "fa" ? "ساعت" : "hour"}
+                  </p>
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa" ? "شغل" : "Job"}
                   </p>
                   <input
                     type="text"
-                    placeholder="معلم"
+                    value={formData.occupation}
+                    onChange={(e) =>
+                      handleInputChange("occupation", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
 
                 <div className="relative mt-3 w-full">
-                  <p className="absolute -top-4 right-0 bg-white p-1 text-xs">
+                  <p
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                  >
                     {i18n.language === "fa"
                       ? " رژیم های قبلی"
                       : "Previous diets"}
                   </p>
                   <input
                     type="text"
-                    placeholder="ندارد"
+                    value={formData.previousDiets}
+                    onChange={(e) =>
+                      handleInputChange("previousDiets", e.target.value)
+                    }
+                    dir={i18n.language === "fa" ? "rtl" : "ltr"}
                     className="w-full rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
@@ -275,6 +512,10 @@ const Modal = () => {
 
                   <input
                     type="checkbox"
+                    value={formData.supplements as any}
+                    onChange={(e) =>
+                      handleInputChange("supplements", e.target.checked)
+                    }
                     className="rounded-md border border-main p-2 text-sm outline-none"
                   />
                 </div>
@@ -294,6 +535,7 @@ const Modal = () => {
                       </label>
                       <input
                         type="radio"
+                        onClick={() => handleInputChange("stress", true)}
                         name="nervous"
                         className="rounded-md border border-main p-2 text-sm outline-none"
                       />
@@ -304,7 +546,38 @@ const Modal = () => {
                       </label>
                       <input
                         type="radio"
+                        onClick={() => handleInputChange("stress", false)}
                         name="nervous"
+                        className="rounded-md border border-main p-2 text-sm outline-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative mt-3 w-full">
+                  <p className="bg-white p-1 text-center text-xs">
+                    {i18n.language === "fa" ? "جنسیت" : "Gender"}
+                  </p>
+                  <div className="flex justify-center gap-3">
+                    <div className="flex gap-1">
+                      <label className="text-xs">
+                        {i18n.language === "fa" ? "مرد" : "Male"}
+                      </label>
+                      <input
+                        type="radio"
+                        name="gender"
+                        onClick={() => handleInputChange("gender", "male")}
+                        className="rounded-md border border-main p-2 text-sm outline-none"
+                      />
+                    </div>
+                    <div className="flex gap-1">
+                      <label className="text-xs">
+                        {i18n.language === "fa" ? "زن" : "Female"}
+                      </label>
+                      <input
+                        type="radio"
+                        onClick={() => handleInputChange("gender", "female")}
+                        name="gender"
                         className="rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -323,6 +596,7 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="energi"
+                        onClick={() => handleInputChange("energyLevel", 10)}
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -333,6 +607,7 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="energi"
+                        onClick={() => handleInputChange("energyLevel", 5)}
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -343,6 +618,7 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="energi"
+                        onClick={() => handleInputChange("energyLevel", 1)}
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -364,6 +640,12 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="amadegi"
+                        onClick={() =>
+                          handleInputChange(
+                            "fitnessLevel",
+                            i18n.language === "fa" ? "بالا" : "High",
+                          )
+                        }
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -373,6 +655,12 @@ const Modal = () => {
                       </label>
                       <input
                         type="radio"
+                        onClick={() =>
+                          handleInputChange(
+                            "fitnessLevel",
+                            i18n.language === "fa" ? "متوسط" : "Medium",
+                          )
+                        }
                         name="amadegi"
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
@@ -384,7 +672,73 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="amadegi"
+                        onClick={() =>
+                          handleInputChange(
+                            "fitnessLevel",
+                            i18n.language === "fa" ? "پایین" : "Low",
+                          )
+                        }
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative mt-3 hidden w-full md:block">
+                  <p className="bg-white p-1 text-center text-xs">
+                    {" "}
+                    {i18n.language === "fa" ? "سطح فعالیت" : "Activity level"}
+                  </p>
+                  <div className="flex justify-center gap-3">
+                    <div className="flex gap-1 text-xs">
+                      {i18n.language === "fa" ? " کار سنگین" : "Hard work"}
+
+                      <input
+                        type="radio"
+                        name="work"
+                        onClick={() =>
+                          handleInputChange(
+                            "activityLevel",
+                            i18n.language === "fa" ? " کار سنگین" : "Hard work",
+                          )
+                        }
+                        className="rounded-md border border-main p-2 text-sm outline-none"
+                      />
+                    </div>
+                    <div className="flex gap-1 text-xs">
+                      {i18n.language === "fa" ? "کار متوسط" : "Average work"}
+
+                      <input
+                        type="radio"
+                        onClick={() =>
+                          handleInputChange(
+                            "activityLevel",
+                            i18n.language === "fa"
+                              ? "کار متوسط"
+                              : "Average work",
+                          )
+                        }
+                        name="work"
+                        className="rounded-md border border-main p-2 text-sm outline-none"
+                      />
+                    </div>
+                    <div className="flex gap-1 text-xs">
+                      {i18n.language === "fa"
+                        ? "کار بدون تحرک"
+                        : "Work without movement"}
+
+                      <input
+                        type="radio"
+                        name="work"
+                        onClick={() =>
+                          handleInputChange(
+                            "activityLevel",
+                            i18n.language === "fa"
+                              ? "کار بدون تحرک"
+                              : "Work without movement",
+                          )
+                        }
+                        className="rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
                   </div>
@@ -396,7 +750,7 @@ const Modal = () => {
                   <p className="bg-white p-1 text-center text-xs">
                     {" "}
                     {i18n.language === "fa"
-                      ? " سطح آمادگی جسمانی"
+                      ? "سطح آمادگی جسمانی"
                       : "Physical fitness level"}
                   </p>
                   <div className="flex justify-center gap-3">
@@ -407,6 +761,12 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="amadegi"
+                        onClick={() =>
+                          handleInputChange(
+                            "fitnessLevel",
+                            i18n.language === "fa" ? "بالا" : "High",
+                          )
+                        }
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -417,6 +777,12 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="amadegi"
+                        onClick={() =>
+                          handleInputChange(
+                            "fitnessLevel",
+                            i18n.language === "fa" ? "متوسط" : "Medium",
+                          )
+                        }
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -427,6 +793,12 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="amadegi"
+                        onClick={() =>
+                          handleInputChange(
+                            "fitnessLevel",
+                            i18n.language === "fa" ? "پایین" : "Low",
+                          )
+                        }
                         className="w-full rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
@@ -445,71 +817,53 @@ const Modal = () => {
                       <input
                         type="radio"
                         name="work"
+                        onClick={() =>
+                          handleInputChange(
+                            "activityLevel",
+                            i18n.language === "fa" ? " کار سنگین" : "Hard work",
+                          )
+                        }
                         className="rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
                     <div className="flex gap-1">
                       <label className="text-xs">
-                        {i18n.language === "fa"
-                          ? "   کار متوسط "
-                          : "Average work"}
+                        {i18n.language === "fa" ? "کار متوسط " : "Average work"}
                       </label>
                       <input
                         type="radio"
                         name="work"
+                        onClick={() =>
+                          handleInputChange(
+                            "activityLevel",
+                            i18n.language === "fa"
+                              ? "کار متوسط "
+                              : "Average work",
+                          )
+                        }
                         className="rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
                     <div className="flex gap-1">
                       <label className="text-xs">
                         {i18n.language === "fa"
-                          ? "  کار بدون تحرک "
+                          ? "کار بدون تحرک"
                           : "Work without movement"}
                       </label>
                       <input
                         type="radio"
                         name="work"
+                        onClick={() =>
+                          handleInputChange(
+                            "activityLevel",
+                            i18n.language === "fa"
+                              ? "کار بدون تحرک"
+                              : "Work without movement",
+                          )
+                        }
                         className="rounded-md border border-main p-2 text-sm outline-none"
                       />
                     </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative mt-3 hidden w-full md:block">
-                <p className="bg-white p-1 text-center text-xs">
-                  {" "}
-                  {i18n.language === "fa" ? "سطح فعالیت" : "Activity level"}
-                </p>
-                <div className="flex justify-center gap-3">
-                  <div className="flex gap-1 text-xs">
-                    {i18n.language === "fa" ? " کار سنگین" : "Hard work"}
-
-                    <input
-                      type="radio"
-                      name="work"
-                      className="rounded-md border border-main p-2 text-sm outline-none"
-                    />
-                  </div>
-                  <div className="flex gap-1 text-xs">
-                    {i18n.language === "fa" ? "   کار متوسط " : "Average work"}
-
-                    <input
-                      type="radio"
-                      name="work"
-                      className="rounded-md border border-main p-2 text-sm outline-none"
-                    />
-                  </div>
-                  <div className="flex gap-1 text-xs">
-                    {i18n.language === "fa"
-                      ? "  کار بدون تحرک "
-                      : "Work without movement"}
-
-                    <input
-                      type="radio"
-                      name="work"
-                      className="rounded-md border border-main p-2 text-sm outline-none"
-                    />
                   </div>
                 </div>
               </div>
@@ -532,17 +886,52 @@ const Modal = () => {
           )}
 
           <Button
-            onClick={() => setStep(2)}
+            onClick={step1ClickHandler}
             className="mt-4 w-full"
             variant={"main"}
+            disabled={
+              formData.name.length == 0 ||
+              formData.age.length == 0 ||
+              formData.gender.length == 0 ||
+              formData.height.length == 0 ||
+              formData.weight.length == 0 ||
+              formData.activityLevel.length == 0 ||
+              formData.neckCircumference.length == 0 ||
+              formData.waistCircumference.length == 0 ||
+              formData.hipCircumference.length == 0 ||
+              formData.fitnessLevel.length == 0 ||
+              formData.dietGoal.length == 0 ||
+              formData.dietaryRestrictions.length == 0 ||
+              formData.allergies.length == 0 ||
+              formData.medicalConditions.length == 0 ||
+              formData.foodPreferences.length == 0 ||
+              formData.mealPrepTime.length == 0 ||
+              formData.exerciseLimitations.length == 0 ||
+              formData.supplementTypes.length == 0 ||
+              formData.sleepDuration.length == 0 ||
+              formData.stress.length == 0 ||
+              formData.energyLevel.length == 0 ||
+              formData.occupation.length == 0 ||
+              formData.previousDiets.length == 0
+            }
           >
-            {step === 2
-              ? i18n.language === "fa"
-                ? "ثبت"
-                : "Submiy"
-              : i18n.language === "fa"
-                ? "ادامه"
-                : "Next"}
+            {step === 2 ? (
+              i18n.language === "fa" ? (
+                "ثبت"
+              ) : (
+                "Submiy"
+              )
+            ) : i18n.language === "fa" ? (
+              isPending ? (
+                <ButtonLoader />
+              ) : (
+                "ادامه"
+              )
+            ) : isPending ? (
+              <ButtonLoader />
+            ) : (
+              "Next"
+            )}
           </Button>
           {step === 2 && (
             <Button

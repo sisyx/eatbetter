@@ -4,7 +4,7 @@ import Title from "../../../components/modules/Title/Title";
 import Card from "../../../components/templates/UserPanel/Challenges/Card";
 import useGetData from "../../../hooks/useGetData";
 import Cookies from "js-cookie";
-import { tokenName } from "../../../config/constants"; 
+import { tokenName } from "../../../config/constants";
 const apiUrl = import.meta.env.VITE_API_URL;
 import { TypeOfChallengeType, typesOfChallenges } from "./types";
 import Loader from "../../../components/modules/loader/Loader";
@@ -13,13 +13,13 @@ const Challenges = () => {
   const { i18n } = useTranslation();
   const { language } = i18n;
 
-  const {
-    data: challenges, 
-    isLoading: loading,
-  } = useGetData(["user_challenges"], getChallenges);
+  const { data: challenges, isLoading: loading } = useGetData(
+    ["user_challenges"],
+    getChallenges,
+  );
 
   console.log(challenges);
-  
+
   async function getChallenges() {
     const eatBetterToken = Cookies.get(tokenName);
     const req = await fetch(`${apiUrl}/api/Chalange/GetAllChallenges`, {
@@ -59,6 +59,7 @@ const Challenges = () => {
                 >
                   {challenges[type.value].map((challenge: any) => (
                     <Card
+                      day={challenge?.day}
                       challengeType={type.value}
                       exercise={challenge?.exercise}
                       id={challenge?.id}

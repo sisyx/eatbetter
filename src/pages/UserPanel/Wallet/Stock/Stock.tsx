@@ -13,7 +13,7 @@ const Stock = () => {
     <Layout>
       <div className="relative mx-auto w-max rounded-lg p-8 pt-12 text-center shadow-xl">
         <p>{t("stock.money")}</p>
-        <p className="mt-2 text-main">{userData?.walletBalance} ریال</p>
+        <p className="mt-2 text-main">{userData?.walletBalance.toLocaleString()} ریال</p>
       </div>
       <div className="relative z-20 mt-10 space-y-4">
         <Title title={t("stock.title")} />

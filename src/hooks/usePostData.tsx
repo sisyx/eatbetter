@@ -46,6 +46,12 @@ const usePostData = <T extends object>(
           title: successMsg,
         });
       }
+      if (successMsg && data.statusCode === 201) {
+        toast({
+          variant: "success",
+          title: successMsg,
+        });
+      }
     },
     onError: (data) => {
       console.log(data);
