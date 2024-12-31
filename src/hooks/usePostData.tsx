@@ -11,6 +11,7 @@ const usePostData = <T extends object>(
   successFunc?: ((data: any) => void) | null,
   formData?: boolean,
   queryUpdate?: string | null,
+  isNotJson?:boolean
 ) => {
   const eatBetterToken = Cookies.get(tokenName);
   const queryClient = useQueryClient();
@@ -28,7 +29,7 @@ const usePostData = <T extends object>(
         headers,
         // credentials: "include",
         body: formData ? (data as any) : JSON.stringify(data),
-      }).then((res) => res.json());
+      }).then((res) => !isNotJson ? res.json() : res);
     },
     onSuccess: (data) => {
       console.log(data);

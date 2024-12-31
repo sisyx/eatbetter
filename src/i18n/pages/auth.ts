@@ -4,8 +4,11 @@ const loginFa = {
     noAccount: "حساب کاربری ندارید؟ ثبت نام کنید",
     forgotPassword: "  فراموشی رمز عبور",
     password: "رمز عبور",
-    submit:'تایید',
+    submit: "تایید",
     email: "ایمیل",
+    forgotPasswordTitleOne: "ابتدا ایمیلی که با آن ثبت نام کردید را وارد کنید",
+    forgotPasswordTitleTwo:
+      "در مرحله دوم با رمز عبور موقتی که برای شما ارسال میشود وارد حساب کاربریتان شوید",
   },
 };
 
@@ -15,8 +18,11 @@ const loginEn = {
     noAccount: "Dont have an account? register",
     forgotPassword: "Forgot password",
     password: "password",
-    submit:'submit',
-    email: "email  ",
+    submit: "submit",
+    email: "email",
+    forgotPasswordTitleOne: "First enter the email you registered with",
+    forgotPasswordTitleTwo:
+      "In the second step, log in to your account with the temporary password that will be sent to you.",
   },
 };
 
@@ -27,9 +33,9 @@ const registerFa = {
     email: "ایمیل",
     password: "رمز عبور",
     confirmPassword: "تکرار رمز عبور",
-    submit:'تایید',
+    submit: "تایید",
     userName: "نام کاربری",
-    phone:"شماره تلفن"
+    phone: "شماره تلفن",
   },
 };
 
@@ -40,10 +46,9 @@ const registerEn = {
     email: "email",
     password: "password",
     confirmPassword: "confirm Password",
-    submit:'submit',
+    submit: "submit",
     userName: "user Name",
-    phone:"phone Number  "
-
+    phone: "phone Number  ",
   },
 };
 

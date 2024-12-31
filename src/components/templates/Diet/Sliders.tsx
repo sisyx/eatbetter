@@ -15,8 +15,7 @@ interface Props {
   }[];
 }
 
-const Sliders = (diets: Props) => {
-  console.log(diets);
+const Sliders = (diets: Props) => { 
 
   return (
     <div data-aos="fade-up" className="mt-6 block space-y-8 sm:!hidden">

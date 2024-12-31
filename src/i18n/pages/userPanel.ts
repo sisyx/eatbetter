@@ -13,7 +13,7 @@ const userPanelFa = {
     introductions: "معرفی ها",
     training: "آموزش رایگان",
     challenges: "چالش ها",
-    health: "کلینیک مدیریت وزن و سلامتی",
+    health: "رژیم های شما",
     sleep: "خواب و روان",
   },
 
@@ -151,20 +151,20 @@ const userPanelFa = {
 const userPanelEn = {
   topbar: {
     progress: "progress chart",
-    role: "user",
+    role: "User",
   },
   sideBar: {
-    logout: "logout",
-    home: "home",
+    logout: "Logout",
+    home: "Home",
     profile: "profile",
     work: "Your office",
-    wallet: "wallet",
+    wallet: "Wallet",
     income: "Income chart",
-    introductions: "introductions",
-    training: "training",
-    challenges: "challenges",
-    health: "weight & health management",
-    sleep: "sleep & psyche",
+    introductions: "Introductions",
+    training: "Training",
+    challenges: "Challenges",
+    health: "Your Diets",
+    sleep: "Sleep & psyche",
   },
 
   income: {

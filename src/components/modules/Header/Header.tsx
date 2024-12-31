@@ -136,7 +136,7 @@ export default function index() {
                 <li className="rounded-md p-2 transition-all hover:text-main">
                   {t("cookingInstruction")}
                 </li>
-                <svg
+                {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -149,9 +149,9 @@ export default function index() {
                     strokeLinejoin="round"
                     d="m4.5 15.75 7.5-7.5 7.5 7.5"
                   />
-                </svg>
+                </svg> */}
               </Link>
-              <div className="absolute top-[100%] z-[999] hidden w-[650px] rounded-xl bg-main text-white group-hover:flex group-hover:justify-center">
+              {/* <div className="absolute top-[100%] z-[999] hidden w-[650px] rounded-xl bg-main text-white group-hover:flex group-hover:justify-center">
                 <div className="border-r border-[#00000014] p-2">
                   <p className="text-end font-bold">{t("breakfast")}</p>
                   <ul className="flex flex-col gap-2 p-5 text-end">
@@ -209,7 +209,7 @@ export default function index() {
                     </Link>
                   </ul>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="group relative flex transition-all">
               <Link

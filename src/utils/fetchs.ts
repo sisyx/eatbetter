@@ -48,8 +48,19 @@ export async function getChallenge(challengeName: string) {
   return res.json();
 }
 export async function getWithdrawalStatus(id: string) {
+  const res = await fetch(`${apiUrl}/api/UserPanel/withdrawal-status/${id}`);
+  return res.json();
+}
+export async function getDietsQues(country: string) {
   const res = await fetch(
-    `${apiUrl}/api/UserPanel/withdrawal-status/${id}`,
+    `${apiUrl}/api/UserQuestion/GetDietOptions?lang=${country}`,
   );
   return res.json();
-} 
+}
+export async function getCustomDiet(userId: string, week: number) {
+  const res = await fetch(
+    // `${apiUrl}/api/ChatGPT/GetDietPlanWithDelay?userId=${userId}&week=${week}`,
+    `${apiUrl}/api/ChatGPT/GetDietPlanWithDelayTEST6MIN?userId=${userId}&week=${week}`,
+  );
+  return res.json();
+}
