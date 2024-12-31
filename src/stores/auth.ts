@@ -12,6 +12,9 @@ interface UserProps {
   walletBalance: string;
   cartRegister: boolean;
   questionBox: boolean;
+  package: any;
+  selectedDiets: string[];
+  userCustomDiet: boolean;
   wallet: {
     accountNumber: string;
     bankName: string;

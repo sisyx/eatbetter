@@ -5,7 +5,7 @@ import Layout from "../../../../Layouts/UserLayouts";
 
 const Diet = () => {
   const { t } = useTranslation();
-  return (
+  return ( 
     <Layout>
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:gap-0">
         <Title title="رژیم شماره سوم" />

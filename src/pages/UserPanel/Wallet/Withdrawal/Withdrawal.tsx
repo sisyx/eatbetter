@@ -103,7 +103,7 @@ const Withdrawal = () => {
       enabled: Boolean(withDrawalId),
     },
   );
-
+  
   useEffect(() => {
     if (data) {
       setWithDrawalStatusCheck(true);

@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import { Button } from "../../shadcn/ui/button";
 import Modal from "./Modal";
 import { useTranslation } from "react-i18next";
+import { toast } from "../../../hooks/use-toast";
+import { authStore } from "../../../stores/auth";
+import usePostData from "../../../hooks/usePostData";
+import { ButtonLoader } from "../../modules/loader/Loader";
 
 type Props = {
   data: {
@@ -26,8 +30,23 @@ const Card = ({ data, panel }: Props) => {
     "/images/8381144_3901686.svg",
   ];
   const randomImage = images[Math.floor(Math.random() * images.length)];
- 
-  
+
+  const { userData } = authStore((state) => state);
+
+  const { mutate: mutation, isPending } = usePostData<{ phone: string }>(
+    "/api/user/LoginUser",
+    null,
+    false,
+    ()=>{
+
+    },
+  );
+
+  const reciveDietHandler =()=>{
+    if ( userData?.selectedDiets.length) {
+      
+    }
+  }
   return (
     <div
       data-aos="fade-up"
@@ -53,9 +72,31 @@ const Card = ({ data, panel }: Props) => {
       ) : (
         <>
           <Modal {...data} />
-          <Button className="mt-5 w-full" variant={"main"}>
-            دریافت رژیم
-          </Button>
+
+          {userData && userData.package ? (
+            <Button onClick={reciveDietHandler} className="mt-5 w-full" variant={"main"}>
+              {isPending ? <ButtonLoader/>  : i18n.language === "fa" ? "دریافت رژیم" : "Get a diet"}
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                toast({
+                  title: userData
+                    ? i18n.language === "fa"
+                      ? "لطفا ابتدا پکیج تهیه کنید"
+                      : "Please purchase the package first"
+                    : i18n.language === "fa"
+                      ? "لطفا ابتدا وارد حسابتون بشید"
+                      : "Please Login first",
+                  variant: "success",
+                });
+              }}
+              className="mt-5 w-full"
+              variant={"main"}
+            >
+              {i18n.language === "fa" ? "دریافت رژیم" : "Get a diet"}
+            </Button>
+          )}
         </>
       )}
     </div>

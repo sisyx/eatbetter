@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import usePostData from "../../../hooks/usePostData";
 import { authStore } from "../../../stores/auth";
 import { ButtonLoader } from "../../modules/loader/Loader";
+import Step2 from "./Step2";
 
 const Modal = () => {
   const { t, i18n } = useTranslation();
@@ -44,9 +45,9 @@ const Modal = () => {
     previousDiets: "",
   });
   const { userData } = authStore((state) => state);
-
+   
   const { mutate: mutation, isPending } = usePostData<any>(
-    `/api/UserQuestion?userId=${userData?.id}`,
+    `/api/UserQuestion/create-or-update/userId=${userData?.id}`,
     i18n.language === "fa"
       ? "اطلاعات شما با موفقیت ثبت شد"
       : "Your Info register successfully",
@@ -54,7 +55,7 @@ const Modal = () => {
     (data) => {
       if (data.statusCode === 201) {
         setStep(2);
-      }
+      } 
     },
     false,
     "auth",
@@ -94,7 +95,7 @@ const Modal = () => {
       energyLevel: formData.energyLevel,
       occupation: formData.occupation,
       previousDiets: formData.previousDiets,
-    }; 
+    };
     mutation(data);
   };
 
@@ -107,6 +108,7 @@ const Modal = () => {
       [field]: value,
     }));
   };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -116,9 +118,16 @@ const Modal = () => {
       </DialogTrigger>
       <DialogContent className={`w-full max-w-full !pr-0 md:!max-w-[725px]`}>
         <DialogHeader>
-          <DialogTitle className="flex items-center justify-center gap-2 py-3">
+          <DialogTitle className="flex flex-col items-center justify-center gap-2 py-3">
             {step === 1 ? (
-              <h5>{t("modalTitle")}</h5>
+              <>
+                <h5>{t("modalTitle")}</h5>
+                <p className="text-xs text-red-500">
+                  {i18n.language === "fa"
+                    ? "در صورتی که از قبل رژیم مخصوص خودتان را تهیه کردید و الان فعال هست، امکان تهیه دوباره رژیم نیست. برای دسترسی به رژیم خودان به پنل کاربری مراجعه کنید"
+                    : "If you have already created your own diet and it is now active, it is not possible to create it again. To access your diet, please visit your user panel"}
+                </p>
+              </>
             ) : (
               <h5>{t("modalStep2Title")}</h5>
             )}
@@ -869,79 +878,64 @@ const Modal = () => {
               </div>
             </>
           ) : (
-            <div>
-              <select
-                className="w-full rounded-md border border-main p-2"
-                dir="rtl"
-                name=""
-                id=""
-              >
-                <option value="لاغری">لاغری</option>
-                <option value="لاغری">لاغری</option>
-                <option value="لاغری">لاغری</option>
-                <option value="لاغری">لاغری</option>
-                <option value="لاغری">لاغری</option>
-              </select>
-            </div>
+            <Step2 setStep={setStep} />
           )}
 
-          <Button
-            onClick={step1ClickHandler}
-            className="mt-4 w-full"
-            variant={"main"}
-            disabled={
-              formData.name.length == 0 ||
-              formData.age.length == 0 ||
-              formData.gender.length == 0 ||
-              formData.height.length == 0 ||
-              formData.weight.length == 0 ||
-              formData.activityLevel.length == 0 ||
-              formData.neckCircumference.length == 0 ||
-              formData.waistCircumference.length == 0 ||
-              formData.hipCircumference.length == 0 ||
-              formData.fitnessLevel.length == 0 ||
-              formData.dietGoal.length == 0 ||
-              formData.dietaryRestrictions.length == 0 ||
-              formData.allergies.length == 0 ||
-              formData.medicalConditions.length == 0 ||
-              formData.foodPreferences.length == 0 ||
-              formData.mealPrepTime.length == 0 ||
-              formData.exerciseLimitations.length == 0 ||
-              formData.supplementTypes.length == 0 ||
-              formData.sleepDuration.length == 0 ||
-              formData.stress.length == 0 ||
-              formData.energyLevel.length == 0 ||
-              formData.occupation.length == 0 ||
-              formData.previousDiets.length == 0
-            }
-          >
-            {step === 2 ? (
-              i18n.language === "fa" ? (
-                "ثبت"
-              ) : (
-                "Submiy"
-              )
-            ) : i18n.language === "fa" ? (
-              isPending ? (
+          {step === 1 && (
+            <Button
+              onClick={step1ClickHandler}
+              className="mt-4 w-full"
+              variant={"main"}
+              disabled={
+                formData.name.length == 0 ||
+                formData.age.length == 0 ||
+                formData.gender.length == 0 ||
+                formData.height.length == 0 ||
+                formData.weight.length == 0 ||
+                formData.activityLevel.length == 0 ||
+                formData.neckCircumference.length == 0 ||
+                formData.waistCircumference.length == 0 ||
+                formData.hipCircumference.length == 0 ||
+                formData.fitnessLevel.length == 0 ||
+                formData.dietGoal.length == 0 ||
+                formData.dietaryRestrictions.length == 0 ||
+                formData.allergies.length == 0 ||
+                formData.medicalConditions.length == 0 ||
+                formData.foodPreferences.length == 0 ||
+                formData.mealPrepTime.length == 0 ||
+                formData.exerciseLimitations.length == 0 ||
+                formData.supplementTypes.length == 0 ||
+                formData.sleepDuration.length == 0 ||
+                formData.stress.length == 0 ||
+                formData.energyLevel.length == 0 ||
+                formData.occupation.length == 0 ||
+                formData.previousDiets.length == 0
+              }
+            >
+              {i18n.language === "fa" ? (
+                isPending ? (
+                  <ButtonLoader />
+                ) : (
+                  "ادامه"
+                )
+              ) : isPending ? (
                 <ButtonLoader />
               ) : (
-                "ادامه"
-              )
-            ) : isPending ? (
-              <ButtonLoader />
-            ) : (
-              "Next"
-            )}
-          </Button>
-          {step === 2 && (
+                "Next"
+              )}
+            </Button>
+          )}
+          {userData && userData.questionBox && step === 1 ? (
             <Button
-              onClick={() => setStep(1)}
+              onClick={() => setStep(2)}
               className="mt-4 w-full"
               variant={"outline"}
             >
-              {i18n.language === "fa" ? "مرحله قبل" : "Previous step"}
+              {i18n.language === "fa"
+                ? "صرف نظر از ویرایش"
+                : "Regardless of editing"}
             </Button>
-          )}
+          ) : null}
         </main>
       </DialogContent>
     </Dialog>
