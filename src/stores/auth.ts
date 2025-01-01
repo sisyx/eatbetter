@@ -12,7 +12,12 @@ interface UserProps {
   walletBalance: string;
   cartRegister: boolean;
   questionBox: boolean;
-  package: any;
+  package: {
+    currency: string;
+    maxDiet: number;
+    packageName: string;
+    price: number;
+  };
   selectedDiets: string[];
   userCustomDiet: boolean;
   wallet: {

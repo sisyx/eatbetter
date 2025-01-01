@@ -8,19 +8,13 @@ import usePostData from "../../../hooks/usePostData";
 import { ButtonLoader } from "../../modules/loader/Loader";
 
 type Props = {
-  data: {
-    allowedFoods: string;
-    description: string;
-    howToImplement: string;
-    id: number;
-    name: string;
-  };
+  data: any;
   panel?: boolean;
   isActive?: boolean;
 };
 
 const Card = ({ data, panel }: Props) => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation(); 
 
   const images = [
     "/images/11663519_20944480.svg",
@@ -33,20 +27,32 @@ const Card = ({ data, panel }: Props) => {
 
   const { userData } = authStore((state) => state);
 
-  const { mutate: mutation, isPending } = usePostData<{ phone: string }>(
-    "/api/user/LoginUser",
-    null,
+  const { mutate: mutation, isPending } = usePostData<[]>(
+    `/api/Diet/SelectDiets?userId=${userData?.id}`,
+    i18n.language === "fa"
+      ? "رژِیم با موفقیت به پنل کاربری شما اضافه شد"
+      : "Diet has been successfully added to your user panel",
     false,
-    ()=>{
-
-    },
+    () => {},
+    false,
+    "auth",
   );
 
-  const reciveDietHandler =()=>{
-    if ( userData?.selectedDiets.length) {
-      
+  const reciveDietHandler = () => {
+    if (userData) {
+      if (userData.selectedDiets.length + 1 > userData.package?.maxDiet) {
+        toast({
+          title:
+            i18n.language === "fa"
+              ? "شما به حداکثر سقف انتخاب رژیم با توجه پکیج خریداری شده خود رسیدید"
+              : "You have reached the maximum diet selection limit according to the package you purchased",
+          variant: "danger",
+        });
+      } else {
+        mutation([data.id] as any);
+      }
     }
-  }
+  };
   return (
     <div
       data-aos="fade-up"
@@ -57,11 +63,14 @@ const Card = ({ data, panel }: Props) => {
         src={randomImage}
         alt="cover"
       />
-      <p className="mb-7 mt-2 text-sm sm:text-base">{data.name}</p>
+      <p className="mb-7 mt-2 text-sm sm:text-base">
+        { panel ? i18n.language === "fa" ? data.nameFa : data.name :data.name } 
+
+      </p>
       {panel ? (
         <>
           <p className="cursor-pointer text-sm" dir="rtl">
-            {data.description.slice(0, 190) + "..."}
+            {i18n.language === "fa" ? data.descriptionFa.slice(0, 190) + "..." : data.description.slice(0, 190)}
           </p>
           <Link className="mt-4 block" to={`/userPanel/health/${data.id}`}>
             <Button variant={"main"}>
@@ -74,8 +83,18 @@ const Card = ({ data, panel }: Props) => {
           <Modal {...data} />
 
           {userData && userData.package ? (
-            <Button onClick={reciveDietHandler} className="mt-5 w-full" variant={"main"}>
-              {isPending ? <ButtonLoader/>  : i18n.language === "fa" ? "دریافت رژیم" : "Get a diet"}
+            <Button
+              onClick={reciveDietHandler}
+              className="mt-5 w-full"
+              variant={"main"}
+            >
+              {isPending ? (
+                <ButtonLoader />
+              ) : i18n.language === "fa" ? (
+                "دریافت رژیم"
+              ) : (
+                "Get a diet"
+              )}
             </Button>
           ) : (
             <Button

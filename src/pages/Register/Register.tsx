@@ -253,10 +253,9 @@ const Register = () => {
               <input
                 style={{ accentColor: "green" }}
                 type="radio"
-                checked
+                checked={country === 'IR' ? true : false}
                 name="country"
-                value={"IR"}
-                id=""
+                value={"IR"} 
                 onClick={() => setCountry("IR")}
               />
               <p>IR</p>
@@ -266,9 +265,10 @@ const Register = () => {
               <input
                 style={{ accentColor: "green" }}
                 type="radio"
+                checked={country === 'INT' ? true : false}
+
                 name="country"
-                value={"INT"}
-                id=""
+                value={"INT"} 
                 onClick={() => setCountry("INT")}
               />
               <p>INT</p>

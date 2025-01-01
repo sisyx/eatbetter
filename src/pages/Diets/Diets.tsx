@@ -17,7 +17,6 @@ const Diets = () => {
     getAllDiets(i18n.language),
   );
   const { userData } = authStore((state) => state);
-
   return (
     <Container>
       <div

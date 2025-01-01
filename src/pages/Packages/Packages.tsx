@@ -7,25 +7,50 @@ import { authStore } from "../../stores/auth";
 import Loader from "../../components/modules/loader/Loader";
 import { getPackages } from "../../utils/fetchs";
 import { useTranslation } from "react-i18next";
+import { toast } from "../../hooks/use-toast";
+import swal from "sweetalert";
 
 const Packages = () => {
   const { userData } = authStore((state) => state);
 
   const { i18n } = useTranslation();
 
-  const { data, isLoading, refetch } = useGetData(
+  const { data, isLoading } = useGetData(
     ["allPackages", String(userData?.id)],
     () => getPackages(userData?.id as number),
+    {
+      enabled: Boolean(userData?.id),
+    },
   );
 
   console.log(data);
 
-  useEffect(() => {
-    if (userData?.id) {
-      refetch();
+  const buyPackageHandler = () => {
+    if (userData?.package) {
+      toast({
+        title:
+          i18n.language === "fa"
+            ? "شما از قبل یک پکیج فعال دارید و میتونید برای دیدن مشخصات پکیجتون به پنل کاربری خود مراجعه کنید"
+            : "You already have an active package and you can visit your user panel to see your package details",
+        variant: "danger",
+      });
+    } else {
+      swal({
+        title:
+          i18n.language === "fa"
+            ? "آیا از خرید این پکیج اطمینان دارید؟"
+            : "Are you sure you want to buy this package?",
+        icon: "warning",
+        buttons: [
+          i18n.language === "fa" ? "نه" : "No",
+          i18n.language === "fa" ? "آره" : "yes",
+        ],
+      }).then(res=>{
+        console.log(res);
+        
+      })
     }
-  }, [userData?.id]);
-
+  };
   return (
     <Container>
       <div
@@ -35,45 +60,50 @@ const Packages = () => {
         <Title title={i18n.language === "fa" ? "پکیج ها" : "Packages"} />
 
         <div className="mt-16 grid grid-cols-[1fr] gap-16 sm:grid-cols-[1fr,1fr] sm:gap-10 xl:grid-cols-[1fr,1fr,1fr]">
-          {data && data?.packages.map((pack: any) => (
-            <div className="rounded-md border border-main text-center">
-              <p className="bg-main py-5 text-white">
-                {i18n.language === "fa" ? pack.nameFa : pack.name}
-              </p>
-              <p className="border-y border-gray-400 py-5">
-                {pack.currency === "IRR"
-                  ? i18n.language === "fa"
-                    ? "ریال"
-                    : "Rials"
-                  : i18n.language === "fa"
-                    ? "دلار"
-                    : "Dollers"}
-              </p>
-              <p className="border-b border-gray-400 py-5">
-                {i18n.language === "fa"
-                  ? ` انتخاب حداکثر ${pack.maxDiet} رژیم`
-                  : `Choose up to ${pack.maxDiet} diets`}
-              </p>
-              <div className="pt-5">
-                {pack.currency === "IRR" ? (
-                  i18n.language === "fa" ? (
-                    <p> {pack.price.toLocaleString()} هزار ریال</p>
+          {data &&
+            data?.packages.map((pack: any) => (
+              <div className="rounded-md border border-main text-center">
+                <p className="bg-main py-5 text-white">
+                  {i18n.language === "fa" ? pack.nameFa : pack.name}
+                </p>
+                <p className="border-y border-gray-400 py-5">
+                  {pack.currency === "IRR"
+                    ? i18n.language === "fa"
+                      ? "ریال"
+                      : "Rials"
+                    : i18n.language === "fa"
+                      ? "دلار"
+                      : "Dollers"}
+                </p>
+                <p className="border-b border-gray-400 py-5">
+                  {i18n.language === "fa"
+                    ? ` انتخاب حداکثر ${pack.maxDiet} رژیم`
+                    : `Choose up to ${pack.maxDiet} diets`}
+                </p>
+                <div className="pt-5">
+                  {pack.currency === "IRR" ? (
+                    i18n.language === "fa" ? (
+                      <p> {pack.price.toLocaleString()} هزار ریال</p>
+                    ) : (
+                      <p dir="ltr">
+                        {pack.price.toLocaleString()} thousand rials
+                      </p>
+                    )
+                  ) : i18n.language === "fa" ? (
+                    `${pack.price.toLocaleString()} دلار  `
                   ) : (
-                    <p dir="ltr">
-                      {pack.price.toLocaleString()} thousand rials
-                    </p>
-                  )
-                ) : i18n.language === "fa" ? (
-                  `${pack.price.toLocaleString()} دلار  `
-                ) : (
-                  <p dir="ltr">${pack.price.toLocaleString()}</p>
-                )}
+                    <p dir="ltr">${pack.price.toLocaleString()}</p>
+                  )}
+                </div>
+                <Button
+                  onClick={buyPackageHandler}
+                  className="my-8 w-[90%]"
+                  variant="main"
+                >
+                  {i18n.language === "fa" ? "خرید" : "Buy"}
+                </Button>
               </div>
-              <Button className="my-8 w-[90%]" variant="main">
-                {i18n.language === "fa" ? "خرید" : "Buy"}
-              </Button>
-            </div>
-          ))}
+            ))}
         </div>
         {isLoading && <Loader />}
       </div>

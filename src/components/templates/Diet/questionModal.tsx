@@ -34,7 +34,7 @@ const Modal = () => {
     foodPreferences: "",
     mealPrepTime: "",
     exerciseProgram: false,
-    exerciseDuration: "",
+    exerciseDuration: "0",
     exerciseLimitations: "",
     supplements: false,
     supplementTypes: "",
@@ -45,17 +45,17 @@ const Modal = () => {
     previousDiets: "",
   });
   const { userData } = authStore((state) => state);
-   
+
   const { mutate: mutation, isPending } = usePostData<any>(
-    `/api/UserQuestion/create-or-update/userId=${userData?.id}`,
+    `/api/UserQuestion/create-or-update/${userData?.id}`,
     i18n.language === "fa"
       ? "اطلاعات شما با موفقیت ثبت شد"
       : "Your Info register successfully",
     false,
     (data) => {
-      if (data.statusCode === 201) {
+      if (data.statusCode === 200) {
         setStep(2);
-      } 
+      }
     },
     false,
     "auth",

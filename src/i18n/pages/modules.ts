@@ -2,7 +2,7 @@ const headerEn = {
   headerlogin: "Login",
   headerlang: "فارسی",
   hederMainpage: "Home",
-  aboutus: "about us",
+  aboutus: "About us",
   constactus: "Contact Us",
   workwithus: "Help Us",
   cookingInstruction: "Cook",
@@ -11,7 +11,9 @@ const headerEn = {
   diets: "Diets",
   sleep_soul_mental: "Sleep & Soul",
   exercises: "Exercises",
-  logout:"logout"
+  logout:"Logout",
+  package:'Packages  '
+
 };
 const headerFa = {
   headerlogin: "ورود به حساب",
@@ -26,7 +28,8 @@ const headerFa = {
   diets: "رژیم ها",
   sleep_soul_mental: "خواب و روح و روان",
   exercises: "ورزش ها",
-  logout:"خروج"
+  logout:"خروج",
+  package:'پکیج ها'
 };
 
 const footerEn = {
