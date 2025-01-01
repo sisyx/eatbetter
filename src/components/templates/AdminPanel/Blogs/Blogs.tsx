@@ -9,6 +9,7 @@ import { toast } from "../../../../hooks/use-toast";
 import i18n from "../../../../i18n/i18n";
 import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
 import { Blog } from "./Blog";
+import { CreateBlog } from "./CreateBlog";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Blogs = () => {
@@ -62,11 +63,11 @@ const Blogs = () => {
                         <table className="w-full" style={{minWidth: "400px"}} dir={language === "fa" ? "rtl" : "ltr"}>
                             <tr>
                                 <th align={language === "fa" ? "right" : "left"}></th>
+                                <th align={language === "fa" ? "right" : "left"}>نمایه ی بلاگ</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.title")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.content")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.publishDate")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.edit")}</th>
-                                {/* <th align={language === "fa" ? "right" : "left"}>حذف</th> */} 
                             </tr>
                             {blogs?.map((blog: any) => (
                                 <>
@@ -75,6 +76,7 @@ const Blogs = () => {
                                 </>
                             ))}
                         </table>
+                        <CreateBlog reload={reloadBlogs} />
                     </div>
                 )}
             </div>

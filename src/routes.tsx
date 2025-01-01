@@ -37,6 +37,7 @@ import AdminBlogs from "./components/templates/AdminPanel/Blogs/Blogs";
 import { SuccessFullPayment } from "./pages/Payment/SuccessfulPayment";
 import { UnsuccessFullPayment } from "./pages/Payment/UnsuccessfulPayment";
 import Withdrawals from "./components/templates/AdminPanel/Withdrawals/index";
+import Transactions from "./components/templates/AdminPanel/Transactions/index";
 
 const userPanelRoutes = [
   {
@@ -127,6 +128,10 @@ const adminPanelRoutes = [
     path: "/adminPanel/withdrawals",
     element: <Withdrawals />
   },
+  {
+    path: "/adminPanel/Transactions",
+    element: <Transactions />
+  }
 ]
 
 const otherRoutes = [
