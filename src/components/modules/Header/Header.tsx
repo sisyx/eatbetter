@@ -15,11 +15,11 @@ import {
 export default function index() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState("fa");
+  // const {language} = i18n 
 
-  useEffect(() => {
-    i18n.changeLanguage(language);
-  }, [language]);
+  // // useEffect(() => {
+  // //   i18n.changeLanguage(language);
+  // // }, [language]);
   useEffect(() => {
     const handleScroll = (): void => {
       setIsScrolled(window.scrollY > 50);
@@ -277,7 +277,7 @@ export default function index() {
                 <div className="flex items-center justify-between lg:hidden">
                   <button
                     onClick={() =>
-                      setLanguage(i18next.language == "en" ? "fa" : "en")
+                      i18n.changeLanguage(i18next.language == "en" ? "fa" : "en")
                     }
                     className="flex items-center justify-center gap-1 rounded-xl border border-transparent bg-white p-2 text-center text-base text-mainHover transition-all hover:border-mainHover hover:text-mainHover"
                   >
@@ -379,7 +379,7 @@ export default function index() {
 
         <div className="flex items-center justify-center gap-4 max-lg:hidden">
           <button
-            onClick={() => setLanguage(i18next.language == "en" ? "fa" : "en")}
+            onClick={() => i18n.changeLanguage(i18next.language == "en" ? "fa" : "en")}
             className="flex items-center justify-center gap-1 rounded-xl border border-transparent bg-white p-2 text-center text-mainHover transition-all hover:border-mainHover hover:text-mainHover"
           >
             <span>{t("headerlang")}</span>
