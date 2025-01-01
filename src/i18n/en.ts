@@ -8,6 +8,7 @@ import { cookingsEn } from "./pages/cookings";
 import { cooperateEn } from "./pages/cooperate";
 import { homeEn } from "./pages/home";
 import { footerEn, headerEn } from "./pages/modules";
+import { paymentEn } from "./pages/pyament";
 import { trainigEn } from "./pages/trainings";
 import { userPanelEn } from "./pages/userPanel";
 
@@ -26,6 +27,7 @@ const en = {
   ...blogsEn,
   ...cookingsEn,
   ...trainigEn,
+  ...paymentEn,
 };
 
 export default en;

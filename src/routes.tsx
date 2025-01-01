@@ -35,7 +35,7 @@ import CooperateCardsList from "./components/templates/AdminPanel/Cooperate/Coop
 import { CharityCardsList } from "./components/templates/AdminPanel/CharityWallet/CharityCardsList";
 import AdminBlogs from "./components/templates/AdminPanel/Blogs/Blogs";
 import { SuccessFullPayment } from "./pages/Payment/SuccessfulPayment";
-import { UnsuccessFullPayment } from "./pages/Payment/UnsuccessfulPayment";
+import UnsuccessFullPayment from "./pages/Payment/UnsuccessfulPayment";
 import Withdrawals from "./components/templates/AdminPanel/Withdrawals/index";
 import Transactions from "./components/templates/AdminPanel/Transactions/index";
 
