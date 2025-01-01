@@ -24,7 +24,7 @@ import { authStore } from "../../../stores/auth";
 
 const SideBar = ({ className }: { className?: string }) => {
   const { t, i18n } = useTranslation();
-  const { setUserData, setLogin } = authStore((state) => state);
+  const { setUserData, setLogin, userData } = authStore((state) => state);
 
   const navigate = useNavigate();
   const links = [
@@ -38,28 +38,34 @@ const SideBar = ({ className }: { className?: string }) => {
       href: "/userpanel/profile",
       icon: <MdOutlineAccountCircle className="text-2xl" />,
     },
-    {
-      title: t("sideBar.work"),
-      subLinks: [
-        {
-          title: t("sideBar.wallet"),
-          href: "/userPanel/wallet",
-        },
-        {
-          title: t("sideBar.income"),
-          href: "/userPanel/income",
-        },
-        {
-          title: t("sideBar.introductions"),
-          href: "/userPanel/introductions",
-        },
-        {
-          title: t("sideBar.training"),
-          href: "/userPanel/training",
-        },
-      ],
-      icon: <IoFastFoodOutline className="text-2xl" />,
-    },
+
+    ...(userData?.country === "IR"
+      ? [
+          {
+            title: t("sideBar.work"),
+            subLinks: [
+              {
+                title: t("sideBar.wallet"),
+                href: "/userPanel/wallet",
+              },
+              {
+                title: t("sideBar.income"),
+                href: "/userPanel/income",
+              },
+              {
+                title: t("sideBar.introductions"),
+                href: "/userPanel/introductions",
+              },
+              {
+                title: t("sideBar.training"),
+                href: "/userPanel/training",
+              },
+            ],
+            icon: <IoFastFoodOutline className="text-2xl" />,
+          },
+        ]
+      : []),
+
     {
       title: t("sideBar.challenges"),
       href: "/userpanel/challenges",

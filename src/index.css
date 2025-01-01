@@ -78,3 +78,6 @@ input[type="number"] {
 .swal-footer{
   text-align: center;
 }
+.swal-button--confirm{
+  background: #60b159 !important;
+}

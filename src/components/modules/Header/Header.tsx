@@ -15,11 +15,15 @@ import {
 export default function index() {
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState("fa");
+  const [language, setLanguage] = useState(
+    localStorage.getItem("language") || "fa",
+  );
 
   useEffect(() => {
     i18n.changeLanguage(language);
+    localStorage.setItem("language", language);
   }, [language]);
+
   useEffect(() => {
     const handleScroll = (): void => {
       setIsScrolled(window.scrollY > 50);
@@ -41,7 +45,7 @@ export default function index() {
         style={{ animation: isScrolled ? " slideDown 0.35s ease-out" : "none" }}
         className={`flex w-full items-center justify-between px-4 py-5 sm:!px-4 xl:!px-24 ${isScrolled ? "fixed top-0 z-50 rounded-ee-xl rounded-es-xl bg-white py-3 shadow-md" : ""}`}
       >
-        <div className="w-[140px]">
+        <div className="w-[85px]">
           <Link to={"/"}>
             <img src="BLP-b.png" alt="logo" width={"80px"} />
           </Link>
@@ -76,6 +80,16 @@ export default function index() {
               {" "}
               <li>{t("sleep_soul_mental")}</li>
             </Link>
+            {userData ? (
+              <Link
+                to={"/package"}
+                className="rounded-md p-2 transition-all hover:text-main"
+              >
+                {" "}
+                <li>{t("package")}</li>
+              </Link>
+            ) : null}
+
             <Link
               to={"/training"}
               className="rounded-md p-2 transition-all hover:text-main"
@@ -83,6 +97,7 @@ export default function index() {
               {" "}
               <li> {t("exercises")}</li>
             </Link>
+
             {/* <div className="group relative flex transition-all">
               <Link to={""} className="group flex items-center justify-center">
                 <li className="rounded-md p-2 transition-all hover:text-main">
@@ -279,9 +294,7 @@ export default function index() {
               <SheetTitle className="py-0">
                 <div className="flex items-center justify-between lg:hidden">
                   <button
-                    onClick={() =>
-                      setLanguage(i18next.language == "en" ? "fa" : "en")
-                    }
+                    onClick={() => setLanguage(language === "fa" ? "en" : "fa")}
                     className="flex items-center justify-center gap-1 rounded-xl border border-transparent bg-white p-2 text-center text-base text-mainHover transition-all hover:border-mainHover hover:text-mainHover"
                   >
                     <span>{t("headerlang")}</span>
@@ -325,6 +338,15 @@ export default function index() {
                 {" "}
                 <li>{t("diets")}</li>
               </Link>
+              {userData ? (
+                <Link
+                  to={"/package"}
+                  className="rounded-md p-2 transition-all hover:text-main"
+                >
+                  {" "}
+                  <li>{t("package")}</li>
+                </Link>
+              ) : null}
               <Link
                 to={"/sleep"}
                 className="rounded-md p-2 transition-all hover:text-main"
@@ -380,7 +402,7 @@ export default function index() {
           </SheetContent>
         </Sheet>
 
-        <div className="flex items-center justify-center gap-4 max-lg:hidden">
+        <div className="flex items-center justify-center gap-2 max-lg:hidden">
           <button
             onClick={() => setLanguage(i18next.language == "en" ? "fa" : "en")}
             className="flex items-center justify-center gap-1 rounded-xl border border-transparent bg-white p-2 text-center text-mainHover transition-all hover:border-mainHover hover:text-mainHover"

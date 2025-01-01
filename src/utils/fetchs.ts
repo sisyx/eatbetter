@@ -51,9 +51,19 @@ export async function getWithdrawalStatus(id: string) {
   const res = await fetch(`${apiUrl}/api/UserPanel/withdrawal-status/${id}`);
   return res.json();
 }
+export async function getUserDiets(id: string) {
+  const res = await fetch(`${apiUrl}/api/Diet/GetSelectedDiets/${id}`);
+  return res.json();
+}
 export async function getDietsQues(country: string) {
   const res = await fetch(
     `${apiUrl}/api/UserQuestion/GetDietOptions?lang=${country}`,
+  );
+  return res.json();
+}
+export async function getOneDiet(lang: string,dietId:string) {
+  const res = await fetch(
+    `${apiUrl}/api/Diet/GetDietById/${dietId}?lang=${lang}`,
   );
   return res.json();
 }

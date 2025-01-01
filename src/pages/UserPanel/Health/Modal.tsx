@@ -12,13 +12,15 @@ import useGetData from "../../../hooks/useGetData";
 import { authStore } from "../../../stores/auth";
 import { getCustomDiet } from "../../../utils/fetchs";
 import usePostData from "../../../hooks/usePostData";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Modal = () => {
   const { i18n } = useTranslation();
   const [week, setWeek] = useState("");
   const { userData } = authStore((state) => state);
+  const queryClient = useQueryClient();
 
-  const { data, isLoading } = useGetData<any>(
+  const { data, isLoading, refetch } = useGetData<any>(
     userData ? ["customDiet", userData.id] : [],
     () =>
       getCustomDiet(
@@ -41,8 +43,10 @@ const Modal = () => {
     null,
     false,
     (data) => {
-    
-    }
+      if (data.statusCode === 200) {
+        refetch();
+      }
+    },
   );
 
   useEffect(() => {
@@ -65,7 +69,10 @@ const Modal = () => {
       <DialogContent className="w-full max-w-full sm:!max-w-[600px]">
         {week ? (
           <p
-            onClick={() => setWeek("")}
+            onClick={() => {
+              queryClient.setQueryData(["customDiet", userData?.id], null);
+              setWeek("");
+            }}
             className={`absolute right-4 top-3 cursor-pointer text-sm text-main`}
           >
             {i18n.language === "fa" ? "< برگشت " : "back >"}
@@ -95,13 +102,16 @@ const Modal = () => {
           {week ? (
             <div>
               {isLoading && "..."}
-              {isPending && "..."}
+              <p className="text-center">
+                {isPending &&
+                  (i18n.language === "fa" ? "لطفا صبور باشید" : "Please wait")}
+              </p>{" "}
               <p
                 dir={i18n.language === "fa" ? "rtl" : "ltr"}
                 className="text-center"
               >
                 {data &&
-                  (data.statusCode === 400 || data.statusCode === 404) &&
+                  (data.statusCode === 400) &&
                   data.message}
 
                 {data && data.statusCode === 200 && (
