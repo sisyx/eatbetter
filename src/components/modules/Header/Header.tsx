@@ -82,7 +82,7 @@ export default function index() {
             </Link>
             {userData ? (
               <Link
-                to={"/package"}
+                to={"/packages"}
                 className="rounded-md p-2 transition-all hover:text-main"
               >
                 {" "}
@@ -340,7 +340,7 @@ export default function index() {
               </Link>
               {userData ? (
                 <Link
-                  to={"/package"}
+                  to={"/packages"}
                   className="rounded-md p-2 transition-all hover:text-main"
                 >
                   {" "}

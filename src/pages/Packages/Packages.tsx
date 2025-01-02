@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import Container from "../../components/modules/Container/Container";
 import Title from "../../components/modules/Title/Title";
 import { Button } from "../../components/shadcn/ui/button";
@@ -9,11 +9,34 @@ import { getPackages } from "../../utils/fetchs";
 import { useTranslation } from "react-i18next";
 import { toast } from "../../hooks/use-toast";
 import swal from "sweetalert";
+import usePostData from "../../hooks/usePostData"; 
 
 const Packages = () => {
   const { userData } = authStore((state) => state);
-
+  const [selectedPackage, setSelectedPackage] = useState<{
+    price: string;
+    id: string;
+  }>();
   const { i18n } = useTranslation();
+  const { mutate: mutation, isPending } = usePostData<any>(
+    `/api/Payment/request`,
+    null,
+    false,
+    (data) => {
+      console.log(data);
+      if (data.paymentUrl) {
+        window.location.href = data.paymentUrl
+      } else {
+        toast({
+          title:
+            i18n.language === "fa"
+              ? "کد معرف نادرست است"
+              : "Referral code is not valid",
+          variant: "danger",
+        });
+      }
+    },
+  );
 
   const { data, isLoading } = useGetData(
     ["allPackages", String(userData?.id)],
@@ -45,12 +68,44 @@ const Packages = () => {
           i18n.language === "fa" ? "نه" : "No",
           i18n.language === "fa" ? "آره" : "yes",
         ],
-      }).then(res=>{
-        console.log(res);
-        
-      })
+      }).then((res) => {
+        if (res) {
+          swal({
+            title:
+              i18n.language === "fa"
+                ? "کد معرف(اختیاری)"
+                : "Referral Code(optional)",
+            content: {
+              element: "input",
+              attributes: {
+                type: "text",
+                id: "ReferralInput",
+              },
+            },
+            buttons: [i18n.language === "fa" ? "ادامه" : "Next", false],
+          }).then(() => {
+            const inputValue = (
+              document?.querySelector("#ReferralInput") as HTMLInputElement
+            )?.value;
+
+            const data = {
+              amount: selectedPackage?.price,
+              description: "No Des",
+              userId: userData?.id,
+              mobile: userData?.phoneNumber,
+              email: userData?.email,
+              referralCode: inputValue ? inputValue : null,
+              packageId: selectedPackage?.id,
+            };
+            console.log(inputValue);
+
+            mutation(data);
+          });
+        }
+      });
     }
   };
+
   return (
     <Container>
       <div
@@ -96,7 +151,10 @@ const Packages = () => {
                   )}
                 </div>
                 <Button
-                  onClick={buyPackageHandler}
+                  onClick={() => {
+                    buyPackageHandler();
+                    setSelectedPackage(pack);
+                  }}
                   className="my-8 w-[90%]"
                   variant="main"
                 >
@@ -107,6 +165,7 @@ const Packages = () => {
         </div>
         {isLoading && <Loader />}
       </div>
+      {isPending && <Loader />}
     </Container>
   );
 };

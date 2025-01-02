@@ -35,10 +35,10 @@ const TopBar = () => {
               <img
                 alt="avatar"
                 loading="lazy"
-                src="https://avatars.githubusercontent.com/u/127773108?v=4"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
                 className="h-8 w-8 rounded-full"
               />
-            </div>
+            </div> 
             <MdMenu className="ml-3 hidden xs:!block" />
           </SheetTrigger>
           <SheetContent
