@@ -9,7 +9,7 @@ import { getPackages } from "../../utils/fetchs";
 import { useTranslation } from "react-i18next";
 import { toast } from "../../hooks/use-toast";
 import swal from "sweetalert";
-import usePostData from "../../hooks/usePostData"; 
+import usePostData from "../../hooks/usePostData";
 
 const Packages = () => {
   const { userData } = authStore((state) => state);
@@ -25,7 +25,7 @@ const Packages = () => {
     (data) => {
       console.log(data);
       if (data.paymentUrl) {
-        window.location.href = data.paymentUrl
+        window.location.href = data.paymentUrl;
       } else {
         toast({
           title:
@@ -70,20 +70,39 @@ const Packages = () => {
         ],
       }).then((res) => {
         if (res) {
-          swal({
-            title:
-              i18n.language === "fa"
-                ? "کد معرف(اختیاری)"
-                : "Referral Code(optional)",
-            content: {
-              element: "input",
-              attributes: {
-                type: "text",
-                id: "ReferralInput",
+          if (userData?.country === "IR") {
+            swal({
+              title:
+                i18n.language === "fa"
+                  ? "کد معرف(اختیاری)"
+                  : "Referral Code(optional)",
+              content: {
+                element: "input",
+                attributes: {
+                  type: "text",
+                  id: "ReferralInput",
+                },
               },
-            },
-            buttons: [i18n.language === "fa" ? "ادامه" : "Next", false],
-          }).then(() => {
+              buttons: [i18n.language === "fa" ? "ادامه" : "Next", false],
+            }).then(() => {
+              const inputValue = (
+                document?.querySelector("#ReferralInput") as HTMLInputElement
+              )?.value;
+
+              const data = {
+                amount: selectedPackage?.price,
+                description: "No Des",
+                userId: userData?.id,
+                mobile: userData?.phoneNumber,
+                email: userData?.email,
+                referralCode: inputValue ? inputValue : "",
+                packageId: selectedPackage?.id,
+              };
+              console.log(data);
+              
+              mutation(data);
+            });
+          } else {
             const inputValue = (
               document?.querySelector("#ReferralInput") as HTMLInputElement
             )?.value;
@@ -94,13 +113,11 @@ const Packages = () => {
               userId: userData?.id,
               mobile: userData?.phoneNumber,
               email: userData?.email,
-              referralCode: inputValue ? inputValue : null,
+              referralCode: inputValue ? inputValue : "",
               packageId: selectedPackage?.id,
             };
-            console.log(inputValue);
-
             mutation(data);
-          });
+          }
         }
       });
     }
