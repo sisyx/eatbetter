@@ -7,8 +7,11 @@ import "aos/dist/aos.css";
 import ScrollToUp from "./utils/ScrollToUp";
 import { Toaster } from "./components/shadcn/ui/toaster";
 import Auth from "./utils/auth";
+import { useLanguagePersistence } from "./hooks/useLanguagePersistence";
 
 const App: React.FC = () => {
+  useLanguagePersistence()
+
   useEffect(() => {
     AOS.init();
   }, []);

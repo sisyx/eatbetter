@@ -10,6 +10,7 @@ import { blogsFa } from "./pages/blogs";
 import { dietsFa } from "./pages/Diets";
 import { cookingsFa } from "./pages/cookings";
 import { trainigFa } from "./pages/trainings";
+import { paymentFa } from "./pages/pyament";
 
 const fa = {
   ...headerFa,
@@ -26,6 +27,7 @@ const fa = {
   ...blogsFa,
   ...cookingsFa,
   ...trainigFa,
+  ...paymentFa,
 };
 
 export default fa;
