@@ -22,7 +22,7 @@ type PropsType = {
 };
 
 const WidthDrawal = (props: PropsType) => {
-    const { id, userId, user, amount, status, requestedAt, approvedAt, adminNote, reloadFn } = props;
+    const { id, userId, amount, status, requestedAt, approvedAt, reloadFn } = props;
     const [isRequestSending, setIsRequestSending] = useState<boolean>(false);
 
     async function approveWithdrawal() {

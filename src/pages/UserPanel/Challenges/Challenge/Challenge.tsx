@@ -9,7 +9,7 @@ import Loader from "../../../../components/modules/loader/Loader";
 
 const Challenge = () => {
   const { name } = useParams();
-  const { data, isLoading } = useGetData<any>(["oneChallenge"], () =>
+  const { isLoading } = useGetData<any>(["oneChallenge"], () =>
     getChallenge(name as string),
   );
 

@@ -4,16 +4,12 @@ import {
     SheetTitle,
     SheetTrigger,
   } from "../../shadcn/ui/sheet";
-  import { Button } from "../../shadcn/ui/button";
-  import { Link } from "react-router-dom";
-  import { FaRegChartBar } from "react-icons/fa";
-//   import SideBar from "./SideBar";
-  import { MdMenu } from "react-icons/md";
-  import { IoLanguage } from "react-icons/io5";
-  import { GrNotification } from "react-icons/gr";
-  import { useTranslation } from "react-i18next";
-  import i18next from "i18next";
-  import { useState, useEffect } from "react";
+import { Button } from "../../shadcn/ui/button";
+import { MdMenu } from "react-icons/md";
+import { IoLanguage } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+import { useState, useEffect } from "react";
 import SideBar from "./SideBar";
   
   const TopBar = () => {

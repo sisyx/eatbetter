@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useGetData from "../../../hooks/useGetData";
 import { authStore } from "../../../stores/auth";
 import { Button } from "../../shadcn/ui/button";

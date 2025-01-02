@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { FaBlog } from "react-icons/fa";
 import Layout from "../../../../Layouts/AdminLayout";
 import useGetData from "../../../../hooks/useGetData";
 import { useState } from "react";
