@@ -1,9 +1,4 @@
-import { GoPackage } from "react-icons/go";
 import { PackageProps, XXXType } from "./types";
-import { PiCurrencyCircleDollarFill } from "react-icons/pi";
-import { SiIfood } from "react-icons/si";
-import { FaHamburger, FaPen } from "react-icons/fa";
-import { formatNumberWithCommas } from "../../../../utils/numbers";
 import {
   Dialog,
   DialogContent,
