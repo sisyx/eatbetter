@@ -2,7 +2,6 @@ import { useState } from "react";
 import Layout from "../../../../Layouts/AdminLayout";
 import Cookies from "js-cookie";
 import useGetData from "../../../../hooks/useGetData";
-import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import Contact from "./Contact";
 import { Contact as ContactType } from './types';
 import { FaCommentAlt } from "react-icons/fa";

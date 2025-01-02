@@ -2,13 +2,11 @@ import { useState } from "react";
 import Layout from "../../../../Layouts/AdminLayout";
 import Cookies from "js-cookie";
 import useGetData from "../../../../hooks/useGetData";
-import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import CoopereateCard from "./CooperateCard";
 import { Cooperate as CooperateType } from './types';
 import { FaCommentAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { tokenName } from "../../../../config/constants";
-import Loader from "../../../modules/loader/Loader";
 import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
 const apiUrl = import.meta.env.VITE_API_URL
 

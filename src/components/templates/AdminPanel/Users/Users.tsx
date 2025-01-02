@@ -4,11 +4,9 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import { User as UserType } from "./types";
 import { User } from "./User";
-import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { tokenName } from "../../../../config/constants";
 import { useTranslation } from "react-i18next";
-import Loader from "../../../modules/loader/Loader";
 import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
 const apiUrl = import.meta.env.VITE_API_URL;
 

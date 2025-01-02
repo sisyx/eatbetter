@@ -11,7 +11,6 @@ import useGetData from "../../hooks/useGetData";
 import Cookies from "js-cookie";
 import { toast } from "../../hooks/use-toast";
 import { tokenName } from "../../config/constants";
-import { ThreeDotsLoader } from "../../components/modules/loader/ThreeDotLoader";
 import { useState } from "react";
 import { Button } from "../../components/shadcn/ui/button";
 import { t } from "i18next";

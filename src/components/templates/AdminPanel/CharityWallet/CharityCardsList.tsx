@@ -4,7 +4,6 @@ import { FaCommentAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import useGetData from "../../../../hooks/useGetData";
-import { CircleLoader } from "../../../modules/loader/CircleLoader";
 import CreateCharityCard from "./CreateCharityCard";
 const apiUrl = import.meta.env.VITE_API_URL; 
 import { CharityCard } from "./CharityCard";

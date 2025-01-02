@@ -11,13 +11,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../../shadcn/ui/accordion";
-
 import { IoFastFoodOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { GiNightSleep } from "react-icons/gi";
 import { Button } from "../../shadcn/ui/button";
-import { PiMedal, PiMedalLight } from "react-icons/pi";
-
+import { PiMedalLight } from "react-icons/pi";
 import { TbMoneybag } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
 import swal from "sweetalert";

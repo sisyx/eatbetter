@@ -1,7 +1,5 @@
 import Layout from "../../../Layouts/UserLayouts";
 import Title from "../../../components/modules/Title/Title";
-import DataTable from "react-data-table-component";
-
 import { toast } from "../../../hooks/use-toast";
 import { Button } from "../../../components/shadcn/ui/button";
 import { useTranslation } from "react-i18next";
