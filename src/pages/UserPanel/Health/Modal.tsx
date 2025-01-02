@@ -110,14 +110,12 @@ const Modal = () => {
                 dir={i18n.language === "fa" ? "rtl" : "ltr"}
                 className="text-center"
               >
-                {data &&
-                  (data.statusCode === 400) &&
-                  data.message}
+                {data && data.statusCode === 400 && data.message}
 
                 {data && data.statusCode === 200 && (
                   <>
                     <p>{data.message}</p>
-                    <p className="mt-3">{data.data}</p>
+                    <p className="mt-3 whitespace-pre-line">{data.data}</p>
                   </>
                 )}
               </p>

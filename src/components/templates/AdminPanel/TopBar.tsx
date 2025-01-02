@@ -34,9 +34,9 @@ import SideBar from "./SideBar";
                 <img
                   alt="avatar"
                   loading="lazy"
-                  src="https://avatars.githubusercontent.com/u/127773108?v=4"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
                   className="h-8 w-8 rounded-full"
-                />
+                /> 
               </div>
               <MdMenu className="ml-3 hidden xs:!block" />
             </SheetTrigger>
@@ -51,7 +51,7 @@ import SideBar from "./SideBar";
           <div className="hidden items-center gap-2 xs:!flex">
             <img
               className="w-12 rounded-full"
-              src="https://avatars.githubusercontent.com/u/127773108?v=4"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR81iX4Mo49Z3oCPSx-GtgiMAkdDop2uVmVvw&s"
               alt=""
             />
             <div className="text-sm">

@@ -10,6 +10,7 @@ import useDeleteData from "../../../hooks/useDeleteData";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useQueryClient } from "@tanstack/react-query";
+import Title from "../../../components/modules/Title/Title";
 
 const Profile = () => {
   const [userName, setUserName] = useState("");
@@ -33,7 +34,7 @@ const Profile = () => {
     i18n.language === "fa"
       ? "کاربر با موفقیت حذف شد"
       : "User delete successfuly",
-    "auth", 
+    "auth",
     (data) => {
       if (data.statusCode === 200) {
         navigate("/");
@@ -167,6 +168,23 @@ const Profile = () => {
             <p className="mt-4 text-sm text-gray-500">232323</p>
           </div> */}
         </div>
+
+        <Title
+          className="mt-12"
+          title={i18n.language === "fa" ? "پکیج" : "Package"}
+        />
+
+        {userData?.package ? <div className="mt-3 gap-2 flex xs:gap-4 xs:flex-row flex-col">
+         <div className="flex gap-2">
+          <p>{ i18n.language === "fa" ? 'نام :' : ' name:'} </p>
+          <p>{userData?.package.packageName}</p>
+         </div>
+         <p className="xs:block hidden">-</p>
+         <div className="flex gap-2">
+          <p>{ i18n.language === "fa" ? 'حداکثر تعداد انتخاب رژیم :' : 'Maximum number of diet choices:'} </p>
+          <p>{userData?.package.maxDiet}</p>
+         </div>
+        </div> : <p className="mt-3">پکیجی برای شما ثبت نشده است</p>}
         <ChangePassword />
         <Button onClick={userDeleteHandler} size={"sm"} variant={"main"}>
           {t("profile.deleteAccount")}
