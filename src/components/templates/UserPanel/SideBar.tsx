@@ -1,6 +1,10 @@
 import { FaHome } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { MdOutlineAccountCircle, MdAttachMoney } from "react-icons/md";
+import {
+  MdOutlineAccountCircle,
+  MdAttachMoney,
+  MdOutlineSportsBasketball,
+} from "react-icons/md";
 import {
   Accordion,
   AccordionContent,
@@ -12,7 +16,7 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { GiNightSleep } from "react-icons/gi";
 import { Button } from "../../shadcn/ui/button";
-import { PiMedalLight } from "react-icons/pi";
+import { PiMedal, PiMedalLight } from "react-icons/pi";
 
 import { TbMoneybag } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
@@ -61,7 +65,17 @@ const SideBar = ({ className }: { className?: string }) => {
                 href: "/userPanel/training",
               },
             ],
-            icon: <IoFastFoodOutline className="text-2xl" />,
+            icon: <MdAttachMoney className="text-2xl" />,
+          },
+        ]
+      : []),
+
+    ...(userData?.country !== "IR"
+      ? [
+          {
+            title: t("sideBar.training"),
+            href: "/userPanel/training",
+            icon: <MdOutlineSportsBasketball className="text-2xl" />,
           },
         ]
       : []),
@@ -74,7 +88,7 @@ const SideBar = ({ className }: { className?: string }) => {
     {
       title: t("sideBar.health"),
       href: "/userpanel/health",
-      icon: <MdAttachMoney className="text-2xl" />,
+      icon: <IoFastFoodOutline className="text-2xl" />,
     },
     {
       title: t("sideBar.sleep"),
@@ -111,23 +125,38 @@ const SideBar = ({ className }: { className?: string }) => {
     >
       <div className="border-b border-white pb-[1.3rem]">
         <div className="flex items-center justify-between px-3">
-          <Link className="text-sm sm:text-base" to={"/userPanel/wallet"}>
-            <Button
-              className="flex h-8 items-center gap-2 border border-white px-2"
-              variant={"main"}
-            >
-              <TbMoneybag />
-              <p className="mt-1 text-xs xs:text-sm sm:mt-0">120,000 ه.ت </p>
-            </Button>
-          </Link>
-          <Link to={"/"}>
-            <img
-              src="/BLP-b-white.png"
-              alt="logo"
-              width="80px"
-              className="mx-auto"
-            />
-          </Link>
+          {userData?.country === "IR" ? (
+            <Link className="text-sm sm:text-base" to={"/userPanel/wallet"}>
+              <Button
+                className="flex h-8 items-center gap-2 border border-white px-2"
+                variant={"main"}
+              >
+                <TbMoneybag />
+                <p className="mt-1 text-xs xs:text-sm sm:mt-0">
+                  {userData.walletBalance.toLocaleString()}
+                </p>
+              </Button>
+            </Link>
+          ) : null}
+          {userData?.country === "IR" ? (
+            <Link to={"/"}>
+              <img
+                src="/BLP-b-white.png"
+                alt="logo"
+                width="80px"
+                className="mx-auto"
+              />
+            </Link>
+          ) : (
+            <Link className="max-auto w-full" to={"/"}>
+              <img
+                src="/BLP-b-white.png"
+                alt="logo"
+                width="80px"
+                className="mx-auto"
+              />
+            </Link>
+          )}
         </div>
       </div>{" "}
       <section>

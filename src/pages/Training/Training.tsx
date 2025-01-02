@@ -5,15 +5,14 @@ import Card from "../../components/templates/UserPanel/Training/Card";
 import useGetData from "../../hooks/useGetData";
 import Cookies from "js-cookie";
 import { tokenName } from "../../config/constants";
-import { toast } from "../../hooks/use-toast";
-import { ThreeDotsLoader } from "../../components/modules/loader/ThreeDotLoader";
+import { toast } from "../../hooks/use-toast"; 
 import { TrainingType } from "../../types/trainings";
 import Loader from "../../components/modules/loader/Loader";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Training = () => {
-  const { i18n, t } = useTranslation();
-  const { language } = i18n;
+  const { i18n, t } = useTranslation(); 
+  const { language } = i18n; 
 
   const {data: trainings, isError: error, isLoading: loading, } = useGetData(["trainings", language], getCookings);
 
