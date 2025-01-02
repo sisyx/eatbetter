@@ -27,7 +27,7 @@ const xxx: XXXType[] = [
   {
       value: "name",
       title: "عنوان",
-      placeholder: "مثلا: xxx",
+      placeholder: "مثلا: Base",
       type: "text",
   },
   {
@@ -39,19 +39,19 @@ const xxx: XXXType[] = [
   {
       value: "currency",
       title: "نرخ ارز",
-      placeholder: "مثلا: xxx",
+      placeholder: "مثلا: IRR",
       type: "text",
   },
   {
       value: "maxDiet",
       title: "رژیم",
-      placeholder: "مثلا: xxx",
+      placeholder: "مثلا: 3000",
       type: "number",
   },
   {
       value: "price",
       title: "قیمت",
-      placeholder: "مثلا: xxx",
+      placeholder: "مثلا: 40000",
       type: "number",
   },
 ]
@@ -123,9 +123,9 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
         <div className="flex flex-col gap-4 items-center" dir="rtl">
             <div className="flex flex-col gap-4 items-start">
                 {
-                    xxx.map(({value, title, type}) => 
+                    xxx.map(({value, title, type, placeholder}) => 
                     <div className="flex gap-2 items-center w-full">
-                        <span>{title}</span>
+                        <div className="w-1/4">{title}</div>
                         <div className="flex-1 flex flex-col">
                             <input 
                                 type={type}
@@ -133,8 +133,8 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
                                 value={formHandler.values[value]}
                                 onChange={formHandler.handleChange} 
                                 onBlur={formHandler.handleBlur} 
-                                className="border border-main rounded-md outline-none p-2 focus:border-mainHover" 
-                                placeholder="مثلا: پکیج طلایی" 
+                                className="border border-main rounded-md outline-none p-2 focus:border-mainHover w-full min-w-8" 
+                                placeholder={placeholder}
                                 />
                             { formHandler.touched[value] && formHandler.errors[value] && (
                                 <span className="mt-2 block w-full text-center text-xs text-red-600">
