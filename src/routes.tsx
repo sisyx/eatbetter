@@ -23,6 +23,7 @@ import Cooking from "./pages/Cooking/Cooking";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Packages from "./pages/Packages/Packages";
+import VerifyPayment from "./pages/VerifyPayment/VerifyPayment";
 
 import Blogs from "./pages/Blogs/Blogs";
 import { Blog } from "./pages/Blogs/Blog";
@@ -186,6 +187,10 @@ const otherRoutes = [
   {
     path: "/blog",
     element: <Blog />
+  },
+  {
+    path: "/verifyPayment",
+    element: <VerifyPayment />
   },
   {
     path: "/successfunPayment",

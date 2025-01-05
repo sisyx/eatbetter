@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Card = ({ data, panel }: Props) => {
-  const { i18n } = useTranslation(); 
+  const { i18n } = useTranslation();
 
   const images = [
     "/images/11663519_20944480.svg",
@@ -53,6 +53,11 @@ const Card = ({ data, panel }: Props) => {
       }
     }
   };
+
+  const isDietReserve = userData?.selectedDiets.some(
+    (diet: any) => diet.id === data.id,
+  );
+
   return (
     <div
       data-aos="fade-up"
@@ -64,13 +69,14 @@ const Card = ({ data, panel }: Props) => {
         alt="cover"
       />
       <p className="mb-7 mt-2 text-sm sm:text-base">
-        { panel ? i18n.language === "fa" ? data.nameFa : data.name :data.name } 
-
+        {panel ? (i18n.language === "fa" ? data.nameFa : data.name) : data.name}
       </p>
       {panel ? (
         <>
           <p className="cursor-pointer text-sm" dir="rtl">
-            {i18n.language === "fa" ? data.descriptionFa.slice(0, 190) + "..." : data.description.slice(0, 190)}
+            {i18n.language === "fa"
+              ? data.descriptionFa.slice(0, 190) + "..."
+              : data.description.slice(0, 190)}
           </p>
           <Link className="mt-4 block" to={`/userPanel/health/${data.id}`}>
             <Button variant={"main"}>
@@ -85,13 +91,19 @@ const Card = ({ data, panel }: Props) => {
           {userData && userData.package ? (
             <Button
               onClick={reciveDietHandler}
-              className="mt-5 w-full"
-              variant={"main"}
+              className={`${isDietReserve ? "pointer-events-none border-main" : ""} mt-5 w-full`}
+              variant={isDietReserve ? "outline" : "main"}
             >
               {isPending ? (
                 <ButtonLoader />
               ) : i18n.language === "fa" ? (
-                "دریافت رژیم"
+                isDietReserve ? (
+                  "قبلا انتخاب شده است"
+                ) : (
+                  "دریافت رژیم"
+                )
+              ) : isDietReserve ? (
+                "Already selected"
               ) : (
                 "Get a diet"
               )}

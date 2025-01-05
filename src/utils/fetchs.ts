@@ -61,16 +61,22 @@ export async function getDietsQues(country: string) {
   );
   return res.json();
 }
-export async function getOneDiet(lang: string,dietId:string) {
+export async function getOneDiet(lang: string, dietId: string) {
   const res = await fetch(
     `${apiUrl}/api/Diet/GetDietById/${dietId}?lang=${lang}`,
   );
   return res.json();
 }
+export async function getPaymentStatus(authority: string, status: string) {
+  const res = await fetch(
+    `${apiUrl}/api/Payment/verify?Authority=${authority}&Status=${status}`,
+  );
+  return res.json();
+}
 export async function getCustomDiet(userId: string, week: number) {
   const res = await fetch(
-    // `${apiUrl}/api/ChatGPT/GetDietPlanWithDelay?userId=${userId}&week=${week}`,
-    `${apiUrl}/api/ChatGPT/GetDietPlanWithDelayTEST6MIN?userId=${userId}&week=${week}`,
+    `${apiUrl}/api/ChatGPT/GetDietPlanWithDelay?userId=${userId}&week=${week}`,
+    // `${apiUrl}/api/ChatGPT/GetDietPlanWithDelayTEST6MIN?userId=${userId}&week=${week}`,
   );
   return res.json();
 }

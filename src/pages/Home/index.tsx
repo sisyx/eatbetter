@@ -25,12 +25,12 @@ const Home: React.FC = () => {
 
   const { t, i18n } = useTranslation();
 
-  return (
+  return ( 
     <Container>
       <div className="pt-14 max-sm:px-5 max-sm:pt-1">
         <AnimatedBackground2 />
         <GenderSelector />
-        <DietsBtn />
+        <DietsBtn /> 
 
         <div className="px-28">
           <div
