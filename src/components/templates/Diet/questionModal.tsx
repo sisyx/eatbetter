@@ -116,25 +116,25 @@ const Modal = () => {
           {t("dietsButtonOne")}
         </Button>
       </DialogTrigger>
-      <DialogContent className={`w-full max-w-full !pr-0 md:!max-w-[725px]`}>
+      <DialogContent className={`w-full max-w-full !pl-0 !pr-0 md:!max-w-[725px]`}>
         <DialogHeader>
           <DialogTitle className="flex flex-col items-center justify-center gap-2 py-3">
             {step === 1 ? (
               <>
-                <h5>{t("modalTitle")}</h5>
-                <p className="text-xs text-red-500">
+                <h5 className=" sm:text-base text-sm">{t("modalTitle")}</h5>
+                <p className="text-xs text-red-500 px-1">
                   {i18n.language === "fa"
                     ? "در صورتی که از قبل رژیم مخصوص خودتان را تهیه کردید و الان فعال هست، امکان تهیه دوباره رژیم نیست. برای دسترسی به رژیم خودان به پنل کاربری مراجعه کنید"
                     : "If you have already created your own diet and it is now active, it is not possible to create it again. To access your diet, please visit your user panel"}
                 </p>
               </>
             ) : (
-              <h5>{t("modalStep2Title")}</h5>
+              <h5  className=" sm:text-base text-sm">{t("modalStep2Title")}</h5>
             )}
           </DialogTitle>
         </DialogHeader>
         <main
-          className={`${step === 1 ? "h-[500px]" : "h-full"} overflow-y-scroll pr-4`}
+          className={`${step === 1 ? "h-[500px]" : "h-full"} overflow-y-scroll px-4`}
         >
           {step === 1 ? (
             <>
@@ -144,7 +144,7 @@ const Modal = () => {
               >
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "نام" : "Name"}
                   </p>
@@ -159,7 +159,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "سن" : "Age"}
                   </p>
@@ -174,7 +174,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "قد" : "Height"}
                   </p>
@@ -191,7 +191,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "وزن" : "Weight"}
                   </p>
@@ -208,7 +208,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "دور گردن" : "Neck circumference"}
                   </p>
@@ -225,7 +225,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "دور کمر" : "Waist circumference"}
                   </p>
@@ -242,7 +242,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "دور باسن" : "Hip circumference"}
                   </p>
@@ -259,7 +259,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? "هدف از رژیم غذایی"
@@ -278,7 +278,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? "محدودیت های غذایی"
@@ -297,7 +297,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "آلرژی غذایی" : "Food allergies"}
                   </p>
@@ -314,7 +314,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? "شرایط پزشکی"
@@ -333,7 +333,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? "ترجیحات غذایی"
@@ -352,10 +352,10 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
-                      ? "زمان صرف شده برای آماده سازی غذا"
+                      ? "زمان صرف شده برای   تهیه غذا"
                       : "Time spent preparing food"}
                   </p>
                   <input
@@ -365,7 +365,7 @@ const Modal = () => {
                       handleInputChange("mealPrepTime", e.target.value)
                     }
                     dir={i18n.language === "fa" ? "rtl" : "ltr"}
-                    className="w-full rounded-md border border-main p-2 pl-12 text-sm outline-none"
+                    className="w-full rounded-md border border-main p-2 pl-2 sm:pl-12 text-sm outline-none"
                   />
                   <p
                     className={`${i18n.language === "fa" ? "left-2" : "right-2"} absolute top-3 text-xs text-main`}
@@ -375,7 +375,7 @@ const Modal = () => {
                 </div>
 
                 <div className="relative mt-3 flex w-full items-center justify-center gap-2">
-                  <p className="bg-white p-1 text-center text-xs">
+                  <p className="bg-white p-1 text-center text-[10px] sm:text-xs">
                     {i18n.language === "fa" ? "ورزش روزانه" : "Daily exercise"}
                   </p>
 
@@ -393,7 +393,7 @@ const Modal = () => {
                   className={`${formData.exerciseProgram ? "" : "pointer-events-none opacity-50"} relative mt-3 w-full`}
                 >
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? "مدت زمان ورزش روزانه"
@@ -406,7 +406,7 @@ const Modal = () => {
                       handleInputChange("exerciseDuration", e.target.value)
                     }
                     dir={i18n.language === "fa" ? "rtl" : "ltr"}
-                    className="w-full rounded-md border border-main p-2 pl-12 text-sm outline-none"
+                    className="w-full rounded-md border border-main p-2 pl-2 sm:pl-12 text-sm outline-none"
                   />
                   <p
                     className={`${i18n.language === "fa" ? "left-2" : "right-2"} absolute top-3 text-xs text-main`}
@@ -417,7 +417,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? "محدودیت های ورزشی"
@@ -436,7 +436,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? "انواع مکمل ها"
@@ -455,7 +455,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? " مدت زمان خواب"
@@ -468,7 +468,7 @@ const Modal = () => {
                       handleInputChange("sleepDuration", e.target.value)
                     }
                     dir={i18n.language === "fa" ? "rtl" : "ltr"}
-                    className="w-full rounded-md border border-main p-2 pl-12 text-sm outline-none"
+                    className="w-full rounded-md border border-main p-2 pl-2 sm:pl-12 text-sm outline-none"
                   />
                   <p
                     className={`${i18n.language === "fa" ? "left-2" : "right-2"} absolute top-3 text-xs text-main`}
@@ -479,7 +479,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa" ? "شغل" : "Job"}
                   </p>
@@ -496,7 +496,7 @@ const Modal = () => {
 
                 <div className="relative mt-3 w-full">
                   <p
-                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-xs`}
+                    className={`${i18n.language === "fa" ? "right-0" : "left-0"} absolute -top-4 bg-white p-1 text-[10px] sm:text-xs`}
                   >
                     {i18n.language === "fa"
                       ? " رژیم های قبلی"
@@ -513,7 +513,7 @@ const Modal = () => {
                   />
                 </div>
                 <div className="relative mt-3 flex w-full items-center justify-center gap-2">
-                  <p className="bg-white p-1 text-center text-xs">
+                  <p className="bg-white p-1 text-center text-[10px] sm:whitespace-normal whitespace-nowrap sm:text-xs">
                     {i18n.language === "fa"
                       ? "استفاده از مکمل های غذایی"
                       : "Use of dietary supplements"}

@@ -193,11 +193,11 @@ const otherRoutes = [
     element: <VerifyPayment />
   },
   {
-    path: "/successfunPayment",
+    path: "/successfullPayment",
     element: <SuccessFullPayment />
   },
   {
-    path: "/unsuccessfunPayment",
+    path: "/unsuccessfullPayment",
     element: <UnsuccessFullPayment />
   },
 ];

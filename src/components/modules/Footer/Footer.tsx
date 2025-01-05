@@ -198,7 +198,7 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-black/5 p-6 text-center">
+          <div className="bg-[#5BA854] p-6 text-center z-50 relative">
             <span>© 2024 </span>
             <Link className="font-semibold" to="/">
               BlP

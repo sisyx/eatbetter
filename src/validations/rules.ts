@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import i18n from "../i18n/i18n";
 
-const phoneRegExp = /((0?9)|(\+?989))\d{2}\W?\d{3}\W?\d{4}/g;
+const phoneRegExp = /^\d{5,}$/g;
 
 let cooperateSchema = Yup.object().shape({
   message: Yup.string()

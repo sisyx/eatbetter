@@ -24,22 +24,24 @@ const Card = (props: Props) => {
   const { userData } = authStore((state) => state);
 
   const { mutate: mutation, isPending } = usePostData<any>(
-    `/api/Payment/request`,
+    userData?.country === "IR"
+      ? `/api/Payment/request`
+      : `/api/Stripe/create-checkout-session`,
     null,
     false,
-    (data) => {
-      if (data.paymentUrl) {
-        window.location.href = data.paymentUrl;
-      } else {
-        toast({
-          title: data.message
-            ? data.message
-            : i18n.language === "fa"
-              ? "کد معرف نادرست است"
-              : "Referral code is not valid",
-          variant: "danger",
-        });
-      }
+    (data) => { 
+        if (data.paymentUrl) {
+          window.location.href = data.paymentUrl;
+        } else {
+          toast({
+            title: data.message
+              ? data.message
+              : i18n.language === "fa"
+                ? "کد معرف نادرست است"
+                : "Referral code is not valid",
+            variant: "danger",
+          });
+        } 
     },
   );
 
@@ -99,17 +101,13 @@ const Card = (props: Props) => {
               }
             });
           } else {
-            const inputValue = (
-              document?.querySelector("#ReferralInput") as HTMLInputElement
-            )?.value;
-
             const data = {
               amount: props.data?.price,
               description: "No Des",
               userId: userData?.id,
               mobile: userData?.phoneNumber,
               email: userData?.email,
-              referralCode: inputValue ? inputValue : "",
+              referralCode: "",
               packageId: props.data?.id,
             };
             mutation(data);
