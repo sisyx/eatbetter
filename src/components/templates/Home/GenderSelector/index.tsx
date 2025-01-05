@@ -128,7 +128,7 @@ const GenderSelector = () => {
             <div className="mb-4 flex flex-wrap gap-5 max-sm:w-[100%]">
               <button
                 onClick={() => setGender("Feminine")}
-                className={`h-[150px] w-[150px] rounded-lg p-4 text-center shadow-xl transition-all hover:bg-mainHover max-sm:w-[100%] ${
+                className={`h-[150px] w-[150px] hover:text-white rounded-lg p-4 text-center shadow-xl transition-all hover:bg-mainHover max-sm:w-[100%] ${
                   gender === "Feminine"
                     ? "bg-main text-white"
                     : "bg-gray-200 text-black"
