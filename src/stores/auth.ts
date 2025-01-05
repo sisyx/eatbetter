@@ -11,6 +11,7 @@ interface UserProps {
   username: string;
   walletBalance: string;
   cartRegister: boolean;
+  role: string;
   questionBox: boolean;
   package: {
     currency: string;

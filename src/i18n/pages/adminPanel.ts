@@ -25,7 +25,7 @@ const adminPanelFa = {
       sleep: "خواب و روان",
     },
     adminUsers: {
-      title: "گاربران سایت"
+      title: "کاربران سایت"
     },
     adminPackages: {
       title: "پکیج ها"

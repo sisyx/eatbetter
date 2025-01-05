@@ -61,7 +61,7 @@ const Diets = () => {
 
         <div>
           <div className="mt-5 flex items-center justify-end gap-2 text-2xl font-bold">
-            <h5 className="max-sm:text-xl"> {t("dietsTitleTwo")} </h5>
+            <h5 className="sm:!text-xl !text-base"> {t("dietsTitleTwo")} </h5>
 
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
@@ -99,7 +99,7 @@ const Diets = () => {
         </div>
 
         <div className="mt-5 flex items-center justify-end gap-2 text-2xl font-bold">
-          <h5 className="max-sm:text-xl"> {t("dietsTitleThree")} </h5>
+          <h5 className="sm:!text-xl !text-base"> {t("dietsTitleThree")} </h5>
           <div className="h-2 w-2 rounded-xl bg-main">
             <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
           </div>

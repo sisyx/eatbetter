@@ -7,6 +7,7 @@ import Loader from "../../components/modules/loader/Loader";
 import useGetData from "../../hooks/useGetData";
 import { getPaymentStatus } from "../../utils/fetchs";
 import { useQueryClient } from "@tanstack/react-query";
+
 const VerifyPayment = () => {
   const { t } = useTranslation();
   const [paymentStatus, setPaymentStatus] = useState("");

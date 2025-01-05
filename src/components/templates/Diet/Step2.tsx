@@ -38,7 +38,7 @@ const Step2 = ({ setStep }: any) => {
   return (
     <div>
       <select
-        className="w-full rounded-md border border-main p-2"
+        className="w-full rounded-md border border-main p-2 sm:text-base text-sm"
         dir="rtl"
         name=""
         id=""
