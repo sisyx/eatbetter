@@ -1,9 +1,7 @@
 import {
   Link,
-  useLocation,
-  useParams,
-  useRoutes,
-  useSearchParams,
+  useLocation, 
+  useRoutes, 
 } from "react-router-dom";
 import routes from "./routes";
 import "./fonts.css";
@@ -35,8 +33,7 @@ const App: React.FC = () => {
       <ScrollToUp />
       <Auth />
       {router}
-      <Toaster />
-
+      <Toaster /> 
       {userData &&
       userData.role === "admin" &&
       location.pathname.slice(0, 11) !== "/adminPanel" ? (

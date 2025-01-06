@@ -81,7 +81,7 @@ export default function index() {
               {" "}
               <li>{t("sleep_soul_mental")}</li>
             </Link>
-            {userData ? (
+            {userData && userData.country ? (
               <Link
                 to={"/packages"}
                 className="rounded-md p-2 transition-all hover:text-main"
