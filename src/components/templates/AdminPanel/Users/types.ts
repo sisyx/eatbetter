@@ -1,4 +1,5 @@
 type User = {
+    id: number,
     country: string,
     email: string,
     phoneNumber: string,
@@ -9,6 +10,7 @@ type User = {
 }
 
 type UserProps = {
+    id: number,
     country: string,
     email: string,
     phoneNumber: string,
