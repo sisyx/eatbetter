@@ -12,7 +12,7 @@ const Sleep = () => {
       <div>
         <Title title={t("sleep.titleOne")} />
         <p>{t("sleep.textOne")}</p>
-      </div>
+      </div> 
 
       <div className="mt-10">
         <Title title={t("sleep.titleTwo")} />

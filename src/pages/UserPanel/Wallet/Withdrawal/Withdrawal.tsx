@@ -59,7 +59,7 @@ const Withdrawal = () => {
         if (data.statusCode === 200) {
           setAmount("");
           setWithDrawalStatusCheck(true);
-          Cookies.set("withDrawalId", data.withdrawalRequestId, {
+          Cookies.set("withDrawalId", data.Id, {
             expires: 9999999,
             path: "/",
           });
@@ -103,9 +103,11 @@ const Withdrawal = () => {
       enabled: Boolean(withDrawalId),
     },
   );
-  
+
   useEffect(() => {
     if (data) {
+      console.log(data);
+
       setWithDrawalStatusCheck(true);
     }
   }, [data]);
@@ -139,7 +141,7 @@ const Withdrawal = () => {
                 حساب شما واریز میشود
               </p>
             ) : null}
-            {data.withdrawalRequest.status !== "Completed" ? (
+            {data.withdrawalRequest.status === "Completed" ? (
               <p className="rounded-md bg-green-500 p-2 text-sm text-white md:text-base">
                 درخواست برداشت شما تایید و مبلغ به حساب شما واریز شده است
               </p>
@@ -206,7 +208,7 @@ const Withdrawal = () => {
               </div>
             )}
 
-            {data.withdrawalRequest.status !== "Completed" ? (
+            {data.withdrawalRequest.status === "Completed" ? (
               <Button
                 onClick={() => {
                   Cookies.remove("withDrawalId");
