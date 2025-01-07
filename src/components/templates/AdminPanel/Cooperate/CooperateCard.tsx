@@ -3,8 +3,9 @@ import { Button } from "../../../shadcn/ui/button";
 import { CooperateProps } from "./types";
 import { useState } from "react";
 import { ButtonLoader } from "../../../modules/loader/Loader";
-// const apiUrl = import.meta.env.VITE_API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 import { useTranslation } from "react-i18next";
+import { toast } from "../../../../hooks/use-toast";
 
 type DeleteState = {
     loading: Boolean,
@@ -13,36 +14,35 @@ type DeleteState = {
 
 const Contact = (props: CooperateProps) => {
     const [isDeleted, setIsDeleted] = useState<DeleteState>({loading: false, deleted: false});
-    const { fullName, email, phoneNumber, subject, message } = props;
+    const { fullName, email, phoneNumber, subject, message, reloadFn } = props;
     const { t } = useTranslation();
 
     // async functions
     async function deleteMessage() {
-        // fetch(`${apiUrl}/api/ContactMe/contactus/{id}${username}`, {
-        //     method: "DELETE",
-        //     headers: {
-        //         "accept": "*/*"
-        //     }
-        // })
-        // .then(req => {
-        //     req.json()
-        // })
-        // .then((response: any) => {
-        //     // refresh the users (call reload funciton)
-        //     reloadFn();
-            
-        //     // show success message
-        //     const { message } = response
-        //     toast({ title: message })
-
-        //     return message
-        // })
-        // .catch(console.error);
         setIsDeleted({loading: true, deleted: false,})
-        await new Promise((resolve) => {
-            setTimeout(resolve, 3000)
+        fetch(`${apiUrl}/api/WorkMeForm/workus/1`, {
+            method: "DELETE",
+            headers: {
+                "accept": "*/*"
+            }
         })
-        setIsDeleted({loading: false, deleted: true,})
+        .then(req => {
+            req.json()
+        })
+        .then((response: any) => {
+            // refresh the users (call reload funciton)
+            reloadFn();
+            
+            // show success message
+            const { message } = response
+            toast({ title: message })
+
+            setIsDeleted({loading: false, deleted: true,})
+            return message
+        })
+        .catch(() => {
+            setIsDeleted({loading: false, deleted: false,})
+        }) 
     }
 
 
