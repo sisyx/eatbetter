@@ -106,36 +106,38 @@ const CreatePackage = (props: PackageProps) => {
       async function handleDelete(event: any) {
         event.stopPropagation()
               setDeleteState(cur => ({...cur, deleting: true}))
-              fetch(`${apiUrl}/api/Package/DeletePackage/${id}`, {
+
+              try {
+
+                const req = await fetch(`${apiUrl}/api/Package/DeletePackage/${id}`, {
                   method: "DELETE",
                   headers: {
                       "accept": "*/*"
                   }
               })
-              .then(req => {
-                  req.json()
-              })
-              .then((response: any) => {
-                if (response?.statusCode === 200) {
+              if (!req.ok) throw new Error(req.statusText);
+              
+              const response = await req.json();
+              
+              if (response?.statusCode === 200) {
 
-                  // refresh the users (call reload funciton)
-                  reloadFn();
-                  
-                  // show success message
-                  const { message } = response
-                  toast({ title: message })
-                } else {
-                  toast({
-                    title: "مشکلی پیش آمده",
-                    variant: "danger",
-                  })
-                }
-                setDeleteState(cur => ({...cur, deleted: true, deleteErr: false, deleting: false}))
-                return response
-              })
-              .catch((_error) => {
-                  setDeleteState(cur => ({...cur, deleted: false, deleteErr: true, deleting: false}))
-              })
+                // refresh the users (call reload funciton)
+                reloadFn();
+                
+                // show success message
+                const { message } = response
+                toast({ title: message, variant: "success" })
+              } else {
+                toast({
+                  title: "مشکلی پیش آمده",
+                  variant: "danger",
+                })
+              }
+              setDeleteState(cur => ({...cur, deleted: true, deleteErr: false, deleting: false}))
+              return response
+            } catch(error: any) {
+              setDeleteState(cur => ({...cur, deleted: false, deleteErr: true, deleting: false}))
+            }
           }
 
   return (
