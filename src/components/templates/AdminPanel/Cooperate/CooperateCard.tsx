@@ -14,13 +14,13 @@ type DeleteState = {
 
 const Contact = (props: CooperateProps) => {
     const [isDeleted, setIsDeleted] = useState<DeleteState>({loading: false, deleted: false});
-    const { fullName, email, phoneNumber, subject, message, reloadFn } = props;
+    const { id, fullName, email, phoneNumber, subject, message, reloadFn } = props;
     const { t } = useTranslation();
 
     // async functions
     async function deleteMessage() {
         setIsDeleted({loading: true, deleted: false,})
-        fetch(`${apiUrl}/api/WorkMeForm/workus/1`, {
+        fetch(`${apiUrl}/api/WorkMeForm/workus/${id}`, {
             method: "DELETE",
             headers: {
                 "accept": "*/*"

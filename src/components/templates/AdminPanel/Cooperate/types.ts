@@ -1,4 +1,5 @@
 type Cooperate = {
+    id: number,
     fullName: String,
     email: String,
     phoneNumber: String,
@@ -7,6 +8,7 @@ type Cooperate = {
 };
 
 type CooperateProps = {
+    id: number,
     fullName: String,
     email: String,
     phoneNumber: String,
