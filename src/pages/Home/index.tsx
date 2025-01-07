@@ -1,27 +1,13 @@
-import React, { useEffect, useState } from "react";
 import AnimatedBackground2 from "../../components/templates/Home/AnimatedBackground2";
 import GenderSelector from "../../components/templates/Home/GenderSelector";
 import DietsBtn from "../../components/templates/Home/DietsBtn";
 import Container from "../../components/modules/Container/Container";
 import { useTranslation } from "react-i18next";
 import { authStore } from "../../stores/auth";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const { userData } = authStore((state) => state);
-
-  useEffect(() => {
-    const handleScroll = (): void => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const { t, i18n } = useTranslation();
 
@@ -194,7 +180,7 @@ const Home: React.FC = () => {
                 <p className="text-white">{t("homeSectionFiveBoxOneDes")}</p>
               </div>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
     </Container>

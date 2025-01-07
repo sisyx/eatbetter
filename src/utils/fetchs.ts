@@ -73,6 +73,12 @@ export async function getPaymentStatus(authority: string, status: string) {
   );
   return res.json();
 }
+export async function getStripPaymentStatus(transactionId: string) {
+  const res = await fetch(
+    `${apiUrl}/api/Stripe/verify-payment?transactionId=${transactionId}`,
+  );
+  return res.json();
+}
 export async function getCustomDiet(userId: string, week: number) {
   const res = await fetch(
     `${apiUrl}/api/ChatGPT/GetDietPlanWithDelay?userId=${userId}&week=${week}`,

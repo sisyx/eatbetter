@@ -1,11 +1,11 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "../../components/shadcn/ui/button";
 import { imageBase } from "../../config/constants";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import Loader from "../../components/modules/loader/Loader";
 import useGetData from "../../hooks/useGetData";
-import { getPaymentStatus } from "../../utils/fetchs";
+import { getPaymentStatus, getStripPaymentStatus } from "../../utils/fetchs";
 import { useQueryClient } from "@tanstack/react-query";
 
 const VerifyPayment = () => {
@@ -16,6 +16,7 @@ const VerifyPayment = () => {
   const [searchParams] = useSearchParams();
   const Authority = searchParams.get("Authority");
   const Status = searchParams.get("Status");
+  const transactionId = searchParams.get("transactionId");
 
   const { data, isLoading } = useGetData<any>(
     Authority ? ["withdrawalStatus", Authority] : [],
@@ -25,14 +26,54 @@ const VerifyPayment = () => {
     },
   );
 
-  useEffect(() => { 
-    if (data) {
-      if (data.message === "پرداخت با موفقیت انجام شد") {
-        setPaymentStatus("success");
-        queryClient.invalidateQueries({ queryKey: ["auth"] });
-      } else setPaymentStatus("nonsuccess");
+  const { data: stripData, isLoading: stripLoading } = useGetData<any>(
+    transactionId ? ["withdrawalStatusStrip", transactionId] : [],
+    () => getStripPaymentStatus(transactionId as string),
+    {
+      enabled: Boolean(transactionId),
+    },
+  );
+
+  useEffect(() => {
+    if (transactionId) {
+      if (stripData) {
+        console.log(stripData);
+
+        if (stripData.status === "success") {
+          setPaymentStatus("success");
+          queryClient.invalidateQueries({ queryKey: ["auth"] });
+        } else setPaymentStatus("nonsuccess");
+      }
+    } else {
+      if (data) {
+        if (data.message === "پرداخت با موفقیت انجام شد") {
+          setPaymentStatus("success");
+          queryClient.invalidateQueries({ queryKey: ["auth"] });
+        } else setPaymentStatus("nonsuccess");
+      }
     }
-  }, [data]);
+  }, [data, stripData]);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const wasReloaded = localStorage.getItem("wasReloaded");
+
+    if (wasReloaded) {
+      queryClient.invalidateQueries({ queryKey: ["auth"] });
+      localStorage.removeItem("wasReloaded");
+      navigate("/");
+    }
+
+    const handleBeforeUnload = () => {
+      localStorage.setItem("wasReloaded", "true");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [navigate]);
 
   return (
     <>
@@ -100,7 +141,7 @@ const VerifyPayment = () => {
           </div>
         </div>
       )}
-      {isLoading && <Loader />}
+      {isLoading || (stripLoading && <Loader />)}
     </>
   );
 };
