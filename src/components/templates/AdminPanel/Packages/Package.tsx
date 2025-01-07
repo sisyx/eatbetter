@@ -13,6 +13,9 @@ import usePostData from "../../../../hooks/usePostData";
 import { toast } from "../../../../hooks/use-toast";
 import { ButtonLoader } from "../../../modules/loader/Loader";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 interface formValues {
     name: string;
@@ -58,6 +61,11 @@ const xxx: XXXType[] = [
 const CreatePackage = (props: PackageProps) => {
     const { id, name, nameFa, currency, maxDiet, price, reloadFn } = props;
     const { i18n } = useTranslation();
+    const [deleteState, setDeleteState] = useState({
+        deleting: false,
+        deleted: false,
+        deleteErr: false,
+    })
     const successFunc = () => {
            
         toast({
@@ -94,6 +102,41 @@ const CreatePackage = (props: PackageProps) => {
         },
         validationSchema: packageSchema,
       });
+
+      async function handleDelete(event: any) {
+        event.stopPropagation()
+              setDeleteState(cur => ({...cur, deleting: true}))
+              fetch(`${apiUrl}/api/Package/DeletePackage/${id}`, {
+                  method: "DELETE",
+                  headers: {
+                      "accept": "*/*"
+                  }
+              })
+              .then(req => {
+                  req.json()
+              })
+              .then((response: any) => {
+                if (response?.statusCode === 200) {
+
+                  // refresh the users (call reload funciton)
+                  reloadFn();
+                  
+                  // show success message
+                  const { message } = response
+                  toast({ title: message })
+                } else {
+                  toast({
+                    title: "مشکلی پیش آمده",
+                    variant: "danger",
+                  })
+                }
+                setDeleteState(cur => ({...cur, deleted: true, deleteErr: false, deleting: false}))
+                return response
+              })
+              .catch((_error) => {
+                  setDeleteState(cur => ({...cur, deleted: false, deleteErr: true, deleting: false}))
+              })
+          }
 
   return (
     <Dialog>
@@ -133,8 +176,13 @@ const CreatePackage = (props: PackageProps) => {
                   )}
             </span>
           </div>
-          <div className="px-4 pb-4">
-            <Button className="w-full">ویرایش</Button>
+          <div className="px-4 pb-4 flex flex-col gap-2">
+            <Button className="w-full bg-main hover:bg-mainHover">ویرایش</Button>
+            <Button className="w-full" onClick={e => handleDelete(e)}>
+              {
+                deleteState.deleting ? <ButtonLoader /> : "حذف"
+              }
+            </Button>
           </div>
         </div>
       </DialogTrigger>
