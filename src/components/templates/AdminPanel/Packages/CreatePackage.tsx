@@ -106,7 +106,7 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="group relative flex flex-col gap-3 items-center justify-center aspect-video rounded-md border-2 border-main text-main text-2xl font-extrabold hover:text-mainHover hover:border-mainHover cursor-pointer transition-all duration-100">
+        <div className="group relative flex flex-col gap-3 items-center justify-center rounded-2xl border-2 border-main text-main text-2xl font-extrabold hover:text-mainHover hover:border-mainHover cursor-pointer transition-all duration-100">
             <MdAdd className="text-4xl" />
             <span>ایجاد پکیج جدید</span>
         </div>
