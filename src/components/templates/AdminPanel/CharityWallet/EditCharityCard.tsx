@@ -12,6 +12,7 @@ import { CharityCardSchema } from "../../../../validations/rules";
 import usePostData from "../../../../hooks/usePostData";
 import { toast } from "../../../../hooks/use-toast"; 
 import { ButtonLoader } from "../../../modules/loader/Loader";
+import { EditCardProps } from "./types";
 
 interface formValues {
   accountNumber: string,
@@ -53,9 +54,15 @@ const xxx: XXXType[] = [
       placeholder: "",
       type: "text",
     },
+    {
+      value: "balance",
+      title: "موجودی حساب",
+      placeholder: "",
+      type: "number",
+  },
 ]
 
-const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
+const EditCharityCard = ({ reloadFn, accountNumber, fullName, balance, iban, bankName }: EditCardProps) => {
     const successFunc = () => {
         toast({
             variant: "success",
@@ -65,19 +72,19 @@ const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
     };
 
     const { mutate: mutation, isPending } = usePostData(
-        "/api/charityWallet/Create",
+        "/api/charityWallet/Edit",
         null,
-        false,
+        true,
         successFunc,
       );
 
     const formHandler = useFormik({
         initialValues: {
-          accountNumber: "",
-          fullName: "",
-          iban: "",
-          bankName: "",
-          balance: 0,
+          accountNumber,
+          fullName,
+          iban,
+          bankName,
+          balance,
         },
         onSubmit: (_values: formValues) => {
           const data = {
@@ -85,7 +92,7 @@ const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
             fullName: formHandler.values.fullName,
             iban: formHandler.values.iban,
             bankName: formHandler.values.bankName,
-            balance: 0,
+            balance: formHandler.values.balance,
           };
           mutation(data as any);
         },
@@ -97,15 +104,14 @@ const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="group relative p-2 flex gap-3 items-center justify-center rounded-md border-2 font-extrabold cursor-pointer transition-all duration-100">
-            <MdAdd className="text-4xl" />
-            <span>ایجاد کارت جدید</span>
+        <Button className="group w-full relative p-2 flex gap-3 items-center justify-center rounded-md border-2 font-extrabold cursor-pointer transition-all duration-100">
+            ویرایش اطلاعات
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2 py-3">
-            <h5>ایجاد کارت جدید</h5>
+            <h5>ویرایش اطلاعات</h5>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
@@ -144,7 +150,7 @@ const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
                 {
                     isPending ? <ButtonLoader /> : ""
                 }
-                اضافه کردن
+                اعمال تغییرات
             </Button>
             </div>
         </div>
@@ -153,4 +159,4 @@ const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
   );
 };
 
-export default CreateCharityCard;
+export default EditCharityCard;

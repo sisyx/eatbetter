@@ -15,4 +15,13 @@ type CharityCardProps = {
     reloadFn: Function,
 }
 
-export type { CharityCard, CharityCardProps };
+type EditCardProps = {
+    accountNumber: string,
+    iban: string,
+    bankName: string,
+    fullName: string,
+    balance: number,
+    reloadFn: Function,
+}
+
+export type { CharityCard, CharityCardProps, EditCardProps };
