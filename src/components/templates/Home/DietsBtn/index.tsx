@@ -30,7 +30,7 @@ export default function DietsBtn() {
         >
           <Title
             className={`${i18n.language === "fa" ? "ml-auto" : "mr-auto"} `}
-            title={i18n.language === "fa" ? " رژیم ها" : "Diets"}
+            title={i18n.language === "fa" ? " پکیج ها" : "Packages"}
           />
 
           {viewBtnAn ? (
@@ -44,7 +44,7 @@ export default function DietsBtn() {
                     className="flex flex-col items-center justify-center rounded-3xl px-10 py-10 shadow-2xl"
                   >
                     <div className="flex items-center gap-10">
-                      <Link to={""}>
+                      <Link to={"/packages"}>
                         <div className="flex h-[37px] w-[37px] items-center justify-center rounded-full bg-main text-white transition-all hover:bg-mainHover">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

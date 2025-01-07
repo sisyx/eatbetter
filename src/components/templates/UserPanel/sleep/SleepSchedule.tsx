@@ -23,42 +23,44 @@ const SleepSchedule = () => {
 
   const handleSubmit = () => {
     const currentDate = new Date();
-  
+
     const [sleepHours, sleepMinutes] = sleepTime.split(":");
-    const sleepDate = new Date(Date.UTC(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate(),
-      parseInt(sleepHours, 10) - 3, // تنظیم اختلاف ساعت برای منطقه ایران
-      parseInt(sleepMinutes, 10) - 30,
-      0
-    ));
-  
+    const sleepDate = new Date(
+      Date.UTC(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate(),
+        parseInt(sleepHours, 10) - 3,
+        parseInt(sleepMinutes, 10) - 30,
+        0,
+      ),
+    );
+
     const [wakeUpHours, wakeUpMinutes] = wakeUpTime.split(":");
-    const wakeUpDate = new Date(Date.UTC(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate(),
-      parseInt(wakeUpHours, 10) - 3, // تنظیم اختلاف ساعت برای منطقه ایران
-      parseInt(wakeUpMinutes, 10) - 30,
-      0
-    ));
-  
+    const wakeUpDate = new Date(
+      Date.UTC(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate(),
+        parseInt(wakeUpHours, 10) - 3,
+        parseInt(wakeUpMinutes, 10) - 30,
+        0,
+      ),
+    );
+
     const payload = {
       sleepTime: sleepDate.toISOString(),
       wakeUpTime: wakeUpDate.toISOString(),
     };
-  
+
     console.log("Payload:", payload);
     mutation(payload);
   };
-  
-  
 
   return (
     <div className="pb-10 sm:pb-0">
       <div className="mt-5 flex flex-col justify-center sm:flex-row sm:justify-evenly">
-       <div className="flex justify-center">
+        <div className="flex justify-center">
           <label className="w-[113px] text-center">
             {t("sleep.sleepEndHour")}
           </label>
@@ -69,7 +71,7 @@ const SleepSchedule = () => {
             onChange={(e) => setWakeUpTime(e.target.value)}
           />
         </div>
-         <div className="flex justify-center">
+        <div className="flex justify-center">
           <label className="w-[113px] text-center">
             {" "}
             {t("sleep.sleepStartHour")}
@@ -81,8 +83,6 @@ const SleepSchedule = () => {
             onChange={(e) => setSleepTime(e.target.value)}
           />
         </div>
-
-        
       </div>
       <Button
         className="mx-auto mt-4 block w-full px-9 sm:w-auto"
