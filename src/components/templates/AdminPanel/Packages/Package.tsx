@@ -62,13 +62,13 @@ const CreatePackage = (props: PackageProps) => {
         console.log(data);
         toast({
             variant: "success",
-            title: "پکیج با موفقیت اضافه شد"
+            title: "پکیج با موفقیت ویرایش شد"
         })
         reloadFn();
     };
 
     const { mutate: mutation, isPending } = usePostData(
-        `/api/Package/${id}`,
+        `/api/Package/UpdatePackage/${id}`,
         null,
         true,
         successFunc,
@@ -100,7 +100,7 @@ const CreatePackage = (props: PackageProps) => {
       <DialogTrigger asChild>
         <div
           // data-aos="fade-up"
-          className="group relative aspect-video cursor-pointer rounded-2xl border-2 border-main bg-opacity-90 transition-all duration-100 hover:bg-opacity-100"
+          className="group relative cursor-pointer rounded-2xl border-2 border-main bg-opacity-90 transition-all duration-100 hover:bg-opacity-100 overflow-hidden"
         >
           <span className="flex items-center justify-center gap-2 p-4 text-base md:text-xl font-extrabold  text-white bg-main">
               <span>{name}</span>
@@ -133,7 +133,7 @@ const CreatePackage = (props: PackageProps) => {
                   )}
             </span>
           </div>
-          <div className="px-4">
+          <div className="px-4 pb-4">
             <Button className="w-full">ویرایش</Button>
           </div>
         </div>

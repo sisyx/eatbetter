@@ -55,7 +55,7 @@ const Contacts = () => {
                     error ? <code>Error</code>
                     : loading ? <ThreeDotsLoader dotSize={20} />
                     : messages.length ? 
-                    <div className="flex flex-col gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {
                             messages.map((message: ContactType) => <Contact {...message} reloadFn={reloadFn} />)
                         }

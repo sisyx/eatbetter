@@ -47,21 +47,42 @@ const Contact = (props: ContactProps) => {
 
 
     return (
-        <div className={`${isDeleted.deleted ? "hidden" : ""} flex flex-col gap-2 border bg-main hover:bg-mainHover p-4 rounded-lg text-white`}>
-            <div className="flex items-center justify-between gap-3">
+        <div className={`${isDeleted.deleted ? "hidden" : ""} group flex-1 flex flex-col gap-2 border bg-main hover:bg-mainHover rounded-2xl overflow-hidden text-white`}>
+            <div className="flex justify-between gap-3 bg-gray-100 text-black">
                 <div className="flex items-center gap-3">
-                    <span>{t("adminContact.user")}</span>
-                    <span className="text-black font-bold bg-white px-2 rounded-md">{fullName}</span>
-                    <a href={`mailto:${email}`} className=" underline underline-offset-1">{email}</a>
-                    <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+                    {/* <span className="p-2 text-cener">{t("adminContact.user")}</span> */}
+                    <div 
+                    className="
+                            text-white bg-main group-hover:bg-mainHover font-bold h-full px-2 flex items-center justify-center
+                            relative before:absolute before:left-0 before:bottom-0 before:-translate-x-full before:content-[''] before:w-4 before:aspect-square before:bg-main group-hover:before:bg-mainHover
+                            after:absolute after:left-0 after:bottom-0 after:-translate-x-full after:content-[''] after:w-4 after:aspect-square after:bg-gray-100 after:rounded-br-full
+                        "
+                    >
+                        <span className="md:hidden text-sm">
+                            {`${fullName.slice(0,7)}${fullName.length > 7 ? "..." : ""}`}
+                        </span>
+                        <span className="hidden md:inline">
+                            {fullName}
+                        </span>
+                    </div>
+                    <div className="flex flex-col z-50 text-sm md:text-base">
+                        <div>
+                            <span className="hidden md:inline">ایمیل: </span>
+                            <a href={`mailto:${email}`} className=" underline underline-offset-1">{email}</a>
+                        </div>
+                        <div>
+                            <span className="hidden md:inline">تلفن: </span>
+                            <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
+                        </div>
+                    </div>
                 </div>
-                <Button className={`${isDeleted.loading ? "bg-gray-700" : "bg-white" } text-gray-700 hover:text-white px-2 md:px-4`} onClick={deleteMessage}>
+                <Button className={`${isDeleted.loading ? "bg-gray-700" : "bg-gray-100" } text-gray-700 hover:text-white px-2 md:px-4 h-full rounded-none`} onClick={deleteMessage}>
                     {
                         isDeleted.loading ? <ButtonLoader className="text-main" /> : <ImBin2 />
                     }
                 </Button>
             </div>
-            <div>
+            <div className="p-4">
                 <div className="font-bold text-2xl">{subject}</div>
                 <div className="text-justify leading-8">{message}</div>
             </div>

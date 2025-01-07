@@ -14,12 +14,12 @@ export const User = (props: UserProps) => {
         deleted: false,
         deleteErr: false,
     })
-    const { username, reloadFn, country, email } = props;
+    const { username, reloadFn, country, email, id } = props;
 
     // async functions
     async function deleteUser() {
         setDeleteState(cur => ({...cur, deleting: true}))
-        fetch(`${apiUrl}/api/user/api/users/${username}`, {
+        fetch(`${apiUrl}/api/user/api/users/${id}`, {
             method: "DELETE",
             headers: {
                 "accept": "*/*"

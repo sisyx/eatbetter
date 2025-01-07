@@ -60,7 +60,7 @@ export const CharityCardsList = () => {
                         error ? <code>Error</code>
                         : loading ? <ThreeDotsLoader dotSize={40} />
                         : data.accountNumber ? 
-                            <CharityCard {...data} />
+                            <CharityCard {...data} reloadFn={reloadFn} />
                         : <span>هیچ کارتی یافت نشد</span>
                     }
                     {

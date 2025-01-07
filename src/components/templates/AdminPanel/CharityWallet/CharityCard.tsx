@@ -1,12 +1,12 @@
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { BsBank2, BsCreditCardFill } from "react-icons/bs";
-import { Button } from "../../../shadcn/ui/button";
 import { FaUser } from "react-icons/fa";
 import { CharityCardProps } from "./types";
 import { useTranslation } from "react-i18next";
+import WithdrawFromCharity from "./other/WithdrawFromCharity";
 
 export const CharityCard = (props: CharityCardProps) => {
-    const { fullName, accountNumber, bankName, iban, balance } = props;
+    const { fullName, accountNumber, bankName, iban, balance, reloadFn } = props;
     const { t } = useTranslation();
 
     return (
@@ -54,7 +54,7 @@ export const CharityCard = (props: CharityCardProps) => {
                     <span className="ps-8 text-2xl font-bold">{iban}</span>
                 </div>
             </div>
-                <Button className="w-full bg-main">برداشت موجودی</Button>
+            <WithdrawFromCharity reloadFn={reloadFn} />
         </div>
     );
 }

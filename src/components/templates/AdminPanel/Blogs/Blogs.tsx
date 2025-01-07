@@ -68,6 +68,7 @@ const Blogs = () => {
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.content")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.publishDate")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.edit")}</th>
+                                <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.delete")}</th>
                             </tr>
                             {blogs?.map((blog: any) => (
                                 <>
