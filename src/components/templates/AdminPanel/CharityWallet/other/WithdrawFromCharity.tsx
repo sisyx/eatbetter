@@ -50,7 +50,7 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-            <Button className="w-full bg-main">برداشت موجودی</Button>
+            <Button className="w-full bg-main hover:bg-mainHover">برداشت موجودی</Button>
             </DialogTrigger>
             <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
                 <DialogHeader>
