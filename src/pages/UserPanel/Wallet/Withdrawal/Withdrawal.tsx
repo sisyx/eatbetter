@@ -6,7 +6,9 @@ import { stockSchema } from "../../../../validations/rules";
 import { useTranslation } from "react-i18next";
 import { authStore } from "../../../../stores/auth";
 import usePostData from "../../../../hooks/usePostData";
-import Loader from "../../../../components/modules/loader/Loader";
+import Loader, {
+  ButtonLoader,
+} from "../../../../components/modules/loader/Loader";
 import { useEffect, useState } from "react";
 import useGetData from "../../../../hooks/useGetData";
 import { getWithdrawalStatus } from "../../../../utils/fetchs";
@@ -14,6 +16,7 @@ import Cookies from "js-cookie";
 import { convertToJalali } from "../../../../utils/numbers";
 import { Link } from "react-router-dom";
 import { toast } from "../../../../hooks/use-toast";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Withdrawal = () => {
   const { t } = useTranslation();
@@ -22,7 +25,20 @@ const Withdrawal = () => {
   const [highAmount, setHighAmount] = useState(false);
   const [userRegister, setUserRegister] = useState(false);
   const [withDrawalStatusCheck, setWithDrawalStatusCheck] = useState(false);
-  const withDrawalId = Cookies.get("withDrawalId");
+  const [withDrawalId, setwithDrawalId] = useState("");
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (userData) {
+      const id = Cookies.get(`withDrawalId${userData.id}`);
+      setwithDrawalId(id as string);
+      if (withDrawalStatusCheck) {
+        console.log('hi');
+        
+        queryClient.invalidateQueries({ queryKey: ["withdrawalStatus"] });
+      }
+    }
+  }, [userData, withDrawalStatusCheck]);
 
   const formHandler = useFormik({
     initialValues: { name: "", shabaNumber: "", bankName: "", cartNumber: "" },
@@ -59,7 +75,7 @@ const Withdrawal = () => {
         if (data.statusCode === 200) {
           setAmount("");
           setWithDrawalStatusCheck(true);
-          Cookies.set("withDrawalId", data.Id, {
+          Cookies.set(`withDrawalId${userData?.id}`, data.withdrawalRequestId, {
             expires: 9999999,
             path: "/",
           });
@@ -106,9 +122,9 @@ const Withdrawal = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
-
-      setWithDrawalStatusCheck(true);
+      if (data.statusCode !== 404) {
+        setWithDrawalStatusCheck(true);
+      }
     }
   }, [data]);
 
@@ -128,7 +144,7 @@ const Withdrawal = () => {
         <Title className="mt-8" title={t("withdrawal.titleTwo")} />
         <p>{t("withdrawal.textTwo")}</p>
 
-        {withDrawalStatusCheck ? (
+        {withDrawalStatusCheck && data && data.withdrawalRequest.status ? (
           <div className="mt-10 text-center">
             {data.withdrawalRequest.status === "Pending" ? (
               <p className="rounded-md bg-orange-500 p-2 text-sm text-white md:text-base">
@@ -211,7 +227,7 @@ const Withdrawal = () => {
             {data.withdrawalRequest.status === "Completed" ? (
               <Button
                 onClick={() => {
-                  Cookies.remove("withDrawalId");
+                  Cookies.remove(`withDrawalId${userData?.id}`);
                   window.location.reload();
                 }}
                 className="mt-4 border-main"
@@ -327,37 +343,17 @@ const Withdrawal = () => {
               </span>
             </div>
 
-            {/* <div className="mb-5">
-<div className="flex flex-row-reverse items-baseline justify-end gap-2">
- <label className="mb-2 block font-medium text-gray-900 dark:text-white">
-   {t("withdrawal.password")}
- </label>
- <div className="h-2 w-2 rounded-xl bg-main">
-   <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
- </div>
-</div>
-<input
- name="password"
- value={formHandler.values.password}
- onChange={formHandler.handleChange}
- onBlur={formHandler.handleBlur}
- type="password"
- id="text"
- className="dark:shadow-sm-light block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-yellow-300 focus:ring-yellow-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-yellow-300 dark:focus:ring-yellow-300"
- required
-/>
-<span className="mx-auto mt-2 block text-center text-xs text-red-600">
- {formHandler.errors.password && formHandler.errors.password}
-</span>
-</div> */}
-
             <Button
               type="submit"
               disabled={!formHandler.isValid || !formHandler.dirty}
               variant={"main"}
-              className="mx-auto !block h-9 w-full !rounded-md outline-none sm:w-1/3"
+              className="mx-auto !flex h-9 w-full justify-center !rounded-md outline-none sm:w-1/3"
             >
-              {t("withdrawal.submit")}
+              {isPending ? (
+                <ButtonLoader className="mx-auto block" />
+              ) : (
+                t("withdrawal.submit")
+              )}
             </Button>
             {userData.cartRegister ? (
               <p
