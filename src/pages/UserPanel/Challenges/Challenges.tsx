@@ -17,8 +17,7 @@ const Challenges = () => {
     ["user_challenges"],
     getChallenges,
   );
-
-  console.log(challenges);
+ 
 
   async function getChallenges() {
     const eatBetterToken = Cookies.get(tokenName);

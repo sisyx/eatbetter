@@ -12,7 +12,6 @@ import { CharityCardSchema } from "../../../../validations/rules";
 import usePostData from "../../../../hooks/usePostData";
 import { toast } from "../../../../hooks/use-toast"; 
 import { ButtonLoader } from "../../../modules/loader/Loader";
-import { useEffect } from "react";
 
 interface formValues {
   accountNumber: string,
@@ -63,8 +62,7 @@ const xxx: XXXType[] = [
 ]
 
 const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
-    const successFunc = (data: any) => {
-        console.log(data);
+    const successFunc = () => {
         toast({
             variant: "success",
             title: "کارت جدید با موفقیت اضافه شد"
@@ -100,14 +98,7 @@ const CreateCharityCard = ({ reloadFn }: {reloadFn: Function}) => {
         validationSchema: CharityCardSchema,
       });
 
-    useEffect(() => {
-      console.log("is valid: ");
-      console.log(formHandler.isValid);
-      console.log("is dirty: ");
-      console.log(formHandler.dirty);
-      console.log("values: ");
-      console.log(formHandler.values)
-    }, [formHandler.values])
+  
 
   return (
     <Dialog>

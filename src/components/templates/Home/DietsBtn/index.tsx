@@ -20,7 +20,7 @@ export default function DietsBtn() {
     },
   );
 
-  console.log(data);
+  
   return (
     <>
       {userData && userData.id ? (

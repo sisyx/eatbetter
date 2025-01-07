@@ -28,7 +28,7 @@ const Contacts = () => {
         subject: values.subject,
         phoneNumber: values.phone,
       };
-      console.log(data);
+         
 
       mutation(data);
       resetForm();

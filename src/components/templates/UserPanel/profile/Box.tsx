@@ -82,9 +82,7 @@ const Box: FC<BoxProps> = ({
   const submitHandler = () => {
     const newData = {
       [requestBody]: data,
-    };
-    console.log(newData);
-
+    }; 
     mutation(newData as any);
   };
 

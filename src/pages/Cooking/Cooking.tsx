@@ -41,7 +41,7 @@ const Cooking = () => {
           }
       } catch (error) {
           toast({title: language === "en" ? "Failed To Fetch Cookies :)" : "مشکلی در دریافت غذا ها به وجود آمد.", variant: "danger"})
-          console.error(error);
+           
           return error;
       }
   }

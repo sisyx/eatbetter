@@ -58,8 +58,8 @@ const xxx: XXXType[] = [
 const CreatePackage = (props: PackageProps) => {
     const { id, name, nameFa, currency, maxDiet, price, reloadFn } = props;
     const { i18n } = useTranslation();
-    const successFunc = (data: any) => {
-        console.log(data);
+    const successFunc = () => {
+           
         toast({
             variant: "success",
             title: "پکیج با موفقیت ویرایش شد"

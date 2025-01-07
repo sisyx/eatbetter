@@ -6,8 +6,7 @@ import Cookies from "js-cookie";
 import { tokenName } from "../../../../config/constants";
 import { toast } from "../../../../hooks/use-toast";
 import { TransactionType } from "./types";
-import Transaction from "./Transaction";
-import { useEffect } from "react";
+import Transaction from "./Transaction"; 
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -34,14 +33,10 @@ const Transactions = () => {
             }
         } catch (error) {
             toast({title: language === "en" ? "Failed Loading Withdrawals" : "مشکلی در دریافت برداشت ها پیش آمده به وجود آمد.", variant: "danger"})
-            console.error(error);
             return error;
         }
     }
-
-    useEffect(() => {
-        console.log(transactions);
-    }, [transactions]);
+ 
 
     return (
         <Layout>

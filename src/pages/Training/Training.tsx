@@ -33,7 +33,7 @@ const Training = () => {
           }
       } catch (error) {
           toast({title: language === "en" ? "Failed To Push Trainings Up :)" : "مشکلی در دریافت ورزش ها به وجود آمد.", variant: "danger"})
-          console.error(error);
+           
           return error;
       }
   }

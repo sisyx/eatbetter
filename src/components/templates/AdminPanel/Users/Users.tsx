@@ -31,7 +31,6 @@ const Users = () => {
       const res = await req.json();
       return res.users;
     } catch (error) {
-      console.error(error);
     }
   }
 

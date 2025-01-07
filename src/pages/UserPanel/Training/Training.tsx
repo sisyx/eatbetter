@@ -44,7 +44,7 @@ const Training = () => {
             : "مشکلی در دریافت ورزش ها به وجود آمد.",
         variant: "danger",
       });
-      console.error(error);
+       
       return error;
     }
   }

@@ -42,7 +42,7 @@ const BlogsContainer = () => {
             : "مشکلی در دریافت بلاگها به وجود آمد.",
         variant: "danger",
       });
-      console.error(error);
+       
       return error;
     }
   }

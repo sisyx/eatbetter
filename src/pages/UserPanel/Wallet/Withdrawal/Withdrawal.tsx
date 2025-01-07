@@ -32,8 +32,7 @@ const Withdrawal = () => {
     if (userData) {
       const id = Cookies.get(`withDrawalId${userData.id}`);
       setwithDrawalId(id as string);
-      if (withDrawalStatusCheck) {
-        console.log('hi');
+      if (withDrawalStatusCheck) { 
         
         queryClient.invalidateQueries({ queryKey: ["withdrawalStatus"] });
       }

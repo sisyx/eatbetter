@@ -28,8 +28,7 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
         }
     }
 
-    const successFunc = (data: any) => {
-        console.log(data);
+    const successFunc = () => { 
         toast({
             variant: "success",
             title: "بلاگ با موفقیت اضافه شد"

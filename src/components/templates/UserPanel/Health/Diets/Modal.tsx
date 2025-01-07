@@ -18,7 +18,6 @@ const Modal = (_props: Props) => {
   const { i18n, t } = useTranslation();
 
   const handleSaveDate = () => {
-    console.log("تاریخ ذخیره‌شده:", selectedDate);
   };
   return (
     <Dialog>

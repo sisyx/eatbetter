@@ -53,7 +53,7 @@ const Login = () => {
             variant: "danger",
           });
         }
-        console.log(data);
+           
       },
       false,
       null,

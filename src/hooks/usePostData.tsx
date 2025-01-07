@@ -11,7 +11,7 @@ const usePostData = <T extends object>(
   successFunc?: ((data: any) => void) | null,
   formData?: boolean,
   queryUpdate?: string | null,
-  isNotJson?:boolean
+  isNotJson?: boolean,
 ) => {
   const eatBetterToken = Cookies.get(tokenName);
   const queryClient = useQueryClient();
@@ -29,11 +29,9 @@ const usePostData = <T extends object>(
         headers,
         // credentials: "include",
         body: formData ? (data as any) : JSON.stringify(data),
-      }).then((res) => !isNotJson ? res.json() : res);
+      }).then((res) => (!isNotJson ? res.json() : res));
     },
     onSuccess: (data) => {
-      console.log(data);
-
       if (successFunc) {
         successFunc(data);
       }
@@ -54,8 +52,7 @@ const usePostData = <T extends object>(
         });
       }
     },
-    onError: (data) => {
-      console.log(data);
+    onError: () => {
       toast({
         variant: "danger",
         title: "خطایی غیر منتظره رخ داد",

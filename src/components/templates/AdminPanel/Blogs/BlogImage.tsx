@@ -51,8 +51,7 @@ export const BlogImage = (props: PropsType) => {
                 setUploadStatus(prev => ({...prev, error: false}));
                 reload();
             }
-        } catch(error: any) {
-            console.error(error);
+        } catch(error: any) { 
             setUploadStatus(prev => ({...prev, error: true}));
         }
         setUploadStatus(prev => ({...prev, uploading: false}));
