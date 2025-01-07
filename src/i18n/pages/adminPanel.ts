@@ -58,6 +58,7 @@ const adminPanelFa = {
         publishDate: "تاریخ انتشار",
         content: "محتوای بلاگ",
         edit: "ویرایش",
+        delete: "حذف",
         row: {
           edit: "ویرایش",
           content: "محتوای وبلاگ",
@@ -263,6 +264,7 @@ const adminPanelFa = {
         publishDate: "Publish Date",
         content: "Blog Content",
         edit: "Edit",
+        delete: "Delete",
         row: {
           edit: "Edit",
           content: "Content",

@@ -12,6 +12,7 @@ type CharityCardProps = {
     bankName: string,
     fullName: string,
     balance: number,
+    reloadFn: Function,
 }
 
 export type { CharityCard, CharityCardProps };
