@@ -30,7 +30,6 @@ export const Packages = () => {
             const res = await req.json();
             return res.packages;
         } catch (error) {
-            console.error(error);
             return []
         }
     }

@@ -48,8 +48,7 @@ export const Blog = (props: Props) => {
             setDeleteState(cur => ({...cur, deleting: false, deleted: true}));
             return message
         })
-        .catch(error => {
-            console.error(error);
+        .catch((_error) => { 
             setDeleteState(cur => ({...cur, deleted: false, deleteErr: true, deleting: false}))
         })
     }

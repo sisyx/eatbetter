@@ -46,8 +46,7 @@ export const CreateBlog = (props: PropsType) => {
     const { reload } = props;
     const { t } = useTranslation();
 
-    const successFunc = (data: any) => {
-        console.log(data);
+    const successFunc = () => {
         toast({
             variant: "success",
             title: "بلاگ با موفقیت اضافه شد"

@@ -13,8 +13,7 @@ const Diet = () => {
 
   const { data, isLoading } = useGetData(["oneDiet", i18n.language], () =>
     getOneDiet(i18n.language, String(id)),
-  );
-  console.log("diet", data);
+  ); 
 
   return (
     <Layout>

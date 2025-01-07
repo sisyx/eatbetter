@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import Layout from "../../../../Layouts/AdminLayout";
 import { FaCommentAlt } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cookies from "js-cookie";
 import useGetData from "../../../../hooks/useGetData";
 import CreateCharityCard from "./CreateCharityCard";
@@ -36,16 +36,12 @@ export const CharityCardsList = () => {
             //     return res
             // }
         } catch (error) {
-            console.error(error);
             return error;
         }
     }
 
     const {data, isError: error, isLoading: loading, } = useGetData(["adminCharityWallet", reload], getMessages);
-
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+ 
 
     return (
         <Layout>

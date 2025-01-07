@@ -34,7 +34,6 @@ const CooperateCardsList = () => {
                 return res.data;
             }
         } catch (error) {
-            console.error(error);
             return error;
         }
     }

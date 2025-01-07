@@ -52,8 +52,7 @@ const SleepSchedule = () => {
       sleepTime: sleepDate.toISOString(),
       wakeUpTime: wakeUpDate.toISOString(),
     };
-
-    console.log("Payload:", payload);
+ 
     mutation(payload);
   };
 

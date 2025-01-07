@@ -22,7 +22,7 @@ const Health = () => {
     },
   );
 
-  console.log(data);
+     
 
   return (
     <Layout>

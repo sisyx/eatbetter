@@ -36,7 +36,6 @@ const Blogs = () => {
             }
         } catch (error) {
             toast({title: language === "en" ? "Failed Loading Blogs" : "مشکلی در دریافت بلاگها به وجود آمد.", variant: "danger"})
-            console.error(error);
             return error;
         }
     }

@@ -95,7 +95,7 @@ const Card = (props: Props) => {
                 referralCode: inputValue ? inputValue : "",
                 packageId: props.data?.id,
               };
-              console.log(data);
+                 
               if (props.data) {
                 mutation(data);
               }

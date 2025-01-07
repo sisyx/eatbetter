@@ -36,8 +36,7 @@ const VerifyPayment = () => {
 
   useEffect(() => {
     if (transactionId) {
-      if (stripData) {
-        console.log(stripData);
+      if (stripData) { 
 
         if (stripData.status === "success") {
           setPaymentStatus("success");

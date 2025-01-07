@@ -32,7 +32,7 @@ const Modal = () => {
     },
   );
 
-  console.log(data);
+     
 
   const { mutate: mutation, isPending } = usePostData<any>(
     week === "first"

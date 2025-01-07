@@ -29,14 +29,11 @@ const Contacts = () => {
                 }
             });
             if (!req.ok) throw new Error(req.statusText);
-            const res = await req.json();
-            console.log("Error Not Happend");
+            const res = await req.json(); 
             if (res.statusCode === 200) {
                 return res.contactForms;
             }
-        } catch (error) {
-            console.log("Error Happend");
-            console.error(error);
+        } catch (error) { 
             return error;
         }
     }

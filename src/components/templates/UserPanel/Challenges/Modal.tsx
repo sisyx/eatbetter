@@ -16,7 +16,6 @@ import {
       }; 
   const Modal = (props: Props) => { 
   const { i18n } = useTranslation();
-    console.log(props);
     
     return (
       <Dialog>

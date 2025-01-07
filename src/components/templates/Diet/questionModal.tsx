@@ -100,8 +100,7 @@ const Modal = () => {
   };
 
   const handleInputChange = (field: string, value: any) => {
-    console.log(value);
-    console.log(field);
+   
 
     setFormData((prevData) => ({
       ...prevData,
