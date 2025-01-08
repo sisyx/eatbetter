@@ -29,19 +29,20 @@ const Card = (props: Props) => {
       : `/api/Stripe/create-checkout-session`,
     null,
     false,
-    (data) => { 
-        if (data.paymentUrl) {
-          window.location.href = data.paymentUrl;
-        } else {
-          toast({
-            title: data.message
-              ? data.message
-              : i18n.language === "fa"
-                ? "کد معرف نادرست است"
-                : "Referral code is not valid",
-            variant: "danger",
-          });
-        } 
+    (data) => {
+      if (data.paymentUrl) {
+        window.location.href = data.paymentUrl;
+      } else {
+        toast({
+          title: data.message
+            ? data.message
+            : i18n.language === "fa"
+              ? "کد معرف نادرست است"
+              : "Referral code is not valid",
+          variant: "danger",
+          className: i18n.language === "fa" ? "justify-start" : "justify-end",
+        });
+      }
     },
   );
 
@@ -53,6 +54,7 @@ const Card = (props: Props) => {
             ? "شما از قبل یک پکیج فعال دارید و میتونید برای دیدن مشخصات پکیجتون به پنل کاربری خود مراجعه کنید"
             : "You already have an active package and you can visit your user panel to see your package details",
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
       });
     } else {
       swal({
@@ -95,7 +97,7 @@ const Card = (props: Props) => {
                 referralCode: inputValue ? inputValue : "",
                 packageId: props.data?.id,
               };
-                 
+
               if (props.data) {
                 mutation(data);
               }

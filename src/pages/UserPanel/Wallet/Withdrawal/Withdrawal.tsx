@@ -27,13 +27,13 @@ const Withdrawal = () => {
   const [withDrawalStatusCheck, setWithDrawalStatusCheck] = useState(false);
   const [withDrawalId, setwithDrawalId] = useState("");
   const queryClient = useQueryClient();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     if (userData) {
       const id = Cookies.get(`withDrawalId${userData.id}`);
       setwithDrawalId(id as string);
-      if (withDrawalStatusCheck) { 
-        
+      if (withDrawalStatusCheck) {
         queryClient.invalidateQueries({ queryKey: ["withdrawalStatus"] });
       }
     }
@@ -82,6 +82,7 @@ const Withdrawal = () => {
           toast({
             title: data.messages.persian,
             variant: "danger",
+            className: i18n.language === "fa" ? "justify-start" : "justify-end",
           });
         }
       },

@@ -7,7 +7,7 @@ import useGetData from "../hooks/useGetData";
 import Loader from "../components/modules/loader/Loader";
 // import Cookies from "js-cookie";
 
-const Auth = () => { 
+const Auth = () => {
   const { data, status, isLoading } = useGetData<any>(["auth"], getUser);
   const { setUserData, setLogin, setIsPending } = authStore((state) => state);
 
@@ -23,10 +23,7 @@ const Auth = () => {
       setLogin(false);
       setIsPending(false);
     }
-        
-
-  }, [status, data, 
-  ]);
+  }, [status, data]);
 
   return isLoading ? <Loader /> : null;
 };
@@ -46,7 +43,7 @@ export default Auth;
 //     }).then((res) => {
 //       if (res) {
 //         router.push("/");
-//         Cookies.remove("token"); 
+//         Cookies.remove("token");
 //         setUserData(null);
 //         setLogin(false);
 //         queryClient.invalidateQueries({ queryKey: ["auth"] });

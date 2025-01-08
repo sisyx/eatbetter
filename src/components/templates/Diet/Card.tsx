@@ -47,6 +47,7 @@ const Card = ({ data, panel }: Props) => {
               ? "شما به حداکثر سقف انتخاب رژیم با توجه پکیج خریداری شده خود رسیدید"
               : "You have reached the maximum diet selection limit according to the package you purchased",
           variant: "danger",
+          className: i18n.language === "fa" ? "justify-start" : "justify-end",
         });
       } else {
         mutation([data.id] as any);
@@ -120,6 +121,8 @@ const Card = ({ data, panel }: Props) => {
                       ? "لطفا ابتدا وارد حسابتون بشید"
                       : "Please Login first",
                   variant: "success",
+                  className:
+                    i18n.language === "fa" ? "justify-start" : "justify-end",
                 });
               }}
               className="mt-5 w-full"

@@ -31,7 +31,7 @@ const Register = () => {
   const successFunc = (data: {
     statusCode: number;
     message: string;
-    token: string; 
+    token: string;
   }) => {
     if (data.statusCode === 200) {
       Cookies.set(tokenName, data.token, {
@@ -40,7 +40,11 @@ const Register = () => {
       });
       toast({
         variant: "success",
-        title: i18n.language === 'fa' ? "با موفقیت ثبت نام شدید":"Register Successfully",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
+        title:
+          i18n.language === "fa"
+            ? "با موفقیت ثبت نام شدید"
+            : "Register Successfully",
       });
       setTimeout(() => {
         navigate("/userPanel/profile");
@@ -48,11 +52,13 @@ const Register = () => {
     } else if (data.statusCode === 400) {
       toast({
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title: data.message,
       });
     } else {
       toast({
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title: "Sorry, please go through the steps again.",
       });
     }
@@ -253,9 +259,9 @@ const Register = () => {
               <input
                 style={{ accentColor: "green" }}
                 type="radio"
-                checked={country === 'IR' ? true : false}
+                checked={country === "IR" ? true : false}
                 name="country"
-                value={"IR"} 
+                value={"IR"}
                 onClick={() => setCountry("IR")}
               />
               <p>IR</p>
@@ -265,10 +271,9 @@ const Register = () => {
               <input
                 style={{ accentColor: "green" }}
                 type="radio"
-                checked={country === 'INT' ? true : false}
-
+                checked={country === "INT" ? true : false}
                 name="country"
-                value={"INT"} 
+                value={"INT"}
                 onClick={() => setCountry("INT")}
               />
               <p>INT</p>

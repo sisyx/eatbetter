@@ -43,6 +43,7 @@ const Login = () => {
                 ? "رمز عبور با موفقیت به ایمیل شما ارسال شد"
                 : "Password has been successfully sent to your email",
             variant: "success",
+            className: i18n.language === "fa" ? "justify-start" : "justify-end",
           });
         } else {
           toast({
@@ -51,9 +52,9 @@ const Login = () => {
                 ? "حساب کاربری با این ایمیل یافت نشد"
                 : "Account with this email address not found",
             variant: "danger",
+            className: i18n.language === "fa" ? "justify-start" : "justify-end",
           });
         }
-           
       },
       false,
       null,
@@ -74,6 +75,7 @@ const Login = () => {
       queryClient.invalidateQueries({ queryKey: ["auth"] });
       toast({
         variant: "success",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title:
           i18n.language === "fa" ? "با موفقیت وارد شدید" : "Login Successfully",
       });
@@ -83,11 +85,13 @@ const Login = () => {
     } else if (data.statusCode === 400) {
       toast({
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title: data.message,
       });
     } else {
       toast({
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title: "Sorry, please go through the steps again.",
       });
       // location.reload();
