@@ -53,11 +53,12 @@ const Contact = (props: ContactProps) => {
                 <div className="flex items-center gap-3">
                     {/* <span className="p-2 text-cener">{t("adminContact.user")}</span> */}
                     <div 
-                    className="
-                            text-white bg-main group-hover:bg-mainHover font-bold h-full px-2 flex items-center justify-center
-                            relative before:absolute before:left-0 before:bottom-0 before:-translate-x-full before:content-[''] before:w-4 before:aspect-square before:bg-main group-hover:before:bg-mainHover
-                            after:absolute after:left-0 after:bottom-0 after:-translate-x-full after:content-[''] after:w-4 after:aspect-square after:bg-gray-100 after:rounded-br-full
-                        "
+                    className={`
+                        text-white bg-main group-hover:bg-mainHover font-bold h-full px-2 flex items-center justify-center
+                        relative before:absolute before:bottom-0 before:content-[''] before:w-4 before:aspect-square before:bg-main group-hover:before:bg-mainHover
+                        after:absolute after:bottom-0 after:content-[''] after:w-4 after:aspect-square after:bg-gray-100
+                        ${language === "fa" ? "before:left-0 before:-translate-x-full after:left-0 after:-translate-x-full after:rounded-br-full" : "before:right-0 before:translate-x-full after:right-0 after:translate-x-full after:rounded-bl-full" }
+                        `}
                     >
                         <span className="md:hidden text-sm">
                             {`${fullName.slice(0,7)}${fullName.length > 7 ? "..." : ""}`}

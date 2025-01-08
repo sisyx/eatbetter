@@ -137,7 +137,7 @@ const CreatePackage = (props: PackageProps) => {
                   toast({ title: message })
                 } else {
                   toast({
-                    title: "مشکلی پیش آمده",
+                    title: language === "fa" ? "مشکلی پیش آمده" : "Sorry, Unexpected Error",
                     variant: "danger",
                   })
                 }

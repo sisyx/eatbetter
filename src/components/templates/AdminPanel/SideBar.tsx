@@ -85,7 +85,7 @@ const SideBar = ({ className }: { className?: string }) => {
           {links.map((link) =>
               <Link
                 to={link.href}
-                className={`${param.pathname.slice(11) === link.href.slice(11) ? "bg-white py-2 text-main" : ""} flex flex-row-reverse items-center justify-end gap-3 rounded-r-full px-5`}
+                className={`${param.pathname.slice(11) === link.href.slice(11) ? "bg-white py-2 text-main" : ""} flex flex-row-reverse items-center justify-end gap-3 rounded-s-full px-5`}
               >
                 <li>{link.title}</li>
                 {link.icon}
