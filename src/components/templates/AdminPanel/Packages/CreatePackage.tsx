@@ -28,31 +28,41 @@ const xxx: XXXType[] = [
   {
     value: "name",
     title: "عنوان",
+    enTitle: "Tiele",
     placeholder: "مثلا: Base",
+    enPlaceholder: "ex: Base",
     type: "text",
   },
   {
     value: "nameFa",
     title: "عنوان فارسی",
+    enTitle: "Persian Title",
     placeholder: "مثلا: پکیج پایه",
+    enPlaceholder: "ex: پکیج پایه",
     type: "text",
   },
   {
     value: "currency",
     title: "نرخ ارز",
+    enTitle: "currency",
     placeholder: "مثلا: IRR",
+    enPlaceholder: "ex: IRR",
     type: "text",
   },
   {
     value: "maxDiet",
     title: "رژیم",
+    enTitle: "Regiems",
     placeholder: "مثلا: 3000",
+    enPlaceholder: "ex: 3000",
     type: "number",
   },
   {
     value: "price",
     title: "قیمت",
+    enTitle: "Price",
     placeholder: "مثلا: 40000",
+    enPlaceholder: "ex: 40000",
     type: "number",
   },
 ];
@@ -60,6 +70,7 @@ const xxx: XXXType[] = [
 const CreatePackage = ({ reloadFn }: { reloadFn: Function }) => {
   // const navigate = useNavigate();
   const { i18n } = useTranslation();
+  const { language } = i18n;
 
   const successFunc = (data: any) => {
     if (!!data.id) {
@@ -118,13 +129,15 @@ const CreatePackage = ({ reloadFn }: { reloadFn: Function }) => {
       <DialogTrigger asChild>
         <div className="group relative flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-main text-2xl font-extrabold text-main transition-all duration-100 hover:border-mainHover hover:text-mainHover">
           <MdAdd className="text-4xl" />
-          <span>ایجاد پکیج جدید</span>
+          <span>
+            {language === "fa" ? "ایجاد پکیج جدید" : "Create New Package"}
+          </span>
         </div>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2 py-3">
-            <h5>ایجاد پکیج جدید</h5>
+            <h5>{language === "fa" ? "ایجاد پکیج جدید" : "Create New Package"}</h5>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
@@ -132,9 +145,9 @@ const CreatePackage = ({ reloadFn }: { reloadFn: Function }) => {
         </DialogHeader>
         <div className="flex flex-col items-center gap-4" dir="rtl">
           <div className="flex flex-col items-start gap-4">
-            {xxx.map(({ value, title, type, placeholder }) => (
+            {xxx.map(({ value, title, enTitle, type, placeholder, enPlaceholder, }) => (
               <div className="flex w-full items-center gap-2">
-                <div className="w-1/4">{title}</div>
+                <div className="w-1/4">{language === "fa" ? title : enTitle}</div>
                 <div className="flex flex-1 flex-col">
                   <input
                     type={type}
@@ -143,7 +156,7 @@ const CreatePackage = ({ reloadFn }: { reloadFn: Function }) => {
                     onChange={formHandler.handleChange}
                     onBlur={formHandler.handleBlur}
                     className="w-full min-w-8 rounded-md border border-main p-2 outline-none focus:border-mainHover"
-                    placeholder={placeholder}
+                    placeholder={language === "fa" ? placeholder : enPlaceholder}
                   />
                   {formHandler.touched[value] && formHandler.errors[value] && (
                     <span className="mt-2 block w-full text-center text-xs text-red-600">
@@ -159,7 +172,9 @@ const CreatePackage = ({ reloadFn }: { reloadFn: Function }) => {
               className="w-full"
             >
               {isPending ? <ButtonLoader /> : ""}
-              اضافه کردن
+              {
+                language === "fa" ? "اضافه کردن" : "Add"
+              }
             </Button>
           </div>
         </div>

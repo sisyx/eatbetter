@@ -20,7 +20,9 @@ type PackageProps = {
 type XXXType = {
     value: "name" | "currency" | "price" | "maxDiet" | "nameFa",
     title: string,
+    enTitle: string,
     placeholder: string,
+    enPlaceholder: string,
     type: "text" | "number",
 }
 
