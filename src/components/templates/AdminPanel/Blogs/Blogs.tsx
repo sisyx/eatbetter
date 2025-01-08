@@ -63,6 +63,7 @@ const Blogs = () => {
                             <tr>
                                 <th align={language === "fa" ? "right" : "left"}></th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.photo")}</th>
+                                {/* <th align={language === "fa" ? "right" : "left"}>Photo</th> */}
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.title")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.content")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.publishDate")}</th>
