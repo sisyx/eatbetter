@@ -1,4 +1,4 @@
-import { PackageProps, XXXType } from "./types";
+import { MdAdd } from "react-icons/md";
 import {
   Dialog,
   DialogContent,
@@ -11,8 +11,9 @@ import { useFormik } from "formik";
 import { packageSchema } from "../../../../validations/rules";
 import usePostData from "../../../../hooks/usePostData";
 import { toast } from "../../../../hooks/use-toast";
+// import { useNavigate } from "react-router-dom";
 import { ButtonLoader } from "../../../modules/loader/Loader";
-import { useTranslation } from "react-i18next";
+import { XXXType } from "./types";
 
 interface formValues {
   name: string;
@@ -24,15 +25,15 @@ interface formValues {
 
 const xxx: XXXType[] = [
   {
-    value: "nameFa",
-    title: "عنوان فارسی",
-    placeholder: "مثلا: پکیج طلایی",
+    value: "name",
+    title: "عنوان",
+    placeholder: "مثلا: Base",
     type: "text",
   },
   {
-    value: "name",
-    title: "عنوان",
-    placeholder: "مثلا: Golden",
+    value: "nameFa",
+    title: "عنوان فارسی",
+    placeholder: "مثلا: پکیج پایه",
     type: "text",
   },
   {
@@ -44,43 +45,49 @@ const xxx: XXXType[] = [
   {
     value: "maxDiet",
     title: "رژیم",
-    placeholder: "مثلا: 13000",
+    placeholder: "مثلا: 3000",
     type: "number",
   },
   {
     value: "price",
     title: "قیمت",
-    placeholder: "مثلا: 50000",
+    placeholder: "مثلا: 40000",
     type: "number",
   },
 ];
 
-const CreatePackage = (props: PackageProps) => {
-  const { id, name, nameFa, currency, maxDiet, price, reloadFn } = props;
-  const { i18n } = useTranslation();
-  const successFunc = () => {
-    toast({
-      variant: "success",
-      className: i18n.language === "fa" ? "justify-start" : "justify-end",
-      title: "پکیج با موفقیت ویرایش شد",
-    });
-    reloadFn();
+const CreatePackage = ({ reloadFn }: { reloadFn: Function }) => {
+  // const navigate = useNavigate();
+
+  const successFunc = (data: any) => {
+    if (!!data.id) {
+      toast({
+        variant: "success",
+        title: "پکیج با موفقیت اضافه شد",
+      });
+      reloadFn();
+    } else {
+      toast({
+        variant: "danger",
+        title: "اضافه کردن پکیج با مشکل مواجه شد",
+      });
+    }
   };
 
   const { mutate: mutation, isPending } = usePostData(
-    `/api/Package/UpdatePackage/${id}`,
+    "/api/Package",
     null,
-    true,
+    false,
     successFunc,
   );
 
   const formHandler = useFormik({
     initialValues: {
-      name,
-      nameFa,
-      currency,
-      maxDiet,
-      price,
+      name: "",
+      nameFa: "",
+      currency: "",
+      maxDiet: NaN,
+      price: NaN,
     },
     onSubmit: (_values: formValues) => {
       const data = {
@@ -90,6 +97,7 @@ const CreatePackage = (props: PackageProps) => {
         maxDiet: formHandler.values.maxDiet,
         price: formHandler.values.price,
       };
+      //   console.log(data)
       mutation(data as any);
     },
     validationSchema: packageSchema,
@@ -98,44 +106,15 @@ const CreatePackage = (props: PackageProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div
-          // data-aos="fade-up"
-          className="group relative cursor-pointer overflow-hidden rounded-2xl border-2 border-main bg-opacity-90 transition-all duration-100 hover:bg-opacity-100"
-        >
-          <span className="flex items-center justify-center gap-2 bg-main p-4 text-base font-extrabold text-white md:text-xl">
-            <span>{name}</span>
-            <span>{nameFa}</span>
-          </span>
-          <div className="flex items-center justify-center border-b-2 border-black py-4">
-            <span>{currency}</span>
-          </div>
-          <div className="flex items-center justify-center border-b-2 border-black py-4">
-            <span>{maxDiet.toString()}</span>
-          </div>
-          <div className="flex items-center justify-center py-4">
-            <span>
-              {currency === "IRR" ? (
-                i18n.language === "fa" ? (
-                  <p> {price.toLocaleString()} هزار ریال</p>
-                ) : (
-                  <p dir="ltr">{price.toLocaleString()} thousand rials</p>
-                )
-              ) : i18n.language === "fa" ? (
-                `${price.toLocaleString()} دلار  `
-              ) : (
-                <p dir="ltr">${price.toLocaleString()}</p>
-              )}
-            </span>
-          </div>
-          <div className="px-4 pb-4">
-            <Button className="w-full">ویرایش</Button>
-          </div>
+        <div className="group relative flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-main text-2xl font-extrabold text-main transition-all duration-100 hover:border-mainHover hover:text-mainHover">
+          <MdAdd className="text-4xl" />
+          <span>ایجاد پکیج جدید</span>
         </div>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2 py-3">
-            <h5>ویرایش</h5>
+            <h5>ایجاد پکیج جدید</h5>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
@@ -144,7 +123,7 @@ const CreatePackage = (props: PackageProps) => {
         <div className="flex flex-col items-center gap-4" dir="rtl">
           <div className="flex flex-col items-start gap-4">
             {xxx.map(({ value, title, type, placeholder }) => (
-              <div className="flex w-full items-center gap-2 text-sm md:text-base">
+              <div className="flex w-full items-center gap-2">
                 <div className="w-1/4">{title}</div>
                 <div className="flex flex-1 flex-col">
                   <input
@@ -180,4 +159,3 @@ const CreatePackage = (props: PackageProps) => {
 };
 
 export default CreatePackage;
-1;

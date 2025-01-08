@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { CharityCardProps } from "./types";
 import { useTranslation } from "react-i18next";
 import WithdrawFromCharity from "./other/WithdrawFromCharity";
+import EditCharityCard from "./EditCharityCard";
 
 export const CharityCard = (props: CharityCardProps) => {
     const { fullName, accountNumber, bankName, iban, balance, reloadFn } = props;
@@ -54,7 +55,10 @@ export const CharityCard = (props: CharityCardProps) => {
                     <span className="ps-8 text-2xl font-bold">{iban}</span>
                 </div>
             </div>
-            <WithdrawFromCharity reloadFn={reloadFn} />
+            <div className="grid grid-cols-2 w-full">
+                <EditCharityCard {...props} />
+                <WithdrawFromCharity reloadFn={reloadFn} />
+            </div>
         </div>
     );
 }

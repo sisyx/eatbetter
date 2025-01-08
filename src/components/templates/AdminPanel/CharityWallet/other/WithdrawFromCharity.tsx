@@ -30,18 +30,13 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
         throw new Error("TypeError");
       }
     } catch (error) {
-      toast({
-        variant: "danger",
-        className: i18n.language === "fa" ? "justify-start" : "justify-end",
-        title: "لطفا صرفا عدد وارد کنید",
-      });
+      toast({ variant: "danger", title: "لطفا صرفا عدد وارد کنید" });
     }
   }
 
   const successFunc = () => {
     toast({
       variant: "success",
-      className: i18n.language === "fa" ? "justify-start" : "justify-end",
       title: "بلاگ با موفقیت اضافه شد",
     });
     reloadFn();
@@ -61,7 +56,9 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="w-full bg-main">برداشت موجودی</Button>
+        <Button className="w-full bg-main hover:bg-mainHover">
+          برداشت موجودی
+        </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>

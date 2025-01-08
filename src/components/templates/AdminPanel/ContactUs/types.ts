@@ -1,4 +1,5 @@
 type Contact = {
+    id: number,
     fullName: String,
     email: String,
     phoneNumber: String,
@@ -7,6 +8,7 @@ type Contact = {
 };
 
 type ContactProps = {
+    id: number,
     fullName: String,
     email: String,
     phoneNumber: String,

@@ -468,15 +468,13 @@ let CharityCardSchema = Yup.object().shape({
         : "Please enter card number",
     ),
 
-  iban: Yup.string().required(
-    i18n.language === "fa" ? "لطفا iban را وارد کنید" : "Please enter iban",
-  ),
+    iban: Yup.string(),
 
-  bankName: Yup.string().required(
-    i18n.language === "fa"
-      ? "لطفا نام بانک را وارد کنید"
-      : "Please enter bank name",
-  ),
+    bankName: Yup.string().required(
+      i18n.language === "fa"
+        ? "لطفا نام بانک را وارد کنید"
+        : "Please enter bank name",
+    ),
 
   fullName: Yup.string()
     .min(
@@ -499,11 +497,6 @@ let CharityCardSchema = Yup.object().shape({
 
   balance: Yup.number()
     .min(0)
-    .required(
-      i18n.language === "fa"
-        ? "لطفا موجودی خود را وارد کنید"
-        : "Please enter your balance",
-    ),
 });
 
 let changePasswordSchema = Yup.object().shape({
