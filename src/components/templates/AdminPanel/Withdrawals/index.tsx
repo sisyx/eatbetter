@@ -61,6 +61,7 @@ const Withdrawals = () => {
             ? "Failed Loading Withdrawals"
             : "مشکلی در دریافت برداشت ها پیش آمده به وجود آمد.",
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
       });
 
       return error;

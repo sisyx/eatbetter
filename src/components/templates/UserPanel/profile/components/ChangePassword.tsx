@@ -33,6 +33,7 @@ const ChangePassword = () => {
       formHandler.resetForm();
       toast({
         variant: "success",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title:
           i18n.language === "fa"
             ? "رمز عبور با موفقیت بروزرسانی شد"
@@ -42,6 +43,7 @@ const ChangePassword = () => {
     } else {
       toast({
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title: data.message,
       });
     }

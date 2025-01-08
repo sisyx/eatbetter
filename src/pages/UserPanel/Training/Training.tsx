@@ -5,18 +5,18 @@ import Card from "../../../components/templates/UserPanel/Training/Card";
 import useGetData from "../../../hooks/useGetData";
 import Cookies from "js-cookie";
 import { tokenName } from "../../../config/constants";
-import { toast } from "../../../hooks/use-toast";  
-import { TrainingType } from "../../../types/trainings";  
+import { toast } from "../../../hooks/use-toast";
+import { TrainingType } from "../../../types/trainings";
 import Loader from "../../../components/modules/loader/Loader";
 const apiUrl = import.meta.env.VITE_API_URL;
 const Training = () => {
   const { i18n } = useTranslation();
   const { language } = i18n;
 
-  const {
-    data: trainings, 
-    isLoading: loading,
-  } = useGetData(["trainings", language], getCookings);
+  const { data: trainings, isLoading: loading } = useGetData(
+    ["trainings", language],
+    getCookings,
+  );
 
   async function getCookings() {
     const eatBetterToken = Cookies.get(tokenName);
@@ -43,8 +43,9 @@ const Training = () => {
             ? "Failed To Push Trainings Up :)"
             : "مشکلی در دریافت ورزش ها به وجود آمد.",
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
       });
-       
+
       return error;
     }
   }
@@ -59,7 +60,7 @@ const Training = () => {
         {trainings &&
           trainings.map((training: TrainingType) => <Card {...training} />)}
       </main>
-      {loading && <Loader/>}
+      {loading && <Loader />}
     </Layout>
   );
 };

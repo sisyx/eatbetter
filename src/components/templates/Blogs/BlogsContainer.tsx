@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 const BlogsContainer = () => {
   const { language } = i18n;
 
-  const {i18n:lang} = useTranslation()
+  const { i18n: lang } = useTranslation();
   const {
     data: blogs,
     isError: error,
@@ -41,8 +41,9 @@ const BlogsContainer = () => {
             ? "Failed Loading Blogs"
             : "مشکلی در دریافت بلاگها به وجود آمد.",
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
       });
-       
+
       return error;
     }
   }

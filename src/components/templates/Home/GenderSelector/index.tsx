@@ -52,11 +52,13 @@ const GenderSelector = () => {
     } else if (data.status === 400) {
       toast({
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title: data.title,
       });
     } else {
       toast({
         variant: "danger",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
         title: "Sorry, please go through the steps again.",
       });
       // location.reload();
@@ -81,7 +83,11 @@ const GenderSelector = () => {
     } else {
       toast({
         variant: "danger",
-        title: "Please fill in all fields first",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
+        title:
+          i18n.language === "fa"
+            ? "لطفا همه فیلد ها را تکمیل کنید"
+            : "Please fill in all fields first",
       });
     }
   };
@@ -128,7 +134,7 @@ const GenderSelector = () => {
             <div className="mb-4 flex flex-wrap gap-5 max-sm:w-[100%]">
               <button
                 onClick={() => setGender("Feminine")}
-                className={`h-[150px] w-[150px] hover:text-white rounded-lg p-4 text-center shadow-xl transition-all hover:bg-mainHover max-sm:w-[100%] ${
+                className={`h-[150px] w-[150px] rounded-lg p-4 text-center shadow-xl transition-all hover:bg-mainHover hover:text-white max-sm:w-[100%] ${
                   gender === "Feminine"
                     ? "bg-main text-white"
                     : "bg-gray-200 text-black"

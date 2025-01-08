@@ -89,6 +89,8 @@ const Introductions = () => {
               .then(() => {
                 toast({
                   variant: "success",
+                  className:
+                    i18n.language === "fa" ? "justify-start" : "justify-end",
                   title:
                     i18n.language === "fa"
                       ? "کد معرفی با موفقیت کپی شد"
@@ -107,6 +109,8 @@ const Introductions = () => {
               .then(() => {
                 toast({
                   variant: "success",
+                  className:
+                    i18n.language === "fa" ? "justify-start" : "justify-end",
                   title:
                     i18n.language === "fa"
                       ? "کد معرفی با موفقیت کپی شد"

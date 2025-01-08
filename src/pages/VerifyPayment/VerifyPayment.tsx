@@ -25,6 +25,7 @@ const VerifyPayment = () => {
       enabled: Boolean(Authority) && Boolean(Status),
     },
   );
+  console.log(data);
 
   const { data: stripData, isLoading: stripLoading } = useGetData<any>(
     transactionId ? ["withdrawalStatusStrip", transactionId] : [],
@@ -36,8 +37,7 @@ const VerifyPayment = () => {
 
   useEffect(() => {
     if (transactionId) {
-      if (stripData) { 
-
+      if (stripData) {
         if (stripData.status === "success") {
           setPaymentStatus("success");
           queryClient.invalidateQueries({ queryKey: ["auth"] });
@@ -140,7 +140,7 @@ const VerifyPayment = () => {
           </div>
         </div>
       )}
-      {isLoading || (stripLoading && <Loader />)}
+      {isLoading || paymentStatus === "" || (stripLoading && <Loader />)}
     </>
   );
 };

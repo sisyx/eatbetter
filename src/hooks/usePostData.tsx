@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import { toast } from "./use-toast";
 import { tokenName } from "../config/constants";
+import { useTranslation } from "react-i18next";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const usePostData = <T extends object>(
@@ -15,6 +16,7 @@ const usePostData = <T extends object>(
 ) => {
   const eatBetterToken = Cookies.get(tokenName);
   const queryClient = useQueryClient();
+  const { i18n } = useTranslation();
 
   const { mutate, isSuccess, isPending, isError } = useMutation({
     mutationFn: async (data: T) => {
@@ -42,12 +44,14 @@ const usePostData = <T extends object>(
       if (successMsg && data.statusCode === 200) {
         toast({
           variant: "success",
+          className: i18n.language === "fa" ? "justify-start" : "justify-end",
           title: successMsg,
         });
       }
       if (successMsg && data.statusCode === 201) {
         toast({
           variant: "success",
+          className: i18n.language === "fa" ? "justify-start" : "justify-end",
           title: successMsg,
         });
       }
@@ -55,7 +59,11 @@ const usePostData = <T extends object>(
     onError: () => {
       toast({
         variant: "danger",
-        title: "خطایی غیر منتظره رخ داد",
+        className: i18n.language === "fa" ? "justify-start" : "justify-end",
+        title:
+          i18n.language === "fa"
+            ? "خطایی غیر منتظره رخ داد"
+            : "An unexpected error occurred",
       });
       // location.reload();
     },
