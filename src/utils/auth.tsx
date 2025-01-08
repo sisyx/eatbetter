@@ -23,7 +23,6 @@ const Auth = () => {
       setLogin(false);
       setIsPending(false);
     }
-    console.log(data);
   }, [status, data]);
 
   return isLoading ? <Loader /> : null;
