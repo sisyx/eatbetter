@@ -55,6 +55,7 @@ const adminPanelFa = {
       title: "مدیریت بلاگ ها",
       loadBlogsError: "مشکلی در بارگیری بلاگ ها پیش آمده",
       table: {
+        photo: "نمایه",
         title: "عنوان",
         publishDate: "تاریخ انتشار",
         content: "محتوای بلاگ",

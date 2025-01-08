@@ -73,7 +73,7 @@ export const BlogImage = (props: PropsType) => {
       <DialogTrigger asChild>
         <div>
           {imageUrl && imageUrl !== "https://alimoayed.com" ? (
-            <img src={imageUrl} className="24 rounded-full" />
+            <img src={imageUrl} className="w-12 aspect-square object-cover object-center rounded-full" />
           ) : (
             <>
               <Button className="hidden md:block">
