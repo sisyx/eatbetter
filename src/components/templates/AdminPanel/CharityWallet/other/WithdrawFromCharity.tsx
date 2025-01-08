@@ -30,14 +30,14 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
         throw new Error("TypeError");
       }
     } catch (error) {
-      toast({ variant: "danger", title: "لطفا صرفا عدد وارد کنید" });
+      toast({ variant: "danger", title: language === "fa" ? "لطفا صرفا عدد وارد کنید" : "Please Enter Only Numbers" });
     }
   }
 
   const successFunc = () => {
     toast({
       variant: "success",
-      title: "بلاگ با موفقیت اضافه شد",
+      title: language === "fa" ? "کیف پول با موفقیت اضافه شد" : "Wallet Added Successfully",
     });
     reloadFn();
   };
@@ -57,7 +57,9 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="w-full bg-main hover:bg-mainHover">
-          برداشت موجودی
+          {
+            language === "fa" ? "برداشت موجودی" : "Withdraw"
+          }
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
@@ -66,7 +68,11 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
-            <span>برداشت از کیف پول خیریه</span>
+            <span>
+              {
+                language === "fa" ? "برداشت از کیف پول خیریه" : "Withdraw from Charitty Wallet"
+              }
+            </span>
           </DialogTitle>
         </DialogHeader>
         <input
@@ -82,7 +88,9 @@ const WithdrawFromCharity = ({ reloadFn }: Props) => {
           disabled={!amount || isPending}
         >
           {isPending ? <ButtonLoader /> : ""}
-          برداشت
+          {
+            language === "fa" ? "برداشت" : "Withdraw"
+          }
         </Button>
       </DialogContent>
     </Dialog>
