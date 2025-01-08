@@ -12,8 +12,8 @@ import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
 
 export const CharityCardsList = () => {
     const [reload, setReload] = useState<number>(1);
-    const { t } = useTranslation();
-
+    const { t, i18n } = useTranslation();
+    const { language } = i18n
     function reloadFn() {
         setReload(cur => cur+1);
     }
@@ -57,7 +57,12 @@ export const CharityCardsList = () => {
                         : loading ? <ThreeDotsLoader dotSize={40} />
                         : data.accountNumber ? 
                             <CharityCard {...data} reloadFn={reloadFn} />
-                        : <span>هیچ کارتی یافت نشد</span>
+                        : <span
+                        >
+                            {
+                                language  === "fa" ? "هیچ کارتی یافت نشد" : "No Cards Are Found"
+                            }
+                        </span>
                     }
                     {
                         !loading && !data?.accountNumber && <CreateCharityCard reloadFn={reloadFn} />

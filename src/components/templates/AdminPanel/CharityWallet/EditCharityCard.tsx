@@ -12,6 +12,7 @@ import usePostData from "../../../../hooks/usePostData";
 import { toast } from "../../../../hooks/use-toast"; 
 import { ButtonLoader } from "../../../modules/loader/Loader";
 import { EditCardProps } from "./types";
+import { useTranslation } from "react-i18next";
 
 interface formValues {
   accountNumber: string,
@@ -22,50 +23,58 @@ interface formValues {
 }
 
 type XXXType = {
-    value: "accountNumber" | "bankName" | "iban" | "balance" | "fullName",
-    title: string,
-    placeholder: string,
-    type: "text" | "number",
+  value: "accountNumber" | "bankName" | "iban" | "balance" | "fullName",
+  title: string,
+  enTitle: string,
+  placeholder: string,
+  type: "text" | "number",
 }
 
 const xxx: XXXType[] = [
-    {
-        value: "accountNumber",
-        title: "شماره کارت",
-        placeholder: "---- ---- ---- ----",
-        type: "text",
-    },
-    {
-        value: "fullName",
-        title: "نام کامل",
-        placeholder: "",
-        type: "text",
-    },
-    {
-        value: "bankName",
-        title: "اسم بانک",
-        placeholder: "",
-        type: "text",
-    },
-    {
-      value: "iban",
-      title: "آی بان",
+  {
+      value: "accountNumber",
+      title: "شماره کارت",
+      enTitle: "Card Number",
+      placeholder: "---- ---- ---- ----",
+      type: "text",
+  },
+  {
+      value: "fullName",
+      title: "نام کامل",
+      enTitle: "Full Name",
       placeholder: "",
       type: "text",
-    },
-    {
-      value: "balance",
-      title: "موجودی حساب",
-      placeholder: "",
-      type: "number",
   },
+  {
+      value: "bankName",
+      title: "اسم بانک",
+      enTitle: "Bank Name",
+      placeholder: "",
+      type: "text",
+  },
+  {
+    value: "iban",
+    title: "آی بان",
+    enTitle: "IBAN",
+    placeholder: "",
+    type: "text",
+  },
+  {
+    value: "balance",
+    title: "موجودی حساب",
+    enTitle: "Balance",
+    placeholder: "",
+    type: "number",
+},
 ]
 
 const EditCharityCard = ({ reloadFn, accountNumber, fullName, balance, iban, bankName }: EditCardProps) => {
+  const { i18n } = useTranslation();
+  const { language } = i18n;
     const successFunc = () => {
         toast({
             variant: "success",
-            title: "کارت جدید با موفقیت اضافه شد"
+            title: language === "fa" ? "کارت جدید با موفقیت ویرایش شد" : "New Card Edited Successfully"
         })
         reloadFn();
     };
@@ -104,13 +113,13 @@ const EditCharityCard = ({ reloadFn, accountNumber, fullName, balance, iban, ban
     <Dialog>
       <DialogTrigger asChild>
         <Button className="group w-full relative p-2 flex gap-3 items-center justify-center rounded-md border-2 font-extrabold cursor-pointer transition-all duration-100">
-            ویرایش اطلاعات
+          {language === "fa" ? "ویرایش اطلاعات"  : "Edit Info"}
         </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2 py-3">
-            <h5>ویرایش اطلاعات</h5>
+            <h5>{language === "fa" ? "ویرایش اطلاعات"  : "Edit Info"}</h5>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
@@ -119,9 +128,9 @@ const EditCharityCard = ({ reloadFn, accountNumber, fullName, balance, iban, ban
         <div className="flex flex-col gap-4 items-center" dir="rtl">
             <div className="flex flex-col gap-4 items-start">
                 {
-                    xxx.map(({value, title, type, placeholder}) => 
+                    xxx.map(({value, title, enTitle, type, placeholder}) => 
                     <div className="flex gap-2 items-center w-full">
-                        <span>{title}</span>
+                        <span>{language === "fa" ? title : enTitle}</span>
                         <div className="flex-1 flex flex-col">
                             <input 
                                 type={type}
@@ -149,7 +158,9 @@ const EditCharityCard = ({ reloadFn, accountNumber, fullName, balance, iban, ban
                 {
                     isPending ? <ButtonLoader /> : ""
                 }
-                اعمال تغییرات
+                {
+                  language === "fa" ? "اعمال تغییرات" : "Apply"
+                }
             </Button>
             </div>
         </div>

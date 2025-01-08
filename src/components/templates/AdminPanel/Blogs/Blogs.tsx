@@ -62,7 +62,7 @@ const Blogs = () => {
                         <table className="w-full" style={{minWidth: "400px"}} dir={language === "fa" ? "rtl" : "ltr"}>
                             <tr>
                                 <th align={language === "fa" ? "right" : "left"}></th>
-                                <th align={language === "fa" ? "right" : "left"}>نمایه ی بلاگ</th>
+                                <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.photo")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.title")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.content")}</th>
                                 <th align={language === "fa" ? "right" : "left"}>{t("adminBlogs.table.publishDate")}</th>

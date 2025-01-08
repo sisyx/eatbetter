@@ -555,14 +555,32 @@ let changePasswordSchema = Yup.object().shape({
  
 const BlogSchema = Yup.object().shape({
   title: Yup.string()
-  .min(4, "لطفا عنوان طولانی تری انتخاب کنید")
-  .max(70, "لطفا عنوان کوتاه تری انتخاب کنید")
-  .required("لطفا عنوان وبلاگ را وارد کنید"),
+  .min(4,
+    i18n.language === "fa" ? "لطفا عنوان طولانی تری انتخاب کنید"
+    : "Please Choose a longer Title"
+  )
+  .max(70, 
+    i18n.language === "fa" ? "لطفا عنوان کوتاه تری انتخاب کنید"
+    : "Please Choose a Shorter Title"
+  )
+  .required( 
+    i18n.language === "fa" ? "لطفا عنوان وبلاگ را وارد کنید"
+    : "Please Ener the title of the Blog",
+  ),
 
   content: Yup.string()
-    .min(100, "لطفا متن طولانی تری بنویسید")
-    .max(10000, "لطفا متن کوتاه تری انتخاب کنید")
-    .required("لطفا متن وبلاگ را وارد کنید")
+    .min(100,
+      i18n.language === "fa" ? "لطفا متن طولانی تری بنویسید"
+      : "Please Write a Longer Text"
+    )
+    .max(10000, 
+      i18n.language === "fa" ? "لطفا متن کوتاه تری انتخاب کنید"
+      : "Please Write A Shorter Text"
+    )
+    .required(
+      i18n.language === "fa" ? "لطفا متن وبلاگ را وارد کنید"
+      : "Please Write the Blog Text"
+    )
 })
  
 export {

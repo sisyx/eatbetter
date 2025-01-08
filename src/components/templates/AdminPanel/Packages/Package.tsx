@@ -1,4 +1,4 @@
-import { MdAdd } from "react-icons/md";
+import { PackageProps, XXXType } from "./types";
 import {
   Dialog,
   DialogContent,
@@ -11,83 +11,95 @@ import { useFormik } from "formik";
 import { packageSchema } from "../../../../validations/rules";
 import usePostData from "../../../../hooks/usePostData";
 import { toast } from "../../../../hooks/use-toast";
-// import { useNavigate } from "react-router-dom";
 import { ButtonLoader } from "../../../modules/loader/Loader";
-import { XXXType } from "./types";
+import { useTranslation } from "react-i18next";
+import { useState } from "react";
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 interface formValues {
     name: string;
-    nameFa: string;
+    nameFa: string,
     currency: string;
     maxDiet: number;
     price: number;
 }
 
 const xxx: XXXType[] = [
-  {
-      value: "name",
-      title: "عنوان",
-      placeholder: "مثلا: Base",
-      type: "text",
-  },
-  {
-    value: "nameFa",
-    title: "عنوان فارسی",
-    placeholder: "مثلا: پکیج پایه",
-    type: "text",
-},
-  {
-      value: "currency",
-      title: "نرخ ارز",
-      placeholder: "مثلا: IRR",
-      type: "text",
-  },
-  {
-      value: "maxDiet",
-      title: "رژیم",
-      placeholder: "مثلا: 3000",
-      type: "number",
-  },
-  {
-      value: "price",
-      title: "قیمت",
-      placeholder: "مثلا: 40000",
-      type: "number",
-  },
+    {
+        value: "nameFa",
+        title: "عنوان فارسی",
+        enTitle: "Persian Title",
+        placeholder: "مثلا: پکیج طلایی",
+        enPlaceholder: "ex: پکیج طلایی",
+        type: "text",
+    },
+    {
+        value: "name",
+        title: "عنوان",
+        enTitle: "Title",
+        placeholder: "مثلا: Golden",
+        enPlaceholder: "ex: Golden",
+        type: "text",
+    },
+    {
+        value: "currency",
+        title: "نرخ ارز",
+        enTitle: "currency",
+        placeholder: "مثلا: IRR",
+        enPlaceholder: "ex: IRR",
+        type: "text",
+    },
+    {
+        value: "maxDiet",
+        title: "رژیم",
+        enTitle: "Diets",
+        placeholder: "مثلا: 13000",
+        enPlaceholder: "ex: 13000",
+        type: "number",
+    },
+    {
+        value: "price",
+        title: "قیمت",
+        enTitle: "Price",
+        placeholder: "مثلا: 50000",
+        enPlaceholder: "ex: 50000",
+        type: "number",
+    },
 ]
 
-const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
-    // const navigate = useNavigate();
-
-    const successFunc = (data: any) => {
-      if (!!data.id) {
+const CreatePackage = (props: PackageProps) => {
+    const { id, name, nameFa, currency, maxDiet, price, reloadFn } = props;
+    const { i18n } = useTranslation();
+    const { language } = i18n;
+    const [deleteState, setDeleteState] = useState({
+        deleting: false,
+        deleted: false,
+        deleteErr: false,
+    })
+    const successFunc = () => {
+           
         toast({
-          variant: "success",
-          title: "پکیج با موفقیت اضافه شد"
+            variant: "success",
+            title: "پکیج با موفقیت ویرایش شد"
         })
         reloadFn();
-      } else {
-        toast({
-          variant: "danger",
-          title: "اضافه کردن پکیج با مشکل مواجه شد"
-        })
-      }
     };
 
     const { mutate: mutation, isPending } = usePostData(
-        "/api/Package",
+        `/api/Package/UpdatePackage/${id}`,
         null,
-        false,
+        true,
         successFunc,
       );
 
     const formHandler = useFormik({
         initialValues: {
-          name: "",
-          nameFa: "",
-          currency: "",
-          maxDiet: NaN,
-          price: NaN,
+          name,
+          nameFa,
+          currency,
+          maxDiet,
+          price,
         },
         onSubmit: (_values: formValues) => {
           const data = {
@@ -97,24 +109,101 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
             maxDiet: formHandler.values.maxDiet,
             price: formHandler.values.price,
           };
-        //   console.log(data)
           mutation(data as any);
         },
         validationSchema: packageSchema,
       });
 
+      async function handleDelete(event: any) {
+        event.stopPropagation()
+              setDeleteState(cur => ({...cur, deleting: true}))
+              fetch(`${apiUrl}/api/Package/DeletePackage/${id}`, {
+                  method: "DELETE",
+                  headers: {
+                      "accept": "*/*"
+                  }
+              })
+              .then(req => {
+                  req.json()
+              })
+              .then((response: any) => {
+                if (response?.statusCode === 200) {
+
+                  // refresh the users (call reload funciton)
+                  reloadFn();
+                  
+                  // show success message
+                  const { message } = response
+                  toast({ title: message })
+                } else {
+                  toast({
+                    title: language === "fa" ? "مشکلی پیش آمده" : "Sorry, Unexpected Error",
+                    variant: "danger",
+                  })
+                }
+                setDeleteState(cur => ({...cur, deleted: true, deleteErr: false, deleting: false}))
+                return response
+              })
+              .catch((_error) => {
+                  setDeleteState(cur => ({...cur, deleted: false, deleteErr: true, deleting: false}))
+              })
+          }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="group relative flex flex-col gap-3 items-center justify-center rounded-2xl border-2 border-main text-main text-2xl font-extrabold hover:text-mainHover hover:border-mainHover cursor-pointer transition-all duration-100">
-            <MdAdd className="text-4xl" />
-            <span>ایجاد پکیج جدید</span>
+        <div
+          // data-aos="fade-up"
+          className="group relative cursor-pointer rounded-2xl border-2 border-main bg-opacity-90 transition-all duration-100 hover:bg-opacity-100 overflow-hidden"
+        >
+          <span className="flex items-center justify-center gap-2 p-4 text-base md:text-xl font-extrabold  text-white bg-main">
+              <span>{name}</span>
+              <span>{nameFa}</span>
+          </span>
+          <div className="flex items-center justify-center py-4 border-b-2 border-black">
+            <span>
+              {currency}
+            </span>
+          </div>
+          <div className="flex items-center justify-center py-4 border-b-2 border-black">
+            <span>
+              {maxDiet.toString()}
+            </span>
+          </div>
+          <div className="flex items-center justify-center py-4">
+            <span>
+              {currency === "IRR" ? (
+                    i18n.language === "fa" ? (
+                      <p> {price.toLocaleString()} هزار ریال</p>
+                    ) : (
+                      <p dir="ltr">
+                        {price.toLocaleString()} thousand rials
+                      </p>
+                    )
+                  ) : i18n.language === "fa" ? (
+                    `${price.toLocaleString()} دلار  `
+                  ) : (
+                    <p dir="ltr">${price.toLocaleString()}</p>
+                  )}
+            </span>
+          </div>
+          <div className="px-4 pb-4 flex flex-col gap-2">
+            <Button className="w-full bg-main hover:bg-mainHover">
+              {language === "fa" ? "ویرایش" : "Edit"}
+            </Button>
+            <Button className="w-full" onClick={e => handleDelete(e)}>
+              {
+                deleteState.deleting ? <ButtonLoader /> : 
+                language === "fa" ? "حذف" : "Delete"
+              }
+            </Button>
+          </div>
         </div>
       </DialogTrigger>
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2 py-3">
-            <h5>ایجاد پکیج جدید</h5>
+            <h5>{language === "fa" ? "ویرایش" : "Edit"}            </h5>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
@@ -123,9 +212,9 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
         <div className="flex flex-col gap-4 items-center" dir="rtl">
             <div className="flex flex-col gap-4 items-start">
                 {
-                    xxx.map(({value, title, type, placeholder}) => 
-                    <div className="flex gap-2 items-center w-full">
-                        <div className="w-1/4">{title}</div>
+                    xxx.map(({value, title, enTitle, type, placeholder, enPlaceholder}) => 
+                    <div className="flex gap-2 items-center w-full text-sm md:text-base">
+                        <span className="w-1/4">{language === "fa" ? title : enTitle}</span>
                         <div className="flex-1 flex flex-col">
                             <input 
                                 type={type}
@@ -134,7 +223,7 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
                                 onChange={formHandler.handleChange} 
                                 onBlur={formHandler.handleBlur} 
                                 className="border border-main rounded-md outline-none p-2 focus:border-mainHover w-full min-w-8" 
-                                placeholder={placeholder}
+                                placeholder={language === "fa" ? placeholder : enPlaceholder}
                                 />
                             { formHandler.touched[value] && formHandler.errors[value] && (
                                 <span className="mt-2 block w-full text-center text-xs text-red-600">
@@ -162,3 +251,4 @@ const CreatePackage = ({ reloadFn }: {reloadFn: Function}) => {
 };
 
 export default CreatePackage;
+1

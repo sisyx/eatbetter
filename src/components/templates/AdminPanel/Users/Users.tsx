@@ -12,8 +12,9 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const Users = () => {
   const [reload, setReload] = useState<number>(1);
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
+  
   function reloadFn() {
     setReload((cur) => cur + 1);
   }
@@ -49,7 +50,7 @@ const Users = () => {
         </div>
         <hr />
         {error ? (
-          <h1>Error Loading Users</h1>
+          <h1>{language === "fa" ? "مشکلی در بارگیری کاربران پیش آمده :(" :  "Error Loading Users"}</h1>
         ) : loading ? (
           <ThreeDotsLoader dotSize={20} />
         ) : (

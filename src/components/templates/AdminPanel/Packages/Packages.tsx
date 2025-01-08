@@ -8,11 +8,13 @@ import Cookies from "js-cookie";
 import CreatePackage from "./CreatePackage";
 import { tokenName } from "../../../../config/constants";
 import { ThreeDotsLoader } from "../../../modules/loader/ThreeDotLoader";
+import { useTranslation } from "react-i18next";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 export const Packages = () => {
   const [reload, setReload] = useState<number>(1);
-
+  const { t } = useTranslation();
+  
   function reloadFn() {
     setReload((cur) => cur + 1);
   }
@@ -45,7 +47,7 @@ export const Packages = () => {
       <div className="flex h-full w-full flex-col gap-4">
         <div className="flex flex-col items-center gap-2 gap-y-4 text-2xl font-bold">
           <GoPackage className="text-3xl" />
-          <span>پکیج ها</span>
+          <span>{t("adminPackages.title")}</span>
         </div>
         <hr />
         <div className="grid grid-cols-1 gap-3 gap-y-8 sm:grid-cols-2 md:grid-cols-3">

@@ -6,6 +6,7 @@ import { ButtonLoader } from "../../../modules/loader/Loader";
 const apiUrl = import.meta.env.VITE_API_URL;
 // import { useTranslation } from "react-i18next";
 import { toast } from "../../../../hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 type DeleteState = {
     loading: Boolean,
@@ -15,6 +16,8 @@ type DeleteState = {
 const Contact = (props: ContactProps) => {
     const [isDeleted, setIsDeleted] = useState<DeleteState>({loading: false, deleted: false});
     const { id, fullName, email, phoneNumber, subject, message, reloadFn } = props;
+    const { i18n } = useTranslation();
+    const { language } = i18n;
     // const { t } = useTranslation();
 
     // async functions
@@ -50,11 +53,12 @@ const Contact = (props: ContactProps) => {
                 <div className="flex items-center gap-3">
                     {/* <span className="p-2 text-cener">{t("adminContact.user")}</span> */}
                     <div 
-                    className="
-                            text-white bg-main group-hover:bg-mainHover font-bold h-full px-2 flex items-center justify-center
-                            relative before:absolute before:left-0 before:bottom-0 before:-translate-x-full before:content-[''] before:w-4 before:aspect-square before:bg-main group-hover:before:bg-mainHover
-                            after:absolute after:left-0 after:bottom-0 after:-translate-x-full after:content-[''] after:w-4 after:aspect-square after:bg-gray-100 after:rounded-br-full
-                        "
+                    className={`
+                        text-white bg-main group-hover:bg-mainHover font-bold h-full px-2 flex items-center justify-center
+                        relative before:absolute before:bottom-0 before:content-[''] before:w-4 before:aspect-square before:bg-main group-hover:before:bg-mainHover
+                        after:absolute after:bottom-0 after:content-[''] after:w-4 after:aspect-square after:bg-gray-100
+                        ${language === "fa" ? "before:left-0 before:-translate-x-full after:left-0 after:-translate-x-full after:rounded-br-full" : "before:right-0 before:translate-x-full after:right-0 after:translate-x-full after:rounded-bl-full" }
+                        `}
                     >
                         <span className="md:hidden text-sm">
                             {`${fullName.slice(0,7)}${fullName.length > 7 ? "..." : ""}`}
@@ -65,11 +69,11 @@ const Contact = (props: ContactProps) => {
                     </div>
                     <div className="flex flex-col z-50 text-sm md:text-base">
                         <div>
-                            <span className="hidden md:inline">ایمیل: </span>
+                            <span className="hidden md:inline">{ language === "fa" ? "ایمیل" : "Email"}: </span>
                             <a href={`mailto:${email}`} className=" underline underline-offset-1">{email}</a>
                         </div>
                         <div>
-                            <span className="hidden md:inline">تلفن: </span>
+                            <span className="hidden md:inline">{ language === "fa" ? "تلفن" : "Phone"}: </span>
                             <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
                         </div>
                     </div>

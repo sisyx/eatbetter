@@ -51,6 +51,7 @@ const adminPanelFa = {
       optionTwo: "تعداد افراد",
     },
     adminBlogs: {
+      photo: "نمایه ی بلاگ",
       title: "مدیریت بلاگ ها",
       loadBlogsError: "مشکلی در بارگیری بلاگ ها پیش آمده",
       table: {
@@ -260,6 +261,7 @@ const adminPanelFa = {
       title: "Blogs Management",
       loadBlogsError: "Error Loading Blogs",
       table: {
+        photo: "Photo",
         title: "Title",
         publishDate: "Publish Date",
         content: "Blog Content",
