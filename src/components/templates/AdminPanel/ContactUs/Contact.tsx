@@ -6,6 +6,7 @@ import { ButtonLoader } from "../../../modules/loader/Loader";
 const apiUrl = import.meta.env.VITE_API_URL;
 // import { useTranslation } from "react-i18next";
 import { toast } from "../../../../hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 type DeleteState = {
     loading: Boolean,
@@ -15,6 +16,8 @@ type DeleteState = {
 const Contact = (props: ContactProps) => {
     const [isDeleted, setIsDeleted] = useState<DeleteState>({loading: false, deleted: false});
     const { id, fullName, email, phoneNumber, subject, message, reloadFn } = props;
+    const { i18n } = useTranslation();
+    const { language } = i18n;
     // const { t } = useTranslation();
 
     // async functions
@@ -65,11 +68,11 @@ const Contact = (props: ContactProps) => {
                     </div>
                     <div className="flex flex-col z-50 text-sm md:text-base">
                         <div>
-                            <span className="hidden md:inline">ایمیل: </span>
+                            <span className="hidden md:inline">{ language === "fa" ? "ایمیل" : "Email"}: </span>
                             <a href={`mailto:${email}`} className=" underline underline-offset-1">{email}</a>
                         </div>
                         <div>
-                            <span className="hidden md:inline">تلفن: </span>
+                            <span className="hidden md:inline">{ language === "fa" ? "تلفن" : "Phone"}: </span>
                             <a href={`tel:${phoneNumber}`}>{phoneNumber}</a>
                         </div>
                     </div>
