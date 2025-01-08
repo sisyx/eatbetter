@@ -29,24 +29,31 @@ type PropsType = {
   reload: Function;
 };
 
+
 type XXXType = {
   value: "title" | "content";
+  enTitle: string;
   title: string;
   placeholder: string;
+  enPlaceholder: string,
   type: "text" | "number" | "date" | "file";
 };
 
 const xxx: XXXType[] = [
   {
     value: "title",
-    title: "عنوان فارسی",
+    title: "عنوان",
+    enTitle: "Title",
     placeholder: "مثلا: اهمیت رژیم غذایی در سلامت روان",
+    enPlaceholder: "ex: How Eating affects Body",
     type: "text",
   },
   {
     value: "content",
     title: "متن بلاگ",
+    enTitle: "Blog Content",
     placeholder: "متن وبلاگ را اینجا بنویسید",
+    enPlaceholder: "Enter the text for your blog here",
     type: "text",
   },
 ];
@@ -54,6 +61,7 @@ const xxx: XXXType[] = [
 export const EditBlog = (props: PropsType) => {
   const { id, title, content, imagePath, publishedDate, reload } = props;
   const { t,i18n } = useTranslation();
+  const { language } = i18n;
 
   const successFunc = () => {
     toast({
@@ -105,7 +113,7 @@ export const EditBlog = (props: PropsType) => {
       <DialogContent className="w-full max-w-full sm:!max-w-[425px]">
         <DialogHeader>
           <DialogTitle className="flex items-center justify-center gap-2 py-3">
-            <h5>ویرایش</h5>
+            <h5>{t("adminBlogs.table.row.edit")}</h5>
             <div className="h-2 w-2 rounded-xl bg-main">
               <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
             </div>
@@ -113,9 +121,9 @@ export const EditBlog = (props: PropsType) => {
         </DialogHeader>
         <div className="flex flex-col items-center gap-4" dir="rtl">
           <div className="flex flex-col items-start gap-4">
-            {xxx.map(({ value, title, type }) => (
+            {xxx.map(({ value, title, type, placeholder, enPlaceholder, enTitle }) => (
               <div className="flex w-full items-center gap-2">
-                <span>{title}</span>
+                <span>{language === "fa" ? title : enTitle}</span>
                 <div className="flex flex-1 flex-col">
                   <input
                     type={type}
@@ -124,7 +132,7 @@ export const EditBlog = (props: PropsType) => {
                     onChange={formHandler.handleChange}
                     onBlur={formHandler.handleBlur}
                     className="rounded-md border border-main p-2 outline-none focus:border-mainHover"
-                    placeholder="مثلا: پکیج طلایی"
+                    placeholder={language === "fa" ? placeholder : enPlaceholder}
                   />
                   {formHandler.touched[value] && formHandler.errors[value] && (
                     <span className="mt-2 block w-full text-center text-xs text-red-600">
@@ -140,7 +148,9 @@ export const EditBlog = (props: PropsType) => {
               className="w-full"
             >
               {isPending ? <ButtonLoader /> : ""}
-              اضافه کردن
+              {
+                language === "fa" ? "اعمال تغییرات" : "Apply"
+              }
             </Button>
           </div>
         </div>
