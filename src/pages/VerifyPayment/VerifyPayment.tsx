@@ -23,8 +23,10 @@ const VerifyPayment = () => {
     () => getPaymentStatus(Authority as string, Status as string),
     {
       enabled: Boolean(Authority) && Boolean(Status),
+      staleTime: Infinity,
+      cacheTime: Infinity 
     },
-  ); 
+  );
 
   const { data: stripData, isLoading: stripLoading } = useGetData<any>(
     transactionId ? ["withdrawalStatusStrip", transactionId] : [],
@@ -44,7 +46,9 @@ const VerifyPayment = () => {
       }
     } else {
       if (data) {
-        if (data.message === "پرداخت با موفقیت انجام شد") {
+        console.log(data);
+
+        if (data.message === "پرداخت با موفقیت انجام شد.") {
           setPaymentStatus("success");
           queryClient.invalidateQueries({ queryKey: ["auth"] });
         } else setPaymentStatus("nonsuccess");

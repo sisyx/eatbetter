@@ -71,7 +71,7 @@ const SideBar = ({ className }: { className?: string }) => {
         <div className="flex flex-col gap-4 items-center justify-between px-3">
           <Link to={"/"}>
             <img
-              src="/BLP-b-white.png"
+              src="/logo.png"
               alt="logo"
               width="80px"
               className="mx-auto"

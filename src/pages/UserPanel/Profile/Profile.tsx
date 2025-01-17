@@ -71,26 +71,7 @@ const Profile = () => {
           <div className="h-2 w-2 animate-ping rounded-xl bg-mainHover"></div>
         </div>
       </div>
-      <main>
-        {/* <div className="relative mx-auto mt-5 block w-max xs:!mt-0">
-          <img
-            className="h-20 w-20 rounded-full"
-            src={
-              avatar
-                ? avatar
-                : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSG0mU1hiNmdzqNKOq2N5c6qIxkFmeKNAhvfw&s`
-            }
-            alt="profile"
-          />
-          <span className="absolute -right-2 bottom-1 h-7 w-7 cursor-pointer rounded-full bg-main px-[10px] pb-[.1rem] pl-[16px] pt-[.1rem] text-white">
-            +
-            <input
-              type="file"
-              // onChange={(event) => profileChangeHandler(event)}
-              className="absolute right-0 top-0 h-full w-full cursor-pointer opacity-0"
-            />
-          </span>
-        </div> */}
+      <main> 
         <div className="mt-2 grid grid-cols-[auto] gap-5 border-t border-solid border-[#00000031] px-2 pt-4 md:!px-0 lg:!grid-cols-[1fr,1fr]">
           <Box
             setValue={setUserName}
