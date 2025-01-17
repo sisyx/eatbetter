@@ -15,7 +15,6 @@ import { IoFastFoodOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { GiNightSleep } from "react-icons/gi";
 import { Button } from "../../shadcn/ui/button";
-import { PiMedalLight } from "react-icons/pi";
 import { TbMoneybag } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
 import swal from "sweetalert";
@@ -78,11 +77,11 @@ const SideBar = ({ className }: { className?: string }) => {
         ]
       : []),
 
-    {
-      title: t("sideBar.challenges"),
-      href: "/userpanel/challenges",
-      icon: <PiMedalLight className="text-2xl" />,
-    },
+    // {
+    //   title: t("sideBar.challenges"),
+    //   href: "/userpanel/challenges",
+    //   icon: <PiMedalLight className="text-2xl" />,
+    // },
     {
       title: t("sideBar.health"),
       href: "/userpanel/health",
@@ -139,7 +138,7 @@ const SideBar = ({ className }: { className?: string }) => {
           {userData?.country === "IR" ? (
             <Link to={"/"}>
               <img
-                src="/BLP-b-white.png"
+                src="/logo.png"
                 alt="logo"
                 width="80px"
                 className="mx-auto"
@@ -148,7 +147,7 @@ const SideBar = ({ className }: { className?: string }) => {
           ) : (
             <Link className="max-auto w-full" to={"/"}>
               <img
-                src="/BLP-b-white.png"
+                src="/logo.png"
                 alt="logo"
                 width="80px"
                 className="mx-auto"

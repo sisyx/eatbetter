@@ -4,9 +4,16 @@ import Modal from "./Modal";
 type Props = {
   isActive?: boolean;
   exercise: string;
+  exercise2: string;
+  exercise3: string;
+  exercise4: string;
+  exercise5: string;
   day: string;
   challengeType: string;
   id: number;
+  method:string
+  durationOrReps:string
+  benefits:string
 };
 
 const Card = (props: Props) => {

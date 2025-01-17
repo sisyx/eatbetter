@@ -20,6 +20,8 @@ export default function DietsBtn() {
     },
   );
 
+  console.log(data);
+  
   
   return (
     <>
@@ -36,13 +38,8 @@ export default function DietsBtn() {
           {viewBtnAn ? (
             <div className="flex items-center justify-center gap-10 max-lg:flex-col">
               {data &&
-                data?.packages.map((pack: any, index: number) => (
-                  <motion.div
-                    initial={{ opacity: 0, x: index === 0 ? -500 : 0 }}
-                    animate={{ opacity: 1, x: index === 0 ? 1 : 0 }}
-                    transition={{ duration: 1 }}
-                    className="flex flex-col items-center justify-center rounded-3xl px-10 py-10 shadow-2xl"
-                  >
+                data.packages.map((pack: any, index: number) => (
+                
                     <div className="flex items-center gap-10">
                       <Link to={"/packages"}>
                         <div className="flex h-[37px] w-[37px] items-center justify-center rounded-full bg-main text-white transition-all hover:bg-mainHover">
@@ -85,8 +82,7 @@ export default function DietsBtn() {
                           )}
                         </span>
                       </div>
-                    </div>
-                  </motion.div>
+                    </div> 
                 ))}
             </div>
           ) : null}

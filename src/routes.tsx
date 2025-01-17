@@ -9,8 +9,6 @@ import PanelSleep from "./pages/UserPanel/Sleep/Sleep";
 import Notifications from "./pages/UserPanel/Notifications/Notifications";
 import Health from "./pages/UserPanel/Health/Health";
 import Diet from "./pages/UserPanel/Health/Diet/Diet";
-import Challenges from "./pages/UserPanel/Challenges/Challenges";
-import Challenge from "./pages/UserPanel/Challenges/Challenge/Challenge";
 import PanelTraining from "./pages/UserPanel/Training/Training";
 import Introductions from "./pages/UserPanel/Introductions/Introductions";
 import Income from "./pages/UserPanel/Income/Income";
@@ -29,9 +27,9 @@ import Blogs from "./pages/Blogs/Blogs";
 import { Blog } from "./pages/Blogs/Blog";
 
 // admin panel imports
-import Users from './components/templates/AdminPanel/Users/Users';
+import Users from "./components/templates/AdminPanel/Users/Users";
 import { Packages as ApPackages } from "./components/templates/AdminPanel/Packages/Packages";
-import AdminContacts from './components/templates/AdminPanel/ContactUs/Contacts';
+import AdminContacts from "./components/templates/AdminPanel/ContactUs/Contacts";
 import CooperateCardsList from "./components/templates/AdminPanel/Cooperate/CooperateCardsList";
 import { CharityCardsList } from "./components/templates/AdminPanel/CharityWallet/CharityCardsList";
 import AdminBlogs from "./components/templates/AdminPanel/Blogs/Blogs";
@@ -39,6 +37,8 @@ import { SuccessFullPayment } from "./pages/Payment/SuccessfulPayment";
 import UnsuccessFullPayment from "./pages/Payment/UnsuccessfulPayment";
 import Withdrawals from "./components/templates/AdminPanel/Withdrawals/index";
 import Transactions from "./components/templates/AdminPanel/Transactions/index";
+import Challenge from "./pages/Challenge/Challange";
+import Challenges from "./pages/Challanges/Challanges";
 
 const userPanelRoutes = [
   {
@@ -66,14 +66,14 @@ const userPanelRoutes = [
     path: "/userPanel/health/:id",
     element: <Diet />,
   },
-  {
-    path: "/userPanel/challenges",
-    element: <Challenges />,
-  },
-  {
-    path: "/userPanel/challenges/:name",
-    element: <Challenge />,
-  },
+  // {
+  //   path: "/userPanel/challenges",
+  //   element: <Challenges />,
+  // },
+  // {
+  //   path: "/userPanel/challenges/:name",
+  //   element: <Challenge />,
+  // },
   {
     path: "/userPanel/wallet",
     element: <Wallet />,
@@ -100,40 +100,40 @@ const userPanelRoutes = [
   },
 ];
 
-const adminPanelRoutes = [ 
+const adminPanelRoutes = [
   {
     path: "/adminPanel/users",
     element: <Users />,
   },
   {
-    path: '/adminPanel/packages',
-    element: <ApPackages />
+    path: "/adminPanel/packages",
+    element: <ApPackages />,
   },
   {
     path: "/adminPanel/contact",
-    element: <AdminContacts />
+    element: <AdminContacts />,
   },
   {
     path: "/adminPanel/cooperate",
-    element: <CooperateCardsList />
+    element: <CooperateCardsList />,
   },
   {
     path: "/adminPanel/charityWallet",
-    element: <CharityCardsList />
+    element: <CharityCardsList />,
   },
   {
     path: "/adminPanel/blogs",
-    element: <AdminBlogs />
+    element: <AdminBlogs />,
   },
   {
     path: "/adminPanel/withdrawals",
-    element: <Withdrawals />
+    element: <Withdrawals />,
   },
   {
     path: "/adminPanel/Transactions",
-    element: <Transactions />
-  }
-]
+    element: <Transactions />,
+  },
+];
 
 const otherRoutes = [
   {
@@ -182,30 +182,34 @@ const otherRoutes = [
   },
   {
     path: "/blogs",
-    element: <Blogs />
+    element: <Blogs />,
   },
   {
     path: "/blog",
-    element: <Blog />
+    element: <Blog />,
   },
   {
     path: "/verifyPayment",
-    element: <VerifyPayment />
+    element: <VerifyPayment />,
+  },
+  {
+    path: "/challenges",
+    element: <Challenges />,
+  },
+  {
+    path: "/challenge/:name",
+    element: <Challenge />,
   },
   {
     path: "/successfullPayment",
-    element: <SuccessFullPayment />
+    element: <SuccessFullPayment />,
   },
   {
     path: "/unsuccessfullPayment",
-    element: <UnsuccessFullPayment />
+    element: <UnsuccessFullPayment />,
   },
 ];
 
-const routes = [
-  ...adminPanelRoutes,
-  ...userPanelRoutes,
-  ...otherRoutes,
-]
+const routes = [...adminPanelRoutes, ...userPanelRoutes, ...otherRoutes];
 
 export default routes;

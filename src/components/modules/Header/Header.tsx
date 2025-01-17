@@ -48,7 +48,7 @@ export default function index() {
       >
         <div className="w-[85px]">
           <Link to={"/"}>
-            <img src="BLP-b.png" alt="logo" width={"80px"} />
+            <img src="logo.png" alt="logo"  className="min-w-[90px] max-w-[90px]" />
           </Link>
         </div>
         <div className="max-lg:hidden">
@@ -61,13 +61,6 @@ export default function index() {
               <li>{t("hederMainpage")}</li>
             </Link>
             <Link
-              to={"/blogs"}
-              className="rounded-md p-2 transition-all hover:text-main"
-            >
-              {" "}
-              <li>{t("blog")}</li>
-            </Link>
-            <Link
               to={"/diets"}
               className="rounded-md p-2 transition-all hover:text-main"
             >
@@ -75,13 +68,13 @@ export default function index() {
               <li>{t("diets")}</li>
             </Link>
             <Link
-              to={"/sleep"}
+              to={"/challenges"}
               className="rounded-md p-2 transition-all hover:text-main"
             >
               {" "}
-              <li>{t("sleep_soul_mental")}</li>
+              <li>{t("sideBar.challenges")}</li>
             </Link>
-            {userData && userData.country ? (
+            {/* {userData && userData.country ? (
               <Link
                 to={"/packages"}
                 className="rounded-md p-2 transition-all hover:text-main"
@@ -89,61 +82,8 @@ export default function index() {
                 {" "}
                 <li>{t("package")}</li>
               </Link>
-            ) : null}
+            ) : null} */}
 
-            <Link
-              to={"/training"}
-              className="rounded-md p-2 transition-all hover:text-main"
-            >
-              {" "}
-              <li> {t("exercises")}</li>
-            </Link>
-
-            {/* <div className="group relative flex transition-all">
-              <Link to={""} className="group flex items-center justify-center">
-                <li className="rounded-md p-2 transition-all hover:text-main">
-                  {t("exercises")}
-                </li>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-4 rotate-180 transition-all group-hover:rotate-0"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m4.5 15.75 7.5-7.5 7.5 7.5"
-                  />
-                </svg>
-              </Link>
-              <div className="absolute top-[100%] z-[999] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
-                <ul className="flex flex-col gap-2 p-6 text-end">
-                  <Link to={""} className="hover:text-mainHover">
-                    {" "}
-                    <li>شنا</li>
-                  </Link>
-                  <Link to={""} className="hover:text-mainHover">
-                    {" "}
-                    <li>اسکات</li>
-                  </Link>
-                  <Link to={""} className="hover:text-mainHover">
-                    {" "}
-                    <li>ورزش شکم</li>
-                  </Link>
-                  <Link to={""} className="hover:text-mainHover">
-                    {" "}
-                    <li>پیاده روی </li>
-                  </Link>
-                  <Link to={""} className="hover:text-mainHover">
-                    {" "}
-                    <li>پلانگ</li>
-                  </Link>
-                </ul>
-              </div>
-            </div> */}
             <div className="group relative flex transition-all">
               <Link
                 to={"/cooking"}
@@ -227,6 +167,75 @@ export default function index() {
                 </div>
               </div> */}
             </div>
+            <Link
+              to={"/training"}
+              className="rounded-md p-2 transition-all hover:text-main"
+            >
+              {" "}
+              <li> {t("exercises")}</li>
+            </Link>
+            <Link
+              to={"/blogs"}
+              className="rounded-md p-2 transition-all hover:text-main"
+            >
+              {" "}
+              <li>{t("blog")}</li>
+            </Link>
+
+            <Link
+              to={"/sleep"}
+              className="rounded-md p-2 transition-all hover:text-main"
+            >
+              {" "}
+              <li>{t("sleep_soul_mental")}</li>
+            </Link>
+
+            {/* <div className="group relative flex transition-all">
+              <Link to={""} className="group flex items-center justify-center">
+                <li className="rounded-md p-2 transition-all hover:text-main">
+                  {t("exercises")}
+                </li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-4 rotate-180 transition-all group-hover:rotate-0"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                  />
+                </svg>
+              </Link>
+              <div className="absolute top-[100%] z-[999] hidden w-32 rounded-xl bg-main text-white group-hover:flex">
+                <ul className="flex flex-col gap-2 p-6 text-end">
+                  <Link to={""} className="hover:text-mainHover">
+                    {" "}
+                    <li>شنا</li>
+                  </Link>
+                  <Link to={""} className="hover:text-mainHover">
+                    {" "}
+                    <li>اسکات</li>
+                  </Link>
+                  <Link to={""} className="hover:text-mainHover">
+                    {" "}
+                    <li>ورزش شکم</li>
+                  </Link>
+                  <Link to={""} className="hover:text-mainHover">
+                    {" "}
+                    <li>پیاده روی </li>
+                  </Link>
+                  <Link to={""} className="hover:text-mainHover">
+                    {" "}
+                    <li>پلانگ</li>
+                  </Link>
+                </ul>
+              </div>
+            </div> */}
+
             <div className="group relative flex transition-all">
               <Link
                 to={"/contacts"}
